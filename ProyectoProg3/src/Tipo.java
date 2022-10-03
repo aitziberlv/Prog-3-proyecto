@@ -1,0 +1,5 @@
+
+public enum Tipo {
+	PANTALONES,CAMISETAS,CHAQUETAS,VESTIDOS,FALDA;
+
+}
