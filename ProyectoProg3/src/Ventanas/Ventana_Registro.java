@@ -53,7 +53,7 @@ import javax.swing.JTextField;
 		private JTextField textNumeroTarjeta;
 		
 		
-		public VentanaRegistrarse() {
+		public Ventana_Registro() {
 			
 			//Definir tamano ventana
 			setSize(400, 400);
