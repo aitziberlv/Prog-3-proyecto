@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-	public class VentanaRegistrarse extends JFrame{
+	public class Ventana_Registro extends JFrame{
 		
 		private static final long serialVersionUID = 1L;
 		private boolean registro = false;
