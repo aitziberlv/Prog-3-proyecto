@@ -24,7 +24,7 @@ public enum Habilidades {
 	//ventana iniciar sesion y registro compartidas.
 
 	
-	codigo de uso generico para toda la clase
+	//codigo de uso generico para toda la clase
 	
 	
 }

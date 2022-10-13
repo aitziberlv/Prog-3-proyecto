@@ -1,0 +1,4 @@
+
+public enum Franquicia {
+	ZARA,STRADIVARIUS,BERSHKA,JD,PULLANDBEAR,KAOTIKO;
+}
