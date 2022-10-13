@@ -1,4 +1,6 @@
 
 public class Producto {
+	
+	private 
 
 }
