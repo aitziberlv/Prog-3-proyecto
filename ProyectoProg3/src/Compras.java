@@ -1,10 +1,10 @@
 
-public class Tienda {
+public class Compras {
 	private Tipo prenda=Tipo.CAMISETAS;
-	private Talla talla=Talla.L; 
-	private Franquicia tienda=Franquicia.ZARA;
+	private Talla talla=Talla.L;
 	
-	public Tienda(Tipo prenda, Talla talla, Franquicia tienda) {
+	
+	public Compras(Tipo prenda, Talla talla, Franquicia tienda) {
 		super();
 		this.prenda = prenda;
 		this.talla = talla;
