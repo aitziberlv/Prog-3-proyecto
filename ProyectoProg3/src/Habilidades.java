@@ -1,6 +1,6 @@
 
 public enum Habilidades {
-	MARKETING,IDIOMAS,CONOCIMIENTO_NEGOCIO,ASOCIADO_DE_VENTAS;
+	MARKETING,IDIOMAS,CONOCIMIENTO_NEGOCIO,ASOCIADO_DE_VENTAS,EXPERIENCIA;
 
 //	asignar a cada trabajador una habilidad
 //	trabajadores actuales
