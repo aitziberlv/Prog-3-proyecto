@@ -1,5 +1,5 @@
 
-public enum Tipo {
+public enum TipoProducto {
 	PANTALONES,CAMISETAS,CHAQUETAS,VESTIDOS,FALDA;
 
 }
