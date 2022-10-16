@@ -55,6 +55,7 @@ import javax.swing.JTextField;
 		
 		public Ventana_Registro() {
 			
+			
 			//Definir tamano ventana
 			setSize(400, 400);
 			getContentPane().setLayout(new GridLayout(3,1));
@@ -64,4 +65,24 @@ import javax.swing.JTextField;
 		      setSize(width/2, height/2);		
 
 		      setLocationRelativeTo(null);
+		     
+		    //Inicializar ventana
+		   center = new JPanel();
+		   center.setLayout(new GridLayout(3,2));
+		   datosPersonales = new JPanel();
+		   datosPersonales.setLayout(new GridLayout(9,2));
+		   logo = new JPanel();
+		   botonera = new JPanel();
+		   
+		   usuario = new JLabel("Usuario: ");
+		   contrasena = new JLabel("Contraseña: ");
+		   
+		   textUsuario = new JTextField(25);
+		   textContrasena = new JTextField(25);
+		   entrar = new JButton("Entrar");
+		   salir = new JButton("Salir");
+		   registrarse = new JButton("Registrarse");
+		   
+		     
+		}
 }
