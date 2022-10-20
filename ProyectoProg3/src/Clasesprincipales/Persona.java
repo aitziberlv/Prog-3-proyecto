@@ -1,3 +1,5 @@
+package Clasesprincipales;
+
 
 public abstract class Persona {
 	protected String nombre;

@@ -1,3 +1,5 @@
+package Clasesprincipales;
+
 
 public enum Habilidades {
 	MARKETING,IDIOMAS,CONOCIMIENTO_NEGOCIO,ASOCIADO_DE_VENTAS,EXPERIENCIA;

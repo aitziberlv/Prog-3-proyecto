@@ -1,4 +1,4 @@
-
+package Clasesprincipales;
 public class Compra {
 	private TipoProducto prenda = TipoProducto.CAMISETAS;
 	private Talla talla=Talla.L;
