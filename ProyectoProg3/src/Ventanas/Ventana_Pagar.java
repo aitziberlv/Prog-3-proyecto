@@ -21,6 +21,7 @@ import javax.swing.border.LineBorder;
 
 public class Ventana_Pagar extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel pnl_center;
 	private JPanel pnl_titulo;
 
