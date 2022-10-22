@@ -36,7 +36,6 @@ public class Ventana_Pagar extends JFrame {
 	private JTextField aCVV;
 	private JTextField aDireccion;
 	
-	
 	private JButton Pagar;
 	
 	public Ventana_Pagar() {
@@ -132,5 +131,13 @@ public class Ventana_Pagar extends JFrame {
 				}
 
 		});
+		
+	}
+		public static void main(String[] args) {
+			Ventana_Pagar ventana_Pagar = new Ventana_Pagar();
+			ventana_Pagar.setExtendedState(Ventana_Pagar.MAXIMIZED_BOTH);
+			
+			ventana_Pagar.setVisible(true);
+			ventana_Pagar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
