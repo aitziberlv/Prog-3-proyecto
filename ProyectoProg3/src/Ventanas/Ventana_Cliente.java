@@ -89,7 +89,7 @@ public class Ventana_Cliente extends JFrame{
 		}
 		
 		buscar = new JButton("Buscar");
-		anyadir = new JButton("Añadir");
+		anyadir = new JButton("Aï¿½adir");
 		
 		
 		
@@ -122,4 +122,4 @@ public class Ventana_Cliente extends JFrame{
 	}
 	
 
-}}
+}

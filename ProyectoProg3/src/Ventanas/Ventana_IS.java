@@ -16,6 +16,7 @@ public class Ventana_IS extends JFrame{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private boolean registro = false;
 	//inicio sesion 
