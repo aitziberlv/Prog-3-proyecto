@@ -136,8 +136,10 @@ public class Ventana_IS extends JFrame{
 		});
 //--------------------------------------------------------------------------------------------------------------------------------------------		
 		panel_general.setLayout(new GridLayout(7,1));
+		abajo.setLayout(new GridLayout(2,1));
         abajo.add(btusuario_contrasena);
 		abajo.add(registro);
+		
 		pncontrasena.add(contrasena);
 		pncontrasena.add(contrasenal);
 		pnusuario.add(usuario);
