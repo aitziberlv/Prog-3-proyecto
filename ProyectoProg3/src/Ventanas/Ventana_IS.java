@@ -139,6 +139,22 @@ public class Ventana_IS extends JFrame{
 			}
 			
 		});
+		
+		anterior.addActionListener((ActionListener)new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pnombre.setVisible(false);
+				pnapellido.setVisible(false);
+				pncorreo.setVisible(false);
+				pntelefono.setVisible(false);
+				btusuario_contrasena.setVisible(true);
+				anterior.setVisible(false);
+				panel_arribal.setText("Iniciar Sesion");
+				
+			}
+			
+		});
 //----------------------------------------------------------------------------------------------------------------------------------------------		
         this.addWindowListener(new WindowAdapter() {
 			
