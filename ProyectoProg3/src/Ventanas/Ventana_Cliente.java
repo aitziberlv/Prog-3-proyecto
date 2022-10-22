@@ -49,7 +49,7 @@ public class Ventana_Cliente extends JFrame{
 
 
 	private void inicializarVentana() {
-		this.setSize(400, 400);
+		this.setSize(800, 800);
 		this.setLayout(new GridLayout(3,1));
 		
 		arriba = new JPanel();
@@ -67,14 +67,26 @@ public class Ventana_Cliente extends JFrame{
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
 		
-		preciobarra = new JSlider();
+		preciobarra = new JSlider(0, 200);
+		preciobarra.setPaintTrack(true);
+		preciobarra.setPaintTicks(true);
+		preciobarra.setPaintLabels(true);
+		preciobarra.setMajorTickSpacing(20);
+		preciobarra.setMinorTickSpacing(20);
 		
 		c = new JTextField("", 16);
 		informacion = new JTextField();
 		informacion.setEditable(false);
 		
 		tipos = new JComboBox<TipoProducto>();
+		for(TipoProducto tipo : TipoProducto.values()) {
+			tipos.addItem(tipo);
+		}
+		
 		tallas = new JComboBox<Talla>();
+		for(Talla t : Talla.values()) {
+			tallas.addItem(t);
+		}
 		
 		buscar = new JButton("Buscar");
 		anyadir = new JButton("Añadir");
@@ -110,4 +122,4 @@ public class Ventana_Cliente extends JFrame{
 	}
 	
 
-}
+}}
