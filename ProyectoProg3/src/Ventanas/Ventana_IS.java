@@ -48,6 +48,9 @@ public class Ventana_IS extends JFrame{
 	private JButton registro;
 	private JButton btusuario_contrasena;
 	
+	private JPanel panel_arriba;
+	private JLabel panel_arribal;
+	private JButton anterior;
 	
 	private JPanel panel_general;
 	public Ventana_IS() {
@@ -94,6 +97,15 @@ public class Ventana_IS extends JFrame{
 		 */
 		btusuario_contrasena=new JButton("Inicio de sesion");
 		registro=new JButton("Registro");
+		
+		/**@author aiitz
+		 * Los que tienen que ver con el panel superior
+		 * este panel va a servirnos para ir atras y para ver el nombre de la ventana en la que nos encontramos
+		 */
+		panel_arriba=new JPanel();
+		panel_arribal=new JLabel("Iniciar Sesion");
+		anterior=new JButton("<");
+		
 //---------------------------------------------------------------------------------------------------------------------------------------------		
 		/**@author aiitz
 		 * Mediante este boton iniciaremos sesion para eso tendremos que comprobar que se trata de unos datos correctos
@@ -122,6 +134,8 @@ public class Ventana_IS extends JFrame{
 				pncorreo.setVisible(true);
 				pntelefono.setVisible(true);
 				btusuario_contrasena.setVisible(false);
+				anterior.setVisible(true);
+				panel_arribal.setText("Registro");
 			}
 			
 		});
@@ -135,11 +149,15 @@ public class Ventana_IS extends JFrame{
 			}
 		});
 //--------------------------------------------------------------------------------------------------------------------------------------------		
-		panel_general.setLayout(new GridLayout(7,1));
+		
+        panel_general.setLayout(new GridLayout(8,1));
 		abajo.setLayout(new GridLayout(2,1));
         abajo.add(btusuario_contrasena);
 		abajo.add(registro);
+		panel_arriba.add(anterior);
+		panel_arriba.add(panel_arribal);
 		
+		panel_general.add(panel_arriba);
 		pncontrasena.add(contrasena);
 		pncontrasena.add(contrasenal);
 		pnusuario.add(usuario);
@@ -177,6 +195,9 @@ public class Ventana_IS extends JFrame{
 		Color color1= new Color(243,242,235);
 		abajo.setBackground(color1);
 		panel_general.setBackground(color2);
+		
+		panel_arriba.setBackground(color1);
+		anterior.setVisible(false);
 	}
 	public static void main(String[] args) {
 		Ventana_IS vs =new Ventana_IS();
