@@ -2,13 +2,23 @@ package Clasesprincipales;
 public class Compra {
 	private TipoProducto prenda = TipoProducto.CAMISETAS;
 	private Talla talla=Talla.L;
+	private Color color;
 	
 	
 	
-	public Compra(TipoProducto prenda, Talla talla) {
+	public Compra(TipoProducto prenda, Talla talla, Color color) {
 		super();
 		this.prenda = prenda;
 		this.talla = talla;
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	public TipoProducto getPrenda() {
@@ -29,7 +39,9 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return "Compras [prenda=" + prenda + ", talla=" + talla+"]";
+		return "Compra [prenda=" + prenda + ", talla=" + talla + ", color=" + color + "]";
 	}
+
+	
 	
 }

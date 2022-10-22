@@ -2,6 +2,6 @@ package Clasesprincipales;
 
 
 public enum Talla {
-	XS,S,L,XL,XXL;
+	XS,S,L,M,XL,XXL;
 
 }
