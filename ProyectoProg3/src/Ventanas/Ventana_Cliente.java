@@ -1,13 +1,16 @@
 package Ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import Clasesprincipales.TipoProducto;
@@ -31,7 +34,7 @@ public class Ventana_Cliente extends JFrame{
 	private JTextField c;
 	private JTextField informacion;
 	
-	private JScrollBar preciobarra;
+	private JSlider preciobarra;
 	
 	private JComboBox<TipoProducto> tipos;
 	private JComboBox<Talla> tallas;
@@ -51,11 +54,12 @@ public class Ventana_Cliente extends JFrame{
 		
 		arriba = new JPanel();
 		centro = new JPanel();
-		centro.setLayout(new GridLayout(2,1));
+		centro.setLayout(new GridLayout(1,2));
 		centro_izda = new JPanel();
-		centro_izda.setLayout(new GridLayout(2,1));
+		centro_izda.setLayout(new GridLayout(4,2));
 		centro_dcha = new JPanel();
 		abajo = new JPanel();
+		abajo.setLayout(new GridLayout(2,1));
 		
 		cliente = new JLabel("CLIENTE");
 		tipo = new JLabel("Tipo:");
@@ -63,7 +67,7 @@ public class Ventana_Cliente extends JFrame{
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
 		
-		preciobarra = new JScrollBar();
+		preciobarra = new JSlider();
 		
 		c = new JTextField("", 16);
 		informacion = new JTextField();
@@ -87,12 +91,16 @@ public class Ventana_Cliente extends JFrame{
 		centro_izda.add(preciobarra);
 		centro_izda.add(talla);
 		centro_izda.add(tallas);
-		centro_dcha.add(buscar);
+		centro_dcha.add(buscar, BorderLayout.CENTER);
 		centro.add(centro_izda);
 		centro.add(centro_dcha);
 		
 		abajo.add(informacion);
 		abajo.add(anyadir);
+		
+		this.add(arriba);
+		this.add(centro);
+		this.add(abajo);
 		
 	}
 	
