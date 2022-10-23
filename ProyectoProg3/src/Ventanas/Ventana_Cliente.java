@@ -114,18 +114,19 @@ public class Ventana_Cliente extends JFrame{
 		
 		abajo.add(informacion);
 		abajo.add(anyadir);
-		
+		Color color1= new Color(243,242,235);
 		this.add(arriba);
 		this.add(centro);
 		this.add(abajo);
 		Color colo1= new Color(255,255,216);
-		arriba.setBackground(colo1);
+		arriba.setBackground(color1);
 		abajo.setBackground(colo1);
 		centro.setBackground(colo1);
 		centro_izda.setBackground(colo1);
 		centro_dcha.setBackground(colo1);
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
+		
 	}
 	
 	public static void main(String[] args) {
