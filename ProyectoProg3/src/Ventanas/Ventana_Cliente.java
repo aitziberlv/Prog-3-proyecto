@@ -1,6 +1,7 @@
 package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import Clasesprincipales.TipoProducto;
+import Clasesprincipales.Colorc;
 import Clasesprincipales.Talla;
 
 public class Ventana_Cliente extends JFrame{
@@ -31,7 +33,7 @@ public class Ventana_Cliente extends JFrame{
 	private JLabel precio;
 	private JLabel talla;
 	
-	private JTextField c;
+	private JComboBox<Colorc> c;
 	private JTextField informacion;
 	
 	private JSlider preciobarra;
@@ -49,14 +51,14 @@ public class Ventana_Cliente extends JFrame{
 
 
 	private void inicializarVentana() {
-		this.setSize(800, 800);
+		this.setSize(1000, 550);
 		this.setLayout(new GridLayout(3,1));
 		
 		arriba = new JPanel();
 		centro = new JPanel();
 		centro.setLayout(new GridLayout(1,2));
 		centro_izda = new JPanel();
-		centro_izda.setLayout(new GridLayout(4,2));
+		centro_izda.setLayout(new GridLayout(4,1));
 		centro_dcha = new JPanel();
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(2,1));
@@ -74,8 +76,11 @@ public class Ventana_Cliente extends JFrame{
 		preciobarra.setMajorTickSpacing(20);
 		preciobarra.setMinorTickSpacing(20);
 		
-		c = new JTextField("", 16);
-		informacion = new JTextField();
+		c = new JComboBox<Colorc>();
+		for (Colorc co:Colorc.values()) {
+			c.addItem(co);
+		}
+		informacion = new JTextField("Aqui apareceran los productos que estan disponibles con esas caracteristicas. ",16);
 		informacion.setEditable(false);
 		
 		tipos = new JComboBox<TipoProducto>();
@@ -89,7 +94,7 @@ public class Ventana_Cliente extends JFrame{
 		}
 		
 		buscar = new JButton("Buscar");
-		anyadir = new JButton("A�adir");
+		anyadir = new JButton("Añadir");
 		
 		
 		
@@ -113,7 +118,14 @@ public class Ventana_Cliente extends JFrame{
 		this.add(arriba);
 		this.add(centro);
 		this.add(abajo);
-		
+		Color colo1= new Color(255,255,216);
+		arriba.setBackground(colo1);
+		abajo.setBackground(colo1);
+		centro.setBackground(colo1);
+		centro_izda.setBackground(colo1);
+		centro_dcha.setBackground(colo1);
+		this.setLocationRelativeTo(null);
+		this.setBackground(colo1);
 	}
 	
 	public static void main(String[] args) {

@@ -2,22 +2,22 @@ package Clasesprincipales;
 public class Compra {
 	private TipoProducto prenda = TipoProducto.CAMISETAS;
 	private Talla talla=Talla.L;
-	private Color color;
+	private Colorc color=Colorc.NARANJA;
 	
 	
 	
-	public Compra(TipoProducto prenda, Talla talla, Color color) {
+	public Compra(TipoProducto prenda, Talla talla, Colorc color) {
 		super();
 		this.prenda = prenda;
 		this.talla = talla;
 		this.color = color;
 	}
 
-	public Color getColor() {
+	public Colorc getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	public void setColor(Colorc color) {
 		this.color = color;
 	}
 
