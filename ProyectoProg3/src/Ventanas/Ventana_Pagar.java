@@ -53,6 +53,7 @@ public class Ventana_Pagar extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
     }
 	
+	;
 	private void inicilizarVentana() {
 		this.setSize (500,500);
 		this.setTitle("PAGAR");
