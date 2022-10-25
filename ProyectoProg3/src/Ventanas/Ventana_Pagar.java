@@ -120,7 +120,6 @@ public class Ventana_Pagar extends JFrame {
 
 				
 					JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
-					getFrame().dispose();
 					
 				
 				}else{
