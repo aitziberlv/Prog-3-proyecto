@@ -75,7 +75,7 @@ import javax.swing.JTextField;
 		   botonera = new JPanel();
 		   
 		   usuario = new JLabel("Usuario: ");
-		   contrasena = new JLabel("Contraseña: ");
+		   contrasena = new JLabel("Contraseï¿½a: ");
 		   
 		   textUsuario = new JTextField(25);
 		   textContrasena = new JTextField(25);
@@ -85,4 +85,5 @@ import javax.swing.JTextField;
 		   
 		     
 		}
+		
 }

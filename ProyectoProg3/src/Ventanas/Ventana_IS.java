@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -29,7 +30,6 @@ public class Ventana_IS extends JFrame{
 	private JTextField apellido;
 	private JTextField telefono;
 	private JTextField correo;
-	
 	
 	private JLabel usuariol;
 	private JLabel contrasenal;
@@ -54,14 +54,26 @@ public class Ventana_IS extends JFrame{
 	private JButton anterior;
 	
 	private JPanel panel_general;
+	
+	private boolean registroB = false;
+	
 	public Ventana_IS() {
-		inizializar();
+		inicializar();
 	}
-	public void inizializar() {
+	
+	
+	public void inicializar() {
+		
+		//Inicializamos componentes:
+		
 		/**@author aiitz
 		 * primero podemos ver todos los Jtext  field de los cueles usuario y contrasela unicamente pertenecen a el inicio de sesion 
 		 * Al registro pertenecen todos ellos
 		 */
+		
+		setSize(500,500);
+		setLocationRelativeTo(null); //centrar la ventana.
+		
 		usuario=new JTextField("",16);
 		contrasena=new JTextField("",16);
 		nombre=new JTextField("",16);
@@ -96,8 +108,8 @@ public class Ventana_IS extends JFrame{
 		/**@author aiitz
 		 * Boton de iniciodesesion-> con esto en caso de que el ususario este registrado inicia sesion automaticamente. 
 		 */
-		btusuario_contrasena=new JButton("Inicio de sesion");
-		registro=new JButton("Registro");
+		btusuario_contrasena=new JButton("Iniciar sesión");
+		registro=new JButton("Registrarse");
 		
 		/**@author aiitz
 		 * Los que tienen que ver con el panel superior
@@ -111,11 +123,15 @@ public class Ventana_IS extends JFrame{
 		/**@author aiitz
 		 * Mediante este boton iniciaremos sesion para eso tendremos que comprobar que se trata de unos datos correctos
 		 */
-		btusuario_contrasena.addActionListener((ActionListener) new ActionListener() {
+		btusuario_contrasena.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				if(Usuario.) {
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
+				}	
 				
 			}
 			
@@ -125,10 +141,12 @@ public class Ventana_IS extends JFrame{
 		 * Mediante este boton nos registraremos para eso tendremos que comprobar que se trata de unos datos correctos.
 		 */
 		
-		registro.addActionListener((ActionListener)new ActionListener() {
+		registro.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				if(!registroB) {
 				
 				pnombre.setVisible(true);
 				pnapellido.setVisible(true);
@@ -137,6 +155,16 @@ public class Ventana_IS extends JFrame{
 				btusuario_contrasena.setVisible(false);
 				anterior.setVisible(true);
 				panel_arribal.setText("Registro");
+				
+				registroB = true;
+				
+				}else {
+					
+				}
+				
+				
+				
+				
 			}
 			
 		});
