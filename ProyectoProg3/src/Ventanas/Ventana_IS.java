@@ -71,7 +71,7 @@ public class Ventana_IS extends JFrame{
 		 * Al registro pertenecen todos ellos
 		 */
 		
-		setSize(500,500);
+		setSize(800,800);
 		setLocationRelativeTo(null); //centrar la ventana.
 		
 		usuario=new JTextField("",16);

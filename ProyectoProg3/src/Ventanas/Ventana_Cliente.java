@@ -44,11 +44,15 @@ public class Ventana_Cliente extends JFrame{
 		
 	
 	public Ventana_Cliente() {
-		inicializarVentana();
+		inicializar();
 	}
 
 
-	private void inicializarVentana() {
+	private void inicializar() {
+		
+		//Inicializamos componentes:
+			
+		//setLocationRelativeTo(null); //centrar la ventana.
 		this.setSize(800, 800);
 		this.setLayout(new GridLayout(3,1));
 		
@@ -67,7 +71,7 @@ public class Ventana_Cliente extends JFrame{
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
 		
-		preciobarra = new JSlider(0, 200);
+		preciobarra = new JSlider(0, 500);
 		preciobarra.setPaintTrack(true);
 		preciobarra.setPaintTicks(true);
 		preciobarra.setPaintLabels(true);
@@ -89,7 +93,7 @@ public class Ventana_Cliente extends JFrame{
 		}
 		
 		buscar = new JButton("Buscar");
-		anyadir = new JButton("Añadir");
+		anyadir = new JButton("AÃ±adir");
 		
 		
 		
