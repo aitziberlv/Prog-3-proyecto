@@ -1,8 +1,7 @@
 package Ventanas;
-
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -12,10 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
-
 import Clasesprincipales.TipoProducto;
+import Clasesprincipales.Colorc;
 import Clasesprincipales.Talla;
-
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
@@ -31,7 +29,7 @@ public class Ventana_Cliente extends JFrame{
 	private JLabel precio;
 	private JLabel talla;
 	
-	private JTextField c;
+	private JComboBox<Colorc> c;
 	private JTextField informacion;
 	
 	private JSlider preciobarra;
@@ -44,23 +42,17 @@ public class Ventana_Cliente extends JFrame{
 		
 	
 	public Ventana_Cliente() {
-		inicializar();
+		inicializarVentana();
 	}
-
-
-	private void inicializar() {
-		
-		//Inicializamos componentes:
-			
-		//setLocationRelativeTo(null); //centrar la ventana.
-		this.setSize(800, 800);
+	private void inicializarVentana() {
+		this.setSize(1000, 550);
 		this.setLayout(new GridLayout(3,1));
 		
 		arriba = new JPanel();
 		centro = new JPanel();
 		centro.setLayout(new GridLayout(1,2));
 		centro_izda = new JPanel();
-		centro_izda.setLayout(new GridLayout(4,2));
+		centro_izda.setLayout(new GridLayout(4,1));
 		centro_dcha = new JPanel();
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(2,1));
@@ -71,15 +63,18 @@ public class Ventana_Cliente extends JFrame{
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
 		
-		preciobarra = new JSlider(0, 500);
+		preciobarra = new JSlider(0, 200);
 		preciobarra.setPaintTrack(true);
 		preciobarra.setPaintTicks(true);
 		preciobarra.setPaintLabels(true);
 		preciobarra.setMajorTickSpacing(20);
 		preciobarra.setMinorTickSpacing(20);
 		
-		c = new JTextField("", 16);
-		informacion = new JTextField();
+		c = new JComboBox<Colorc>();
+		for (Colorc co:Colorc.values()) {
+			c.addItem(co);
+		}
+		informacion = new JTextField("Aqui apareceran los productos que estan disponibles con esas caracteristicas. ",16);
 		informacion.setEditable(false);
 		
 		tipos = new JComboBox<TipoProducto>();
@@ -110,20 +105,29 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.add(buscar, BorderLayout.CENTER);
 		centro.add(centro_izda);
 		centro.add(centro_dcha);
-		
+
 		abajo.add(informacion);
 		abajo.add(anyadir);
-		
+
+		Color color1= new Color(243,242,235);
 		this.add(arriba);
 		this.add(centro);
 		this.add(abajo);
-		
+		Color colo1= new Color(255,255,216);
+		arriba.setBackground(colo1);
+		arriba.setBackground(color1);
+		abajo.setBackground(colo1);
+		centro.setBackground(colo1);
+		centro_izda.setBackground(colo1);
+		centro_dcha.setBackground(colo1);
+		this.setLocationRelativeTo(null);
+		this.setBackground(colo1);
+
 	}
-	
+
 	public static void main(String[] args) {
 		Ventana_Cliente vc =new Ventana_Cliente();
 		vc.setVisible(true);
 	}
 	
-
 }
