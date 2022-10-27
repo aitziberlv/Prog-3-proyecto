@@ -41,6 +41,8 @@ public class Ventana_Pagar extends JFrame {
 	private JLabel Titulo;
 	private JLabel Descripcion;
 	private JLabel Numero_de_pedido;
+	private JLabel Numero_de_pedido2;
+	private JLabel pagar;
 	/**
 	 * Jtext
 	 */
@@ -78,7 +80,13 @@ public class Ventana_Pagar extends JFrame {
 		pnl_center = new JPanel ();
 		pnl_center.setLayout(new GridLayout(4,2));
 		pnl_titulo = new JPanel();
+		centro= new JPanel ();
+		centro.setLayout(new GridLayout(1,2));
+		pnl_centro_derecha=new JPanel ();
+		pnl_intermedio=new JPanel ();
+		pnl_abajo=new JPanel ();
 		
+		pagar=new JLabel("PAGAR");
 		Descripcion = new JLabel ("Ingrese los datos de su tarjeta: ");
 		NumeroTarjeta = new JLabel ("NUMERO DE TARJETA");
 		FechaVencimiento = new JLabel ("FECHA DE VENCIMIENTO");
@@ -86,6 +94,8 @@ public class Ventana_Pagar extends JFrame {
 		Direccion = new JLabel ("Direccion de Facturacion");
 		
 		Numero_de_pedido=new JLabel("Numero de pedido");
+		Numero_de_pedido2=new JLabel("");
+		
 		
 		aNumeroTarjeta = new JTextField(16);
 		aFechaVencimiento = new JTextField(4);
@@ -108,7 +118,7 @@ public class Ventana_Pagar extends JFrame {
 		Border compound = new CompoundBorder(line, margin);
 		Pagar.setBorder(compound);
 		
-		pnl_center.add(Descripcion);
+		pnl_intermedio.add(Descripcion);
 		pnl_center.add(NumeroTarjeta);
 		pnl_center.add(aNumeroTarjeta);
 		pnl_center.add(FechaVencimiento);
@@ -117,9 +127,14 @@ public class Ventana_Pagar extends JFrame {
 		pnl_center.add(aCVV);
 		pnl_center.add(Direccion);
 		pnl_center.add(aDireccion);
-		
+		pnl_centro_derecha.add(Numero_de_pedido);
+		pnl_centro_derecha.add(Numero_de_pedido2);
+		pnl_titulo.add(pagar);
 		this.add(pnl_titulo);
-		this.add(pnl_center);
+		this.add(pnl_intermedio);
+		centro.add(pnl_center);
+		centro.add(pnl_centro_derecha);
+		this.add(centro);
 		this.add(pnl_btn);
 		
 		Pagar.addActionListener(new ActionListener() {
