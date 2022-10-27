@@ -22,23 +22,39 @@ import javax.swing.border.LineBorder;
 public class Ventana_Pagar extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * paneles
+	 */
 	private JPanel pnl_center;
 	private JPanel pnl_titulo;
-
+	private JPanel pnl_intermedio;
+	private JPanel pnl_abajo;
+	private JPanel pnl_centro_derecha;
+	private JPanel centro;
+	/**
+	 * label
+	 */
 	private JLabel NumeroTarjeta;
 	private JLabel FechaVencimiento;
 	private JLabel CVV;
 	private JLabel Direccion;
 	private JLabel Titulo;
 	private JLabel Descripcion;
-	
+	private JLabel Numero_de_pedido;
+	/**
+	 * Jtext
+	 */
 	private JTextField aNumeroTarjeta;
 	private JTextField aFechaVencimiento;
 	private JTextField aCVV;
 	private JTextField aDireccion;
-	
+	/**
+	 * botones
+	 */
 	private JButton Pagar;
-	
+    /**
+    * inicializar la ventana
+    */
 	public Ventana_Pagar() {
 		configurarVentana();
 		inicilizarVentana();
@@ -57,10 +73,10 @@ public class Ventana_Pagar extends JFrame {
 	private void inicilizarVentana() {
 		this.setSize (500,500);
 		this.setTitle("PAGAR");
-		this.setLayout(new GridLayout(3,1));
+		this.setLayout(new GridLayout(4,1));
 		
 		pnl_center = new JPanel ();
-		pnl_center.setLayout(new GridLayout(2,2));
+		pnl_center.setLayout(new GridLayout(4,2));
 		pnl_titulo = new JPanel();
 		
 		Descripcion = new JLabel ("Ingrese los datos de su tarjeta: ");
@@ -68,6 +84,8 @@ public class Ventana_Pagar extends JFrame {
 		FechaVencimiento = new JLabel ("FECHA DE VENCIMIENTO");
 		CVV = new JLabel ("CVV");
 		Direccion = new JLabel ("Direccion de Facturacion");
+		
+		Numero_de_pedido=new JLabel("Numero de pedido");
 		
 		aNumeroTarjeta = new JTextField(16);
 		aFechaVencimiento = new JTextField(4);
