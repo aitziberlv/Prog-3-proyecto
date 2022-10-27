@@ -136,6 +136,11 @@ public class Ventana_Pagar extends JFrame {
 		centro.add(pnl_centro_derecha);
 		this.add(centro);
 		this.add(pnl_btn);
+		Color color1= new Color(243,242,235);
+		Color color2= new Color(242,235,243);
+		pnl_centro_derecha.setBackground(color2);
+		pnl_center.setBackground(color1);
+		
 		
 		Pagar.addActionListener(new ActionListener() {
 			
@@ -169,7 +174,7 @@ public class Ventana_Pagar extends JFrame {
 	}
 		public static void main(String[] args) {
 			Ventana_Pagar ventana_Pagar = new Ventana_Pagar();
-			ventana_Pagar.setExtendedState(Ventana_Pagar.MAXIMIZED_BOTH);
+			//ventana_Pagar.setExtendedState(Ventana_Pagar.MAXIMIZED_BOTH);
 			
 			ventana_Pagar.setVisible(true);
 			ventana_Pagar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
