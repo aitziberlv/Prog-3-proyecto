@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Logica.Logica;
+
 public class Ventana_IS extends JFrame{
 
 	/**@author aiitz
@@ -23,6 +25,7 @@ public class Ventana_IS extends JFrame{
 	 */
 	
 	private static final long serialVersionUID = 1L;
+	Logica lg=new Logica();
 	
 	private JTextField usuario;
 	private JTextField contrasena;
@@ -127,7 +130,8 @@ public class Ventana_IS extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(Usuario.) {
+				lg.lectura("Usuarios.dat");
+				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
 					
 				}else {
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
