@@ -184,7 +184,7 @@ public class Ventana_IS extends JFrame{
 				btusuario_contrasena.setVisible(true);
 				anterior.setVisible(false);
 				panel_arribal.setText("Iniciar Sesion");
-				
+				registroB=false;
 			}
 			
 		});
