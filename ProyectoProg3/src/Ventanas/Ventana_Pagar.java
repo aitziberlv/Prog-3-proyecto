@@ -63,7 +63,7 @@ public class Ventana_Pagar extends JFrame {
 	}
 	
 	private void configurarVentana() {
-        this.setTitle("PAGAR");                  
+		this.setTitle("DEUSTO OUTLET PAGAR");                  
         this.setSize(500, 500);                                 
         this.setLocationRelativeTo(null);                       
         this.setLayout(null);                                   

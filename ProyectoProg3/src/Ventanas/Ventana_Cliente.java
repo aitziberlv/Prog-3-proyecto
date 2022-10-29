@@ -46,6 +46,7 @@ public class Ventana_Cliente extends JFrame{
 	}
 	private void inicializarVentana() {
 		this.setSize(1000, 550);
+		this.setTitle("DEUSTO OUTLET COMPRAR");
 		this.setLayout(new GridLayout(3,1));
 		
 		arriba = new JPanel();

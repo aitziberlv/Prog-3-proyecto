@@ -74,6 +74,7 @@ public class Ventana_IS extends JFrame{
 		 * Al registro pertenecen todos ellos
 		 */
 		
+		this.setTitle("DEUSTO OUTLET INICIAR SESIÓN");
 		setSize(800,800);
 		setLocationRelativeTo(null); //centrar la ventana.
 		
