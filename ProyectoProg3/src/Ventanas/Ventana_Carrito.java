@@ -65,6 +65,16 @@ public class Ventana_Carrito extends JFrame{
 		guardar = new JButton("Guardar datos");
 
 		
+		
+		
+		titulo.add(carrito);
+		centro.add(producto);
+		
+		
+		
+		
+		
+		
 	}
 	
 	
