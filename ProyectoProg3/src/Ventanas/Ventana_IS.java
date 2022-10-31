@@ -132,7 +132,10 @@ public class Ventana_IS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lg.lectura("Usuarios.dat");
+				Ventana_Cliente vc = new Ventana_Cliente();
 				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
+					vc.setVisible(true);
+					setVisible(false);
 					
 				}else {
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);

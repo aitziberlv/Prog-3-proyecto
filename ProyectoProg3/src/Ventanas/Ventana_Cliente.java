@@ -2,6 +2,9 @@ package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -123,6 +126,7 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.setBackground(colo1);
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
+		
 
 	}
 

@@ -29,7 +29,7 @@ public class Ventana_Carrito extends JFrame{
 	private JLabel cantidad;
 	
 	private JButton borrar;
-	private JButton añadir; //volver a la tienda y añadir mas productos.
+	private JButton a�adir; //volver a la tienda y añadir mas productos.
 	private JButton pagar;
 	private JButton guardar; 
 	
