@@ -165,7 +165,18 @@ public class Ventana_IS extends JFrame{
 				panel_arribal.setText("Registro");
 				
 				registroB = true;
-				
+				if (registroB) {
+					Ventana_Cliente vc = new Ventana_Cliente();
+					if(lg.registrarte()) {
+						lg.registrar();
+						vc.setVisible(true);
+						setVisible(false);
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Usuario existente.","Error",JOptionPane.ERROR_MESSAGE);
+					}	
+					
+				}
 				}else {
 					
 				}

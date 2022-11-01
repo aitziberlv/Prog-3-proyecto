@@ -61,5 +61,12 @@ public class Logica {
 	/**
 	 * 
 	 */
+	public boolean registrarte() {
+		return true;
+	}
+	
+	public void registrar() {
+		
+	}
 	
 }

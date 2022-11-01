@@ -42,6 +42,7 @@ public class Ventana_Cliente extends JFrame{
 	
 	private JButton buscar;
 	private JButton anyadir;
+	private JButton carrito;
 		
 	
 	public Ventana_Cliente() {
@@ -93,8 +94,17 @@ public class Ventana_Cliente extends JFrame{
 		
 		buscar = new JButton("Buscar");
 		anyadir = new JButton("Añadir");
-		
-		
+		carrito=new JButton("Ver carrito");
+		carrito.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Ventana_Carrito vcc =new Ventana_Carrito();
+				vcc.setVisible(true);
+				
+			}
+			
+		});
 		
 		arriba.add(cliente);
 		
@@ -106,7 +116,8 @@ public class Ventana_Cliente extends JFrame{
 		centro_izda.add(preciobarra);
 		centro_izda.add(talla);
 		centro_izda.add(tallas);
-		centro_dcha.add(buscar, BorderLayout.CENTER);
+		centro_dcha.add(buscar);
+		centro_dcha.add(carrito);
 		centro.add(centro_izda);
 		centro.add(centro_dcha);
 
