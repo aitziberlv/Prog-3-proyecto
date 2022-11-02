@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import Clasesprincipales.Usuario;
+import Ventanas.main;
 
 public class Logica {
 	
@@ -61,12 +62,28 @@ public class Logica {
 	/**
 	 * 
 	 */
-	public boolean registrarte() {
+	public boolean registrarte(String usuario) {
+		for (Usuario uu:u) {
+			if (uu.getUsuario()==usuario) {
+				return false;
+			}else {
+				/**
+				 * comprobar validez de los datos. 
+				 */
+		}
+			
+		}
 		return true;
 	}
 	
-	public void registrar() {
-		
+	public void registrar(String usuario, String correo,String nombre,String apellido,String telefono,String contraseña) {
+		Usuario us=new Usuario(nombre,null,null,telefono,apellido,null,contraseña,usuario,null);
+		u.add(us);
+		escribir("Usuarios.dat");
 	}
-	
+	public static void main(String[] args) {
+		/**
+		 * creacion de usuario para que se inicialize con un usuario ya hecho. 
+		 */
+	}
 }

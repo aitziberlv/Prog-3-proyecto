@@ -165,21 +165,24 @@ public class Ventana_IS extends JFrame{
 				panel_arribal.setText("Registro");
 				
 				registroB = true;
-				if (registroB) {
+				}else  {
 					Ventana_Cliente vc = new Ventana_Cliente();
-					if(lg.registrarte()) {
-						lg.registrar();
-						vc.setVisible(true);
-						setVisible(false);
+					if(lg.registrarte(usuario.getText())) {
+						if (usuario.getText()!=" ") {
+							lg.registrar(usuario.getText(),correo.getText(),nombre.getText(),apellido.getText(),telefono.getText(),contrasena.getText());
+							vc.setVisible(true);
+							setVisible(false);
+						}else {
+							JOptionPane.showMessageDialog(null, "Nombre de usuario vacio.","Error",JOptionPane.ERROR_MESSAGE);
+						}
+						
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Usuario existente.","Error",JOptionPane.ERROR_MESSAGE);
 					}	
 					
 				}
-				}else {
-					
-				}
+				
 				
 				
 				

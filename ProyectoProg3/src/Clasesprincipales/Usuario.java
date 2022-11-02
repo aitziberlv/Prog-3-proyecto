@@ -6,12 +6,25 @@ public class Usuario extends Persona {
 	
 	
 	private String contraseña="";
+	private String usuario="";
 	private ArrayList<Pedidos> pedidos_hechos=new ArrayList<>();
 
-	public Usuario(String nombre, String dni, String fechNa, String contraseña, ArrayList<Pedidos> pedidos_hechos) {
-		super(nombre, dni, fechNa);
+	
+
+	public Usuario(String nombre, String dni, String fechNa, String telefono, String direccion, String apellido,
+			String contraseña, String usuario, ArrayList<Pedidos> pedidos_hechos) {
+		super(nombre, dni, fechNa, telefono, direccion, apellido);
 		this.contraseña = contraseña;
+		this.usuario = usuario;
 		this.pedidos_hechos = pedidos_hechos;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getContraseña() {

@@ -7,15 +7,20 @@ public abstract class Persona {
 	protected String fechNa;
 	protected String telefono;
 	protected String direccion;
+	protected String apellido;
 	
 	
-	public Persona(String nombre, String dni, String fechNa) {
+	
+	public Persona(String nombre, String dni, String fechNa, String telefono, String direccion, String apellido) {
 		super();
 		this.nombre = nombre;
 		this.dni = dni;
 		this.fechNa = fechNa;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.apellido = apellido;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -54,6 +59,14 @@ public abstract class Persona {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	@Override

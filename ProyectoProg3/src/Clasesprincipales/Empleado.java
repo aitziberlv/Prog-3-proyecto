@@ -4,8 +4,11 @@ package Clasesprincipales;
 public class Empleado extends Persona{
 	private double salario;
 	
-	public Empleado(String nombre, String dni, String fechNa, double salario) {
-		super(nombre, dni, fechNa);
+	
+
+	public Empleado(String nombre, String dni, String fechNa, String telefono, String direccion, String apellido,
+			double salario) {
+		super(nombre, dni, fechNa, telefono, direccion, apellido);
 		this.salario = salario;
 	}
 
