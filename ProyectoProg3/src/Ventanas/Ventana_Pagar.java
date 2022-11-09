@@ -88,8 +88,8 @@ public class Ventana_Pagar extends JFrame {
 		
 		pagar=new JLabel("PAGAR");
 		Descripcion = new JLabel ("Ingrese los datos de su tarjeta: ");
-		NumeroTarjeta = new JLabel ("NUMERO DE TARJETA");
-		FechaVencimiento = new JLabel ("FECHA DE VENCIMIENTO");
+		NumeroTarjeta = new JLabel ("Número de tarjeta");
+		FechaVencimiento = new JLabel ("Fecha de vencimiento:");
 		CVV = new JLabel ("CVV");
 		Direccion = new JLabel ("Direccion de Facturacion");
 		

@@ -1,6 +1,8 @@
-package Ventanas;
+	package Ventanas;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,8 +19,10 @@ public class Ventana_Carrito extends JFrame{
 	
 	private JPanel titulo;
 	private JPanel centro;
+	private JPanel abajo1;
 	private JPanel abajoIzq;
 	private JPanel abajoDer;
+	private JPanel abajo;
 
 	private JLabel producto;
 	private JLabel carrito;
@@ -46,8 +50,10 @@ public class Ventana_Carrito extends JFrame{
 		
 		titulo = new JPanel();
 		centro = new JPanel();
+		abajo1 = new JPanel();
 		abajoIzq = new JPanel();
 		abajoDer = new JPanel();
+		abajo = new JPanel();
 
 		
 		producto = new JLabel("Productos seleccionados:");
@@ -65,15 +71,38 @@ public class Ventana_Carrito extends JFrame{
 		guardar = new JButton("Guardar datos");
 
 		
-		
+		añadir.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ventana_Cliente vc = new Ventana_Cliente();
+				vc.setVisible(true);
+				
+
+
+				
+			}
+			
+		});
 		
 		titulo.add(carrito);
 		centro.add(producto);
 		
+		abajo1.add(añadir);
+		abajo1.add(borrar);
+		abajoIzq.add(guardar);
+		abajoDer.add(pagar);
+		abajo.add(abajo1);
+		abajo.add(abajoIzq);
+		abajo.add(abajoDer);
 		
 		
 		
 		
+		this.add(titulo);
+		this.add(centro);
+		this.add(abajo);
 		
 	}
 	
@@ -82,6 +111,7 @@ public class Ventana_Carrito extends JFrame{
 	
 	public static void main(String[] args) {
 		Ventana_Carrito vca =new Ventana_Carrito();
+		vca.setVisible(true);
 		
 	}
 	

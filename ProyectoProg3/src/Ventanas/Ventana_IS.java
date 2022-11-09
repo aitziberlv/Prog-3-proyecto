@@ -181,11 +181,7 @@ public class Ventana_IS extends JFrame{
 						JOptionPane.showMessageDialog(null, "Usuario existente.","Error",JOptionPane.ERROR_MESSAGE);
 					}	
 					
-				}
-				
-				
-				
-				
+				}			
 				
 			}
 			
