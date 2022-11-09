@@ -49,7 +49,7 @@ public class Ventana_Cliente extends JFrame{
 		inicializarVentana();
 	}
 	private void inicializarVentana() {
-		this.setSize(1000, 550);
+		this.setSize(900, 700);
 		this.setTitle("DEUSTO OUTLET COMPRAR");
 		this.setLayout(new GridLayout(3,1));
 		
@@ -101,6 +101,7 @@ public class Ventana_Cliente extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				Ventana_Carrito vcc =new Ventana_Carrito();
 				vcc.setVisible(true);
+				setVisible(false);
 				
 			}
 			

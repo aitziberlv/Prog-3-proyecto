@@ -64,7 +64,7 @@ public class Ventana_Pagar extends JFrame {
 	
 	private void configurarVentana() {
 		this.setTitle("DEUSTO OUTLET PAGAR");                  
-        this.setSize(500, 500);                                 
+        this.setSize(900, 700);                                 
         this.setLocationRelativeTo(null);                       
         this.setLayout(null);                                   
         this.setResizable(true);                               
@@ -163,7 +163,7 @@ public class Ventana_Pagar extends JFrame {
 				
 				}else{
 
-					JOptionPane.showMessageDialog( null, "ERROR"); 
+					JOptionPane.showMessageDialog( null, "ERROR: Introduzca de nuevo sus datos."); 
 					
 				}
 

@@ -43,7 +43,7 @@ public class Ventana_Carrito extends JFrame{
 
 	private void inicializarVentana() {
 		
-		this.setSize(500, 500);
+		this.setSize(900, 700);
 		setLocationRelativeTo(null);
 		this.setTitle("DEUSTO OUTLET CARRITO");
 		this.setLayout(new GridLayout(3,1));
@@ -78,8 +78,21 @@ public class Ventana_Carrito extends JFrame{
 				
 				Ventana_Cliente vc = new Ventana_Cliente();
 				vc.setVisible(true);
-				
+				setVisible(false);
 
+				
+			}
+			
+		});
+		
+		pagar.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ventana_Pagar vp = new Ventana_Pagar();
+				vp.setVisible(true);
+				setVisible(false);
 
 				
 			}
