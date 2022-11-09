@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Ventana_Carrito extends JFrame{
@@ -54,6 +55,8 @@ public class Ventana_Carrito extends JFrame{
 		abajoIzq = new JPanel();
 		abajoDer = new JPanel();
 		abajo = new JPanel();
+		abajo.setLayout(new GridLayout(3,2));
+
 
 		
 		producto = new JLabel("Productos seleccionados:");
@@ -70,6 +73,19 @@ public class Ventana_Carrito extends JFrame{
 		pagar = new JButton("Realizar pago");
 		guardar = new JButton("Guardar datos");
 
+		
+		borrar.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//if no hay producto seleccionado:
+				JOptionPane.showMessageDialog(null, "Por favor seleccione el producto que desea eliminar del carrito.","Error",JOptionPane.ERROR_MESSAGE);
+				//si selecciona un producto: se elimina del pedido.
+				
+			}
+			
+		});
 		
 		añadir.addActionListener(new ActionListener( ){
 
@@ -95,6 +111,17 @@ public class Ventana_Carrito extends JFrame{
 				setVisible(false);
 
 				
+			}
+			
+		});
+		
+		guardar.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
+
 			}
 			
 		});
