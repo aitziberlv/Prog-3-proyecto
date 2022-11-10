@@ -6,19 +6,15 @@ public class Tienda {
 	private String codigo ="";
 	private String nombre ="";
 	private Franquicia franquicia=Franquicia.BERSHKA;
-	private int empleado;
-	private ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-	private ArrayList<Compra> compras = new ArrayList<Compra>();
+	private ArrayList<Producto> compras = new ArrayList<Producto>();
 	
 	
 	public Tienda(String codigo, String nombre, Franquicia franquicia, int empleado, ArrayList<Empleado> empleados,
-			ArrayList<Compra> compras) {
+			ArrayList<Producto> compras) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.franquicia = franquicia;
-		this.empleado = empleado;
-		this.empleados = empleados;
 		this.compras = compras;
 	}
 	public String getCodigo() {
@@ -39,29 +35,20 @@ public class Tienda {
 	public void setFranquicia(Franquicia franquicia) {
 		this.franquicia = franquicia;
 	}
-	public int getEmpleado() {
-		return empleado;
-	}
-	public void setEmpleado(int empleado) {
-		this.empleado = empleado;
-	}
-	public ArrayList<Empleado> getEmpleados() {
-		return empleados;
-	}
-	public void setEmpleados(ArrayList<Empleado> empleados) {
-		this.empleados = empleados;
-	}
-	public ArrayList<Compra> getCompras() {
+	
+	public ArrayList<Producto> getCompras() {
 		return compras;
 	}
-	public void setCompras(ArrayList<Compra> compras) {
+	public void setCompras(ArrayList<Producto> compras) {
 		this.compras = compras;
 	}
 	@Override
 	public String toString() {
-		return "Tienda [codigo=" + codigo + ", nombre=" + nombre + ", franquicia=" + franquicia + ", empleado="
-				+ empleado + ", empleados=" + empleados + "]";
+		return "Tienda [codigo=" + codigo + ", nombre=" + nombre + ", franquicia=" + franquicia + ", compras=" + compras
+				+ "]";
 	}
+
+	
 	
 	
 	
