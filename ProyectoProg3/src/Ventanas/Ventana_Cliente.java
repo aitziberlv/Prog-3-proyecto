@@ -140,6 +140,7 @@ public class Ventana_Cliente extends JFrame{
 		this.setBackground(colo1);
 		
 
+
 	}
 
 	public static void main(String[] args) {

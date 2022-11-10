@@ -163,9 +163,7 @@ public class Ventana_Pagar extends JFrame {
 				
 				}else{
 
-					JOptionPane.showMessageDialog( null, "ERROR: Introduzca de nuevo sus datos."); 
-					
-				}
+					JOptionPane.showMessageDialog(null, "Introduzca de nuevo sus datos.","Error",JOptionPane.ERROR_MESSAGE);				}
 
 				}
 
