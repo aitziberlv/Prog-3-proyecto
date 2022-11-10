@@ -9,8 +9,7 @@ public class Tienda {
 	private ArrayList<Producto> compras = new ArrayList<Producto>();
 	
 	
-	public Tienda(String codigo, String nombre, Franquicia franquicia, int empleado, ArrayList<Empleado> empleados,
-			ArrayList<Producto> compras) {
+	public Tienda(String codigo, String nombre, Franquicia franquicia, ArrayList<Producto> compras) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
