@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,7 +14,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JSlider;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import Clasesprincipales.TipoProducto;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Talla;
@@ -43,6 +47,10 @@ public class Ventana_Cliente extends JFrame{
 	private JButton buscar;
 	private JButton anyadir;
 	private JButton carrito;
+	
+	private JTable tablaProductos;
+	private DefaultTableModel modeloDatosproductos;
+	private List <Producto> Productos;
 		
 	
 	public Ventana_Cliente() {
@@ -106,6 +114,8 @@ public class Ventana_Cliente extends JFrame{
 			}
 			
 		});
+		
+		//jtable.
 		
 		arriba.add(cliente);
 		
