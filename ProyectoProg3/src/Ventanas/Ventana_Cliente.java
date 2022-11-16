@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,10 +18,12 @@ import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import Clasesprincipales.TipoProducto;
 import Clasesprincipales.Colorc;
+import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -116,6 +120,16 @@ public class Ventana_Cliente extends JFrame{
 		});
 		
 		//jtable.
+		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "COLOR", "TALLA", "TIPO", "FRANQUICIA", "PRECIO"));
+		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
+		this.tablaProductos = new JTable(this.modeloDatosproductos);
+		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		for(Producto p : this.Productos) {
+			this.modeloDatosproductos.addRow(new Object[] {
+					p.getCodigo(), p.getNombre(), p.getColor(), p.getTalla(), p.getTipo(), p.getFranquicia(), p.getPrecio()
+			});
+		}
 		
 		arriba.add(cliente);
 		
@@ -133,6 +147,7 @@ public class Ventana_Cliente extends JFrame{
 		centro.add(centro_dcha);
 
 		abajo.add(informacion);
+		abajo.add(tablaProductos);
 		abajo.add(anyadir);
 
 		Color color1= new Color(243,242,235);

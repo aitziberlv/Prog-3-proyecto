@@ -8,6 +8,7 @@ public class Producto {
 	private Colorc color = Colorc.BLANCO;
 	private Talla talla = Talla.S;
 	private TipoProducto tipo = TipoProducto.FALDA;
+	private Franquicia franquicia = Franquicia.BERSHKA;
 	
 	
 	public int getCodigo() {
@@ -45,9 +46,17 @@ public class Producto {
 	}
 	public void setTipo(TipoProducto tipo) {
 		this.tipo = tipo;
-	}
+	}	
 	
-	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo) {
+	
+	public Franquicia getFranquicia() {
+		return franquicia;
+	}
+	public void setFranquicia(Franquicia franquicia) {
+		this.franquicia = franquicia;
+	}
+	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo,
+			Franquicia franquicia) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -55,7 +64,12 @@ public class Producto {
 		this.color = color;
 		this.talla = talla;
 		this.tipo = tipo;
+		this.franquicia = franquicia;
 	}
+	
+	
+	
+	
 	
 	
 	
