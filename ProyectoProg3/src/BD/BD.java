@@ -1,5 +1,8 @@
 package BD;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,11 +20,23 @@ public class BD {
 	private static Exception lastError = null;
 	
 	private static Connection con;
+	private static Statement st;
+	
 	/** Inicializa una BD SQLITE y devuelve una conexiï¿½n con ella
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexiï¿½n con la base de datos indicada. Si hay algï¿½n error, se devuelve null
 	 */
-	public static Statement abrirlaconexion( String nombreBD ) { 
+	public static Statement abrirlaconexion( String nombreBD ,String rutaFotos) { 
+		
+		try { // Crear carpeta si no existe
+			File fic = new File(rutaFotos);
+			if (!fic.exists()) {
+				Files.createDirectory( (fic).toPath() );
+			}
+		} catch (IOException ex) {
+			log( Level.SEVERE, "Ruta de fotos " + rutaFotos + " no se ha podido respaldar en el servicio de persistencia", ex );
+		}
+		
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
@@ -47,9 +62,9 @@ public class BD {
 	 */
 	public static Statement usarBD( Connection con ) {
 		try {
-			Statement statement = con.createStatement();
-			statement.setQueryTimeout(30);  // poner timeout 30 msg
-			return statement;
+			st = con.createStatement();
+			st.setQueryTimeout(30);  // poner timeout 30 msg
+			return st;
 		} catch (SQLException e) {
 			lastError = e;
 			log( Level.SEVERE, "Error en uso de base de datos", e );
@@ -63,7 +78,7 @@ public class BD {
 	 * @param con	Conexiï¿½n abierta de la BD
 	 * @param st	Sentencia abierta de la BD
 	 */
-	public static void cerrarBD( Connection con, Statement st ) {
+	public static void cerrarBD(  ) {
 		try {
 			if (st!=null) st.close();
 			if (con!=null) con.close();
@@ -105,36 +120,26 @@ public class BD {
 			int veces1=stmt.executeUpdate(com);
 			if (veces1==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
-			}else {
-				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
 			}
 			String com4 = "create table IF NOT EXISTS pedido(codigo_pedido INTEGER PRIMARY KEY AUTOINCREMENT, dni String)"; //clave externa del dni del usuario. 
 			int veces2=stmt.executeUpdate(com4);
 			if (veces2==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
-			}else {
-				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
 			}
 			String com2 = "create table IF NOT EXISTS tienda(codigo_tienda INTEGER PRIMARY KEY AUTOINCREMENT, nombre String, franquicia String)";
 			int veces3=stmt.executeUpdate(com2);
 			if (veces3==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
-			}else {
-				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
 			}
 			String com3 = "create table IF NOT EXISTS producto(codigo_producto INTEGER PRIMARY KEY AUTOINCREMENT, nombre String, precio double, color String, talla String, tipo String, id_pedido int )";
 			int veces4=stmt.executeUpdate(com3);
 			if (veces4==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
-			}else {
-				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
 			}
 			String com5 = "create table IF NOT EXISTS pertenece(codigo_pertenece INTEGER PRIMARY KEY AUTOINCREMENT, int id_tienda, int id_pedido  )";
 			int veces=stmt.executeUpdate(com5);
 			if (veces==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
-			}else {
-				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
 			}
 			//poner un mensaje para un caso en el que la tabla ya estaria creada. 
 			
@@ -149,12 +154,12 @@ public class BD {
 			
 			
 			
-		} catch (SQLException e) {
+			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.log( Level.SEVERE, "No se pudo crear la base de datos", e );
 		}
-	}
+		}
 	
 	
 }

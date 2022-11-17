@@ -2,16 +2,20 @@ package Ventanas;
 
 import java.util.ArrayList;
 
+import BD.BD;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Franquicia;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.TipoProducto;
 
+
 public class main {
 	public static void main(String[] args) {
-		Ventana_Portada vp =new Ventana_Portada();
-		vp.setVisible(true);
+		BD bd = new BD();
+		//hay que ponerle el nomrbe a la conexion. 
+		bd.abrirlaconexion("BaseDatosprog",""); //al abrir la conexion se crean todos los datos y crear una ruta de fotos para llevarle ahi
+		bd.cerrarBD();
 		
 		//Creacion productos
 		ArrayList<Producto> lp = new ArrayList<>();
