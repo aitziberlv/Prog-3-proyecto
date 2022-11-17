@@ -8,23 +8,29 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Clasesprincipales.Colorc;
+import Clasesprincipales.Franquicia;
+import Clasesprincipales.Talla;
+import Clasesprincipales.TipoProducto;
+
 public class BD {
 	private static Exception lastError = null;
 	
-	
+	private static Connection con;
 	/** Inicializa una BD SQLITE y devuelve una conexiï¿½n con ella
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexiï¿½n con la base de datos indicada. Si hay algï¿½n error, se devuelve null
 	 */
-	public static Statement initBD( String nombreBD ) { 
+	public static Statement abrirlaconexion( String nombreBD ) { 
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
 			String dburl = "jdbc:sqlite:" + nombreBD;
-			Connection conexion = DriverManager.getConnection(dburl);
+			con = DriverManager.getConnection(dburl);
 				 
-			Statement st = conexion.createStatement();
+			Statement st = con.createStatement();
 			log( Level.INFO, "Conectada base de datos " + nombreBD, null );
+			initDatos();
 			return st;
 		} catch (ClassNotFoundException | SQLException e) {
 			lastError = e;
@@ -88,8 +94,67 @@ public class BD {
 			logger.log( level, msg );
 		else
 			logger.log( level, msg, excepcion );
+		
 	}
-
+    public static void initDatos() { //mirar porque igual tenemos que cambiar la relacion de producto y de pedido . 
+		
+		try {
+			
+			String com = "create table IF NOT EXISTS usuario(nombre String, dni String, fechNa bigint, telefono int(9), direccion String, apellido String, contraseña String, usuario String)";
+			Statement stmt=usarBD(con);
+			int veces1=stmt.executeUpdate(com);
+			if (veces1==1) {
+				logger.log( Level.FINEST, "Tabla creada" );
+			}else {
+				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
+			}
+			String com4 = "create table IF NOT EXISTS pedido(codigo_pedido INTEGER PRIMARY KEY AUTOINCREMENT, dni String)"; //clave externa del dni del usuario. 
+			int veces2=stmt.executeUpdate(com4);
+			if (veces2==1) {
+				logger.log( Level.FINEST, "Tabla creada" );
+			}else {
+				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
+			}
+			String com2 = "create table IF NOT EXISTS tienda(codigo_tienda INTEGER PRIMARY KEY AUTOINCREMENT, nombre String, franquicia String)";
+			int veces3=stmt.executeUpdate(com2);
+			if (veces3==1) {
+				logger.log( Level.FINEST, "Tabla creada" );
+			}else {
+				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
+			}
+			String com3 = "create table IF NOT EXISTS producto(codigo_producto INTEGER PRIMARY KEY AUTOINCREMENT, nombre String, precio double, color String, talla String, tipo String, id_pedido int )";
+			int veces4=stmt.executeUpdate(com3);
+			if (veces4==1) {
+				logger.log( Level.FINEST, "Tabla creada" );
+			}else {
+				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
+			}
+			String com5 = "create table IF NOT EXISTS pertenece(codigo_pertenece INTEGER PRIMARY KEY AUTOINCREMENT, int id_tienda, int id_pedido  )";
+			int veces=stmt.executeUpdate(com5);
+			if (veces==1) {
+				logger.log( Level.FINEST, "Tabla creada" );
+			}else {
+				//logger.log( Level.SEVERE, "Error al crear la tabla, ya existe", null );
+			}
+			//poner un mensaje para un caso en el que la tabla ya estaria creada. 
+			
+			// insertar usuarios. 
+			long fecha = 0;
+			String inst = "insert into usuario values('Maria', '45344345L',"+fecha+ ",767665543, 'Calle Rodriguez Arias','Rodriguez','trabajoprogram','mariarodriguez5' );";
+			stmt.executeUpdate(inst);
+			long fecha2 = 0;
+			String inst2 = "insert into usuario values('Aritz', '74544345L',"+fecha2+ ",644665543, 'Calle De Mar','Yero','trabajoprogram','yero55' );";
+			stmt.executeUpdate(inst2);
+			// insertar pedido. 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.log( Level.SEVERE, "No se pudo crear la base de datos", e );
+		}
+	}
 	
 	
 }
