@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import BD.BD;
 import Clasesprincipales.TipoProducto;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Producto;
@@ -53,8 +54,8 @@ public class Ventana_Cliente extends JFrame{
 	private JButton carrito;
 	
 	private JTable tablaProductos;
-	private DefaultTableModel modeloDatosproductos;
-	private List <Producto> Productos;
+	private DefaultTableModel modeloDatosproductos = new DefaultTableModel();
+	
 		
 	
 	public Ventana_Cliente() {
@@ -124,6 +125,11 @@ public class Ventana_Cliente extends JFrame{
 		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
 		this.tablaProductos = new JTable(this.modeloDatosproductos);
 		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		List <Producto> Productos = BD.getProductos();
+		for(Producto p : Productos) {
+			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+		}
 		
 //		for(Producto p : this.Productos) {
 //			this.modeloDatosproductos.addRow(new Object[] {

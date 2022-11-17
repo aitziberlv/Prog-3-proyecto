@@ -19,6 +19,10 @@ public class Producto {
 		this.tipo = tipo;
 	}
 	
+	public Producto(int int1, String string, int int2, String string2, String string3, String string4) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCodigo() {
 		return codigo;
 	}
