@@ -15,7 +15,7 @@ public class main {
 		
 		//Creacion productos
 		ArrayList<Producto> lp = new ArrayList<>();
-		Producto p1 = new Producto(1, "Chaqueta de pelo", 20, Colorc.NEGRO, Talla.XS, TipoProducto.CHAQUETAS, Franquicia.BERSHKA);
-		lp.add(p1);
+		//Producto p1 = new Producto(1, "Chaqueta de pelo", 20, Colorc.NEGRO, Talla.XS, TipoProducto.CHAQUETAS, Franquicia.BERSHKA);
+		//lp.add(p1);
 	}
 }

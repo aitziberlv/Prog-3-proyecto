@@ -125,11 +125,11 @@ public class Ventana_Cliente extends JFrame{
 		this.tablaProductos = new JTable(this.modeloDatosproductos);
 		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		for(Producto p : this.Productos) {
-			this.modeloDatosproductos.addRow(new Object[] {
-					p.getCodigo(), p.getNombre(), p.getColor(), p.getTalla(), p.getTipo(), p.getFranquicia(), p.getPrecio()
-			});
-		}
+//		for(Producto p : this.Productos) {
+//			this.modeloDatosproductos.addRow(new Object[] {
+//					p.getCodigo(), p.getNombre(), p.getColor(), p.getTalla(), p.getTipo(), p.getFranquicia(), p.getPrecio()
+//			});
+//		}
 		
 		arriba.add(cliente);
 		
