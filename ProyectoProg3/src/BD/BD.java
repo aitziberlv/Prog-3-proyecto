@@ -148,12 +148,123 @@ public class BD {
 			long fecha2 = 0;
 			String inst2 = "insert into usuario values('Aritz', '74544345L',"+fecha2+ ",644665543, 'Calle De Mar','Yero','trabajoprogram','yero55' );";
 			stmt.executeUpdate(inst2);
-			// insertar producto. 
-			String inpr = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + Colorc.NEGRO + "', '" + Talla.M + "', '" + TipoProducto.CHAQUETAS + "' );";
-			stmt.executeUpdate(inpr);
+			// insertar producto/ mismo producto en diferentes tallas
+			//producto1. 
+			String inpr = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			String inpr11 = "insert into producto values(6, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "XS" + "', '" + "chaqueta" + "' );";
+			String inpr1111 = "insert into producto values(7, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "S" + "', '" + "chaqueta" + "' );";
+			String inpr111 = "insert into producto values(8, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "XL" + "', '" + "chaqueta" + "' );";
+			String inpr11111 = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "L" + "', '" + "chaqueta" + "' );";
+			String inpr111111 = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "S" + "', '" + "chaqueta" + "' );";
+			//producto2
+			String inpr2 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "S" + "', '" + "pantalones" + "' );";
+			String inpr22 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "XS" + "', '" + "pantalones" + "' );";
+			String inpr222 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "XL" + "', '" + "pantalones" + "' );";
+			String inpr2222 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "M" + "', '" + "pantalones" + "' );";
+			String inpr22222 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "L" + "', '" + "pantalones" + "' );";
+			String inpr222222 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "XS" + "', '" + "pantalones" + "' );";
+			//producto3.
+			String inpr3 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			String inpr33 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "S" + "', '" + "chaqueta" + "' );";
+			String inpr333 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "XL" + "', '" + "chaqueta" + "' );";
+			String inpr3333 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "L" + "', '" + "chaqueta" + "' );";
+			String inpr33333 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "XS" + "', '" + "chaqueta" + "' );";
+			String inpr333333 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "S" + "', '" + "chaqueta" + "' );";
+			//producto4.
+			String inpr4 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			String inpr44 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "S" + "', '" + "chaqueta" + "' );";
+			String inpr444 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "XS" + "', '" + "chaqueta" + "' );";
+			String inpr4444 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "L" + "', '" + "chaqueta" + "' );";
+			String inpr44444 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "XL" + "', '" + "chaqueta" + "' );";
+			String inpr444444 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "XS" + "', '" + "chaqueta" + "' );";
+			//producto5.
+			String inpr5 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			String inpr55 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "S" + "', '" + "chaqueta" + "' );";
+			String inpr555 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "XS" + "', '" + "chaqueta" + "' );";
+			String inpr5555 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "XL" + "', '" + "chaqueta" + "' );";
+			String inpr55555 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "L" + "', '" + "chaqueta" + "' );";
+			String inpr555555 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			/**
+			 * desde este punto hay que seguir creando productos.
+			 */
+			//producto6
+			String inpr6 = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr6);
+			//producto6
+			String inpr7 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "S" + "', '" + "pantalones" + "' );";
+			stmt.executeUpdate(inpr7);
+			//producto6
+			String inpr8 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr8);
+			//producto6
+			String inpr9 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr9);
+			//producto6
+			String inpr10 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr10);
+			//producto6
+			String inpr00 = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr11);
+			//producto6
+			String inpr12 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "S" + "', '" + "pantalones" + "' );";
+			stmt.executeUpdate(inpr12);
+			//producto6
+			String inpr13 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr13);
+			//producto6
+			String inpr14 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr14);
+			//producto6
+			String inpr15 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr15);
+			//producto6
+			String inpr16 = "insert into producto values(1, 'Chaqueta de pelo', 25, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr16);
+			//producto6
+			String inpr17 = "insert into producto values(2, 'Pantalones vaqueros', 15, '" + "Azul" + "', '" + "S" + "', '" + "pantalones" + "' );";
+			stmt.executeUpdate(inpr17);
+			//producto6
+			String inpr18 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr18);
+			//producto6
+			String inpr19 = "insert into producto values(4, 'pantalones parachute', 30, '" + "Negro" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr19);
+			//producto6
+			String inpr20 = "insert into producto values(5, 'vestido de verano', 27, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta" + "' );";
+			stmt.executeUpdate(inpr20);
 			
-			
-			
+			for (int i=0;i<=10;i++) {
+				stmt.executeUpdate(inpr4);
+				stmt.executeUpdate(inpr44);
+				stmt.executeUpdate(inpr444);
+				stmt.executeUpdate(inpr4444);
+				stmt.executeUpdate(inpr44444);
+				stmt.executeUpdate(inpr444444);
+				stmt.executeUpdate(inpr33333);
+				stmt.executeUpdate(inpr3);
+				stmt.executeUpdate(inpr33);
+				stmt.executeUpdate(inpr333);
+				stmt.executeUpdate(inpr3333);
+				stmt.executeUpdate(inpr333333);
+				stmt.executeUpdate(inpr2);
+				stmt.executeUpdate(inpr22);
+				stmt.executeUpdate(inpr222);
+				stmt.executeUpdate(inpr2222);
+				stmt.executeUpdate(inpr22222);
+				stmt.executeUpdate(inpr222222);
+				stmt.executeUpdate(inpr11);
+				stmt.executeUpdate(inpr);
+				stmt.executeUpdate(inpr111);
+				stmt.executeUpdate(inpr111111);
+				stmt.executeUpdate(inpr11111);
+				stmt.executeUpdate(inpr1111);
+				stmt.executeUpdate(inpr5);
+				stmt.executeUpdate(inpr55);
+				stmt.executeUpdate(inpr555);
+				stmt.executeUpdate(inpr55555);
+				stmt.executeUpdate(inpr5555);
+				stmt.executeUpdate(inpr555555);
+			}
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
