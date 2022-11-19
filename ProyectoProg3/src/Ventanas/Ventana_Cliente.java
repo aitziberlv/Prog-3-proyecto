@@ -92,7 +92,7 @@ public class Ventana_Cliente extends JFrame{
 		for (Colorc co:Colorc.values()) {
 			c.addItem(co);
 		}
-		informacion = new JTextField("Aqui apareceran los productos que estan disponibles con esas caracteristicas. ",16);
+		informacion = new JTextField("Productos con esas caracteristicas: ",16);
 		informacion.setEditable(false);
 		
 		tipos = new JComboBox<TipoProducto>();
