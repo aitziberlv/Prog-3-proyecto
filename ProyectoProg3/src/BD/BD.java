@@ -1,5 +1,6 @@
 package BD;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -161,13 +162,12 @@ public class BD {
 			Producto p111= new Producto(3, "Chaqueta de pelo", 25, Colorc.NEGRO, Talla.XS, TipoProducto.CHAQUETAS);
 			Producto p1111 = new Producto(4, "Chaqueta de pelo", 25, Colorc.NEGRO, Talla.L, TipoProducto.CHAQUETAS);
 			Producto p11111 = new Producto(5, "Chaqueta de pelo", 25, Colorc.NEGRO, Talla.XL, TipoProducto.CHAQUETAS);
-			Producto p111111 = new Producto(6, "Chaqueta de pelo", 25, Colorc.NEGRO, Talla.M, TipoProducto.CHAQUETAS);
 			InsertarProducto(p1);
 			InsertarProducto(p11);
 			InsertarProducto(p111);
 			InsertarProducto(p1111);
 			InsertarProducto(p11111);
-			InsertarProducto(p111111);
+			
 			
 			//producto2.
 			Producto p2 = new Producto(7, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
@@ -175,13 +175,12 @@ public class BD {
 			Producto p222 = new Producto(9, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
 			Producto p2222 = new Producto(10, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
 			Producto p22222 = new Producto(11, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
-			Producto p222222 = new Producto(12, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
 			InsertarProducto(p2);
 			InsertarProducto(p22);
 			InsertarProducto(p222);
 			InsertarProducto(p2222);
 			InsertarProducto(p22222);
-			InsertarProducto(p222222);
+			
 
 			//producto3
 			Producto p3 = new Producto(13, "Camisa con volantes", 20, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
@@ -189,19 +188,84 @@ public class BD {
 			Producto p333 = new Producto(15, "Camisa con volantes", 20, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
 			Producto p3333 = new Producto(16, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
 			Producto p33333 = new Producto(17, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
-			Producto p333333 = new Producto(18, "Camisa con volantes", 20, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
 			InsertarProducto(p3);
 			InsertarProducto(p33);
 			InsertarProducto(p333);
 			InsertarProducto(p3333);
 			InsertarProducto(p33333);
-			InsertarProducto(p333333);
-
-
-
-
-
-
+			
+			
+			//PRODUCTO4
+			Producto p4 = new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.L,TipoProducto.PANTALONES);
+			Producto p44 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.M,TipoProducto.PANTALONES);
+			Producto p444 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.S,TipoProducto.PANTALONES);
+			Producto p4444 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.XS,TipoProducto.PANTALONES);
+			Producto p44444 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.XL,TipoProducto.PANTALONES);			
+			InsertarProducto(p4);
+			InsertarProducto(p44);
+			InsertarProducto(p444);
+			InsertarProducto(p4444);
+			InsertarProducto(p44444);
+			
+			//PRODUCTO5(mismo producto que el 4 pero de otro color)
+			Producto p5 = new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.L,TipoProducto.PANTALONES);
+			Producto p55 =new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.M,TipoProducto.PANTALONES);
+			Producto p555 =new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.S,TipoProducto.PANTALONES);
+			Producto p5555=new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.XS,TipoProducto.PANTALONES);
+			Producto p55555 =new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.XL,TipoProducto.PANTALONES);			
+			InsertarProducto(p5);
+			InsertarProducto(p55);
+			InsertarProducto(p555);
+			InsertarProducto(p5555);
+			InsertarProducto(p55555);
+			
+			//PRODUCTO6(mismo producto que el 4 pero de otro color)
+			Producto p6 = new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.L,TipoProducto.PANTALONES);
+			Producto p66 =new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.M,TipoProducto.PANTALONES);
+			Producto p666 =new Producto(4, "pantalones parachute", 30,Colorc.GRIS, Talla.S,TipoProducto.PANTALONES);
+			Producto p6666=new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.XS,TipoProducto.PANTALONES);
+			Producto p66666 =new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.XL,TipoProducto.PANTALONES);			
+			InsertarProducto(p6);
+			InsertarProducto(p66);
+			InsertarProducto(p666);
+			InsertarProducto(p6666);
+			InsertarProducto(p66666);
+			
+			//producto7 
+			Producto p7 = new Producto(13, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
+			Producto p77 = new Producto(14, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
+			Producto p777 = new Producto(15, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
+			Producto p7777 = new Producto(16, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
+			Producto p77777 = new Producto(17,"Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
+			InsertarProducto(p7);
+			InsertarProducto(p77);
+			InsertarProducto(p777);
+			InsertarProducto(p7777);
+			InsertarProducto(p77777);
+			
+			//producto8 
+			Producto p8 = new Producto(13, "vestido de verano", 29, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
+			Producto p88 = new Producto(14, "vestido de verano", 29, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
+			Producto p888 = new Producto(15, "vestido de verano", 29, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
+			Producto p8888 = new Producto(16, "vestido de verano", 29, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
+			Producto p88888 = new Producto(17,"vestido de verano", 29, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
+			InsertarProducto(p8);
+			InsertarProducto(p88);
+			InsertarProducto(p888);
+			InsertarProducto(p8888);
+			InsertarProducto(p88888);
+			
+			//producto9 (MISMO PRODUCTO QUE EL 8 PERO EN OTRO COLOR )
+			Producto p9 = new Producto(13, "vestido de verano", 29, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
+			Producto p99 = new Producto(14, "vestido de verano", 29, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
+			Producto p999 = new Producto(15, "vestido de verano", 29, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
+			Producto p9999 = new Producto(16, "vestido de verano", 29, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
+			Producto p99999 = new Producto(17,"vestido de verano", 29, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
+			InsertarProducto(p9);
+			InsertarProducto(p99);
+			InsertarProducto(p999);
+			InsertarProducto(p9999);
+			InsertarProducto(p99999);
 			
 //			//producto3.
 //			String inpr3 = "insert into producto values(3, 'camisa con volantes', 20, '" + "Blanco" + "', '" + "M" + "', '" + "chaqueta'," + null + " );";
