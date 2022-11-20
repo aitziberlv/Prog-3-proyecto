@@ -12,11 +12,10 @@ public class Usuario extends Persona {
 	
 
 	public Usuario(String nombre, String dni, String fechNa, String telefono, String direccion, String apellido,
-			String contraseña, String usuario, ArrayList<Pedidos> pedidos_hechos) {
+			String contraseña, String usuario) {
 		super(nombre, dni, fechNa, telefono, direccion, apellido);
 		this.contraseña = contraseña;
 		this.usuario = usuario;
-		this.pedidos_hechos = pedidos_hechos;
 	}
 
 	public String getUsuario() {

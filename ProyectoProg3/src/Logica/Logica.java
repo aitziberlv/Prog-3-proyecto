@@ -77,7 +77,7 @@ public class Logica {
 	}
 	
 	public void registrar(String usuario, String correo,String nombre,String apellido,String telefono,String contraseña) {
-		Usuario us=new Usuario(nombre,null,null,telefono,apellido,null,contraseña,usuario,null);
+		Usuario us=new Usuario(nombre,null,null,telefono,apellido,null,contraseña,usuario);
 		u.add(us);
 		escribir("Usuarios.dat");
 	}
