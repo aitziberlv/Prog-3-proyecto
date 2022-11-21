@@ -231,6 +231,7 @@ public class BD {
 			InsertarProducto(p6666,"");
 			InsertarProducto(p66666,"");
 			
+			
 			//producto7 
 			Producto p7 = new Producto(13, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
 			Producto p77 = new Producto(14, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
