@@ -1,22 +1,16 @@
 package BD;
 
-import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Clasesprincipales.Colorc;
-import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.TipoProducto;
@@ -24,12 +18,13 @@ import Clasesprincipales.Usuario;
 
 public class BD {
 	private static Exception lastError = null;
+	private static Logger logger = Logger.getLogger( "BD" );
 	
 	/** Inicializa una BD SQLITE y devuelve una conexiï¿½n con ella
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexiï¿½n con la base de datos indicada. Si hay algï¿½n error, se devuelve null
 	 */
-	public static Statement abrirlaconexion( String nombreBD) { 
+	public static Statement abrirlaconexion( String nombreBD) throws SQLException{ 
 		
 //		try { // Crear carpeta si no existe
 //			File fic = new File(rutaFotos);
@@ -43,15 +38,15 @@ public class BD {
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			String dburl = "jdbc:sqlite:" + nombreBD;
-			Connection con = DriverManager.getConnection(dburl);
+			Connection con = DriverManager.getConnection( "jdbc:sqlite:" + nombreBD);
 				 
 			Statement st = con.createStatement();
-			log( Level.INFO, "Conectada base de datos " + nombreBD, null );
+			logger.log( Level.INFO, "Conectada base de datos " + nombreBD );
 			return st;
-		} catch (ClassNotFoundException | SQLException e) {
+			
+		} catch (ClassNotFoundException e) {
 			lastError = e;
-			log( Level.SEVERE, "Error en conexión de base de datos " + nombreBD, e );
+			logger.log( Level.SEVERE, "Error en conexión de base de datos " + nombreBD, e );
 			e.printStackTrace();
 			return null;
 		}
@@ -69,7 +64,7 @@ public class BD {
 			return stm;
 		} catch (SQLException e) {
 			lastError = e;
-			log( Level.SEVERE, "Error en uso de base de datos", e );
+			logger.log( Level.SEVERE, "Error en uso de base de datos", e );
 			e.printStackTrace();
 			return null;
 		}
@@ -84,35 +79,16 @@ public class BD {
 		try {
 			if (stm!=null) stm.close();
 			if (con!=null) con.close();
-			log( Level.INFO, "Cierre de base de datos", null );
+			logger.log( Level.INFO, "Cierre de base de datos" );
 		} catch (SQLException e) {
 			lastError = e;
-			log( Level.SEVERE, "Error en cierre de base de datos", e );
+			logger.log( Level.SEVERE, "Error en cierre de base de datos", e );
 			e.printStackTrace();
 		}
 	}
 	
 	
 	
-	//Logging
-	public static Logger logger = null;
-	private static void log( Level level, String msg, Throwable excepcion ) {
-		if (logger==null) {  // Logger por defecto local:
-			logger = Logger.getLogger( BD.class.getName() );  // Nombre del logger - el de la clase
-			logger.setLevel( Level.ALL );  // Loguea todos los niveles
-			try {
-				// logger.addHandler( new FileHandler( "bd-" + System.currentTimeMillis() + ".log.xml" ) );  // Y saca el log a fichero xml
-				logger.addHandler( new FileHandler( "bd.log.xml", true ) );  // Y saca el log a fichero xml
-			} catch (Exception e) {
-				logger.log( Level.SEVERE, "No se pudo crear fichero de log", e );
-			}
-		}
-		if (excepcion==null)
-			logger.log( level, msg );
-		else
-			logger.log( level, msg, excepcion );
-		
-	}
     public static void initDatos() { //mirar porque igual tenemos que cambiar la relacion de producto y de pedido . 
 		
 		try {
@@ -569,9 +545,9 @@ public class BD {
     }
     
     
-   public static List<Producto> getProductos(){
+   public static ArrayList<Producto> getProductos(){
 	   String sent = "";
-	   List<Producto> lproducto = new ArrayList<>();
+	   ArrayList<Producto> lproducto = new ArrayList<Producto>();
 	   try {
 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
 		   sent = "select * from producto";
