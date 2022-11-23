@@ -11,8 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Clasesprincipales.Colorc;
+import Clasesprincipales.Franquicia;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
+import Clasesprincipales.Tienda;
 import Clasesprincipales.TipoProducto;
 import Clasesprincipales.Usuario;
 
@@ -106,7 +108,7 @@ public class BD {
 			if (veces2==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com2 = "create table tienda(codigo_tienda INTEGER PRIMARY KEY AUTOINCREMENT, nombre String, franquicia String)";
+			String com2 = "create table tienda(codigo_tienda INTEGER PRIMARY KEY AUTOINCREMENT,  franquicia String)";
 			stmt.executeUpdate("drop table tienda");
 			int veces3=stmt.executeUpdate(com2);
 			if (veces3==1) {
@@ -118,8 +120,8 @@ public class BD {
 			if (veces4==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com5 = "create table IF NOT EXISTS pertenece(codigo_pertenece INTEGER PRIMARY KEY AUTOINCREMENT, id_tienda integer, id_pedido integer )";
-			stmt.executeUpdate("drop table pertenece");
+			String com5 = "create table IF NOT EXISTS compra(codigo_pertenece INTEGER PRIMARY KEY AUTOINCREMENT, id_tienda integer, id_pedido integer ,id_producto integer)";
+			stmt.executeUpdate("drop table compra");
 			int veces=stmt.executeUpdate(com5);
 			if (veces==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
@@ -146,6 +148,7 @@ public class BD {
 			InsertarUsuario(new Usuario("Daniel", "29576923S", "06/10/1990", "169502934", "Calle Astarloa", "Martinez", "daniMart", "09jans"));
 			InsertarUsuario(new Usuario("Martina", "83068219S", "07/05/1995", "758934023", "Calle Gran Via", "Puente", "martinPu", "martiti"));
 			InsertarUsuario(new Usuario("Daniela", "850234681I", "08/06/2001", "756902347", "Calle Doctor Areilza", "Diez", "dadiez", "daninueve"));
+
 			
 			// insertar producto/ mismo producto en diferentes tallas
 			//producto1.
@@ -463,24 +466,60 @@ public class BD {
 			InsertarProducto(p2602,"");
 			InsertarProducto(p2603,"");
 			InsertarProducto(p2604,"");
-//			
-//			
-//			//Insertar pedidos
-//			String pe1 = "insert into pedido values (1, 45344345L);";
-//			stmt.executeUpdate(pe1);
-//			String pe2 = "insert into pedido values (2, 74544345L);";
-//			stmt.executeUpdate(pe2);
-//			String pe3 = "insert into pedido values (3, 45344345L);";
-//			stmt.executeUpdate(pe3);
-//			String pe4 = "insert into pedido values (4, 74544345L);";
-//			stmt.executeUpdate(pe4);
-//			String pe5 = "insert into pedido values (5, 45344345L);";
-//			stmt.executeUpdate(pe5);
-//			String pe6 = "insert into pedido values (6, 45344345L);";
-//			stmt.executeUpdate(pe6);
-//			String pe7 = "insert into pedido values (7, 74544345L);";
-//			stmt.executeUpdate(pe7);
-
+			
+			
+			//Insertar pedidos
+			InsertarPedido(1, "45344345L");
+			InsertarPedido(2, "74544345L");
+			InsertarPedido(3, "68458021D");
+			InsertarPedido(4, "45345678H");
+			InsertarPedido(5, "78302745L");
+			InsertarPedido(6, "78370236N");
+			InsertarPedido(7, "70348021M");
+			InsertarPedido(8, "74902345J");
+			InsertarPedido(9, "74920473K");
+			InsertarPedido(1, "72950639N");
+			InsertarPedido(2, "75920576H");
+			InsertarPedido(3, "29576923S");
+			InsertarPedido(4, "83068219S");
+			InsertarPedido(5, "83068219S");
+			InsertarPedido(6, "850234681I");
+			InsertarPedido(7, "83068219S");
+			InsertarPedido(1, "45344345L");
+			InsertarPedido(2, "74544345L");
+			InsertarPedido(3, "68458021D");
+			InsertarPedido(4, "45345678H");
+			InsertarPedido(5, "78302745L");
+			InsertarPedido(6, "78370236N");
+			InsertarPedido(7, "70348021M");
+			InsertarPedido(8, "74902345J");
+			InsertarPedido(9, "74920473K");
+			InsertarPedido(1, "72950639N");
+			InsertarPedido(2, "75920576H");
+			InsertarPedido(3, "29576923S");
+			InsertarPedido(4, "83068219S");
+			InsertarPedido(5, "83068219S");
+			InsertarPedido(6, "850234681I");
+			InsertarPedido(7, "83068219S");
+			
+			//insertar tiendas.
+			Tienda t1=new Tienda(1,Franquicia.BERSHKA);
+			Tienda t2=new Tienda(2,Franquicia.LEFTIES);
+			Tienda t3=new Tienda(3,Franquicia.OYSHO);
+			Tienda t4=new Tienda(4,Franquicia.PULLANDBEAR);
+			Tienda t5=new Tienda(5,Franquicia.STRADIVARIUS);
+			Tienda t6=new Tienda(6,Franquicia.ZARA);
+			InsertarTienda(t1,"");
+			InsertarTienda(t2,"");
+			InsertarTienda(t3,"");
+			InsertarTienda(t4,"");
+			InsertarTienda(t5,"");
+			InsertarTienda(t6,"");
+			
+			//insertar relacion de compra. 
+			
+			
+			
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -543,8 +582,63 @@ public class BD {
 			return false;
 		}
     }
-    
-    
+    public static boolean InsertarPedido(int codigo, String dni) {
+    	Statement stmt;
+		try {
+			stmt = abrirlaconexion("DeustoOutlet.db");
+			 String p ="insert into pedido values ("+codigo+", '"+dni+"');";
+	    	 int val = stmt.executeUpdate(p);
+	    	 if(val != 1) {
+ 				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
+ 				return false;  
+ 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    	
+		return true;
+    	
+    }
+    public static boolean InsertarTienda(Tienda t, String rutafoto) {
+    	String sent = "";
+    	try {
+    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
+        	sent = "insert into tienda values(" + 
+        			"" + t.getCodigo() + ", " +
+        			"'" + t.getFranquicia() +  "','"+ rutafoto+"')";
+        	int val = stmt.executeUpdate(sent);
+        	if(val != 1) {
+				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
+				return false;  
+			}
+        	
+			return true;
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    }
+    public static boolean InsertarCompra(int codigo, String c1,String c2, String c3) {
+    	String sent = "";
+    	try {
+    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
+        	
+//        	if(val != 1) {
+//				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
+//				return false;  
+//			}
+//        	
+			return true;
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    }
    public static ArrayList<Producto> getProductos(){
 	   String sent = "";
 	   ArrayList<Producto> lproducto = new ArrayList<Producto>();

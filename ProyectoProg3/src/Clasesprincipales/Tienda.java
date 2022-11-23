@@ -3,31 +3,33 @@ package Clasesprincipales;
 import java.util.ArrayList;
 
 public class Tienda {
-	private String codigo ="";
-	private String nombre ="";
+	private int codigo =1;
+	
 	private Franquicia franquicia=Franquicia.BERSHKA;
 	private ArrayList<Producto> compras = new ArrayList<Producto>();
 	
 	
-	public Tienda(String codigo, String nombre, Franquicia franquicia, ArrayList<Producto> compras) {
+	public Tienda(int codigo, Franquicia franquicia, ArrayList<Producto> compras) {
 		super();
 		this.codigo = codigo;
-		this.nombre = nombre;
+		
 		this.franquicia = franquicia;
 		this.compras = compras;
 	}
-	public String getCodigo() {
+	public Tienda(int codigo, Franquicia franquicia) {
+		super();
+		this.codigo = codigo;
+		
+		this.franquicia = franquicia;
+		
+	}
+	public int getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+
 	public Franquicia getFranquicia() {
 		return franquicia;
 	}
@@ -43,7 +45,7 @@ public class Tienda {
 	}
 	@Override
 	public String toString() {
-		return "Tienda [codigo=" + codigo + ", nombre=" + nombre + ", franquicia=" + franquicia + ", compras=" + compras
+		return "Tienda [codigo=" + codigo +  ", franquicia=" + franquicia + ", compras=" + compras
 				+ "]";
 	}
 
