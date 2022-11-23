@@ -633,8 +633,7 @@ public class BD {
 //			}
 //        	
     		
-    		
-    		
+ 
 			return true;
 		} catch (SQLException e) {
 			lastError = e;
