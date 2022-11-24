@@ -34,13 +34,13 @@ public class Ventana_Cliente extends JFrame{
 	private JPanel centro_izda;
 	private JPanel centro_dcha;
 	private JPanel abajo;
-	
+	private JPanel valordebarra;
 	private JLabel cliente;
 	private JLabel tipo;
 	private JLabel color;
 	private JLabel precio;
 	private JLabel talla;
-	
+	private JLabel valordebarra_l;
 	private JComboBox<Colorc> c;
 	private JTextField informacion;
 	
@@ -70,17 +70,17 @@ public class Ventana_Cliente extends JFrame{
 		centro = new JPanel();
 		centro.setLayout(new GridLayout(1,2));
 		centro_izda = new JPanel();
-		centro_izda.setLayout(new GridLayout(4,1));
+		centro_izda.setLayout(new GridLayout(5,1));
 		centro_dcha = new JPanel();
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(2,1));
-		
+		valordebarra= new JPanel ();
 		cliente = new JLabel("CLIENTE");
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
-		
+		valordebarra_l =new JLabel(preciobarra.getValue()+"");
 		preciobarra = new JSlider(0, 200);
 		preciobarra.setPaintTrack(true);
 		preciobarra.setPaintTicks(true);
@@ -137,14 +137,17 @@ public class Ventana_Cliente extends JFrame{
 //			});
 //		}
 		
-		arriba.add(cliente);
-		
+		//añadir tres paneles para que quede centrado. 
+		arriba.add(cliente, BorderLayout.CENTER);
+		// lo de abajo si queremos que quede centrado hacemos lo mismo 
 		centro_izda.add(tipo);
 		centro_izda.add(tipos);
 		centro_izda.add(color);
 		centro_izda.add(c);
-		centro_izda.add(precio);
+		centro_izda.add(precio, BorderLayout.CENTER);
 		centro_izda.add(preciobarra);
+		valordebarra.add(valordebarra_l);
+		centro_izda.add(valordebarra);
 		centro_izda.add(talla);
 		centro_izda.add(tallas);
 		centro_dcha.add(buscar);
@@ -169,6 +172,8 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.setBackground(colo1);
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
+		
+		
 		
 
 
