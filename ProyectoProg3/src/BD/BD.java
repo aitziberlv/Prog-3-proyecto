@@ -97,31 +97,31 @@ public class BD {
 			
 			String com = "create table usuario(nombre String, dni String, fechNa String, telefono String, direccion String, apellido String, contraseña String, usuario String)";
 			Statement stmt = abrirlaconexion("DeustoOutlet.db");
-			stmt.executeUpdate("drop table usuario");
+			stmt.executeUpdate("drop table if exists usuario");
 			int veces1=stmt.executeUpdate(com);
 			if (veces1==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com4 = "create table pedido(codigo_pedido INTEGER PRIMARY KEY AUTOINCREMENT, dni String)"; //clave externa del dni del usuario. 
-			stmt.executeUpdate("drop table pedido");
+			String com4 = "create table pedido(codigo_pedido INTEGER, dni String)"; //clave externa del dni del usuario. 
+			stmt.executeUpdate("drop table if exists pedido");
 			int veces2=stmt.executeUpdate(com4);
 			if (veces2==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com2 = "create table tienda(codigo_tienda INTEGER PRIMARY KEY AUTOINCREMENT,  franquicia String)";
-			stmt.executeUpdate("drop table tienda");
+			String com2 = "create table tienda(codigo_tienda INTEGER ,  franquicia String, foto String)";
+			stmt.executeUpdate("drop table if exists tienda");
 			int veces3=stmt.executeUpdate(com2);
 			if (veces3==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com3 = "create table IF NOT EXISTS producto(codigo_producto integer, nombre String, precio integer, color String, talla String, tipo String , ruta String, cogigo_tienda integer)";
-			stmt.executeUpdate("drop table producto");
+			String com3 = "create table producto(codigo_producto integer, nombre String, precio integer, color String, talla String, tipo String , ruta String, cogigo_tienda integer, cantidad integer)";
+			stmt.executeUpdate("drop table if exists producto");
 			int veces4=stmt.executeUpdate(com3);
 			if (veces4==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com5 = "create table IF NOT EXISTS compra(codigo_pertenece INTEGER PRIMARY KEY AUTOINCREMENT, id_tienda integer, id_pedido integer ,id_producto integer)";
-			stmt.executeUpdate("drop table compra");
+			String com5 = "create table compra(codigo_pertenece INTEGER, id_pedido integer ,id_producto integer)";
+			stmt.executeUpdate("drop table if exists compra");
 			int veces=stmt.executeUpdate(com5);
 			if (veces==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
@@ -165,11 +165,11 @@ public class BD {
 			
 			
 			//producto2. t2
-			Producto p2 = new Producto(7, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
-			Producto p22 = new Producto(8, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.M, TipoProducto.PANTALONES);
-			Producto p222 = new Producto(9, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
-			Producto p2222 = new Producto(10, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
-			Producto p22222 = new Producto(11, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
+			Producto p2 = new Producto(6, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
+			Producto p22 = new Producto(7, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.M, TipoProducto.PANTALONES);
+			Producto p222 = new Producto(8, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
+			Producto p2222 = new Producto(9, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
+			Producto p22222 = new Producto(10, "Pantalones vaqueros", 15, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
 			InsertarProducto(p2,"",2);
 			InsertarProducto(p22,"",2);
 			InsertarProducto(p222,"",2);
@@ -178,11 +178,11 @@ public class BD {
 			
 
 			//producto3t3
-			Producto p3 = new Producto(13, "Camisa con volantes", 20, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
-			Producto p33 = new Producto(14, "Camisa con volantes", 20, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
-			Producto p333 = new Producto(15, "Camisa con volantes", 20, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
-			Producto p3333 = new Producto(16, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
-			Producto p33333 = new Producto(17, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
+			Producto p3 = new Producto(11, "Camisa con volantes", 20, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
+			Producto p33 = new Producto(12, "Camisa con volantes", 20, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
+			Producto p333 = new Producto(13, "Camisa con volantes", 20, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
+			Producto p3333 = new Producto(14, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
+			Producto p33333 = new Producto(15, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
 			InsertarProducto(p3,"",3);
 			InsertarProducto(p33,"",3);
 			InsertarProducto(p333,"",3);
@@ -191,11 +191,11 @@ public class BD {
 			
 			
 			//PRODUCTO4 t4
-			Producto p4 = new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.L,TipoProducto.PANTALONES);
-			Producto p44 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.M,TipoProducto.PANTALONES);
-			Producto p444 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.S,TipoProducto.PANTALONES);
-			Producto p4444 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.XS,TipoProducto.PANTALONES);
-			Producto p44444 =new Producto(4, "pantalones parachute", 30, Colorc.NEGRO, Talla.XL,TipoProducto.PANTALONES);			
+			Producto p4 = new Producto(16, "pantalones parachute", 30, Colorc.NEGRO, Talla.L,TipoProducto.PANTALONES);
+			Producto p44 =new Producto(17, "pantalones parachute", 30, Colorc.NEGRO, Talla.M,TipoProducto.PANTALONES);
+			Producto p444 =new Producto(18, "pantalones parachute", 30, Colorc.NEGRO, Talla.S,TipoProducto.PANTALONES);
+			Producto p4444 =new Producto(19, "pantalones parachute", 30, Colorc.NEGRO, Talla.XS,TipoProducto.PANTALONES);
+			Producto p44444 =new Producto(20, "pantalones parachute", 30, Colorc.NEGRO, Talla.XL,TipoProducto.PANTALONES);			
 			InsertarProducto(p4,"",4);
 			InsertarProducto(p44,"",4);
 			InsertarProducto(p444,"",4);
@@ -203,11 +203,11 @@ public class BD {
 			InsertarProducto(p44444,"",4);
 			
 			//PRODUCTO5(mismo producto que el 4 pero de otro color) t4
-			Producto p5 = new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.L,TipoProducto.PANTALONES);
-			Producto p55 =new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.M,TipoProducto.PANTALONES);
-			Producto p555 =new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.S,TipoProducto.PANTALONES);
-			Producto p5555=new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.XS,TipoProducto.PANTALONES);
-			Producto p55555 =new Producto(4, "pantalones parachute", 30, Colorc.VERDE, Talla.XL,TipoProducto.PANTALONES);			
+			Producto p5 = new Producto(21, "pantalones parachute", 30, Colorc.VERDE, Talla.L,TipoProducto.PANTALONES);
+			Producto p55 =new Producto(22, "pantalones parachute", 30, Colorc.VERDE, Talla.M,TipoProducto.PANTALONES);
+			Producto p555 =new Producto(23, "pantalones parachute", 30, Colorc.VERDE, Talla.S,TipoProducto.PANTALONES);
+			Producto p5555=new Producto(24, "pantalones parachute", 30, Colorc.VERDE, Talla.XS,TipoProducto.PANTALONES);
+			Producto p55555 =new Producto(25, "pantalones parachute", 30, Colorc.VERDE, Talla.XL,TipoProducto.PANTALONES);			
 			InsertarProducto(p5,"",4);
 			InsertarProducto(p55,"",4);
 			InsertarProducto(p555,"",4);
@@ -215,11 +215,11 @@ public class BD {
 			InsertarProducto(p55555,"",4);
 			
 			//PRODUCTO6(mismo producto que el 4 pero de otro color) t4
-			Producto p6 = new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.L,TipoProducto.PANTALONES);
-			Producto p66 =new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.M,TipoProducto.PANTALONES);
-			Producto p666 =new Producto(4, "pantalones parachute", 30,Colorc.GRIS, Talla.S,TipoProducto.PANTALONES);
-			Producto p6666=new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.XS,TipoProducto.PANTALONES);
-			Producto p66666 =new Producto(4, "pantalones parachute", 30, Colorc.GRIS, Talla.XL,TipoProducto.PANTALONES);			
+			Producto p6 = new Producto(26, "pantalones parachute", 30, Colorc.GRIS, Talla.L,TipoProducto.PANTALONES);
+			Producto p66 =new Producto(27, "pantalones parachute", 30, Colorc.GRIS, Talla.M,TipoProducto.PANTALONES);
+			Producto p666 =new Producto(28, "pantalones parachute", 30,Colorc.GRIS, Talla.S,TipoProducto.PANTALONES);
+			Producto p6666=new Producto(29, "pantalones parachute", 30, Colorc.GRIS, Talla.XS,TipoProducto.PANTALONES);
+			Producto p66666 =new Producto(30, "pantalones parachute", 30, Colorc.GRIS, Talla.XL,TipoProducto.PANTALONES);			
 			InsertarProducto(p6,"",4);
 			InsertarProducto(p66,"",4);
 			InsertarProducto(p666,"",4);
@@ -228,11 +228,11 @@ public class BD {
 			
 			
 			//producto7 t5
-			Producto p7 = new Producto(13, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
-			Producto p77 = new Producto(14, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
-			Producto p777 = new Producto(15, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
-			Producto p7777 = new Producto(16, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
-			Producto p77777 = new Producto(17,"Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
+			Producto p7 = new Producto(31, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETAS);
+			Producto p77 = new Producto(32, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETAS);
+			Producto p777 = new Producto(33, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.L, TipoProducto.CAMISETAS);
+			Producto p7777 = new Producto(34, "Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XL, TipoProducto.CAMISETAS);
+			Producto p77777 = new Producto(35,"Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETAS);
 			InsertarProducto(p7,"",5);
 			InsertarProducto(p77,"",5);
 			InsertarProducto(p777,"",5);
@@ -240,11 +240,11 @@ public class BD {
 			InsertarProducto(p77777,"",5);
 			
 			//producto8 t6
-			Producto p8 = new Producto(13, "vestido de verano", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDOS);
-			Producto p88 = new Producto(14, "vestido de verano", 29, Colorc.BLANCO, Talla.S, TipoProducto.VESTIDOS);
-			Producto p888 = new Producto(15, "vestido de verano", 29, Colorc.BLANCO, Talla.L, TipoProducto.VESTIDOS);
-			Producto p8888 = new Producto(16, "vestido de verano", 29, Colorc.BLANCO, Talla.XL, TipoProducto.VESTIDOS);
-			Producto p88888 = new Producto(17,"vestido de verano", 29, Colorc.BLANCO, Talla.XS, TipoProducto.VESTIDOS);
+			Producto p8 = new Producto(36, "vestido de verano", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDOS);
+			Producto p88 = new Producto(37, "vestido de verano", 29, Colorc.BLANCO, Talla.S, TipoProducto.VESTIDOS);
+			Producto p888 = new Producto(38, "vestido de verano", 29, Colorc.BLANCO, Talla.L, TipoProducto.VESTIDOS);
+			Producto p8888 = new Producto(39, "vestido de verano", 29, Colorc.BLANCO, Talla.XL, TipoProducto.VESTIDOS);
+			Producto p88888 = new Producto(40,"vestido de verano", 29, Colorc.BLANCO, Talla.XS, TipoProducto.VESTIDOS);
 			InsertarProducto(p8,"",6);
 			InsertarProducto(p88,"",6);
 			InsertarProducto(p888,"",6);
@@ -252,11 +252,11 @@ public class BD {
 			InsertarProducto(p88888,"",6);
 			
 			//producto9 (MISMO PRODUCTO QUE EL 8 PERO EN OTRO COLOR )
-			Producto p9 = new Producto(13, "vestido de verano", 29, Colorc.AMARILLO, Talla.M, TipoProducto.VESTIDOS);
-			Producto p99 = new Producto(14, "vestido de verano", 29, Colorc.AMARILLO, Talla.S, TipoProducto.VESTIDOS);
-			Producto p999 = new Producto(15, "vestido de verano", 29, Colorc.AMARILLO, Talla.L, TipoProducto.VESTIDOS);
-			Producto p9999 = new Producto(16, "vestido de verano", 29, Colorc.AMARILLO, Talla.XL, TipoProducto.VESTIDOS);
-			Producto p99999 = new Producto(17,"vestido de verano", 29, Colorc.AMARILLO, Talla.XS, TipoProducto.VESTIDOS);
+			Producto p9 = new Producto(41, "vestido de verano", 29, Colorc.AMARILLO, Talla.M, TipoProducto.VESTIDOS);
+			Producto p99 = new Producto(42, "vestido de verano", 29, Colorc.AMARILLO, Talla.S, TipoProducto.VESTIDOS);
+			Producto p999 = new Producto(43, "vestido de verano", 29, Colorc.AMARILLO, Talla.L, TipoProducto.VESTIDOS);
+			Producto p9999 = new Producto(44, "vestido de verano", 29, Colorc.AMARILLO, Talla.XL, TipoProducto.VESTIDOS);
+			Producto p99999 = new Producto(45,"vestido de verano", 29, Colorc.AMARILLO, Talla.XS, TipoProducto.VESTIDOS);
 			InsertarProducto(p9,"",6);
 			InsertarProducto(p99,"",6);
 			InsertarProducto(p999,"",6);
@@ -264,11 +264,11 @@ public class BD {
 			InsertarProducto(p99999,"",6);
 			
 			//producto10 
-			Producto p10 = new Producto(13, "pantalones de campana", 32, Colorc.ROJO, Talla.M, TipoProducto.PANTALONES);
-			Producto p101 = new Producto(14,"pantalones de campana", 32, Colorc.ROJO, Talla.S, TipoProducto.PANTALONES);
-			Producto p102 = new Producto(15, "pantalones de campana", 32, Colorc.ROJO, Talla.L, TipoProducto.PANTALONES);
-			Producto p103 = new Producto(16,"pantalones de campana", 32, Colorc.ROJO, Talla.XL, TipoProducto.PANTALONES);
-			Producto p104 = new Producto(17,"pantalones de campana", 32, Colorc.ROJO, Talla.XS, TipoProducto.PANTALONES);
+			Producto p10 = new Producto(46, "pantalones de campana", 32, Colorc.ROJO, Talla.M, TipoProducto.PANTALONES);
+			Producto p101 = new Producto(47,"pantalones de campana", 32, Colorc.ROJO, Talla.S, TipoProducto.PANTALONES);
+			Producto p102 = new Producto(48, "pantalones de campana", 32, Colorc.ROJO, Talla.L, TipoProducto.PANTALONES);
+			Producto p103 = new Producto(49,"pantalones de campana", 32, Colorc.ROJO, Talla.XL, TipoProducto.PANTALONES);
+			Producto p104 = new Producto(50,"pantalones de campana", 32, Colorc.ROJO, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p10,"",1);
 			InsertarProducto(p101,"",1);
 			InsertarProducto(p102,"",1);
@@ -276,11 +276,11 @@ public class BD {
 			InsertarProducto(p104,"",1);
 			
 			//producto11 (mismo producto que el 10 pero en otro color)
-			Producto p110 = new Producto(13, "pantalones de campana", 32, Colorc.BLANCO, Talla.M, TipoProducto.PANTALONES);
-			Producto p1101 = new Producto(14,"pantalones de campana", 32, Colorc.BLANCO, Talla.S, TipoProducto.PANTALONES);
-			Producto p112 = new Producto(15, "pantalones de campana", 32, Colorc.BLANCO, Talla.L, TipoProducto.PANTALONES);
-			Producto p113 = new Producto(16,"pantalones de campana", 32, Colorc.BLANCO, Talla.XL, TipoProducto.PANTALONES);
-			Producto p114 = new Producto(17,"pantalones de campana", 32, Colorc.BLANCO, Talla.XS, TipoProducto.PANTALONES);
+			Producto p110 = new Producto(51, "pantalones de campana", 32, Colorc.BLANCO, Talla.M, TipoProducto.PANTALONES);
+			Producto p1101 = new Producto(52,"pantalones de campana", 32, Colorc.BLANCO, Talla.S, TipoProducto.PANTALONES);
+			Producto p112 = new Producto(53, "pantalones de campana", 32, Colorc.BLANCO, Talla.L, TipoProducto.PANTALONES);
+			Producto p113 = new Producto(54,"pantalones de campana", 32, Colorc.BLANCO, Talla.XL, TipoProducto.PANTALONES);
+			Producto p114 = new Producto(55,"pantalones de campana", 32, Colorc.BLANCO, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p110,"",1);
 			InsertarProducto(p1101,"",1);
 			InsertarProducto(p112,"",1);
@@ -288,11 +288,11 @@ public class BD {
 			InsertarProducto(p114,"",1);
 			
 			//producto12 (mismo producto que el 10 pero en otro color)
-			Producto p120 = new Producto(13, "pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.M, TipoProducto.PANTALONES);
-			Producto p1201 = new Producto(14,"pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.S, TipoProducto.PANTALONES);
-			Producto p122 = new Producto(15, "pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.L, TipoProducto.PANTALONES);
-			Producto p123 = new Producto(16,"pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.XL, TipoProducto.PANTALONES);
-			Producto p124 = new Producto(17,"pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.XS, TipoProducto.PANTALONES);
+			Producto p120 = new Producto(56, "pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.M, TipoProducto.PANTALONES);
+			Producto p1201 = new Producto(57,"pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.S, TipoProducto.PANTALONES);
+			Producto p122 = new Producto(58, "pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.L, TipoProducto.PANTALONES);
+			Producto p123 = new Producto(59,"pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.XL, TipoProducto.PANTALONES);
+			Producto p124 = new Producto(60,"pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p120,"",2);
 			InsertarProducto(p1201,"",2);
 			InsertarProducto(p122,"",2);
@@ -300,11 +300,11 @@ public class BD {
 			InsertarProducto(p124,"",2);
 			
 			//PRODUCTO13 (mismo producto que el 10 pero otro color)
-			Producto p130 = new Producto(13, "pantalones de campana de estampado", 28, Colorc.AZUL, Talla.M, TipoProducto.PANTALONES);
-			Producto p1301 = new Producto(14,"pantalones de campana de estampado", 28, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
-			Producto p132 = new Producto(15, "pantalones de campana de estampado", 28, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
-			Producto p133 = new Producto(16,"pantalones de campana de estampado", 28, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
-			Producto p134 = new Producto(17,"pantalones de campana de estampado", 28, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
+			Producto p130 = new Producto(61, "pantalones de campana de estampado", 28, Colorc.AZUL, Talla.M, TipoProducto.PANTALONES);
+			Producto p1301 = new Producto(62,"pantalones de campana de estampado", 28, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
+			Producto p132 = new Producto(63, "pantalones de campana de estampado", 28, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
+			Producto p133 = new Producto(64,"pantalones de campana de estampado", 28, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
+			Producto p134 = new Producto(65,"pantalones de campana de estampado", 28, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p130,"",2);
 			InsertarProducto(p1301,"",2);
 			InsertarProducto(p132,"",2);
@@ -312,11 +312,11 @@ public class BD {
 			InsertarProducto(p134,"",2);
 			
 			//producto14
-			Producto p140 = new Producto(13, "vestido de invierno", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDOS);
-			Producto p1401 = new Producto(14, "vestido de invierno", 29, Colorc.BLANCO, Talla.S, TipoProducto.VESTIDOS);
-			Producto p1402 = new Producto(15, "vestido de invierno", 29, Colorc.BLANCO, Talla.L, TipoProducto.VESTIDOS);
-			Producto p1403 = new Producto(16, "vestido de invierno", 29, Colorc.BLANCO, Talla.XL, TipoProducto.VESTIDOS);
-			Producto p1404 = new Producto(17,"vestido de invierno", 29, Colorc.BLANCO, Talla.XS, TipoProducto.VESTIDOS);
+			Producto p140 = new Producto(66, "vestido de invierno", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDOS);
+			Producto p1401 = new Producto(67, "vestido de invierno", 29, Colorc.BLANCO, Talla.S, TipoProducto.VESTIDOS);
+			Producto p1402 = new Producto(68, "vestido de invierno", 29, Colorc.BLANCO, Talla.L, TipoProducto.VESTIDOS);
+			Producto p1403 = new Producto(69, "vestido de invierno", 29, Colorc.BLANCO, Talla.XL, TipoProducto.VESTIDOS);
+			Producto p1404 = new Producto(70,"vestido de invierno", 29, Colorc.BLANCO, Talla.XS, TipoProducto.VESTIDOS);
 			InsertarProducto(p140,"",3);
 			InsertarProducto(p1401,"",3);
 			InsertarProducto(p1402,"",3);
@@ -324,11 +324,11 @@ public class BD {
 			InsertarProducto(p1404,"",3);
 			
 			//producto15 (mismo que el 14 pero distinto color)
-			Producto p150 = new Producto(13, "vestido de invierno", 29, Colorc.GRIS, Talla.M, TipoProducto.VESTIDOS);
-			Producto p1501 = new Producto(14, "vestido de invierno", 29, Colorc.GRIS, Talla.S, TipoProducto.VESTIDOS);
-			Producto p1502 = new Producto(15, "vestido de invierno", 29, Colorc.GRIS, Talla.L, TipoProducto.VESTIDOS);
-			Producto p1503 = new Producto(16, "vestido de invierno", 29, Colorc.GRIS, Talla.XL, TipoProducto.VESTIDOS);
-			Producto p1504 = new Producto(17,"vestido de invierno", 29, Colorc.GRIS, Talla.XS, TipoProducto.VESTIDOS);
+			Producto p150 = new Producto(71, "vestido de invierno", 29, Colorc.GRIS, Talla.M, TipoProducto.VESTIDOS);
+			Producto p1501 = new Producto(72, "vestido de invierno", 29, Colorc.GRIS, Talla.S, TipoProducto.VESTIDOS);
+			Producto p1502 = new Producto(73, "vestido de invierno", 29, Colorc.GRIS, Talla.L, TipoProducto.VESTIDOS);
+			Producto p1503 = new Producto(74, "vestido de invierno", 29, Colorc.GRIS, Talla.XL, TipoProducto.VESTIDOS);
+			Producto p1504 = new Producto(75,"vestido de invierno", 29, Colorc.GRIS, Talla.XS, TipoProducto.VESTIDOS);
 			InsertarProducto(p150,"",3);
 			InsertarProducto(p1501,"",3);
 			InsertarProducto(p1502,"",3);
@@ -336,11 +336,11 @@ public class BD {
 			InsertarProducto(p1504,"",3);
 			
 			//producto16 (mismo que el 14 pero distinto color)
-			Producto p160 = new Producto(13, "vestido de invierno", 29, Colorc.VERDE, Talla.M, TipoProducto.VESTIDOS);
-			Producto p1601 = new Producto(14, "vestido de invierno", 29, Colorc.VERDE, Talla.S, TipoProducto.VESTIDOS);
-			Producto p1602 = new Producto(15, "vestido de invierno", 29, Colorc.VERDE, Talla.L, TipoProducto.VESTIDOS);
-			Producto p1603 = new Producto(16, "vestido de invierno", 29, Colorc.VERDE, Talla.XL, TipoProducto.VESTIDOS);
-			Producto p1604 = new Producto(17,"vestido de invierno", 29, Colorc.VERDE, Talla.XS, TipoProducto.VESTIDOS);
+			Producto p160 = new Producto(76, "vestido de invierno", 29, Colorc.VERDE, Talla.M, TipoProducto.VESTIDOS);
+			Producto p1601 = new Producto(77, "vestido de invierno", 29, Colorc.VERDE, Talla.S, TipoProducto.VESTIDOS);
+			Producto p1602 = new Producto(78, "vestido de invierno", 29, Colorc.VERDE, Talla.L, TipoProducto.VESTIDOS);
+			Producto p1603 = new Producto(79, "vestido de invierno", 29, Colorc.VERDE, Talla.XL, TipoProducto.VESTIDOS);
+			Producto p1604 = new Producto(80,"vestido de invierno", 29, Colorc.VERDE, Talla.XS, TipoProducto.VESTIDOS);
 			InsertarProducto(p160,"",3);
 			InsertarProducto(p1601,"",3);
 			InsertarProducto(p1602,"",3);
@@ -348,11 +348,11 @@ public class BD {
 			InsertarProducto(p1604,"",3);
 			
 			//producto17 
-			Producto p170 = new Producto(13, "pantalones cortos", 25, Colorc.BLANCO, Talla.M, TipoProducto.PANTALONES);
-			Producto p1701 = new Producto(14, "pantalones cortos", 25, Colorc.BLANCO, Talla.S, TipoProducto.PANTALONES);
-			Producto p1702 = new Producto(15, "pantalones cortos", 25, Colorc.BLANCO, Talla.L, TipoProducto.PANTALONES);
-			Producto p1703 = new Producto(16, "pantalones cortos", 25, Colorc.BLANCO, Talla.XL, TipoProducto.PANTALONES);
-			Producto p1704 = new Producto(17,"pantalones cortos", 25, Colorc.BLANCO, Talla.XS, TipoProducto.PANTALONES);
+			Producto p170 = new Producto(81, "pantalones cortos", 25, Colorc.BLANCO, Talla.M, TipoProducto.PANTALONES);
+			Producto p1701 = new Producto(82, "pantalones cortos", 25, Colorc.BLANCO, Talla.S, TipoProducto.PANTALONES);
+			Producto p1702 = new Producto(83, "pantalones cortos", 25, Colorc.BLANCO, Talla.L, TipoProducto.PANTALONES);
+			Producto p1703 = new Producto(84, "pantalones cortos", 25, Colorc.BLANCO, Talla.XL, TipoProducto.PANTALONES);
+			Producto p1704 = new Producto(85,"pantalones cortos", 25, Colorc.BLANCO, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p170,"",4);
 			InsertarProducto(p1701,"",4);
 			InsertarProducto(p1702,"",4);
@@ -360,11 +360,11 @@ public class BD {
 			InsertarProducto(p1704,"",4);
 			
 			//producto18 (mismo producto que el 17 pero distinto color) 
-			Producto p180 = new Producto(13, "pantalones cortos", 25, Colorc.AZUL, Talla.M, TipoProducto.PANTALONES);
-			Producto p1801 = new Producto(14, "pantalones cortos", 25, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
-			Producto p1802 = new Producto(15, "pantalones cortos", 25, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
-			Producto p1803 = new Producto(16, "pantalones cortos", 25, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
-			Producto p1804 = new Producto(17,"pantalones cortos", 25, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
+			Producto p180 = new Producto(86, "pantalones cortos", 25, Colorc.AZUL, Talla.M, TipoProducto.PANTALONES);
+			Producto p1801 = new Producto(87, "pantalones cortos", 25, Colorc.AZUL, Talla.S, TipoProducto.PANTALONES);
+			Producto p1802 = new Producto(88, "pantalones cortos", 25, Colorc.AZUL, Talla.L, TipoProducto.PANTALONES);
+			Producto p1803 = new Producto(89, "pantalones cortos", 25, Colorc.AZUL, Talla.XL, TipoProducto.PANTALONES);
+			Producto p1804 = new Producto(90,"pantalones cortos", 25, Colorc.AZUL, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p180,"",4);
 			InsertarProducto(p1801,"",4);
 			InsertarProducto(p1802,"",4);
@@ -372,11 +372,11 @@ public class BD {
 			InsertarProducto(p1804,"",4);
 			
 			//producto19 (mismo producto que el 17 pero distinto color) 
-			Producto p190 = new Producto(13, "pantalones cortos", 25, Colorc.AMARILLO, Talla.M, TipoProducto.PANTALONES);
-			Producto p1901 = new Producto(14, "pantalones cortos", 25, Colorc.AMARILLO, Talla.S, TipoProducto.PANTALONES);
-			Producto p1902 = new Producto(15, "pantalones cortos", 25, Colorc.AMARILLO, Talla.L, TipoProducto.PANTALONES);
-			Producto p1903 = new Producto(16, "pantalones cortos", 25, Colorc.AMARILLO, Talla.XL, TipoProducto.PANTALONES);
-			Producto p1904 = new Producto(17,"pantalones cortos", 25, Colorc.AMARILLO, Talla.XS, TipoProducto.PANTALONES);
+			Producto p190 = new Producto(91, "pantalones cortos", 25, Colorc.AMARILLO, Talla.M, TipoProducto.PANTALONES);
+			Producto p1901 = new Producto(92, "pantalones cortos", 25, Colorc.AMARILLO, Talla.S, TipoProducto.PANTALONES);
+			Producto p1902 = new Producto(93, "pantalones cortos", 25, Colorc.AMARILLO, Talla.L, TipoProducto.PANTALONES);
+			Producto p1903 = new Producto(94, "pantalones cortos", 25, Colorc.AMARILLO, Talla.XL, TipoProducto.PANTALONES);
+			Producto p1904 = new Producto(95,"pantalones cortos", 25, Colorc.AMARILLO, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p190,"",4);
 			InsertarProducto(p1901,"",4);
 			InsertarProducto(p1902,"",4);
@@ -384,11 +384,11 @@ public class BD {
 			InsertarProducto(p1904,"",4);
 			
 			//producto20 (mismo producto que el 17 pero distinto color)
-			Producto p200 = new Producto(13, "pantalones cortos", 25, Colorc.ROSA, Talla.M, TipoProducto.PANTALONES);
-			Producto p2001 = new Producto(14, "pantalones cortos", 25, Colorc.ROSA, Talla.S, TipoProducto.PANTALONES);
-			Producto p2002 = new Producto(15, "pantalones cortos", 25, Colorc.ROSA, Talla.L, TipoProducto.PANTALONES);
-			Producto p2003 = new Producto(16, "pantalones cortos", 25, Colorc.ROSA, Talla.XL, TipoProducto.PANTALONES);
-			Producto p2004 = new Producto(17,"pantalones cortos", 25, Colorc.ROSA, Talla.XS, TipoProducto.PANTALONES);
+			Producto p200 = new Producto(96, "pantalones cortos", 25, Colorc.ROSA, Talla.M, TipoProducto.PANTALONES);
+			Producto p2001 = new Producto(97, "pantalones cortos", 25, Colorc.ROSA, Talla.S, TipoProducto.PANTALONES);
+			Producto p2002 = new Producto(98, "pantalones cortos", 25, Colorc.ROSA, Talla.L, TipoProducto.PANTALONES);
+			Producto p2003 = new Producto(99, "pantalones cortos", 25, Colorc.ROSA, Talla.XL, TipoProducto.PANTALONES);
+			Producto p2004 = new Producto(100,"pantalones cortos", 25, Colorc.ROSA, Talla.XS, TipoProducto.PANTALONES);
 			InsertarProducto(p200,"",4);
 			InsertarProducto(p2001,"",4);
 			InsertarProducto(p2002,"",4);
@@ -396,11 +396,11 @@ public class BD {
 			InsertarProducto(p2004,"",4);
 			
 			//producto21 
-			Producto p210 = new Producto(13, "falda larga", 30, Colorc.ROSA, Talla.M, TipoProducto.FALDA);
-			Producto p2101 = new Producto(14, "falda larga", 30, Colorc.ROSA, Talla.S, TipoProducto.FALDA);
-			Producto p2102 = new Producto(15, "falda larga", 30, Colorc.ROSA, Talla.L, TipoProducto.FALDA);
-			Producto p2103 = new Producto(16, "falda larga", 30, Colorc.ROSA, Talla.XL, TipoProducto.FALDA);
-			Producto p2104 = new Producto(17,"falda larga", 30, Colorc.ROSA, Talla.XS, TipoProducto.FALDA);
+			Producto p210 = new Producto(101, "falda larga", 30, Colorc.ROSA, Talla.M, TipoProducto.FALDA);
+			Producto p2101 = new Producto(102, "falda larga", 30, Colorc.ROSA, Talla.S, TipoProducto.FALDA);
+			Producto p2102 = new Producto(103, "falda larga", 30, Colorc.ROSA, Talla.L, TipoProducto.FALDA);
+			Producto p2103 = new Producto(104, "falda larga", 30, Colorc.ROSA, Talla.XL, TipoProducto.FALDA);
+			Producto p2104 = new Producto(105,"falda larga", 30, Colorc.ROSA, Talla.XS, TipoProducto.FALDA);
 			InsertarProducto(p210,"",5);
 			InsertarProducto(p2101,"",5);
 			InsertarProducto(p2102,"",5);
@@ -408,11 +408,11 @@ public class BD {
 			InsertarProducto(p2104,"",5);
 			
 			//producto22 (mismo producto que el 21 distinto color) 
-			Producto p220 = new Producto(13, "falda larga", 30, Colorc.BLANCO, Talla.M, TipoProducto.FALDA);
-			Producto p2201 = new Producto(14, "falda larga", 30, Colorc.BLANCO, Talla.S, TipoProducto.FALDA);
-			Producto p2202 = new Producto(15, "falda larga", 30, Colorc.BLANCO, Talla.L, TipoProducto.FALDA);
-			Producto p2203 = new Producto(16, "falda larga", 30, Colorc.BLANCO, Talla.XL, TipoProducto.FALDA);
-			Producto p2204 = new Producto(17,"falda larga", 30, Colorc.BLANCO, Talla.XS, TipoProducto.FALDA);
+			Producto p220 = new Producto(106, "falda larga", 30, Colorc.BLANCO, Talla.M, TipoProducto.FALDA);
+			Producto p2201 = new Producto(107, "falda larga", 30, Colorc.BLANCO, Talla.S, TipoProducto.FALDA);
+			Producto p2202 = new Producto(108, "falda larga", 30, Colorc.BLANCO, Talla.L, TipoProducto.FALDA);
+			Producto p2203 = new Producto(109, "falda larga", 30, Colorc.BLANCO, Talla.XL, TipoProducto.FALDA);
+			Producto p2204 = new Producto(110,"falda larga", 30, Colorc.BLANCO, Talla.XS, TipoProducto.FALDA);
 			InsertarProducto(p220,"",5);
 			InsertarProducto(p2201,"",5);
 			InsertarProducto(p2202,"",5);
@@ -420,11 +420,11 @@ public class BD {
 			InsertarProducto(p2204,"",5);
 			
 			//producto23 (mismo producto que el 21 distinto color) 
-			Producto p230 = new Producto(13, "falda larga", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
-			Producto p2301 = new Producto(14, "falda larga", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
-			Producto p2302 = new Producto(15, "falda larga", 30, Colorc.NEGRO, Talla.L, TipoProducto.FALDA);
-			Producto p2303 = new Producto(16, "falda larga", 30, Colorc.NEGRO, Talla.XL, TipoProducto.FALDA);
-			Producto p2304 = new Producto(17,"falda larga", 30, Colorc.NEGRO, Talla.XS, TipoProducto.FALDA);
+			Producto p230 = new Producto(110, "falda larga", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
+			Producto p2301 = new Producto(112, "falda larga", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
+			Producto p2302 = new Producto(113, "falda larga", 30, Colorc.NEGRO, Talla.L, TipoProducto.FALDA);
+			Producto p2303 = new Producto(114, "falda larga", 30, Colorc.NEGRO, Talla.XL, TipoProducto.FALDA);
+			Producto p2304 = new Producto(115,"falda larga", 30, Colorc.NEGRO, Talla.XS, TipoProducto.FALDA);
 			InsertarProducto(p230,"",5);
 			InsertarProducto(p2301,"",5);
 			InsertarProducto(p2302,"",5);
@@ -432,11 +432,11 @@ public class BD {
 			InsertarProducto(p2304,"",5);
 			
 			//producto24 
-			Producto p240 = new Producto(13, "falda corta", 30, Colorc.BLANCO, Talla.M, TipoProducto.FALDA);
-			Producto p2401 = new Producto(14, "falda corta", 30, Colorc.BLANCO, Talla.S, TipoProducto.FALDA);
-			Producto p2402 = new Producto(15, "falda corta", 30, Colorc.BLANCO, Talla.L, TipoProducto.FALDA);
-			Producto p2403 = new Producto(16, "falda corta", 30, Colorc.BLANCO, Talla.XL, TipoProducto.FALDA);
-			Producto p2404 = new Producto(17,"falda corta", 30, Colorc.BLANCO, Talla.XS, TipoProducto.FALDA);
+			Producto p240 = new Producto(116, "falda corta", 30, Colorc.BLANCO, Talla.M, TipoProducto.FALDA);
+			Producto p2401 = new Producto(117, "falda corta", 30, Colorc.BLANCO, Talla.S, TipoProducto.FALDA);
+			Producto p2402 = new Producto(118, "falda corta", 30, Colorc.BLANCO, Talla.L, TipoProducto.FALDA);
+			Producto p2403 = new Producto(119, "falda corta", 30, Colorc.BLANCO, Talla.XL, TipoProducto.FALDA);
+			Producto p2404 = new Producto(120,"falda corta", 30, Colorc.BLANCO, Talla.XS, TipoProducto.FALDA);
 			InsertarProducto(p240,"",2);
 			InsertarProducto(p2401,"",2);
 			InsertarProducto(p2402,"",2);
@@ -444,11 +444,11 @@ public class BD {
 			InsertarProducto(p2404,"",2);
 			
 			//producto25 (mismo producto que el 24 distinto color) 
-			Producto p250 = new Producto(13, "falda corta", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
-			Producto p2501 = new Producto(14, "falda corta", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
-			Producto p2502 = new Producto(15, "falda corta", 30, Colorc.NEGRO, Talla.L, TipoProducto.FALDA);
-			Producto p2503 = new Producto(16, "falda corta", 30, Colorc.NEGRO, Talla.XL, TipoProducto.FALDA);
-			Producto p2504 = new Producto(17,"falda corta", 30, Colorc.NEGRO, Talla.XS, TipoProducto.FALDA);
+			Producto p250 = new Producto(121, "falda corta", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
+			Producto p2501 = new Producto(122, "falda corta", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
+			Producto p2502 = new Producto(123, "falda corta", 30, Colorc.NEGRO, Talla.L, TipoProducto.FALDA);
+			Producto p2503 = new Producto(124, "falda corta", 30, Colorc.NEGRO, Talla.XL, TipoProducto.FALDA);
+			Producto p2504 = new Producto(125,"falda corta", 30, Colorc.NEGRO, Talla.XS, TipoProducto.FALDA);
 			InsertarProducto(p250,"",2);
 			InsertarProducto(p2501,"",2);
 			InsertarProducto(p2502,"",2);
@@ -456,11 +456,11 @@ public class BD {
 			InsertarProducto(p2504,"",2);
 			
 			//producto26 (mismo producto que el 24 distinto color) 
-			Producto p260 = new Producto(13, "falda corta", 30, Colorc.ROJO, Talla.M, TipoProducto.FALDA);
-			Producto p2601 = new Producto(14, "falda corta", 30, Colorc.ROJO, Talla.S, TipoProducto.FALDA);
-			Producto p2602 = new Producto(15, "falda corta", 30, Colorc.ROJO, Talla.L, TipoProducto.FALDA);
-			Producto p2603 = new Producto(16, "falda corta", 30, Colorc.ROJO, Talla.XL, TipoProducto.FALDA);
-			Producto p2604 = new Producto(17,"falda corta", 30, Colorc.ROJO, Talla.XS, TipoProducto.FALDA);
+			Producto p260 = new Producto(126, "falda corta", 30, Colorc.ROJO, Talla.M, TipoProducto.FALDA);
+			Producto p2601 = new Producto(127, "falda corta", 30, Colorc.ROJO, Talla.S, TipoProducto.FALDA);
+			Producto p2602 = new Producto(128, "falda corta", 30, Colorc.ROJO, Talla.L, TipoProducto.FALDA);
+			Producto p2603 = new Producto(129, "falda corta", 30, Colorc.ROJO, Talla.XL, TipoProducto.FALDA);
+			Producto p2604 = new Producto(130,"falda corta", 30, Colorc.ROJO, Talla.XS, TipoProducto.FALDA);
 			InsertarProducto(p260,"",2);
 			InsertarProducto(p2601,"",2);
 			InsertarProducto(p2602,"",2);
@@ -478,29 +478,29 @@ public class BD {
 			InsertarPedido(7, "70348021M");
 			InsertarPedido(8, "74902345J");
 			InsertarPedido(9, "74920473K");
-			InsertarPedido(1, "72950639N");
-			InsertarPedido(2, "75920576H");
-			InsertarPedido(3, "29576923S");
-			InsertarPedido(4, "83068219S");
-			InsertarPedido(5, "83068219S");
-			InsertarPedido(6, "85234681I");
-			InsertarPedido(7, "83068219S");
-			InsertarPedido(1, "45344345L");
-			InsertarPedido(2, "74544345L");
-			InsertarPedido(3, "68458021D");
-			InsertarPedido(4, "45345678H");
-			InsertarPedido(5, "78302745L");
-			InsertarPedido(6, "78370236N");
-			InsertarPedido(7, "70348021M");
-			InsertarPedido(8, "74902345J");
-			InsertarPedido(9, "74920473K");
-			InsertarPedido(1, "72950639N");
-			InsertarPedido(2, "75920576H");
-			InsertarPedido(3, "29576923S");
-			InsertarPedido(4, "83068219S");
-			InsertarPedido(5, "83068219S");
-			InsertarPedido(6, "85234681I");
-			InsertarPedido(7, "83068219S");
+			InsertarPedido(10, "72950639N");
+			InsertarPedido(11, "75920576H");
+			InsertarPedido(12, "29576923S");
+			InsertarPedido(13, "83068219S");
+			InsertarPedido(14, "83068219S");
+			InsertarPedido(15, "85234681I");
+			InsertarPedido(16, "83068219S");
+			InsertarPedido(17, "45344345L");
+			InsertarPedido(18, "74544345L");
+			InsertarPedido(19, "68458021D");
+			InsertarPedido(20, "45345678H");
+			InsertarPedido(21, "78302745L");
+			InsertarPedido(22, "78370236N");
+			InsertarPedido(23, "70348021M");
+			InsertarPedido(24, "74902345J");
+			InsertarPedido(25, "74920473K");
+			InsertarPedido(26, "72950639N");
+			InsertarPedido(27, "75920576H");
+			InsertarPedido(28, "29576923S");
+			InsertarPedido(29, "83068219S");
+			InsertarPedido(30, "83068219S");
+			InsertarPedido(31, "85234681I");
+			InsertarPedido(32, "83068219S");
 			
 			//insertar tiendas.
 			Tienda t1=new Tienda(1,Franquicia.BERSHKA);
@@ -509,35 +509,35 @@ public class BD {
 			Tienda t4=new Tienda(4,Franquicia.PULLANDBEAR);
 			Tienda t5=new Tienda(5,Franquicia.STRADIVARIUS);
 			Tienda t6=new Tienda(6,Franquicia.ZARA);
-			InsertarTienda(t1,"");
-			InsertarTienda(t2,"");
-			InsertarTienda(t3,"");
-			InsertarTienda(t4,"");
-			InsertarTienda(t5,"");
-			InsertarTienda(t6,"");
+			InsertarTienda(t1,"/Fotos/-bershka.jpg");
+			InsertarTienda(t2,"/Fotos/lefti.jpg");
+			InsertarTienda(t3,"/Fotos/oysho.jpg");
+			InsertarTienda(t4,"/Fotos/pull.jpg");
+			InsertarTienda(t5,"/Fotos/strad.jpg");
+			InsertarTienda(t6,"/Fotos/zara.jpg");
 			
 			//insertar relacion de compra. 
 			InsertarCompra(1,"83068219S",p1.getCodigo());
-			InsertarCompra(1,"85234681I",p2.getCodigo());
-			InsertarCompra(1, "45344345L",p3.getCodigo());
-			InsertarCompra(1, "45344345L",p8.getCodigo());
-			InsertarCompra(2, "74544345L",p102.getCodigo());
-			InsertarCompra(3, "68458021D",p2001.getCodigo());
-			InsertarCompra(4, "45345678H",p11.getCodigo());
-			InsertarCompra(5, "78302745L",p101.getCodigo());
-			InsertarCompra(6, "78370236N",p8.getCodigo());
-			InsertarCompra(7, "70348021M",p2501.getCodigo());
-			InsertarCompra(8, "74902345J",p2601.getCodigo());
-			InsertarCompra(9, "74920473K",p1.getCodigo());
-			InsertarCompra(1, "72950639N",p5.getCodigo());
-			InsertarCompra(2, "75920576H",p7.getCodigo());
-			InsertarCompra(3, "29576923S",p7777.getCodigo());
-			InsertarCompra(4, "83068219S",p8.getCodigo());
-			InsertarCompra(5, "83068219S",p33.getCodigo());
-			InsertarCompra(6, "85234681I",p444.getCodigo());
-			InsertarCompra(7, "83068219S",p2403.getCodigo());
-			InsertarCompra(1, "45344345L",p2501.getCodigo());
-			InsertarCompra(2, "74544345L",p2101.getCodigo());
+			InsertarCompra(2,"85234681I",p2.getCodigo());
+			InsertarCompra(3, "45344345L",p3.getCodigo());
+			InsertarCompra(4, "45344345L",p8.getCodigo());
+			InsertarCompra(5, "74544345L",p102.getCodigo());
+			InsertarCompra(6, "68458021D",p2001.getCodigo());
+			InsertarCompra(7, "45345678H",p11.getCodigo());
+			InsertarCompra(8, "78302745L",p101.getCodigo());
+			InsertarCompra(9, "78370236N",p8.getCodigo());
+			InsertarCompra(10, "70348021M",p2501.getCodigo());
+			InsertarCompra(11, "74902345J",p2601.getCodigo());
+			InsertarCompra(12, "74920473K",p1.getCodigo());
+			InsertarCompra(13, "72950639N",p5.getCodigo());
+			InsertarCompra(14, "75920576H",p7.getCodigo());
+			InsertarCompra(15, "29576923S",p7777.getCodigo());
+			InsertarCompra(16, "83068219S",p8.getCodigo());
+			InsertarCompra(17, "83068219S",p33.getCodigo());
+			InsertarCompra(18, "85234681I",p444.getCodigo());
+			InsertarCompra(19, "83068219S",p2403.getCodigo());
+			InsertarCompra(20, "45344345L",p2501.getCodigo());
+			InsertarCompra(21, "74544345L",p2101.getCodigo());
 			
 			
 			} catch (SQLException e) {
@@ -586,15 +586,9 @@ public class BD {
         			"" + pro.getPrecio() + ", " + 
         			"'" + pro.getColor() + "', " +
         			"'" + pro.getTalla() + "', " + 
-        			"'" + pro.getTipo() + "','"+ rutafoto+"',"+codigo+")";
-        	for (int i=0;i<=10;i++) {
-        		int val = stmt.executeUpdate(sent);
-        		logger.log( Level.INFO, "BD añadida " + val + " fila\t" + sent);
-    			if(val != 1) {
-    				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
-    				return false;  
-    			}
-        	}
+        			"'" + pro.getTipo() + "','"+ rutafoto+"',"+codigo+","+10+")";
+        	int val = stmt.executeUpdate(sent);
+        	
 			return true;
 		} catch (SQLException e) {
 			lastError = e;
