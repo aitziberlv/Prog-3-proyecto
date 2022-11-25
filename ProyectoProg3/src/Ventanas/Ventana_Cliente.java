@@ -79,8 +79,8 @@ public class Ventana_Cliente extends JFrame{
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(2,1));
 		valordebarra= new JPanel ();
-		cliente = new JLabel("CLIENTE");
-		Font fuente = new Font("Arial", 5, 80);
+		cliente = new JLabel("DEUSTO OUTLET");
+		Font fuente = new Font("Arial", 1, 20);
 	    cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
