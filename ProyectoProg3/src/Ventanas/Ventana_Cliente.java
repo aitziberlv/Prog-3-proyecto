@@ -100,7 +100,7 @@ public class Ventana_Cliente extends JFrame{
 		color = new JLabel("Color:");
 		precio = new JLabel ("Precio mínimo:");
 		talla = new JLabel("Talla:");
-		valordebarra_l =new JLabel("Seleciona el precio maximo");
+		valordebarra_l =new JLabel("Seleciona el precio mínimo");
 		valordebarra_l.setForeground(Color.DARK_GRAY);
 		preciobarra = new JSlider(0, 200);
 		preciobarra.setPaintTrack(true);
