@@ -682,7 +682,7 @@ public class BD {
   
    
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
-	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio >= " + precio + " and talla = '" + talla + "'";
+	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
 	   List<Producto>lproducto = new ArrayList<Producto>();
 	   try {
 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
