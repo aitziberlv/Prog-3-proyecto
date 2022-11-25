@@ -35,6 +35,7 @@ public class Ventana_Cliente extends JFrame{
 	private JPanel arriba2;
 	private JPanel arriba3;
 	private JPanel centro;
+	private JPanel arriba_texto_recursividad;
 	private JPanel centro_izda;
 	private JPanel centro_dcha;
 	private JPanel abajo;
@@ -56,12 +57,12 @@ public class Ventana_Cliente extends JFrame{
 	private JButton buscar;
 	private JButton anyadir;
 	private JButton carrito;
-	
+	private JPanel boton_r ;
 	private JTable tablaProductos;
 	private DefaultTableModel modeloDatosproductos = new DefaultTableModel();
 	private JScrollPane scrolTabla;
 	
-		
+	private JScrollPane panelDeslizable ;	
 	
 	public Ventana_Cliente() {
 		inicializarVentana();
@@ -70,13 +71,13 @@ public class Ventana_Cliente extends JFrame{
 		this.setSize(900, 700);
 		this.setTitle("DEUSTO OUTLET COMPRAR");
 		this.setLayout(new GridLayout(3,1));
-		
+		panelDeslizable=new JScrollPane(); 
 		arriba = new JPanel(new GridLayout(3,1));
 		arriba1=new JPanel();
-		
+		boton_r=new JPanel();
 		arriba2=new JPanel();
-		arriba3=new JPanel();
-		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes que productos te podrias comprar con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con ese presupuesto ");
+		arriba3=new JPanel(new GridLayout(1,3));
+		labelRecursividad = new JLabel("Si tienes un presupuesto \n y no sabes que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con ese presupuesto ");
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Mostrar productos");
 		centro.setLayout(new GridLayout(1,2));
@@ -86,7 +87,8 @@ public class Ventana_Cliente extends JFrame{
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(2,1));
 		valordebarra= new JPanel ();
-
+		arriba_texto_recursividad=new JPanel();
+		panelDeslizable.setViewportView(labelRecursividad);
 		cliente = new JLabel("CLIENTE");
 		Font fuente = new Font("Arial", 5, 70);
 
@@ -192,8 +194,11 @@ public class Ventana_Cliente extends JFrame{
 		
 		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
-		arriba3.add(labelRecursividad);
-		arriba3.add(botonrecursividad);
+		arriba_texto_recursividad.add(panelDeslizable);
+		
+		arriba3.add(arriba_texto_recursividad);
+		boton_r.add(botonrecursividad);
+		arriba3.add(boton_r);
 		arriba.add(arriba1);
 		arriba.add(arriba2);
 		arriba.add(arriba3);
