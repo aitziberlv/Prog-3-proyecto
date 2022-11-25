@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import BD.BD;
+import Clasesprincipales.Usuario;
 import Logica.Logica;
 
 public class Ventana_IS extends JFrame{
@@ -32,21 +34,27 @@ public class Ventana_IS extends JFrame{
 	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField telefono;
-	private JTextField correo;
+	private JTextField dni;
+	private JTextField fechaNa;
+	private JTextField direccion;
 	
 	private JLabel usuariol;
 	private JLabel contrasenal;
-	private JLabel emaill;
+	private JLabel dnil;
 	private JLabel nombrel;
 	private JLabel apellidol;
 	private JLabel telefonol;
+	private JLabel fechaNal;
+	private JLabel direccionl;
 	
 	private JPanel pnusuario;
 	private JPanel pncontrasena;
-	private JPanel pncorreo;
+	private JPanel pndni;
 	private JPanel pntelefono;
 	private JPanel pnombre;
 	private JPanel pnapellido;
+	private JPanel pnfecha;
+	private JPanel pndireccion;
 	private JPanel abajo;
 	
 	private JButton registro;
@@ -83,7 +91,9 @@ public class Ventana_IS extends JFrame{
 		nombre=new JTextField("",16);
 		apellido=new JTextField("",16);
 		telefono=new JTextField("",16);
-		correo=new JTextField("",16);
+		dni=new JTextField("",16);
+		fechaNa=new JTextField("",16);
+		direccion=new JTextField("",16);
 		
 		/**@author aiitz
 		 * Paneles-> los que vamos a utilizar para el unicio de sesion o para registrarse y los que vamos a utilizar para poner los botones de inicio y registro 
@@ -92,8 +102,10 @@ public class Ventana_IS extends JFrame{
 		pncontrasena=new JPanel();
 		pnombre=new JPanel();
 		pnapellido=new JPanel();
-		pncorreo=new JPanel();
+		pndni=new JPanel();
 		pntelefono=new JPanel();
+		pnfecha = new JPanel();
+		pndireccion = new JPanel();
 
 		abajo=new JPanel();
 		panel_general=new JPanel();
@@ -106,8 +118,9 @@ public class Ventana_IS extends JFrame{
 		nombrel=new JLabel("Nombre");
 		apellidol=new JLabel("Apellido");
 		telefonol=new JLabel("Telefono");
-		emaill=new JLabel("Correo");
-		
+		dnil=new JLabel("Dni");
+		fechaNal=new JLabel("Fecha de nacimiento (DD/MM/AAAA)");
+		direccionl=new JLabel("Direccion");		
 		
 		/**@author aiitz
 		 * Boton de iniciodesesion-> con esto en caso de que el ususario este registrado inicia sesion automaticamente. 
@@ -131,8 +144,18 @@ public class Ventana_IS extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				lg.lectura("Usuarios.dat");
 				Ventana_Cliente vc = new Ventana_Cliente();
+				if(BD.buscarUsuarioNombre(usuario.getText()) == null) {
+					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
+
+					vc.setVisible(false);
+				}
+				else {
+					vc.setVisible(true);
+
+				}				
+				
+				lg.lectura("Usuarios.dat");
 				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
 					vc.setVisible(true);
 					setVisible(false);
@@ -158,8 +181,10 @@ public class Ventana_IS extends JFrame{
 				
 				pnombre.setVisible(true);
 				pnapellido.setVisible(true);
-				pncorreo.setVisible(true);
+				pndni.setVisible(true);
 				pntelefono.setVisible(true);
+				pnfecha.setVisible(true);
+				pndireccion.setVisible(true);
 				btusuario_contrasena.setVisible(false);
 				anterior.setVisible(true);
 				panel_arribal.setText("Registro");
@@ -167,19 +192,30 @@ public class Ventana_IS extends JFrame{
 				registroB = true;
 				}else  {
 					Ventana_Cliente vc = new Ventana_Cliente();
-					if(lg.registrarte(usuario.getText())) {
-						if (usuario.getText()!=" ") {
-							lg.registrar(usuario.getText(),correo.getText(),nombre.getText(),apellido.getText(),telefono.getText(),contrasena.getText());
-							vc.setVisible(true);
-							setVisible(false);
-						}else {
-							JOptionPane.showMessageDialog(null, "Nombre de usuario vacio.","Error",JOptionPane.ERROR_MESSAGE);
-						}
-						
-						
-					}else {
-						JOptionPane.showMessageDialog(null, "Usuario existente.","Error",JOptionPane.ERROR_MESSAGE);
-					}	
+					if(BD.buscarUsuarioNombre(usuario.getText()) != null) {
+						JOptionPane.showMessageDialog(null, "Usuario existente. Inserte otro nombre de usuario","Error",JOptionPane.ERROR_MESSAGE);
+						vc.setVisible(false);
+					}
+					else {
+						Usuario u = new Usuario(nombre.getText(), dni.getText(), fechaNa.getText(), telefono.getText(), direccion.getText(), apellido.getText(), contrasena.getText(), usuario.getText());
+						BD.InsertarUsuario(u);
+						vc.setVisible(true);
+					}
+					
+					
+//					if(lg.registrarte(usuario.getText())) {
+//						if (usuario.getText()!=" ") {
+//							lg.registrar(usuario.getText(),dni.getText(),nombre.getText(),apellido.getText(),telefono.getText(),contrasena.getText());
+//							vc.setVisible(true);
+//							setVisible(false);
+//						}else {
+//							JOptionPane.showMessageDialog(null, "Nombre de usuario vacio.","Error",JOptionPane.ERROR_MESSAGE);
+//						}
+//						
+//						
+//					}else {
+//						JOptionPane.showMessageDialog(null, "Usuario existente.","Error",JOptionPane.ERROR_MESSAGE);
+//					}	
 					
 				}			
 				
@@ -193,8 +229,10 @@ public class Ventana_IS extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				pnombre.setVisible(false);
 				pnapellido.setVisible(false);
-				pncorreo.setVisible(false);
+				pndni.setVisible(false);
 				pntelefono.setVisible(false);
+				pnfecha.setVisible(false);
+				pndireccion.setVisible(false);
 				btusuario_contrasena.setVisible(true);
 				anterior.setVisible(false);
 				panel_arribal.setText("Iniciar Sesion");
@@ -213,7 +251,7 @@ public class Ventana_IS extends JFrame{
 		});
 //--------------------------------------------------------------------------------------------------------------------------------------------		
 		
-        panel_general.setLayout(new GridLayout(8,1));
+        panel_general.setLayout(new GridLayout(10,1));
 		abajo.setLayout(new GridLayout(2,1));
         abajo.add(btusuario_contrasena);
 		abajo.add(registro);
@@ -226,22 +264,30 @@ public class Ventana_IS extends JFrame{
 		pnusuario.add(usuario);
 		pnusuario.add(usuariol);
 		panel_general.add(pnusuario);
-		pncorreo.add(correo);
-		pncorreo.add(emaill);
+		pndni.add(dni);
+		pndni.add(dnil);
 		pnombre.add(nombre);
 		pnombre.add(nombrel);
 		pntelefono.add(telefono);
 		pntelefono.add(telefonol);
 		pnapellido.add(apellido);
 		pnapellido.add(apellidol);
+		pnfecha.add(fechaNa);
+		pnfecha.add(fechaNal);
+		pndireccion.add(direccion);
+		pndireccion.add(direccionl);
 		panel_general.add(pnombre);
 		panel_general.add(pnapellido);
-		panel_general.add(pncorreo);
+		panel_general.add(pndni);
 		panel_general.add(pntelefono);
+		panel_general.add(pnfecha);
+		panel_general.add(pndireccion);
 		pnombre.setVisible(false);
 		pnapellido.setVisible(false);
-		pncorreo.setVisible(false);
+		pndni.setVisible(false);
 		pntelefono.setVisible(false);
+		pnfecha.setVisible(false);
+		pndireccion.setVisible(false);
 		panel_general.add(pncontrasena);
 		panel_general.add(abajo);
 		this.setSize(500,700);
@@ -252,9 +298,11 @@ public class Ventana_IS extends JFrame{
 		pnusuario.setBackground(color2);
 		pnombre.setBackground(color2);
 		pncontrasena.setBackground(color2);
-		pncorreo.setBackground(color2);
+		pndni.setBackground(color2);
 		pnapellido.setBackground(color2);
 		pntelefono.setBackground(color2);
+		pnfecha.setBackground(color2);
+		pndireccion.setBackground(color2);
 		Color color1= new Color(243,242,235);
 		abajo.setBackground(color1);
 		panel_general.setBackground(color2);
