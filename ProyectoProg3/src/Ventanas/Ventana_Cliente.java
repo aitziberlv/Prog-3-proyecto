@@ -1,7 +1,9 @@
 package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.dnd.DragSourceMotionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -19,6 +21,8 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import BD.BD;
@@ -43,7 +47,7 @@ public class Ventana_Cliente extends JFrame{
 	private JLabel valordebarra_l;
 	private JComboBox<Colorc> c;
 	private JTextField informacion;
-	
+	private JLabel valordebarra_l2;
 	private JSlider preciobarra;
 	
 	private JComboBox<TipoProducto> tipos;
@@ -76,19 +80,23 @@ public class Ventana_Cliente extends JFrame{
 		abajo.setLayout(new GridLayout(2,1));
 		valordebarra= new JPanel ();
 		cliente = new JLabel("CLIENTE");
+		Font fuente = new Font("Arial", 5, 80);
+	    cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
-		valordebarra_l =new JLabel(preciobarra.getValue()+"");
+		valordebarra_l =new JLabel("");
+		valordebarra_l.setForeground(Color.DARK_GRAY);
 		preciobarra = new JSlider(0, 200);
 		preciobarra.setPaintTrack(true);
 		preciobarra.setPaintTicks(true);
 		preciobarra.setPaintLabels(true);
-		preciobarra.setMajorTickSpacing(20);
-		preciobarra.setMinorTickSpacing(20);
-		
+		preciobarra.setMajorTickSpacing(40);
+		preciobarra.setMinorTickSpacing(40);
+		valordebarra_l2=new JLabel();
 		c = new JComboBox<Colorc>();
+		c.addItem(null);
 		for (Colorc co:Colorc.values()) {
 			c.addItem(co);
 		}
@@ -96,11 +104,14 @@ public class Ventana_Cliente extends JFrame{
 		informacion.setEditable(false);
 		
 		tipos = new JComboBox<TipoProducto>();
+		tipos.addItem(null);
 		for(TipoProducto tipo : TipoProducto.values()) {
 			tipos.addItem(tipo);
+			
 		}
 		
 		tallas = new JComboBox<Talla>();
+		tallas.addItem(null);
 		for(Talla t : Talla.values()) {
 			tallas.addItem(t);
 		}
@@ -118,6 +129,13 @@ public class Ventana_Cliente extends JFrame{
 				
 			}
 			
+		});
+		//Añadir el valor del precio
+		preciobarra.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				valordebarra_l.setText(preciobarra.getValue()+"");
+			}			
 		});
 		
 		//jtable.
@@ -144,10 +162,12 @@ public class Ventana_Cliente extends JFrame{
 		centro_izda.add(tipos);
 		centro_izda.add(color);
 		centro_izda.add(c);
+		centro_izda.add(valordebarra_l2);
+		centro_izda.add(valordebarra);
 		centro_izda.add(precio, BorderLayout.CENTER);
 		centro_izda.add(preciobarra);
 		valordebarra.add(valordebarra_l);
-		centro_izda.add(valordebarra);
+		
 		centro_izda.add(talla);
 		centro_izda.add(tallas);
 		centro_dcha.add(buscar);
