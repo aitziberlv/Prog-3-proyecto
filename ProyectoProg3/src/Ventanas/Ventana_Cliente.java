@@ -77,7 +77,7 @@ public class Ventana_Cliente extends JFrame{
 		boton_r=new JPanel();
 		arriba2=new JPanel();
 		arriba3=new JPanel(new GridLayout(1,3));
-		labelRecursividad = new JLabel("Si tienes un presupuesto \n y no sabes que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con ese presupuesto ");
+		labelRecursividad = new JLabel("Si tienes un presupuesto\n y no sabes que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Mostrar productos");
 		centro.setLayout(new GridLayout(1,2));
