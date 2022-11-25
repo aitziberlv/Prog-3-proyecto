@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -587,7 +588,7 @@ public class BD {
         			"'" + pro.getColor() + "', " +
         			"'" + pro.getTalla() + "', " + 
         			"'" + pro.getTipo() + "','"+ rutafoto+"',"+codigo+","+10+")";
-        	int val = stmt.executeUpdate(sent);
+        	stmt.executeUpdate(sent);
         	
 			return true;
 		} catch (SQLException e) {
@@ -662,7 +663,7 @@ public class BD {
 		   sent = "select * from producto";
 		   ResultSet rs = stm.executeQuery(sent);
 		   while (rs.next()) {
-			   Producto p = new Producto(rs.getInt("codigo_producto"), rs.getString("nombre"), rs.getInt("precio"), rs.getString("color"), rs.getString("talla"), rs.getString("tipo"));
+			   Producto p = new Producto(rs.getInt("codigo_producto"), rs.getString("nombre"), rs.getInt("precio"), Colorc.valueOf(rs.getString("color")), Talla.valueOf(rs.getString("talla")), TipoProducto.valueOf(rs.getString("tipo")));
 			   lproducto.add(p);
 		   }
 		   rs.close();
@@ -672,6 +673,30 @@ public class BD {
 	} catch (SQLException e) {
 		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
 		lastError = e;
+		e.printStackTrace();
+		return null;
+	}
+	   
+   }
+   
+   public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
+	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio >= " + precio + " and talla = '" + talla + "'";
+	   List<Producto>lproducto = new ArrayList<Producto>();
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   while(rs.next()) {
+			   Producto p = new Producto(rs.getInt("codigo_producto"), rs.getString("nombre"), rs.getInt("precio"), Colorc.valueOf(rs.getString("color")), Talla.valueOf(rs.getString("talla")), TipoProducto.valueOf(rs.getString("tipo")));
+			   lproducto.add(p);
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   return lproducto;
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
 		e.printStackTrace();
 		return null;
 	}

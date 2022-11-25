@@ -3,20 +3,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.dnd.DragSourceMotionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -59,6 +56,7 @@ public class Ventana_Cliente extends JFrame{
 	
 	private JTable tablaProductos;
 	private DefaultTableModel modeloDatosproductos = new DefaultTableModel();
+	private JScrollPane scrolTabla;
 	
 		
 	
@@ -84,7 +82,7 @@ public class Ventana_Cliente extends JFrame{
 	    cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
-		precio = new JLabel ("Precio:");
+		precio = new JLabel ("Precio mínimo:");
 		talla = new JLabel("Talla:");
 		valordebarra_l =new JLabel("");
 		valordebarra_l.setForeground(Color.DARK_GRAY);
@@ -95,6 +93,7 @@ public class Ventana_Cliente extends JFrame{
 		preciobarra.setMajorTickSpacing(40);
 		preciobarra.setMinorTickSpacing(40);
 		valordebarra_l2=new JLabel();
+		scrolTabla = new JScrollPane();
 		c = new JComboBox<Colorc>();
 		c.addItem(null);
 		for (Colorc co:Colorc.values()) {
@@ -130,6 +129,37 @@ public class Ventana_Cliente extends JFrame{
 			}
 			
 		});
+		
+		
+		//JTable de los productos con las características especificadas por el usuario
+		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
+		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
+		this.tablaProductos = new JTable(this.modeloDatosproductos);
+		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrolTabla.setViewportView(tablaProductos);
+		
+		for(Producto p : BD.getProductos()) {
+			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+		}
+		
+		buscar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
+				      System.out.println("i "+i); 
+				      modeloDatosproductos.removeRow(i );
+				   } 
+				
+				for(Producto p : BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) )) {
+					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+				}
+				
+				
+			}
+		});
+		
+		
 		//Añadir el valor del precio
 		preciobarra.addChangeListener(new ChangeListener() {
 			@Override
@@ -138,16 +168,7 @@ public class Ventana_Cliente extends JFrame{
 			}			
 		});
 		
-		//jtable.
-		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "COLOR", "TALLA", "TIPO", "FRANQUICIA", "PRECIO"));
-		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
-		this.tablaProductos = new JTable(this.modeloDatosproductos);
-		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		List <Producto> Productos = BD.getProductos();
-		for(Producto p : Productos) {
-			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
-		}
 		
 //		for(Producto p : this.Productos) {
 //			this.modeloDatosproductos.addRow(new Object[] {
@@ -176,7 +197,7 @@ public class Ventana_Cliente extends JFrame{
 		centro.add(centro_dcha);
 
 		abajo.add(informacion);
-		abajo.add(tablaProductos);
+		abajo.add(scrolTabla);
 		abajo.add(anyadir);
 
 		Color color1= new Color(243,242,235);
