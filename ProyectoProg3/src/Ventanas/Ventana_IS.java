@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import BD.BD;
@@ -30,7 +31,7 @@ public class Ventana_IS extends JFrame{
 	Logica lg=new Logica();
 	
 	private JTextField usuario;
-	private JTextField contrasena;
+	private JPasswordField contrasena;
 	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField telefono;
@@ -87,7 +88,7 @@ public class Ventana_IS extends JFrame{
 		setLocationRelativeTo(null); //centrar la ventana.
 		
 		usuario=new JTextField("",16);
-		contrasena=new JTextField("",16);
+		contrasena=new JPasswordField("",16);
 		nombre=new JTextField("",16);
 		apellido=new JTextField("",16);
 		telefono=new JTextField("",16);
