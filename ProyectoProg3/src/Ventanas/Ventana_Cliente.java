@@ -34,6 +34,9 @@ public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel arriba;
+	private JPanel arriba1;
+	private JPanel arriba2;
+	private JPanel arriba3;
 	private JPanel centro;
 	private JPanel centro_izda;
 	private JPanel centro_dcha;
@@ -49,10 +52,10 @@ public class Ventana_Cliente extends JFrame{
 	private JTextField informacion;
 	private JLabel valordebarra_l2;
 	private JSlider preciobarra;
-	
+	private JButton botonrecursividad;
 	private JComboBox<TipoProducto> tipos;
 	private JComboBox<Talla> tallas;
-	
+	private JLabel labelRecursividad ;
 	private JButton buscar;
 	private JButton anyadir;
 	private JButton carrito;
@@ -70,8 +73,13 @@ public class Ventana_Cliente extends JFrame{
 		this.setTitle("DEUSTO OUTLET COMPRAR");
 		this.setLayout(new GridLayout(3,1));
 		
-		arriba = new JPanel();
-		centro = new JPanel();
+		arriba = new JPanel(new GridLayout(3,1));
+		arriba1=new JPanel();
+		arriba2=new JPanel();
+		arriba3=new JPanel();
+		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes que productos te podrias comprar con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con ese presupuesto ");
+		centro = new JPanel(new GridLayout(1,3));
+		botonrecursividad=new JButton("Mostrar productos");
 		centro.setLayout(new GridLayout(1,2));
 		centro_izda = new JPanel();
 		centro_izda.setLayout(new GridLayout(5,1));
@@ -80,13 +88,13 @@ public class Ventana_Cliente extends JFrame{
 		abajo.setLayout(new GridLayout(2,1));
 		valordebarra= new JPanel ();
 		cliente = new JLabel("CLIENTE");
-		Font fuente = new Font("Arial", 5, 80);
+		Font fuente = new Font("Arial", 5, 70);
 	    cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
 		precio = new JLabel ("Precio:");
 		talla = new JLabel("Talla:");
-		valordebarra_l =new JLabel("");
+		valordebarra_l =new JLabel("Seleciona el precio maximo");
 		valordebarra_l.setForeground(Color.DARK_GRAY);
 		preciobarra = new JSlider(0, 200);
 		preciobarra.setPaintTrack(true);
@@ -156,7 +164,12 @@ public class Ventana_Cliente extends JFrame{
 //		}
 		
 		//añadir tres paneles para que quede centrado. 
-		arriba.add(cliente, BorderLayout.CENTER);
+		arriba2.add(cliente);
+		arriba3.add(labelRecursividad);
+		arriba3.add(botonrecursividad);
+		arriba.add(arriba1);
+		arriba.add(arriba2);
+		arriba.add(arriba3);
 		// lo de abajo si queremos que quede centrado hacemos lo mismo 
 		centro_izda.add(tipo);
 		centro_izda.add(tipos);
