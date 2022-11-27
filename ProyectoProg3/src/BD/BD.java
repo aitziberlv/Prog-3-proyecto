@@ -421,7 +421,7 @@ public class BD {
 			InsertarProducto(p2204,"",5);
 			
 			//producto23 (mismo producto que el 21 distinto color) 
-			Producto p230 = new Producto(110, "falda larga", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
+			Producto p230 = new Producto(111, "falda larga", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
 			Producto p2301 = new Producto(112, "falda larga", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
 			Producto p2302 = new Producto(113, "falda larga", 30, Colorc.NEGRO, Talla.L, TipoProducto.FALDA);
 			Producto p2303 = new Producto(114, "falda larga", 30, Colorc.NEGRO, Talla.XL, TipoProducto.FALDA);
