@@ -668,7 +668,6 @@ public class BD {
 		   }
 		   rs.close();
 		   logger.log(Level.INFO, "BD\t" + sent);
-		   System.out.println(lproducto);
 		   return lproducto;
 	} catch (SQLException e) {
 		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
