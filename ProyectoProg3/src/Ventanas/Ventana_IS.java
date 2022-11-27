@@ -152,18 +152,27 @@ public class Ventana_IS extends JFrame{
 					vc.setVisible(false);
 				}
 				else {
-					vc.setVisible(true);
+					if(BD.buscarUsuarioNombre(usuario.getText()).getContraseña().equals(contrasena.getText())) {
+						setVisible(false);
+						vc.setVisible(true);
+
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
+						vc.setVisible(false);
+
+					}
 
 				}				
 				
-				lg.lectura("Usuarios.dat");
-				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
-					vc.setVisible(true);
-					setVisible(false);
-					
-				}else {
-					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
-				}	
+//				lg.lectura("Usuarios.dat");
+//				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
+//					vc.setVisible(true);
+//					setVisible(false);
+//					
+//				}else {
+//					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
+//				}	
 				
 			}
 			
@@ -195,12 +204,14 @@ public class Ventana_IS extends JFrame{
 					Ventana_Cliente vc = new Ventana_Cliente();
 					if(BD.buscarUsuarioNombre(usuario.getText()) != null) {
 						JOptionPane.showMessageDialog(null, "Usuario existente. Inserte otro nombre de usuario","Error",JOptionPane.ERROR_MESSAGE);
-						vc.setVisible(false);
 					}
 					else {
 						Usuario u = new Usuario(nombre.getText(), dni.getText(), fechaNa.getText(), telefono.getText(), direccion.getText(), apellido.getText(), contrasena.getText(), usuario.getText());
 						BD.InsertarUsuario(u);
-						vc.setVisible(true);
+						setVisible(false);
+						JOptionPane.showMessageDialog(null, "Usuario insertado correctamente. Ya puede iniciar sesión.");
+						Ventana_IS vi = new Ventana_IS();
+						vi.setVisible(true);
 					}
 					
 					
