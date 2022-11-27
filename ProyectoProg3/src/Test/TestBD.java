@@ -12,7 +12,7 @@ import Clasesprincipales.Producto;
 public class TestBD {
 
 	
-	//Test para comprobar los codigos de los productos de la base de datos estan correctamente en or
+	//Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
 	@Test
 	public void getProductos() {
 		ArrayList<Producto> lp = BD.getProductos();
