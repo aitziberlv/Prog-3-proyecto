@@ -1,14 +1,19 @@
 	package Ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Clasesprincipales.Producto;
 
 public class Ventana_Carrito extends JFrame{
 
@@ -24,6 +29,8 @@ public class Ventana_Carrito extends JFrame{
 	private JPanel abajoIzq;
 	private JPanel abajoDer;
 	private JPanel abajo;
+	private JPanel lista;
+	private JPanel frase;
 
 	private JLabel producto;
 	private JLabel carrito;
@@ -38,6 +45,9 @@ public class Ventana_Carrito extends JFrame{
 	private JButton pagar;
 	private JButton guardar; 
 	
+	private DefaultListModel<String> mSelec;
+	private JList<String> lSelec;
+	
 	public Ventana_Carrito() {
 		inicializarVentana();
 	}
@@ -51,13 +61,25 @@ public class Ventana_Carrito extends JFrame{
 		
 		titulo = new JPanel();
 		centro = new JPanel();
+		centro.setLayout(new GridLayout(2,1));
+		lista = new JPanel();
+		frase = new JPanel();
 		abajo1 = new JPanel();
 		abajoIzq = new JPanel();
 		abajoDer = new JPanel();
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(3,2));
 
+		
+		mSelec = new DefaultListModel<String>();
+		lSelec = new JList<String>();
+		lSelec.setModel(mSelec);
+		
+		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
+			mSelec.addElement(Ventana_Cliente.getCarrito().get(i));
 
+		}
+		
 		
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
@@ -127,8 +149,10 @@ public class Ventana_Carrito extends JFrame{
 		});
 		
 		titulo.add(carrito);
-		centro.add(producto);
-		
+		frase.add(producto);
+		lista.add(lSelec, BorderLayout.NORTH);
+		centro.add(frase);
+		centro.add(lista);
 		abajo1.add(añadir);
 		abajo1.add(borrar);
 		abajoIzq.add(guardar);

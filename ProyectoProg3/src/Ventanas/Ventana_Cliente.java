@@ -5,7 +5,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -29,6 +31,7 @@ import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
+	static List<String> productosComprados = new ArrayList<>();
 	
 	private JPanel arriba;
 	private JPanel arriba1;
@@ -240,8 +243,20 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 		
+		anyadir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nombre = (String) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1);
+				productosComprados.add(nombre);
 
-
+			}
+		});
+		
+		
+	}
+	
+	public static List<String> getCarrito(){
+		return productosComprados;
 	}
 
 	public static void main(String[] args) {
