@@ -36,10 +36,7 @@ public class Ventana_Carrito extends JFrame{
 
 	private JLabel producto;
 	private JLabel carrito;
-	private JLabel codigo;
 	private JLabel precio;
-	private JLabel talla;
-	private JLabel tipo;
 	private JLabel cantidad;
 	
 	private JButton borrar;
@@ -88,11 +85,8 @@ public class Ventana_Carrito extends JFrame{
 		
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
-		codigo = new JLabel("Código:");
 		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
-		talla = new JLabel("Talla:");
-		tipo = new JLabel("Tipo:");
-		cantidad = new JLabel("Seleccione cantidad:");
+		//cantidad = new JLabel("Seleccione cantidad:");
 
 		
 		borrar = new JButton("Eliminar producto");

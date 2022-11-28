@@ -603,7 +603,7 @@ public class BD {
 		}
     }
     
-    //eliminaar cantidad?
+        
     public static boolean EliminarProducto(Producto pro, int codigo) {
     	String sent = "";
     	try {
