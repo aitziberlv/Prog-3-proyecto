@@ -609,7 +609,11 @@ public class BD {
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
         	sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() ;
-        	stmt.executeUpdate(sent);
+        	int val = stmt.executeUpdate(sent);
+        	if(val != 1) {
+				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
+				return false;  
+			}
 			return true;
 			
 		} catch (SQLException e) {
@@ -639,6 +643,7 @@ public class BD {
 		return true;
     	
     }
+    
     public static boolean InsertarTienda(Tienda t, String rutafoto) {
     	String sent = "";
     	try {
@@ -659,6 +664,7 @@ public class BD {
 			return false;
 		}
     }
+    
     public static boolean InsertarCompra(int codigo,String c2, int c3) {
     	String sent = "";
     	try {
@@ -677,6 +683,7 @@ public class BD {
 			return false;
 		}
     }
+    
    public static ArrayList<Producto> getProductos(){
 	   String sent = "";
 	   ArrayList<Producto> lproducto = new ArrayList<Producto>();
@@ -698,9 +705,7 @@ public class BD {
 		return null;
 	}
 	   
-   }
-   
-  
+   }  
    
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
 	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
