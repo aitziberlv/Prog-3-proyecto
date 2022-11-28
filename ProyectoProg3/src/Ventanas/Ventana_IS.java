@@ -84,8 +84,8 @@ public class Ventana_IS extends JFrame{
 		 */
 		
 		this.setTitle("DEUSTO OUTLET INICIAR SESIÓN");
-		setSize(800,800);
-		setLocationRelativeTo(null); //centrar la ventana.
+		this.setSize(900,700);
+		this.setLocationRelativeTo(null); //centrar la ventana.
 		
 		usuario=new JTextField("",16);
 		contrasena=new JPasswordField("",16);
@@ -324,6 +324,8 @@ public class Ventana_IS extends JFrame{
 	}
 	public static void main(String[] args) {
 		Ventana_IS vs =new Ventana_IS();
+		vs.setSize(900,700);
+		vs.setLocationRelativeTo(null);
 	}
 }
 

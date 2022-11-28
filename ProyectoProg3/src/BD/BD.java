@@ -597,6 +597,21 @@ public class BD {
 			return false;
 		}
     }
+    
+    public static boolean EliminarProducto(Producto pro, String rutafoto, int codigo) {
+    	String sent = "";
+    	try {
+    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
+        	sent = "delete from producto where codigo = " + pro.getCodigo();
+        	stmt.executeUpdate(sent);
+			return true;
+			
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    }
     public static boolean InsertarPedido(int codigo, String dni) {
     	Statement stmt;
 		try {
