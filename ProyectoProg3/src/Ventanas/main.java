@@ -9,6 +9,7 @@ public class main {
 		Ventana_Portada vp = new Ventana_Portada();
 		vp.setVisible(true);
 		
+		
 
 	}
 

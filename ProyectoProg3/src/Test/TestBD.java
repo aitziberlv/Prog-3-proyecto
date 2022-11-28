@@ -62,6 +62,7 @@ public class TestBD {
 		
 		
 	
+	
 
 	//BD.cerrarBD(); 
 
