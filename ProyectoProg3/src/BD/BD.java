@@ -115,7 +115,7 @@ public class BD {
 			if (veces3==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com3 = "create table producto(codigo_producto integer, nombre String, precio integer, color String, talla String, tipo String , ruta String, cogigo_tienda integer, cantidad integer)";
+			String com3 = "create table producto(codigo_producto integer, nombre String, precio integer, color String, talla String, tipo String , ruta_foto String, codigo_tienda integer, cantidad integer)";
 			stmt.executeUpdate("drop table if exists producto");
 			int veces4=stmt.executeUpdate(com3);
 			if (veces4==1) {
@@ -598,11 +598,12 @@ public class BD {
 		}
     }
     
-    public static boolean EliminarProducto(Producto pro, String rutafoto, int codigo) {
+    //eliminaar cantidad?
+    public static boolean EliminarProducto(Producto pro, int codigo) {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-        	sent = "delete from producto where codigo = " + pro.getCodigo();
+        	sent = "update producto set cantidad = cantidad - " + pro.getCantidad() + " where codigo = " + pro.getCodigo() ;
         	stmt.executeUpdate(sent);
 			return true;
 			
@@ -612,6 +613,7 @@ public class BD {
 			return false;
 		}
     }
+    
     public static boolean InsertarPedido(int codigo, String dni) {
     	Statement stmt;
 		try {
