@@ -8,7 +8,6 @@ public class Producto {
 	private Colorc color = Colorc.BLANCO;
 	private Talla talla = Talla.S;
 	private TipoProducto tipo = TipoProducto.FALDA;
-	//private int cantidad = 0;
 	
 	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo) {
 		super();
@@ -18,7 +17,6 @@ public class Producto {
 		this.color = color;
 		this.talla = talla;
 		this.tipo = tipo;
-	//	this.cantidad = cantidad;
 	}
 	
 
@@ -58,16 +56,6 @@ public class Producto {
 	public void setTipo(TipoProducto tipo) {
 		this.tipo = tipo;
 	}
-
-//
-//	public int getCantidad() {
-//		return cantidad;
-//	}
-//
-//
-//	public void setCantidad(int cantidad) {
-//		this.cantidad = cantidad;
-//	}
 
 
 	@Override

@@ -608,7 +608,7 @@ public class BD {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-        	sent = "update producto set cantidad = cantidad - " + pro.getCantidad() + " where codigo = " + pro.getCodigo() ;
+        	sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() ;
         	stmt.executeUpdate(sent);
 			return true;
 			
