@@ -201,18 +201,22 @@ public class Ventana_IS extends JFrame{
 				
 				registroB = true;
 				}else  {
-					Ventana_Cliente vc = new Ventana_Cliente();
-					if(BD.buscarUsuarioNombre(usuario.getText()) != null) {
-						JOptionPane.showMessageDialog(null, "Usuario existente. Inserte otro nombre de usuario","Error",JOptionPane.ERROR_MESSAGE);
+					if(usuario.getText().length() == 0 || contrasena.getText().length() == 0 || nombre.getText().length() == 0 || dni.getText().length() == 0 || fechaNa.getText().length() == 0 || telefono.getText().length() == 0 || direccion.getText().length() == 0 || apellido.getText().length() == 0 ) {
+						JOptionPane.showMessageDialog(null, "Algun campo no ha sido introducido. Por favor rellene todos los datos","Error",JOptionPane.ERROR_MESSAGE);
+					}else {
+						if(BD.buscarUsuarioNombre(usuario.getText()) != null) {
+							JOptionPane.showMessageDialog(null, "Usuario existente. Inserte otro nombre de usuario","Error",JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							Usuario u = new Usuario(nombre.getText(), dni.getText(), fechaNa.getText(), telefono.getText(), direccion.getText(), apellido.getText(), contrasena.getText(), usuario.getText());
+							BD.InsertarUsuario(u);
+							setVisible(false);
+							JOptionPane.showMessageDialog(null, "Usuario insertado correctamente. Ya puede iniciar sesión.");
+							Ventana_IS vi = new Ventana_IS();
+							vi.setVisible(true);
+						}
 					}
-					else {
-						Usuario u = new Usuario(nombre.getText(), dni.getText(), fechaNa.getText(), telefono.getText(), direccion.getText(), apellido.getText(), contrasena.getText(), usuario.getText());
-						BD.InsertarUsuario(u);
-						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Usuario insertado correctamente. Ya puede iniciar sesión.");
-						Ventana_IS vi = new Ventana_IS();
-						vi.setVisible(true);
-					}
+					
 					
 					
 //					if(lg.registrarte(usuario.getText())) {
@@ -276,6 +280,7 @@ public class Ventana_IS extends JFrame{
 		pnusuario.add(usuario);
 		pnusuario.add(usuariol);
 		panel_general.add(pnusuario);
+		panel_general.add(pncontrasena);
 		pndni.add(dni);
 		pndni.add(dnil);
 		pnombre.add(nombre);
@@ -300,7 +305,6 @@ public class Ventana_IS extends JFrame{
 		pntelefono.setVisible(false);
 		pnfecha.setVisible(false);
 		pndireccion.setVisible(false);
-		panel_general.add(pncontrasena);
 		panel_general.add(abajo);
 		this.setSize(500,700);
 		this.setVisible(true);
