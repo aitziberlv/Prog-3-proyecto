@@ -31,7 +31,8 @@ import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
-	static List<String> productosComprados = new ArrayList<>();
+	private static List<String> productosComprados = new ArrayList<>();
+	private static int pagar = 0;
 	
 	private JPanel arriba;
 	private JPanel arriba1;
@@ -248,6 +249,8 @@ public class Ventana_Cliente extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String nombre = (String) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1);
 				productosComprados.add(nombre);
+				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
+				pagar += precio;
 
 			}
 		});
@@ -257,6 +260,10 @@ public class Ventana_Cliente extends JFrame{
 	
 	public static List<String> getCarrito(){
 		return productosComprados;
+	}
+	
+	public static int getPago() {
+		return pagar;
 	}
 
 	public static void main(String[] args) {

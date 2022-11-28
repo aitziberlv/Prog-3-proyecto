@@ -25,6 +25,8 @@ public class Ventana_Carrito extends JFrame{
 	
 	private JPanel titulo;
 	private JPanel centro;
+	private JPanel centro_iz;
+	private JPanel centro_dcha;
 	private JPanel abajo1;
 	private JPanel abajoIzq;
 	private JPanel abajoDer;
@@ -61,7 +63,10 @@ public class Ventana_Carrito extends JFrame{
 		
 		titulo = new JPanel();
 		centro = new JPanel();
-		centro.setLayout(new GridLayout(2,1));
+		centro.setLayout(new GridLayout(1,2));
+		centro_dcha = new JPanel();
+		centro_iz = new JPanel();
+		centro_iz.setLayout(new GridLayout(1,2));
 		lista = new JPanel();
 		frase = new JPanel();
 		abajo1 = new JPanel();
@@ -84,7 +89,7 @@ public class Ventana_Carrito extends JFrame{
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
 		codigo = new JLabel("Código:");
-		precio = new JLabel("Precio:");
+		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
 		talla = new JLabel("Talla:");
 		tipo = new JLabel("Tipo:");
 		cantidad = new JLabel("Seleccione cantidad:");
@@ -148,11 +153,15 @@ public class Ventana_Carrito extends JFrame{
 			
 		});
 		
+		
 		titulo.add(carrito);
 		frase.add(producto);
 		lista.add(lSelec, BorderLayout.NORTH);
-		centro.add(frase);
-		centro.add(lista);
+		centro_dcha.add(precio);
+		centro_iz.add(frase);
+		centro_iz.add(lista);
+		centro.add(centro_iz);
+		centro.add(centro_dcha);
 		abajo1.add(añadir);
 		abajo1.add(borrar);
 		abajoIzq.add(guardar);
