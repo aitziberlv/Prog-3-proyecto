@@ -588,7 +588,12 @@ public class BD {
         			"'" + pro.getColor() + "', " +
         			"'" + pro.getTalla() + "', " + 
         			"'" + pro.getTipo() + "','"+ rutafoto+"',"+codigo+","+10+")";
-        	stmt.executeUpdate(sent);
+        	int val = stmt.executeUpdate(sent);
+			logger.log( Level.INFO, "Producto añadido " + val + " fila\t" + sent);
+			if(val != 1) {
+				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
+				return false;  
+			}
         	
 			return true;
 		} catch (SQLException e) {
@@ -618,8 +623,8 @@ public class BD {
     	Statement stmt;
 		try {
 			stmt = abrirlaconexion("DeustoOutlet.db");
-			 String p ="insert into pedido values ("+codigo+", '"+dni+"');";
-	    	 int val = stmt.executeUpdate(p);
+			String p ="insert into pedido values ("+codigo+", '"+dni+"');";
+	    	int val = stmt.executeUpdate(p);
 	    	 if(val != 1) {
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
  				return false;  
