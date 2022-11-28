@@ -107,7 +107,12 @@ public class Ventana_Carrito extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				//if no hay producto seleccionado:
-				JOptionPane.showMessageDialog(null, "Por favor seleccione el producto que desea eliminar del carrito.","Error",JOptionPane.ERROR_MESSAGE);
+				if(lSelec.getSelectedValue() == null) {
+					JOptionPane.showMessageDialog(null, "Por favor seleccione el producto que desea eliminar del carrito.","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					mSelec.removeElement(lSelec.getSelectedValue());
+				}
 				//si selecciona un producto: se elimina del pedido.
 				
 			}
