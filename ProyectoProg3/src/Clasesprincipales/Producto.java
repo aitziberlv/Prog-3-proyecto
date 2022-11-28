@@ -8,9 +8,9 @@ public class Producto {
 	private Colorc color = Colorc.BLANCO;
 	private Talla talla = Talla.S;
 	private TipoProducto tipo = TipoProducto.FALDA;
-	private int cantidad = 0;
+	//private int cantidad = 0;
 	
-	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo, int cantidad) {
+	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -18,7 +18,7 @@ public class Producto {
 		this.color = color;
 		this.talla = talla;
 		this.tipo = tipo;
-		this.cantidad = cantidad;
+	//	this.cantidad = cantidad;
 	}
 	
 
@@ -59,21 +59,21 @@ public class Producto {
 		this.tipo = tipo;
 	}
 
-
-	public int getCantidad() {
-		return cantidad;
-	}
-
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
+//
+//	public int getCantidad() {
+//		return cantidad;
+//	}
+//
+//
+//	public void setCantidad(int cantidad) {
+//		this.cantidad = cantidad;
+//	}
 
 
 	@Override
 	public String toString() {
 		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", color=" + color
-				+ ", talla=" + talla + ", tipo=" + tipo + ", cantidad=" + cantidad + "]";
+				+ ", talla=" + talla + ", tipo=" + tipo + "]";
 	}
 	
 	
