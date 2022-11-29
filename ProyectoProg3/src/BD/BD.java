@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Franquicia;
+import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.Tienda;
@@ -712,6 +713,28 @@ public class BD {
 	}
 	   
    }  
+   
+   public static ArrayList<Pedidos> getPedidos() {
+	   String sent = "";
+	   ArrayList<Pedidos> lpedidos = new ArrayList<Pedidos>();
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   sent = "select * from pedido";
+		   ResultSet rs = stm.executeQuery(sent);
+		   while (rs.next()) {
+			   Pedidos p = new Pedidos(rs.getInt("codigo_pedido"), rs.getInt("contador"), rs.getArray("lista_pedidos"));
+			   lpedidos.add(p);
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   return lpedidos;
+	} catch (SQLException e) {
+		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
+		lastError = e;
+		e.printStackTrace();
+		return null;
+	}
+   }
    
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
 	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
