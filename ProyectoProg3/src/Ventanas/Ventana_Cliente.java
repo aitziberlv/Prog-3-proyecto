@@ -31,7 +31,7 @@ import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private static List<String> productosComprados = new ArrayList<>();
+	private static List<Producto> productosComprados = new ArrayList<>();
 	private static int pagar = 0;
 	
 	private JPanel arriba;
@@ -247,10 +247,10 @@ public class Ventana_Cliente extends JFrame{
 		anyadir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nombre = (String) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1);
-				productosComprados.add(nombre);
+				Producto p = new Producto((int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 0), (String)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1), (int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2), (Colorc)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 3), (Talla)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 4), (TipoProducto)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 5));
+				productosComprados.add(p);
 				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
-				pagar += precio;
+				pagar += p.getPrecio();
 
 			}
 		});
@@ -258,7 +258,7 @@ public class Ventana_Cliente extends JFrame{
 		
 	}
 	
-	public static List<String> getCarrito(){
+	public static List<Producto> getCarrito(){
 		return productosComprados;
 	}
 	

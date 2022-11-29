@@ -78,8 +78,7 @@ public class Ventana_Carrito extends JFrame{
 		lSelec.setModel(mSelec);
 		
 		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
-			mSelec.addElement(Ventana_Cliente.getCarrito().get(i));
-
+			mSelec.addElement(Ventana_Cliente.getCarrito().get(i).getNombre()+ ", " + Ventana_Cliente.getCarrito().get(i).getPrecio() + ", " + Ventana_Cliente.getCarrito().get(i).getTalla() + ", " + Ventana_Cliente.getCarrito().get(i).getColor() );
 		}
 		
 		
