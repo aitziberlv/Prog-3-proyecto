@@ -82,9 +82,7 @@ public class Ventana_Cliente extends JFrame{
 		arriba2=new JPanel();
 		arriba3=new JPanel(new GridLayout(1,3));
 
-		labelRecursividad = new JLabel("Si tienes un presupuesto\n y no sabes que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
-
-		labelRecursividad = new JLabel("Si tienes un presupuesto \n y no sabes que productos te podrias comprar con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con ese presupuesto ");
+		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes" +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
 
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Mostrar productos");
@@ -244,7 +242,7 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.setBackground(colo1);
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
-		this.setVisible(true);
+		
 		
 		
 		anyadir.addActionListener(new ActionListener() {
@@ -265,6 +263,20 @@ public class Ventana_Cliente extends JFrame{
 		return productosComprados;
 	}
 	
+	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
+	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> prod ) {
+		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
+		if (disponible<BD.Conseguirprendamasbarata()) {
+			System.out.println(prod);
+		}else {
+			for(Producto j :BD.getProductos()) {
+				if (disponible - j.getPrecio()>0) {
+					prod.add(j);
+					Comprapresupuesto(disponible-j.getPrecio(),prod);
+				}
+			}
+		}
+	}
 	public static int getPago() {
 		return pagar;
 	}
@@ -272,6 +284,8 @@ public class Ventana_Cliente extends JFrame{
 	public static void main(String[] args) {
 		Ventana_Cliente vc =new Ventana_Cliente();
 		vc.setVisible(true);
-	}
+		//ArrayList<Producto> p=new ArrayList<Producto>();
+		//Comprapresupuesto(60,p);
+		}
 	
 }

@@ -736,7 +736,30 @@ public class BD {
 	}
 	   
    }
-   
+   public static double Conseguirprendamasbarata() {
+	   String sent = "select min(precio) from producto";
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   while(rs.next()) {
+			   double res=rs.getDouble(0);
+			   
+			   return res; 
+		   }
+		   rs.close();
+		   
+	   } catch (SQLException e) {
+		   lastError = e;
+		   logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		   e.printStackTrace();
+		
+	}
+	return 0;
+	   
+	
+	   
+   }
    public static Usuario buscarUsuarioNombre(String usuario) {
 	   String sent = "select * from usuario where usuario = '" + usuario + "'";
 	   try {
