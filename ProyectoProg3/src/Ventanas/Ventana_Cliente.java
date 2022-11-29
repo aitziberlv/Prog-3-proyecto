@@ -167,7 +167,6 @@ public class Ventana_Cliente extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
-				      System.out.println("i "+i); 
 				      modeloDatosproductos.removeRow(i );
 				   } 
 				
