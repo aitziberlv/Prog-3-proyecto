@@ -679,8 +679,10 @@ public class BD {
 	   
    }
    
+  
+   
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
-	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio >= " + precio + " and talla = '" + talla + "'";
+	   String sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
 	   List<Producto>lproducto = new ArrayList<Producto>();
 	   try {
 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
@@ -693,6 +695,31 @@ public class BD {
 		   rs.close();
 		   logger.log(Level.INFO, "BD\t" + sent);
 		   return lproducto;
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return null;
+	}
+	   
+   }
+   
+   public static Usuario buscarUsuarioNombre(String usuario) {
+	   String sent = "select * from usuario where usuario = '" + usuario + "'";
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   if(rs.next()) {
+			   Usuario u = new Usuario(rs.getString("nombre"), rs.getString("dni"), rs.getString("fechNa"), rs.getString("telefono"), rs.getString("direccion"), rs.getString("apellido"), rs.getString("contraseña"), rs.getString("usuario"));
+			   rs.close();
+			   return u;
+		   }
+		   else {
+			   rs.close();
+			   return null;
+		   }	   
 		   
 	} catch (SQLException e) {
 		lastError = e;
