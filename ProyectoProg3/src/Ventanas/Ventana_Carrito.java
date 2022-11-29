@@ -1,14 +1,19 @@
 	package Ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Clasesprincipales.Producto;
 
 public class Ventana_Carrito extends JFrame{
 
@@ -20,23 +25,27 @@ public class Ventana_Carrito extends JFrame{
 	
 	private JPanel titulo;
 	private JPanel centro;
+	private JPanel centro_iz;
+	private JPanel centro_dcha;
 	private JPanel abajo1;
 	private JPanel abajoIzq;
 	private JPanel abajoDer;
 	private JPanel abajo;
+	private JPanel lista;
+	private JPanel frase;
 
 	private JLabel producto;
 	private JLabel carrito;
-	private JLabel codigo;
 	private JLabel precio;
-	private JLabel talla;
-	private JLabel tipo;
 	private JLabel cantidad;
 	
 	private JButton borrar;
 	private JButton añadir; //volver a la tienda y añadir mas productos.
 	private JButton pagar;
 	private JButton guardar; 
+	
+	private DefaultListModel<String> mSelec;
+	private JList<String> lSelec;
 	
 	public Ventana_Carrito() {
 		inicializarVentana();
@@ -51,21 +60,32 @@ public class Ventana_Carrito extends JFrame{
 		
 		titulo = new JPanel();
 		centro = new JPanel();
+		centro.setLayout(new GridLayout(1,2));
+		centro_dcha = new JPanel();
+		centro_iz = new JPanel();
+		centro_iz.setLayout(new GridLayout(1,2));
+		lista = new JPanel();
+		frase = new JPanel();
 		abajo1 = new JPanel();
 		abajoIzq = new JPanel();
 		abajoDer = new JPanel();
 		abajo = new JPanel();
 		abajo.setLayout(new GridLayout(3,2));
 
-
+		
+		mSelec = new DefaultListModel<String>();
+		lSelec = new JList<String>();
+		lSelec.setModel(mSelec);
+		
+		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
+			mSelec.addElement(Ventana_Cliente.getCarrito().get(i).getNombre()+ ", " + Ventana_Cliente.getCarrito().get(i).getPrecio() + ", " + Ventana_Cliente.getCarrito().get(i).getTalla() + ", " + Ventana_Cliente.getCarrito().get(i).getColor() );
+		}
+		
 		
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
-		codigo = new JLabel("Código:");
-		precio = new JLabel("Precio:");
-		talla = new JLabel("Talla:");
-		tipo = new JLabel("Tipo:");
-		cantidad = new JLabel("Seleccione cantidad:");
+		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
+		//cantidad = new JLabel("Seleccione cantidad:");
 
 		
 		borrar = new JButton("Eliminar producto");
@@ -80,7 +100,12 @@ public class Ventana_Carrito extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				//if no hay producto seleccionado:
-				JOptionPane.showMessageDialog(null, "Por favor seleccione el producto que desea eliminar del carrito.","Error",JOptionPane.ERROR_MESSAGE);
+				if(lSelec.getSelectedValue() == null) {
+					JOptionPane.showMessageDialog(null, "Por favor seleccione el producto que desea eliminar del carrito.","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					mSelec.removeElement(lSelec.getSelectedValue());
+				}
 				//si selecciona un producto: se elimina del pedido.
 				
 			}
@@ -126,9 +151,15 @@ public class Ventana_Carrito extends JFrame{
 			
 		});
 		
-		titulo.add(carrito);
-		centro.add(producto);
 		
+		titulo.add(carrito);
+		frase.add(producto);
+		lista.add(lSelec, BorderLayout.NORTH);
+		centro_dcha.add(precio);
+		centro_iz.add(frase);
+		centro_iz.add(lista);
+		centro.add(centro_iz);
+		centro.add(centro_dcha);
 		abajo1.add(añadir);
 		abajo1.add(borrar);
 		abajoIzq.add(guardar);

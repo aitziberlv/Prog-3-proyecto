@@ -84,8 +84,8 @@ public class Ventana_IS extends JFrame{
 		 */
 		
 		this.setTitle("DEUSTO OUTLET INICIAR SESIÓN");
-		setSize(800,800);
-		setLocationRelativeTo(null); //centrar la ventana.
+		this.setSize(900,700);
+		this.setLocationRelativeTo(null); //centrar la ventana.
 		
 		usuario=new JTextField("",16);
 		contrasena=new JPasswordField("",16);
@@ -152,18 +152,27 @@ public class Ventana_IS extends JFrame{
 					vc.setVisible(false);
 				}
 				else {
-					vc.setVisible(true);
+					if(BD.buscarUsuarioNombre(usuario.getText()).getContraseña().equals(contrasena.getText())) {
+						setVisible(false);
+						vc.setVisible(true);
+
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
+						vc.setVisible(false);
+
+					}
 
 				}				
 				
-				lg.lectura("Usuarios.dat");
-				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
-					vc.setVisible(true);
-					setVisible(false);
-					
-				}else {
-					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
-				}	
+//				lg.lectura("Usuarios.dat");
+//				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
+//					vc.setVisible(true);
+//					setVisible(false);
+//					
+//				}else {
+//					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
+//				}	
 				
 			}
 			
@@ -192,16 +201,22 @@ public class Ventana_IS extends JFrame{
 				
 				registroB = true;
 				}else  {
-					Ventana_Cliente vc = new Ventana_Cliente();
-					if(BD.buscarUsuarioNombre(usuario.getText()) != null) {
-						JOptionPane.showMessageDialog(null, "Usuario existente. Inserte otro nombre de usuario","Error",JOptionPane.ERROR_MESSAGE);
-						vc.setVisible(false);
+					if(usuario.getText().length() == 0 || contrasena.getText().length() == 0 || nombre.getText().length() == 0 || dni.getText().length() == 0 || fechaNa.getText().length() == 0 || telefono.getText().length() == 0 || direccion.getText().length() == 0 || apellido.getText().length() == 0 ) {
+						JOptionPane.showMessageDialog(null, "Algun campo no ha sido introducido. Por favor rellene todos los datos","Error",JOptionPane.ERROR_MESSAGE);
+					}else {
+						if(BD.buscarUsuarioNombre(usuario.getText()) != null) {
+							JOptionPane.showMessageDialog(null, "Usuario existente. Inserte otro nombre de usuario","Error",JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							Usuario u = new Usuario(nombre.getText(), dni.getText(), fechaNa.getText(), telefono.getText(), direccion.getText(), apellido.getText(), contrasena.getText(), usuario.getText());
+							BD.InsertarUsuario(u);
+							setVisible(false);
+							JOptionPane.showMessageDialog(null, "Usuario insertado correctamente. Ya puede iniciar sesión.");
+							Ventana_IS vi = new Ventana_IS();
+							vi.setVisible(true);
+						}
 					}
-					else {
-						Usuario u = new Usuario(nombre.getText(), dni.getText(), fechaNa.getText(), telefono.getText(), direccion.getText(), apellido.getText(), contrasena.getText(), usuario.getText());
-						BD.InsertarUsuario(u);
-						vc.setVisible(true);
-					}
+					
 					
 					
 //					if(lg.registrarte(usuario.getText())) {
@@ -265,6 +280,7 @@ public class Ventana_IS extends JFrame{
 		pnusuario.add(usuario);
 		pnusuario.add(usuariol);
 		panel_general.add(pnusuario);
+		panel_general.add(pncontrasena);
 		pndni.add(dni);
 		pndni.add(dnil);
 		pnombre.add(nombre);
@@ -289,7 +305,6 @@ public class Ventana_IS extends JFrame{
 		pntelefono.setVisible(false);
 		pnfecha.setVisible(false);
 		pndireccion.setVisible(false);
-		panel_general.add(pncontrasena);
 		panel_general.add(abajo);
 		this.setSize(500,700);
 		this.setVisible(true);
@@ -313,6 +328,8 @@ public class Ventana_IS extends JFrame{
 	}
 	public static void main(String[] args) {
 		Ventana_IS vs =new Ventana_IS();
+		vs.setSize(900,700);
+		vs.setLocationRelativeTo(null);
 	}
 }
 

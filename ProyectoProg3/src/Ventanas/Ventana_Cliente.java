@@ -5,7 +5,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -29,6 +31,8 @@ import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
+	private static List<Producto> productosComprados = new ArrayList<>();
+	private static int pagar = 0;
 	
 	private JPanel arriba;
 	private JPanel arriba1;
@@ -77,7 +81,11 @@ public class Ventana_Cliente extends JFrame{
 		boton_r=new JPanel();
 		arriba2=new JPanel();
 		arriba3=new JPanel(new GridLayout(1,3));
+
 		labelRecursividad = new JLabel("Si tienes un presupuesto\n y no sabes que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
+
+		labelRecursividad = new JLabel("Si tienes un presupuesto \n y no sabes que productos te podrias comprar con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con ese presupuesto ");
+
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Mostrar productos");
 		centro.setLayout(new GridLayout(1,2));
@@ -90,7 +98,7 @@ public class Ventana_Cliente extends JFrame{
 		arriba_texto_recursividad=new JPanel();
 		panelDeslizable.setViewportView(labelRecursividad);
 		cliente = new JLabel("CLIENTE");
-		Font fuente = new Font("Arial", 5, 70);
+		Font fuente = new Font("Arial", 5, 50);
 
 		cliente = new JLabel("DEUSTO OUTLET");
 		Font fuentee = new Font("Arial", 1, 20);
@@ -163,7 +171,6 @@ public class Ventana_Cliente extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
-				      System.out.println("i "+i); 
 				      modeloDatosproductos.removeRow(i );
 				   } 
 				
@@ -237,11 +244,29 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.setBackground(colo1);
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
+		this.setVisible(true);
 		
 		
-		
+		anyadir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Producto p = new Producto((int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 0), (String)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1), (int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2), (Colorc)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 3), (Talla)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 4), (TipoProducto)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 5));
+				productosComprados.add(p);
+				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
+				pagar += p.getPrecio();
 
-
+			}
+		});
+		
+		
+	}
+	
+	public static List<Producto> getCarrito(){
+		return productosComprados;
+	}
+	
+	public static int getPago() {
+		return pagar;
 	}
 
 	public static void main(String[] args) {

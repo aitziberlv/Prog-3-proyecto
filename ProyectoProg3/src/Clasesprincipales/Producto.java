@@ -57,14 +57,12 @@ public class Producto {
 		this.tipo = tipo;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", color=" + color
 				+ ", talla=" + talla + ", tipo=" + tipo + "]";
 	}
-	
-	
-	
 	
 	
 
