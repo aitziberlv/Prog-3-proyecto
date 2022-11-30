@@ -308,7 +308,7 @@ public class Ventana_Cliente extends JFrame{
 	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
 	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
 		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
-		if (disponible<BD.Conseguirprendamasbarata()) {
+		if (disponible<50) {
 			System.out.println(listaProd);
 		}else {
 			for(Producto j :BD.getProductos()) {
@@ -324,11 +324,11 @@ public class Ventana_Cliente extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		Ventana_Cliente vc =new Ventana_Cliente();
-		vc.setVisible(true);
-		vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
-		//ArrayList<Producto> p=new ArrayList<Producto>();
-		//Comprapresupuesto(60,p);
+		//Ventana_Cliente vc =new Ventana_Cliente();
+		//vc.setVisible(true);
+		//vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
+		ArrayList<Producto> p=new ArrayList<Producto>();
+		Comprapresupuesto(60,p);
 		}
 	
 }

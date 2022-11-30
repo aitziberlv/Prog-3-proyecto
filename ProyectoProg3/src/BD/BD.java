@@ -609,12 +609,12 @@ public class BD {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-    		if(cant != 0) {
-    			sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() + ";" ;	
-    		}else {
-    			sent = "delete from producto where codigo = " + pro.getCodigo() + ";" ;
-    		}
-    		
+//    		if(cant != 0) {
+//    			sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() + ";" ;	
+//    		}else {
+//    			sent = "delete from producto where codigo = " + pro.getCodigo() + ";" ;
+//    		}
+//    		
     		int val = stmt.executeUpdate(sent);
 			if(val != 1) {
 				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
@@ -781,6 +781,30 @@ public class BD {
 	return 0;
 	   
 	
+	   
+   }
+   public static String getURLFOTO(Producto p) {
+	   
+	   String sent = "select * from producto where codigo_producto = " + p.getCodigo() ;
+	   
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   while(rs.next()) {
+			  return rs.getString("ruta_foto");
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return null;
+	}
+	return null;
 	   
    }
    public static Usuario buscarUsuarioNombre(String usuario) {
