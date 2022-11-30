@@ -602,7 +602,7 @@ public class BD {
 			return false;
 		}
     }
-
+//select antes del update
 
     public static boolean EliminarProducto(Producto pro, int codigo) {
     	String sent = "";
