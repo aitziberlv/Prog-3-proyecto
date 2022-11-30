@@ -31,6 +31,8 @@ import Clasesprincipales.TipoProducto;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
+
+
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static List<Producto> productosComprados = new ArrayList<>();
@@ -182,6 +184,22 @@ public class Ventana_Cliente extends JFrame{
 		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(80);
 
 		
+		//Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
+		
+		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
+			
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				
+				
+				
+				
+				
+				return table;
+							
+			}
+			
+			
+		});
 		
 		
 		buscar.addActionListener(new ActionListener() {
