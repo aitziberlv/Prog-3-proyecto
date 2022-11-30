@@ -16,7 +16,7 @@ public class Ventana_productosdisponibles extends JFrame{
 
 	public Ventana_productosdisponibles(ArrayList<Pedidos> p) throws HeadlessException {
 		super();
-		this.p = p;
+		this.p = p; 
 	}
 	private JPanel panelprincipal ;
 	public void inizializarventana() {
