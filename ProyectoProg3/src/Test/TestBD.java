@@ -7,6 +7,9 @@ import org.junit.Test;
 import BD.BD;
 import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
+import Clasesprincipales.Usuario;
+import examen.parc202211.data.ServicioPersistenciaDeustoBeReal;
+import examen.parc202211.data.ServicioPersistenciaFicheros;
 
 
 public class TestBD {
@@ -43,6 +46,17 @@ public class TestBD {
 		assertTrue(lp.size()<= lp.get(lp.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la lista -1) es mayor o igual al número de la lista (size)
 		assertTrue(BD.InsertarProducto(lp.get)); //se puede poner la funcion porque esta devuelve un true si es correcta.
 		 	
+	}
+	
+	@Test
+	public void insertarUsuarioTest () {
+
+		Usuario usuario1 = new Usuario( "mery456", "mariarodriguez5",  );
+		//ServicioPersistenciaDeustoBeReal servicio = new ServicioPersistenciaFicheros();
+		//servicio.initDatosTest(  );
+		//assertFalse(servicio.insertarUsuario(usuario1));
+		}
+		
 	}
 		
 //	@Test
