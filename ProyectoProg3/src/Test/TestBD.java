@@ -36,23 +36,24 @@ public class TestBD {
 		}
 	}
 	
-	@Test
-	public void insertarProducto() {
+	//@Test
+	/*public void insertarProducto() {
 		
 		ArrayList<Producto> lp = BD.getProductos(); //productos que hay.
 
 		assertTrue(lp.size()<= lp.get(lp.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la lista -1) es mayor o igual al número de la lista (size)
 		assertTrue(BD.InsertarProducto(lp.get)); //se puede poner la funcion porque esta devuelve un true si es correcta.
 		 	
-	}
+	}*/
 	
 	@Test
-	public void insertarUsuarioTest () {
-
-		Usuario usuario1 = new Usuario( "mery456", "mariarodriguez5",  );
-		//ServicioPersistenciaDeustoBeReal servicio = new ServicioPersistenciaFicheros();
-		//servicio.initDatosTest(  );
-		//assertFalse(servicio.insertarUsuario(usuario1));
+	public void getPedidosTest () {
+		ArrayList <Pedidos> listap = BD.getPedidos();
+		int antCod = 0;
+		for (Pedidos ped: listap) {
+			assertFalse(ped.getCodigo()<1);
+			assertTrue(ped.getCodigo()> antCod);
+			antCod = ped.getCodigo();
 		}
 		
 	}

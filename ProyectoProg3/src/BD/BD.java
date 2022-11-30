@@ -721,7 +721,8 @@ public class BD {
 		   sent = "select * from pedido";
 		   ResultSet rs = stm.executeQuery(sent);
 		   while (rs.next()) {
-			   Pedidos pe = new Pedidos((ArrayList<Producto>) rs.getArray("lista_pedidos"), rs.getInt("codigo_pedido"));
+			   @SuppressWarnings("unchecked")
+			Pedidos pe = new Pedidos((ArrayList<Producto>) rs.getArray("lista_pedidos"), rs.getInt("codigo_pedido"));
 			   lpedidos.add(pe);
 		   }
 		   rs.close();
