@@ -8,8 +8,6 @@ import BD.BD;
 import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Usuario;
-import examen.parc202211.data.ServicioPersistenciaDeustoBeReal;
-import examen.parc202211.data.ServicioPersistenciaFicheros;
 
 
 public class TestBD {
@@ -59,16 +57,7 @@ public class TestBD {
 		
 	}
 		
-//	@Test
-//	public void insertarPedido() {
-//		
-//		ArrayList<Producto> lp = BD.getProductos(); //productos que hay.
-//		ArrayList<Pedidos> lped = BD.getPedidos(lped); //pedidos que hay.
-//
-//		assertTrue(lped.size()<=lped.get(lped.size()-1).getCodigo()); //El identificador de mayor valor (tamaño del pedido -1) es mayor o igual al número de pedidos (size)
-//		assertTrue(BD.insertarPedido(lped.get(0))); //se puede poner la funcion porque esta devuelve un true si es correcta.
-//		
-//	}
+
 		
 		
 		

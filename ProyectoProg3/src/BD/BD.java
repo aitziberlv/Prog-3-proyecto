@@ -609,7 +609,6 @@ public class BD {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-    		int cant = stmt.executeUpdate(sent);
     		if(cant != 0) {
     			sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() + ";" ;	
     		}else {
@@ -722,8 +721,8 @@ public class BD {
 		   sent = "select * from pedido";
 		   ResultSet rs = stm.executeQuery(sent);
 		   while (rs.next()) {
-			   Pedidos p = new Pedidos(rs.getInt("codigo_pedido"), rs.getInt("contador"), rs.getArray("lista_pedidos"));
-			   lpedidos.add(p);
+			   Pedidos pe = new Pedidos((ArrayList<Producto>) rs.getArray("lista_pedidos"), rs.getInt("codigo_pedido"));
+			   lpedidos.add(pe);
 		   }
 		   rs.close();
 		   logger.log(Level.INFO, "BD\t" + sent);

@@ -1,6 +1,7 @@
 package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import BD.BD;
@@ -154,7 +156,7 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 		//JTable de los productos con las características especificadas por el usuario
-		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
+		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("COD", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
 		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
 		this.tablaProductos = new JTable(this.modeloDatosproductos);
 		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -163,6 +165,24 @@ public class Ventana_Cliente extends JFrame{
 		for(Producto p : BD.getProductos()) {
 			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
 		}
+		
+		//tamaño 
+		
+		tablaProductos.setModel( modeloDatosproductos );
+		
+		tablaProductos.getColumnModel().getColumn(0).setMinWidth(35);
+		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(35);
+		tablaProductos.getColumnModel().getColumn(1).setMinWidth(110);
+		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(110);
+		tablaProductos.getColumnModel().getColumn(2).setMinWidth(70);
+		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(70);
+		tablaProductos.getColumnModel().getColumn(3).setMinWidth(50);
+		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(50);		
+		tablaProductos.getColumnModel().getColumn(4).setMinWidth(80);
+		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(80);
+
+		
+		
 		
 		buscar.addActionListener(new ActionListener() {
 			@Override
@@ -190,12 +210,6 @@ public class Ventana_Cliente extends JFrame{
 		});
 		
 		
-		
-//		for(Producto p : this.Productos) {
-//			this.modeloDatosproductos.addRow(new Object[] {
-//					p.getCodigo(), p.getNombre(), p.getColor(), p.getTalla(), p.getTipo(), p.getFranquicia(), p.getPrecio()
-//			});
-//		}
 		
 		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
@@ -252,6 +266,7 @@ public class Ventana_Cliente extends JFrame{
 				productosComprados.add(p);
 				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
 				pagar += p.getPrecio();
+				BD.EliminarProducto(p, precio);
 
 			}
 		});
@@ -264,15 +279,15 @@ public class Ventana_Cliente extends JFrame{
 	}
 	
 	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
-	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> prod ) {
+	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
 		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
 		if (disponible<BD.Conseguirprendamasbarata()) {
-			System.out.println(prod);
+			System.out.println(listaProd);
 		}else {
 			for(Producto j :BD.getProductos()) {
 				if (disponible - j.getPrecio()>0) {
-					prod.add(j);
-					Comprapresupuesto(disponible-j.getPrecio(),prod);
+					listaProd.add(j);
+					Comprapresupuesto(disponible-j.getPrecio(),listaProd);
 				}
 			}
 		}
