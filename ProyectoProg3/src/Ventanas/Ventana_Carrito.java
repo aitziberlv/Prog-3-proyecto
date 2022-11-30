@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -174,6 +175,9 @@ public class Ventana_Carrito extends JFrame{
 		this.add(titulo);
 		this.add(centro);
 		this.add(abajo);
+		
+		ImageIcon icono = new ImageIcon("/ProyectoProg3/Fotos/deustoOutlet.png");
+		this.setIconImage(icono.getImage());	
 		
 	}
 	

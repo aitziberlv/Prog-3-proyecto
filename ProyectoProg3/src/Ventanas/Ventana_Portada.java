@@ -67,6 +67,10 @@ public class Ventana_Portada extends JFrame{
 		this.add(titulo);
 		this.add(abajo);
 		
+		ImageIcon icono = new ImageIcon("/ProyectoProg3/Fotos/strad.jpg");
+		this.setIconImage(icono.getImage());	
+		
+		
 	}
 	
 	
