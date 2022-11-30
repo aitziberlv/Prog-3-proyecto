@@ -21,6 +21,7 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -172,34 +173,42 @@ public class Ventana_Cliente extends JFrame{
 		
 		tablaProductos.setModel( modeloDatosproductos );
 		
-		tablaProductos.getColumnModel().getColumn(0).setMinWidth(35);
-		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(35);
-		tablaProductos.getColumnModel().getColumn(1).setMinWidth(110);
-		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(110);
-		tablaProductos.getColumnModel().getColumn(2).setMinWidth(70);
-		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(70);
-		tablaProductos.getColumnModel().getColumn(3).setMinWidth(50);
-		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(50);		
-		tablaProductos.getColumnModel().getColumn(4).setMinWidth(80);
-		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(80);
+		tablaProductos.getColumnModel().getColumn(0).setMinWidth(90);
+		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(90);
+		tablaProductos.getColumnModel().getColumn(1).setMinWidth(200);
+		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(200);
+		tablaProductos.getColumnModel().getColumn(2).setMinWidth(90);
+		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(90);
+		tablaProductos.getColumnModel().getColumn(3).setMinWidth(90);
+		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(90);		
+		tablaProductos.getColumnModel().getColumn(4).setMinWidth(90);
+		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(90);
 
 		
 		//Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
 		
-		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
+//		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
+//			
+//			DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+//			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//				
+//				cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+//				table.getColumnModel();
+//				
+//				
+//				
+//				
+//				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+//				
+//				
+//				
+//				
+//				
+//							
+//			}
 			
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-				
-				
-				
-				
-				
-				return table;
-							
-			}
 			
-			
-		});
+//		});
 		
 		
 		buscar.addActionListener(new ActionListener() {
