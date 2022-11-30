@@ -183,6 +183,7 @@ public class Ventana_Carrito extends JFrame{
 	public static void main(String[] args) {
 		Ventana_Carrito vca =new Ventana_Carrito();
 		vca.setVisible(true);
+		vca.setExtendedState(Ventana_Carrito.MAXIMIZED_BOTH);
 		
 	}
 	

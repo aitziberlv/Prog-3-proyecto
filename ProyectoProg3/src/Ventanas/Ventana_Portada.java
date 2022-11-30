@@ -75,6 +75,7 @@ public class Ventana_Portada extends JFrame{
 	public static void main(String[] args) {
 		Ventana_Portada vpo =new Ventana_Portada();
 		vpo.setVisible(true);
+		vpo.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 		
 	}
 	

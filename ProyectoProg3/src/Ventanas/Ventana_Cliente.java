@@ -299,6 +299,7 @@ public class Ventana_Cliente extends JFrame{
 	public static void main(String[] args) {
 		Ventana_Cliente vc =new Ventana_Cliente();
 		vc.setVisible(true);
+		vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
 		//ArrayList<Producto> p=new ArrayList<Producto>();
 		//Comprapresupuesto(60,p);
 		}

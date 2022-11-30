@@ -330,6 +330,7 @@ public class Ventana_IS extends JFrame{
 		Ventana_IS vs =new Ventana_IS();
 		vs.setSize(900,700);
 		vs.setLocationRelativeTo(null);
+		vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
 	}
 }
 

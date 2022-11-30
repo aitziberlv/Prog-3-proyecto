@@ -176,5 +176,6 @@ public class Ventana_Pagar extends JFrame {
 			
 			ventana_Pagar.setVisible(true);
 			ventana_Pagar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			ventana_Pagar.setExtendedState(ventana_Pagar.MAXIMIZED_BOTH);
 	}
 }
