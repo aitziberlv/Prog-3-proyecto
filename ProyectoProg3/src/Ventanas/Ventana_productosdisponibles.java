@@ -7,11 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Clasesprincipales.Pedidos;
-//en esta ventana vamos a lanzar un hilo mostrando todos los pedidos
 import Clasesprincipales.Producto;
 
+//en esta ventana vamos a lanzar un hilo mostrando todos los pedidos
 
 public class Ventana_productosdisponibles extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Pedidos> p=new ArrayList<>();
 
 	public Ventana_productosdisponibles(ArrayList<Pedidos> p) throws HeadlessException {
