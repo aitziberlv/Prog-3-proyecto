@@ -159,7 +159,7 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 		//JTable de los productos con las características especificadas por el usuario
-		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("COD", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
+		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
 		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
 		this.tablaProductos = new JTable(this.modeloDatosproductos);
 		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
