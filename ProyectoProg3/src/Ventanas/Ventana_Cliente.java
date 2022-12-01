@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -297,6 +298,9 @@ public class Ventana_Cliente extends JFrame{
 
 			}
 		});
+		
+		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		this.setIconImage(icono.getImage());	
 		
 		
 	}

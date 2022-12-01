@@ -67,7 +67,7 @@ public class Ventana_Portada extends JFrame{
 		this.add(titulo);
 		this.add(abajo);
 		
-		ImageIcon icono = new ImageIcon("/ProyectoProg3/Fotos/strad.jpg");
+		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
 		

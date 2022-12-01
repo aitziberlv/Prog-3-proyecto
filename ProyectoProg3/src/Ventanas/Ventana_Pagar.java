@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -168,6 +169,10 @@ public class Ventana_Pagar extends JFrame {
 				}
 
 		});
+		
+		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		this.setIconImage(icono.getImage());	
+		
 		
 	}
 		public static void main(String[] args) {

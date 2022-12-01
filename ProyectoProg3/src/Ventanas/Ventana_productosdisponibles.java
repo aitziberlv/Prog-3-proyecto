@@ -70,6 +70,10 @@ public class Ventana_productosdisponibles extends JFrame{
 		};hiloActual.start();
 		
 		this.add(panelprincipal);
+		
+		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		this.setIconImage(icono.getImage());	
+		
 	}
 	private static class JLabelAjustado extends JLabel {
 		private ImageIcon imagen; 

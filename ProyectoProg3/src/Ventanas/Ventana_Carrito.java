@@ -176,7 +176,7 @@ public class Ventana_Carrito extends JFrame{
 		this.add(centro);
 		this.add(abajo);
 		
-		ImageIcon icono = new ImageIcon("/ProyectoProg3/Fotos/deustoOutlet.png");
+		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
 	}
