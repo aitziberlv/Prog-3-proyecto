@@ -86,7 +86,6 @@ public class Ventana_Carrito extends JFrame{
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
 		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
-		//cantidad = new JLabel("Seleccione cantidad:");
 
 		
 		borrar = new JButton("Eliminar producto");

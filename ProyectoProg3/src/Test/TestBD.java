@@ -32,10 +32,10 @@ public class TestBD {
 	public void getProductosTest() {
 		ArrayList<Producto> lp = BD.getProductos();
 		int antCod = 0;
-		for (Producto p : lp) {
-			assertFalse(p.getCodigo()<1);
-			assertTrue( p.getCodigo() > antCod );
-			antCod = p.getCodigo();
+		for (Producto prod : lp) {
+			assertFalse(prod.getCodigo()<1);
+			assertTrue( prod.getCodigo() > antCod );
+			antCod = prod.getCodigo();
 		}
 	}
 	
@@ -44,12 +44,12 @@ public class TestBD {
 	
 	@Test
 	public void getPedidosTest () {
-		ArrayList <Pedidos> listap = BD.getPedidos();
+		ArrayList <Pedidos> lped = BD.getPedidos();
 		int antCod = 0;
-		for (Pedidos ped: listap) {
-			assertFalse(ped.getCodigo()<1);
-			assertTrue(ped.getCodigo()> antCod);
-			antCod = ped.getCodigo();
+		for (Pedidos pedi: lped) {
+			assertFalse(pedi.getCodigo()<1);
+			assertTrue(pedi.getCodigo()> antCod);
+			antCod = pedi.getCodigo();
 		}
 		
 	}
@@ -60,22 +60,25 @@ public class TestBD {
 	@Test
 	public void insertarProducto() {
 		
-		ArrayList<Producto> lp = BD.getProductos(); //productos que hay.
+		ArrayList<Producto> lprod = BD.getProductos(); //productos que hay.
 
-		assertTrue(lp.size()<= lp.get(lp.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la lista -1) es mayor o igual al número de la lista (size)
-		assertTrue(BD.InsertarProducto(lp.get(0), null, 0)); //se puede poner la funcion porque esta devuelve un true si es correcta.
+		assertTrue(lprod.size()<= lprod.get(lprod.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la lista -1) es mayor o igual al número de la lista (size)
+		assertTrue(BD.InsertarProducto(lprod.get(0), null, 0)); //se puede poner la funcion porque esta devuelve un true si es correcta.
 		 	
 	}
 	
-//	@Test
-//	public void insertarProducto() {
-//		
-//		ArrayList<Producto> lusu = BD.getProductos(); //productos que hay.
-//
-//		assertTrue(lp.size()<= lp.get(lp.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la lista -1) es mayor o igual al número de la lista (size)
-//		assertTrue(BD.InsertarProducto(lp.get(0), null, 0)); //se puede poner la funcion porque esta devuelve un true si es correcta.
-//		 	
-//	}
+	
+	//Test para comprobar los pedidos se insertan correctamente a la base de datos
+
+	@Test
+	public void insertarPedido() {
+		
+		ArrayList<Pedidos> lpedi = BD.getPedidos(); //pedidos que hay.
+
+		assertTrue(lpedi.size()<=lpedi.get(lpedi.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la compra -1) es mayor o igual al número de compras (size)
+		assertTrue(BD.InsertarPedido(1, "")); //se puede poner la funcion porque esta devuelve un true si es correcta.
+		assertTrue(lpedi.get(lpedi.size()-1).getCodigo() > lpedi.get(lpedi.size()-2).getCodigo()); //el que teniamos compararlo con el penultimo(-2). 	
+	}
 	
 	
 		
