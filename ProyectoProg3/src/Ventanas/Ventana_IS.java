@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -325,6 +326,10 @@ public class Ventana_IS extends JFrame{
 		
 		panel_arriba.setBackground(color1);
 		anterior.setVisible(false);
+		
+		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		this.setIconImage(icono.getImage());	
+		
 	}
 	public static void main(String[] args) {
 		Ventana_IS vs =new Ventana_IS();
