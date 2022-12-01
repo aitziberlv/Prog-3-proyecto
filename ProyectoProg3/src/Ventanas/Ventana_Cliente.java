@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -101,13 +102,13 @@ public class Ventana_Cliente extends JFrame{
 		valordebarra= new JPanel ();
 		arriba_texto_recursividad=new JPanel();
 		panelDeslizable.setViewportView(labelRecursividad);
-		cliente = new JLabel("CLIENTE");
+		cliente = new JLabel("");
 		Font fuente = new Font("Arial", 5, 50);
 
-		cliente = new JLabel("DEUSTO OUTLET");
-		Font fuentee = new Font("Arial", 1, 20);
+		//cliente = new JLabel("DEUSTO OUTLET");
+		//Font fuentee = new Font("Arial", 1, 20);
 
-	    cliente.setFont(fuente); 
+	    //cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
 		precio = new JLabel ("Precio máximo:");
@@ -158,6 +159,9 @@ public class Ventana_Cliente extends JFrame{
 			
 		});
 		
+		Image img= new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png").getImage();
+		ImageIcon img2=new ImageIcon(img.getScaledInstance(140, 140, Image.SCALE_SMOOTH));
+		cliente.setIcon(img2);
 		
 		//JTable de los productos con las características especificadas por el usuario
 		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("COD", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
@@ -328,9 +332,9 @@ public class Ventana_Cliente extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		//Ventana_Cliente vc =new Ventana_Cliente();
-		//vc.setVisible(true);
-		//vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
+		Ventana_Cliente vc =new Ventana_Cliente();
+		vc.setVisible(true);
+		vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
 		ArrayList<Producto> p=new ArrayList<Producto>();
 		Comprapresupuesto(60,p);
 		}
