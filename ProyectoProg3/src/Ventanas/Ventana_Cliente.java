@@ -118,12 +118,12 @@ public class Ventana_Cliente extends JFrame{
 		talla = new JLabel("Talla:");
 		valordebarra_l =new JLabel("Seleciona el precio máximo");
 		valordebarra_l.setForeground(Color.DARK_GRAY);
-		preciobarra = new JSlider(0, 200);
+		preciobarra = new JSlider(0, 150);
 		preciobarra.setPaintTrack(true);
 		preciobarra.setPaintTicks(true);
 		preciobarra.setPaintLabels(true);
-		preciobarra.setMajorTickSpacing(40);
-		preciobarra.setMinorTickSpacing(40);
+		preciobarra.setMajorTickSpacing(30);
+		preciobarra.setMinorTickSpacing(30);
 		valordebarra_l2=new JLabel();
 		scrolTabla = new JScrollPane();
 		c = new JComboBox<Colorc>();
@@ -167,7 +167,7 @@ public class Ventana_Cliente extends JFrame{
 		cliente.setIcon(img2);
 		
 		//JTable de los productos con las características especificadas por el usuario
-		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("COD", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
+		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
 		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
 		this.tablaProductos = new JTable(this.modeloDatosproductos);
 		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
