@@ -14,7 +14,12 @@ public class Pedidos {
 		this.codigo = cont++;
 		
 	}
-	
+	public Pedidos(ArrayList<Producto> lista_pedidos) {
+		super();
+		this.lista_pedidos = lista_pedidos;
+		
+		
+	}
 	public ArrayList<Producto> getLista_pedidos() {
 		return lista_pedidos;
 	}

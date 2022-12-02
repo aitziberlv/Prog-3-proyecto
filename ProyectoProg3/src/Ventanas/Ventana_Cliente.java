@@ -2,6 +2,7 @@ package Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -32,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import BD.BD;
 import Clasesprincipales.TipoProducto;
 import Clasesprincipales.Colorc;
+import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 
@@ -87,10 +89,11 @@ public class Ventana_Cliente extends JFrame{
 		arriba1=new JPanel();
 		boton_r=new JPanel();
 		arriba2=new JPanel();
-		arriba3=new JPanel(new GridLayout(1,3));
+		arriba3=new JPanel();
 
-		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes" +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
-
+		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
+		//labelRecursividad.setPreferredSize(new Dimension(400,200));
+		
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Mostrar productos");
 		centro.setLayout(new GridLayout(1,2));
@@ -241,15 +244,23 @@ public class Ventana_Cliente extends JFrame{
 			}			
 		});
 		
-		
+		botonrecursividad.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Ventana_productosdisponibles vd=new Ventana_productosdisponibles(listaPed);
+				
+			}
+			
+		});
 		
 		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
 		arriba_texto_recursividad.add(panelDeslizable);
 		
 		arriba3.add(arriba_texto_recursividad);
-		boton_r.add(botonrecursividad);
-		arriba3.add(boton_r);
+		//boton_r.add(botonrecursividad);
+		arriba3.add(botonrecursividad);
 		arriba.add(arriba1);
 		arriba.add(arriba2);
 		arriba.add(arriba3);
@@ -312,31 +323,56 @@ public class Ventana_Cliente extends JFrame{
 	public static List<Producto> getCarrito(){
 		return productosComprados;
 	}
-	
+	public static double devolverproductomasbarato() {
+		ArrayList<Producto> p=BD.getProductos();
+		double min=p.get(0).getPrecio();
+		for (Producto prod:p) {
+			if (prod.getPrecio()<min) {
+				min=prod.getPrecio();
+			}
+		}
+		return min;
+	}
+	static double prec =devolverproductomasbarato();
+	private static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
 	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
 	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
 		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
-		if (disponible<50) {
-			System.out.println(listaProd);
+		if (disponible<prec) {
+			//System.out.println((ArrayList<Producto>) listaProd.clone());
+			@SuppressWarnings("unchecked")
+			Pedidos p = new Pedidos(((ArrayList<Producto>)listaProd.clone()));
+			listaPed.add(p);
+			
+			
 		}else {
 			for(Producto j :BD.getProductos()) {
 				if (disponible - j.getPrecio()>0) {
 					listaProd.add(j);
 					Comprapresupuesto(disponible-j.getPrecio(),listaProd);
+					listaProd.remove(j);
 				}
 			}
 		}
+		
+		
 	}
+	
+	
 	public static int getPago() {
 		return pagar;
 	}
-
+	
+	
 	public static void main(String[] args) {
 		Ventana_Cliente vc =new Ventana_Cliente();
 		vc.setVisible(true);
 		vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
 		ArrayList<Producto> p=new ArrayList<Producto>();
+		ArrayList<Pedidos> p2=new ArrayList<Pedidos>();
 		Comprapresupuesto(60,p);
+		//System.out.println(listaPed.toString());
+		
 		}
 	
 }
