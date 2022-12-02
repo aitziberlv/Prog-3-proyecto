@@ -344,6 +344,7 @@ public class Ventana_Cliente extends JFrame{
 			Pedidos p = new Pedidos(((ArrayList<Producto>)listaProd.clone()));
 			listaPed.add(p);
 			
+			
 		}else {
 			for(Producto j :BD.getProductos()) {
 				if (disponible - j.getPrecio()>0) {
@@ -356,6 +357,7 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 	}
+	
 	public static int getPago() {
 		return pagar;
 	}
@@ -368,7 +370,7 @@ public class Ventana_Cliente extends JFrame{
 		ArrayList<Producto> p=new ArrayList<Producto>();
 		ArrayList<Pedidos> p2=new ArrayList<Pedidos>();
 		Comprapresupuesto(60,p);
-		System.out.println(listaPed.toString());
+		//System.out.println(listaPed.toString());
 		
 		}
 	
