@@ -128,7 +128,12 @@ public class Ventana_IS extends JFrame{
 		 * Boton de iniciodesesion-> con esto en caso de que el ususario este registrado inicia sesion automaticamente. 
 		 */
 		btusuario_contrasena=new JButton("Iniciar sesión");
+		btusuario_contrasena.setForeground(Color.black);
+		btusuario_contrasena.setBackground(Color.white);
+		
 		registro=new JButton("Registrarse");
+		registro.setForeground(Color.black);
+		registro.setBackground(Color.white);
 		
 		/**@author aiitz
 		 * Los que tienen que ver con el panel superior

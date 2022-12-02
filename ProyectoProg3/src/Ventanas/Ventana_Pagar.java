@@ -109,6 +109,8 @@ public class Ventana_Pagar extends JFrame {
 		Direccion.setHorizontalAlignment(JLabel.CENTER);
 		
 		Pagar = new JButton ("Pagar");
+		pagar.setForeground(Color.black);
+		pagar.setBackground(Color.white);
 		JPanel pnl_btn = new JPanel ();
 		pnl_btn.setLayout(new FlowLayout());
 		pnl_btn.add(Pagar);

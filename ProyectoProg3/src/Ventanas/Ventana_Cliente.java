@@ -148,8 +148,14 @@ public class Ventana_Cliente extends JFrame{
 		}
 		
 		buscar = new JButton("Buscar");
+		buscar.setForeground(Color.black);
+		buscar.setBackground(Color.white);
 		anyadir = new JButton("Añadir");
+		anyadir.setForeground(Color.black);
+		anyadir.setBackground(Color.white);
 		carrito=new JButton("Ver carrito");
+		carrito.setForeground(Color.black);
+		carrito.setBackground(Color.white);
 		carrito.addActionListener(new ActionListener( ){
 
 			@Override

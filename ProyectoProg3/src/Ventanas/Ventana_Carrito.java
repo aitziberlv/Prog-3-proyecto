@@ -1,6 +1,7 @@
 	package Ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -89,9 +90,17 @@ public class Ventana_Carrito extends JFrame{
 
 		
 		borrar = new JButton("Eliminar producto");
+		borrar.setForeground(Color.black);
+		borrar.setBackground(Color.white);
 		añadir = new JButton("Añadir nuevos productos");
+		añadir.setForeground(Color.black);
+		añadir.setBackground(Color.white);
 		pagar = new JButton("Realizar pago");
+		pagar.setForeground(Color.black);
+		pagar.setBackground(Color.white);
 		guardar = new JButton("Guardar datos");
+		guardar.setForeground(Color.black);
+		guardar.setBackground(Color.white);
 
 		
 		borrar.addActionListener(new ActionListener( ){

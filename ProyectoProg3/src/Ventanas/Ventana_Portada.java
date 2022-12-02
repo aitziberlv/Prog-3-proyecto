@@ -1,5 +1,6 @@
 package Ventanas;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -45,6 +46,8 @@ public class Ventana_Portada extends JFrame{
 	//	ImageIcon imagen = new ImageIcon(getClass().getResource("Imagenes/dibujo.jpg"));
 		
 		comenzar = new JButton("Comenzar");
+		comenzar.setForeground(Color.black);
+		comenzar.setBackground(Color.white);
 		
 		comenzar.addActionListener(new ActionListener( ){
 
