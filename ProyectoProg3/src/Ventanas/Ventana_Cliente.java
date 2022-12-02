@@ -358,6 +358,7 @@ public class Ventana_Cliente extends JFrame{
 		
 	}
 	
+	
 	public static int getPago() {
 		return pagar;
 	}
