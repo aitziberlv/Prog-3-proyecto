@@ -55,6 +55,7 @@ public class Ventana_Pagar extends JFrame {
 	 * botones
 	 */
 	private JButton Pagar;
+	private JButton Anterior;
     /**
     * inicializar la ventana
     */
@@ -111,8 +112,14 @@ public class Ventana_Pagar extends JFrame {
 		Pagar = new JButton ("Pagar");
 		pagar.setForeground(Color.black);
 		pagar.setBackground(Color.white);
+		
+		Anterior = new JButton ("<");
+		Anterior.setForeground(Color.black);
+		Anterior.setBackground(Color.white);
+		
 		JPanel pnl_btn = new JPanel ();
 		pnl_btn.setLayout(new FlowLayout());
+		pnl_btn.add(Anterior);
 		pnl_btn.add(Pagar);
 		Pagar.setForeground(Color.BLACK);
 		Pagar.setBackground(Color.white);
@@ -170,6 +177,20 @@ public class Ventana_Pagar extends JFrame {
 
 				}
 
+		});
+		
+		Anterior.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Ventana_Carrito vc = new Ventana_Carrito();
+				vc.setVisible(true);
+				setVisible(false);
+
+				
+			}
+			
 		});
 		
 		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
