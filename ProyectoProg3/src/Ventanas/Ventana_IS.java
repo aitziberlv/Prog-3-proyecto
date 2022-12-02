@@ -134,6 +134,7 @@ public class Ventana_IS extends JFrame{
 		registro=new JButton("Registrarse");
 		registro.setForeground(Color.black);
 		registro.setBackground(Color.white);
+		.
 		
 		/**@author aiitz
 		 * Los que tienen que ver con el panel superior
