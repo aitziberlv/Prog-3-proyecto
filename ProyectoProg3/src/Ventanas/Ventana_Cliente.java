@@ -91,7 +91,7 @@ public class Ventana_Cliente extends JFrame{
 		arriba2=new JPanel();
 		arriba3=new JPanel();
 
-		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
+		//labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
 		//labelRecursividad.setPreferredSize(new Dimension(400,200));
 		
 		centro = new JPanel(new GridLayout(1,3));
@@ -256,9 +256,9 @@ public class Ventana_Cliente extends JFrame{
 		
 		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
-		arriba_texto_recursividad.add(panelDeslizable);
+		//arriba_texto_recursividad.add(panelDeslizable);
 		
-		arriba3.add(arriba_texto_recursividad);
+		//arriba3.add(arriba_texto_recursividad);
 		//boton_r.add(botonrecursividad);
 		arriba3.add(botonrecursividad);
 		arriba.add(arriba1);
@@ -357,7 +357,10 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 	}
+	public void filtrorecursividad() {
+		//aqui tenemos que definir un filtro que va a quitar los que estan  repetidos , y va a filtrar que una chaqueta xs y xl sea la misma (es decir que el tamaño no importe. )
 	
+	}
 	
 	public static int getPago() {
 		return pagar;
