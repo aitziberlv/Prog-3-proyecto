@@ -6,7 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +22,7 @@ import javax.swing.JTextField;
 import BD.BD;
 import Clasesprincipales.Usuario;
 import Logica.Logica;
+import Ventanasexternas.FondoSwing;
 
 public class Ventana_IS extends JFrame{
 
@@ -330,12 +334,19 @@ public class Ventana_IS extends JFrame{
 		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	       // JPanel panel = (JPanel) this.getContentPane();
+	        panel_general.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
 	}
 	public static void main(String[] args) {
 		Ventana_IS vs =new Ventana_IS();
-		vs.setSize(900,700);
+		//vs.setSize(900,700);
 		vs.setLocationRelativeTo(null);
-		vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
+		//vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
 	}
 }
 

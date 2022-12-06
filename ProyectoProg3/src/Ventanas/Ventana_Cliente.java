@@ -254,6 +254,7 @@ public class Ventana_Cliente extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Ventana_productosdisponibles vd=new Ventana_productosdisponibles(listaPed);
+				vd.setVisible(true);
 				
 			}
 			
