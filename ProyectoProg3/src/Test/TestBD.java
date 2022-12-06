@@ -8,6 +8,7 @@ import BD.BD;
 import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Usuario;
+import DATOSDEPRUEBA.Datosdeprueba;
 
 
 public class TestBD {
@@ -80,11 +81,27 @@ public class TestBD {
 		assertTrue(lpedi.get(lpedi.size()-1).getCodigo() > lpedi.get(lpedi.size()-2).getCodigo()); //el que teniamos compararlo con el penultimo(-2). 	
 	}
 	
+	//Test para comprobar que se consigue el url correcto de la base de datos. 
+		/**
+		 * la comprabacion de este test se trata en 
+		 * compararlo con un fichero de prueba en el que tenemos metido el codigo de la foto y el url 
+		 * ENTOCES COMPARAREMOS QUE ESTO ES LO MISMO 
+		 */
 	
 		
-
-		
-		
+	@Test
+	public void getURLFOTO() {	
+		//aqui tenemos dos listas de productos cuando el codigo sea igual compararemos el URL.
+		ArrayList<Producto> a1=Datosdeprueba.conseguirDatosDePueba();
+		ArrayList<Producto> a2=BD.getProductos();
+		for (Producto p:a1) {
+			for (Producto p2:a2) {
+				if (p.getCodigo()==p2.getCodigo()) {
+					assertEquals(p.getUrl(),BD.getURLFOTO(p2));
+				}
+			}
+		}
+	}
 		
 		
 		

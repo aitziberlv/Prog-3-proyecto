@@ -8,6 +8,7 @@ public class Producto {
 	private Colorc color = Colorc.BLANCO;
 	private Talla talla = Talla.S;
 	private TipoProducto tipo = TipoProducto.FALDA;
+	private String url="";
 	
 	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo) {
 		super();
@@ -19,6 +20,24 @@ public class Producto {
 		this.tipo = tipo;
 	}
 	
+
+	public Producto(int codigo, String url) {
+		super();
+		this.codigo = codigo;
+		this.url = url;
+	}
+
+
+	
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 
 	public int getCodigo() {
 		return codigo;
