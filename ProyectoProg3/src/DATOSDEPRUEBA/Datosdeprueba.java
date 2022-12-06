@@ -1,3 +1,8 @@
+/**
+ * esta es una clase que esta creada unicamente para utilizarla en el test como prueba. 
+ * 
+ */
+
 package DATOSDEPRUEBA;
 
 import java.util.ArrayList;
