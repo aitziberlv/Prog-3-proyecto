@@ -200,28 +200,30 @@ public class Ventana_Cliente extends JFrame{
 		
 		//Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
 		
-//		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
-//			
-//			DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-//			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//				
-//				cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-//				table.getColumnModel();
-//				
-//				
-//				
-//				
-//				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-//				
-//				
-//				
-//				
-//				
-//							
-//			}
+		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
+		
+		Font fuente = new Font( "Arial", Font.PLAIN, 11 );
+		
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+			Component etiqueta = super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, column );
 			
+			etiqueta.setFont(fuente);
+			if (isSelected){
+			    etiqueta.setBackground (Color.YELLOW);
+			}else {
+			    etiqueta.setBackground (Color.CYAN);
+			}
+			if (value instanceof String) {
+				//etiqueta.setOpaque(true);
+			    //etiqueta.setText((String)value);
 			
-//		});
+			}
+		
+			return etiqueta;
+		}
+		
+	});
 		
 		
 		buscar.addActionListener(new ActionListener() {
