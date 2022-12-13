@@ -8,6 +8,7 @@ public class main {
 		BD.initDatos();
 		Ventana_Portada vp = new Ventana_Portada();
 		vp.setVisible(true);
+		vp.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 		
 		
 
