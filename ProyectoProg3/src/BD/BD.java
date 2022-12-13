@@ -542,6 +542,7 @@ public class BD {
 			InsertarCompra(21, 21,p2101.getCodigo());
 			
 			
+			
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
