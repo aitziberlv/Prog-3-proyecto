@@ -57,6 +57,7 @@ public class Ventana_Portada extends JFrame{
 				Ventana_IS vi = new Ventana_IS();
 				vi.setVisible(true);
 				setVisible(false);
+				vi.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 				
 			}
 			

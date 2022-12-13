@@ -187,6 +187,7 @@ public class Ventana_Pagar extends JFrame {
 				Ventana_Carrito vc = new Ventana_Carrito();
 				vc.setVisible(true);
 				setVisible(false);
+				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 
 				
 			}

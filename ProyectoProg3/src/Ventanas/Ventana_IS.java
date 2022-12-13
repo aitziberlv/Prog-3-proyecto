@@ -166,11 +166,13 @@ public class Ventana_IS extends JFrame{
 					if(BD.buscarUsuarioNombre(usuario.getText()).getContraseña().equals(contrasena.getText())) {
 						setVisible(false);
 						vc.setVisible(true);
+						vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
 						vc.setVisible(false);
+						vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 
 					}
 
@@ -225,6 +227,7 @@ public class Ventana_IS extends JFrame{
 							JOptionPane.showMessageDialog(null, "Usuario insertado correctamente. Ya puede iniciar sesión.");
 							Ventana_IS vi = new Ventana_IS();
 							vi.setVisible(true);
+							vi.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 						}
 					}
 					
@@ -352,7 +355,7 @@ public class Ventana_IS extends JFrame{
 		Ventana_IS vs =new Ventana_IS();
 		//vs.setSize(900,700);
 		vs.setLocationRelativeTo(null);
-		//vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
+		vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
 	}
 }
 

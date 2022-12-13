@@ -129,6 +129,7 @@ public class Ventana_Carrito extends JFrame{
 				Ventana_Cliente vc = new Ventana_Cliente();
 				vc.setVisible(true);
 				setVisible(false);
+				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 
 				
 			}
@@ -143,6 +144,7 @@ public class Ventana_Carrito extends JFrame{
 				Ventana_Pagar vp = new Ventana_Pagar();
 				vp.setVisible(true);
 				setVisible(false);
+				vp.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 
 				
 			}
