@@ -212,7 +212,7 @@ public class Ventana_Cliente extends JFrame{
 			if (isSelected){
 			    etiqueta.setBackground (Color.YELLOW);
 			}else {
-			    etiqueta.setBackground (Color.CYAN);
+			    etiqueta.setBackground (Color.BLACK);
 			}
 			if (value instanceof String) {
 				//etiqueta.setOpaque(true);
