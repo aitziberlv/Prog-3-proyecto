@@ -8,16 +8,20 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -32,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
 
 import BD.BD;
 import Clasesprincipales.TipoProducto;
+import Ventanasexternas.FondoSwing;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
@@ -85,17 +90,17 @@ public class Ventana_Cliente extends JFrame{
 		this.setTitle("DEUSTO OUTLET COMPRAR");
 		this.setLayout(new GridLayout(3,1));
 		panelDeslizable=new JScrollPane(); 
-		arriba = new JPanel(new GridLayout(3,1));
+		arriba = new JPanel(new GridLayout(1,1));
 		arriba1=new JPanel();
 		boton_r=new JPanel();
 		arriba2=new JPanel();
 		arriba3=new JPanel();
 
-		labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
+		//labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
 		//labelRecursividad.setPreferredSize(new Dimension(400,200));
 		
 		centro = new JPanel(new GridLayout(1,3));
-		botonrecursividad=new JButton("Mostrar productos");
+		botonrecursividad=new JButton("Ayuda para hacer mi compra");
 		centro.setLayout(new GridLayout(1,2));
 		centro_izda = new JPanel();
 		centro_izda.setLayout(new GridLayout(5,1));
@@ -201,28 +206,30 @@ public class Ventana_Cliente extends JFrame{
 		
 		//Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
 		
-//		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
-//			
-//			DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-//			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//				
-//				cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-//				table.getColumnModel();
-//				
-//				
-//				
-//				
-//				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-//				
-//				
-//				
-//				
-//				
-//							
-//			}
+		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
+		
+		Font fuente = new Font( "Arial", Font.PLAIN, 11 );
+		
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+			Component etiqueta = super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, column );
 			
+			etiqueta.setFont(fuente);
+			if (isSelected){
+			    etiqueta.setBackground (Color.YELLOW);
+			}else {
+			    etiqueta.setBackground (Color.CYAN);
+			}
+			if (value instanceof String) {
+				//etiqueta.setOpaque(true);
+			    //etiqueta.setText((String)value);
 			
-//		});
+			}
+		
+			return etiqueta;
+		}
+		
+	});
 		
 		
 		buscar.addActionListener(new ActionListener() {
@@ -255,6 +262,7 @@ public class Ventana_Cliente extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Ventana_productosdisponibles vd=new Ventana_productosdisponibles(listaPed);
+				vd.setVisible(true);
 				
 			}
 			
@@ -262,14 +270,14 @@ public class Ventana_Cliente extends JFrame{
 		
 		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
-		arriba_texto_recursividad.add(panelDeslizable);
+		//arriba_texto_recursividad.add(panelDeslizable);
 		
-		arriba3.add(arriba_texto_recursividad);
+		//arriba3.add(arriba_texto_recursividad);
 		//boton_r.add(botonrecursividad);
-		arriba3.add(botonrecursividad);
+		arriba1.add(botonrecursividad);
 		arriba.add(arriba1);
-		arriba.add(arriba2);
-		arriba.add(arriba3);
+		//arriba.add(arriba2);
+		//arriba.add(arriba3);
 		// lo de abajo si queremos que quede centrado hacemos lo mismo 
 		centro_izda.add(tipo);
 		centro_izda.add(tipos);
@@ -306,7 +314,7 @@ public class Ventana_Cliente extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
 		
-		
+		botonrecursividad.setBackground(Color.white);
 		
 		anyadir.addActionListener(new ActionListener() {
 			@Override
@@ -323,6 +331,13 @@ public class Ventana_Cliente extends JFrame{
 		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\Fotosproductos\\fondo_ropa_arriba.jpg")));
+	        //JPanel panel = (JPanel) this.getContentPane();
+	        arriba1.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
 		
 	}
 	
@@ -363,7 +378,10 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 	}
+	public void filtrorecursividad() {
+		//aqui tenemos que definir un filtro que va a quitar los que estan  repetidos , y va a filtrar que una chaqueta xs y xl sea la misma (es decir que el tamaño no importe. )
 	
+	}
 	
 	public static int getPago() {
 		return pagar;
@@ -380,5 +398,7 @@ public class Ventana_Cliente extends JFrame{
 		//System.out.println(listaPed.toString());
 		
 		}
+	
+	
 	
 }
