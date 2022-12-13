@@ -519,27 +519,27 @@ public class BD {
 			InsertarTienda(t6,"/Fotos/zara.jpg");
 			
 			//insertar relacion de compra. 
-			InsertarCompra(1,"83068219S",p1.getCodigo());
-			InsertarCompra(2,"85234681I",p2.getCodigo());
-			InsertarCompra(3, "45344345L",p3.getCodigo());
-			InsertarCompra(4, "45344345L",p8.getCodigo());
-			InsertarCompra(5, "74544345L",p102.getCodigo());
-			InsertarCompra(6, "68458021D",p2001.getCodigo());
-			InsertarCompra(7, "45345678H",p11.getCodigo());
-			InsertarCompra(8, "78302745L",p101.getCodigo());
-			InsertarCompra(9, "78370236N",p8.getCodigo());
-			InsertarCompra(10, "70348021M",p2501.getCodigo());
-			InsertarCompra(11, "74902345J",p2601.getCodigo());
-			InsertarCompra(12, "74920473K",p1.getCodigo());
-			InsertarCompra(13, "72950639N",p5.getCodigo());
-			InsertarCompra(14, "75920576H",p7.getCodigo());
-			InsertarCompra(15, "29576923S",p7777.getCodigo());
-			InsertarCompra(16, "83068219S",p8.getCodigo());
-			InsertarCompra(17, "83068219S",p33.getCodigo());
-			InsertarCompra(18, "85234681I",p444.getCodigo());
-			InsertarCompra(19, "83068219S",p2403.getCodigo());
-			InsertarCompra(20, "45344345L",p2501.getCodigo());
-			InsertarCompra(21, "74544345L",p2101.getCodigo());
+			InsertarCompra(1,1,p1.getCodigo());
+			InsertarCompra(2,2,p2.getCodigo());
+			InsertarCompra(3, 3,p3.getCodigo());
+			InsertarCompra(4, 4,p8.getCodigo());
+			InsertarCompra(5, 5,p102.getCodigo());
+			InsertarCompra(6, 6,p2001.getCodigo());
+			InsertarCompra(7, 7,p11.getCodigo());
+			InsertarCompra(8, 8,p101.getCodigo());
+			InsertarCompra(9, 9,p8.getCodigo());
+			InsertarCompra(10,10,p2501.getCodigo());
+			InsertarCompra(11, 11,p2601.getCodigo());
+			InsertarCompra(12, 12,p1.getCodigo());
+			InsertarCompra(13, 13,p5.getCodigo());
+			InsertarCompra(14, 14,p7.getCodigo());
+			InsertarCompra(15, 15,p7777.getCodigo());
+			InsertarCompra(16, 16,p8.getCodigo());
+			InsertarCompra(17, 17,p33.getCodigo());
+			InsertarCompra(18, 18,p444.getCodigo());
+			InsertarCompra(19, 19,p2403.getCodigo());
+			InsertarCompra(20,20,p2501.getCodigo());
+			InsertarCompra(21, 21,p2101.getCodigo());
 			
 			
 			} catch (SQLException e) {
@@ -673,11 +673,11 @@ public class BD {
 		}
     }
     
-    public static boolean InsertarCompra(int codigo,String c2, int c3) {
+    public static boolean InsertarCompra(int codigo,int c2, int c3) {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-        	sent = "insert into compra values("+codigo+",'"+c2+"',"+c3+")";
+        	sent = "insert into compra values("+codigo+","+c2+","+c3+")";
         	int val = stmt.executeUpdate(sent);
         	if(val != 1) {
 				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
@@ -812,6 +812,7 @@ public class BD {
 	return null;
 	   
    }
+   
    public static Usuario buscarUsuarioNombre(String usuario) {
 	   String sent = "select * from usuario where usuario = '" + usuario + "'";
 	   try {
