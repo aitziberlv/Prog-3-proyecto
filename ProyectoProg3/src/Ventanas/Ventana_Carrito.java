@@ -15,7 +15,10 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Clasesprincipales.Colorc;
 import Clasesprincipales.Producto;
+import Clasesprincipales.Talla;
+import Clasesprincipales.TipoProducto;
 
 public class Ventana_Carrito extends JFrame{
 
@@ -114,6 +117,8 @@ public class Ventana_Carrito extends JFrame{
 				}
 				else {
 					mSelec.removeElement(lSelec.getSelectedValue());
+					
+					
 				}
 				//si selecciona un producto: se elimina del pedido.
 				

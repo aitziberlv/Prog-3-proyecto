@@ -20,6 +20,12 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import BD.BD;
+import Clasesprincipales.Colorc;
+import Clasesprincipales.Producto;
+import Clasesprincipales.Talla;
+import Clasesprincipales.TipoProducto;
+
 public class Ventana_Pagar extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -91,11 +97,11 @@ public class Ventana_Pagar extends JFrame {
 		pagar=new JLabel("PAGAR");
 		Descripcion = new JLabel ("Ingrese los datos de su tarjeta: ");
 		NumeroTarjeta = new JLabel ("Número de tarjeta");
-		FechaVencimiento = new JLabel ("Fecha de vencimiento:");
+		FechaVencimiento = new JLabel ("Fecha de vencimiento (0000):");
 		CVV = new JLabel ("CVV");
 		Direccion = new JLabel ("Direccion de Facturacion");
 		
-		Numero_de_pedido=new JLabel("Numero de pedido");
+		Numero_de_pedido=new JLabel("Numero de pedido:");
 		Numero_de_pedido2=new JLabel("");
 		
 		
@@ -165,11 +171,20 @@ public class Ventana_Pagar extends JFrame {
 				CVV=aCVV.getText();
 				Direccion=aDireccion.getText();
 
-				if(NumeroTarjeta.equals("1") && FechaVencimiento.equals("2") && CVV.equals("3") && Direccion.equals("3")){
-
 				
-					JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
+			//	if(NumeroTarjeta.equals("16") && FechaVencimiento.equals("4") && CVV.equals("3") && Direccion.equals("3")){
+				if(NumeroTarjeta.length()==16 && FechaVencimiento.length() ==4 && CVV.length()==3) {
+						
 					
+					int precio = Ventana_Cliente.getPago();
+					for(Producto p: BD.getProductos()) {
+//						if(p.getCodigo()) { si el producto esta en la compra.
+							BD.EliminarProducto(p, precio);
+							JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
+					}
+						
+					JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
+
 				
 				}else{
 

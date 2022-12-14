@@ -50,6 +50,7 @@ public class Ventana_Cliente extends JFrame{
 	private static List<Producto> productosComprados = new ArrayList<>();
 	private static int pagar = 0;
 	
+	
 	private JPanel arriba;
 	private JPanel arriba1;
 	private JPanel arriba2;
@@ -115,10 +116,12 @@ public class Ventana_Cliente extends JFrame{
 		cliente = new JLabel("");
 		Font fuente = new Font("Arial", 5, 50);
 
-		//cliente = new JLabel("DEUSTO OUTLET");
-		//Font fuentee = new Font("Arial", 1, 20);
+		
+		
+		cliente = new JLabel("DEUSTO OUTLET");
+		Font fuentee = new Font("Arial", 1, 20);
 
-	    //cliente.setFont(fuente); 
+	    cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
 		precio = new JLabel ("Precio máximo:");
@@ -272,6 +275,7 @@ public class Ventana_Cliente extends JFrame{
 			
 		});
 		
+		
 		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
 		//arriba_texto_recursividad.add(panelDeslizable);
@@ -299,10 +303,11 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.add(carrito);
 		centro.add(centro_izda);
 		centro.add(centro_dcha);
-
+		
 		abajo.add(informacion);
 		abajo.add(scrolTabla);
 		abajo.add(anyadir);
+		
 
 		Color color1= new Color(243,242,235);
 		this.add(arriba);
@@ -327,7 +332,7 @@ public class Ventana_Cliente extends JFrame{
 				productosComprados.add(p);
 				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
 				pagar += p.getPrecio();
-				BD.EliminarProducto(p, precio);
+				
 
 			}
 		});

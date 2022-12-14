@@ -104,7 +104,7 @@ public class BD {
 			if (veces1==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com4 = "create table pedido(codigo_pedido INTEGER, dni String)"; //clave externa del dni del usuario. 
+			String com4 = "create table pedido(codigo_pedido INTEGER, dni String, estado String, fecha_compra String, codigo_producto INTEGER)"; //clave externa del dni del usuario. 
 			stmt.executeUpdate("drop table if exists pedido");
 			int veces2=stmt.executeUpdate(com4);
 			if (veces2==1) {
@@ -471,38 +471,38 @@ public class BD {
 			
 			
 			//Insertar pedidos
-			InsertarPedido(1, "45344345L");
-			InsertarPedido(2, "74544345L");
-			InsertarPedido(3, "68458021D");
-			InsertarPedido(4, "45345678H");
-			InsertarPedido(5, "78302745L");
-			InsertarPedido(6, "78370236N");
-			InsertarPedido(7, "70348021M");
-			InsertarPedido(8, "74902345J");
-			InsertarPedido(9, "74920473K");
-			InsertarPedido(10, "72950639N");
-			InsertarPedido(11, "75920576H");
-			InsertarPedido(12, "29576923S");
-			InsertarPedido(13, "83068219S");
-			InsertarPedido(14, "83068219S");
-			InsertarPedido(15, "85234681I");
-			InsertarPedido(16, "83068219S");
-			InsertarPedido(17, "45344345L");
-			InsertarPedido(18, "74544345L");
-			InsertarPedido(19, "68458021D");
-			InsertarPedido(20, "45345678H");
-			InsertarPedido(21, "78302745L");
-			InsertarPedido(22, "78370236N");
-			InsertarPedido(23, "70348021M");
-			InsertarPedido(24, "74902345J");
-			InsertarPedido(25, "74920473K");
-			InsertarPedido(26, "72950639N");
-			InsertarPedido(27, "75920576H");
-			InsertarPedido(28, "29576923S");
-			InsertarPedido(29, "83068219S");
-			InsertarPedido(30, "83068219S");
-			InsertarPedido(31, "85234681I");
-			InsertarPedido(32, "83068219S");
+//			InsertarPedido(1, "45344345L");
+//			InsertarPedido(2, "74544345L");
+//			InsertarPedido(3, "68458021D");
+//			InsertarPedido(4, "45345678H");
+//			InsertarPedido(5, "78302745L");
+//			InsertarPedido(6, "78370236N");
+//			InsertarPedido(7, "70348021M");
+//			InsertarPedido(8, "74902345J");
+//			InsertarPedido(9, "74920473K");
+//			InsertarPedido(10, "72950639N");
+//			InsertarPedido(11, "75920576H");
+//			InsertarPedido(12, "29576923S");
+//			InsertarPedido(13, "83068219S");
+//			InsertarPedido(14, "83068219S");
+//			InsertarPedido(15, "85234681I");
+//			InsertarPedido(16, "83068219S");
+//			InsertarPedido(17, "45344345L");
+//			InsertarPedido(18, "74544345L");
+//			InsertarPedido(19, "68458021D");
+//			InsertarPedido(20, "45345678H");
+//			InsertarPedido(21, "78302745L");
+//			InsertarPedido(22, "78370236N");
+//			InsertarPedido(23, "70348021M");
+//			InsertarPedido(24, "74902345J");
+//			InsertarPedido(25, "74920473K");
+//			InsertarPedido(26, "72950639N");
+//			InsertarPedido(27, "75920576H");
+//			InsertarPedido(28, "29576923S");
+//			InsertarPedido(29, "83068219S");
+//			InsertarPedido(30, "83068219S");
+//			InsertarPedido(31, "85234681I");
+//			InsertarPedido(32, "83068219S");
 			
 			//insertar tiendas.
 			Tienda t1=new Tienda(1,Franquicia.BERSHKA);
@@ -633,11 +633,11 @@ public class BD {
 		}
     }
     
-    public static boolean InsertarPedido(int codigo, String dni) {
+    public static boolean InsertarPedido(int codigo, String dni, String estado, String fecha_compra, int codigo_producto) {
     	Statement stmt;
 		try {
 			stmt = abrirlaconexion("DeustoOutlet.db");
-			String p ="insert into pedido values ("+codigo+", '"+dni+"');";
+			String p ="insert into pedido values ("+codigo+", '"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
 	    	int val = stmt.executeUpdate(p);
 	    	 if(val != 1) {
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
