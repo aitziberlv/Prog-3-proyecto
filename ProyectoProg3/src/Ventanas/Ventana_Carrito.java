@@ -8,8 +8,11 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -25,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.Border;
 
+import BD.BD;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
@@ -38,7 +42,7 @@ public class Ventana_Carrito extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
+	private List<Producto> usando;
 	private JPanel titulo;
 	private JPanel centro;
 	private JPanel centro_iz;
@@ -49,7 +53,7 @@ public class Ventana_Carrito extends JFrame{
 	private JPanel abajo;
 	private JPanel lista;
 	private JPanel frase;
-
+	private JLabel lFoto;
 	private JLabel producto;
 	private JLabel carrito;
 	private JLabel precio;
@@ -83,6 +87,7 @@ public class Ventana_Carrito extends JFrame{
 		this.setTitle("DEUSTO OUTLET CARRITO");
 		this.setLayout(new GridLayout(3,1));
 		v=new JPanel();
+		lFoto=new JLabel();
 		titulo = new JPanel();
 		centro = new JPanel();
 		centro.setLayout(new GridLayout(1,2));
@@ -108,8 +113,9 @@ public class Ventana_Carrito extends JFrame{
 		
 		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
 			mSelec.addElement(Ventana_Cliente.getCarrito().get(i).getNombre()+ ", " + Ventana_Cliente.getCarrito().get(i).getPrecio() + ", " + Ventana_Cliente.getCarrito().get(i).getTalla() + ", " + Ventana_Cliente.getCarrito().get(i).getColor() );
+			
 		}
-		
+		usando=Ventana_Cliente.getCarrito();
 		
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
@@ -141,6 +147,7 @@ public class Ventana_Carrito extends JFrame{
 				//if no hay producto seleccionado:
 				if(lSelec.getSelectedValue() == null) {
 					JOptionPane.showMessageDialog(null, "Por favor seleccione el producto que desea eliminar del carrito.","Error",JOptionPane.ERROR_MESSAGE);
+				
 				}
 				else {
 					mSelec.removeElement(lSelec.getSelectedValue());
@@ -150,6 +157,21 @@ public class Ventana_Carrito extends JFrame{
 				//si selecciona un producto: se elimina del pedido.
 				
 			}
+			
+		});
+		
+		lSelec.addMouseListener(new MouseAdapter(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i=lSelec.getSelectedIndex();
+				Producto p =usando.get(i);
+				String url=BD.getURLFOTO(p);
+				ImageIcon imagen = new ImageIcon( url );
+				lFoto.setIcon( imagen );
+			}
+
+		
 			
 		});
 		
@@ -208,6 +230,7 @@ public class Ventana_Carrito extends JFrame{
 		frase.add(v,BorderLayout.WEST);
 		lista.add(lSelec, BorderLayout.NORTH);
 		centro_dcha.add(precio);
+		centro_dcha.add(lFoto);
 		centro_iz.add(frase);
 		centro_iz.add(lista);
 		centro.add(centro_iz);

@@ -10,6 +10,9 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,7 +56,7 @@ public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static List<Producto> productosComprados = new ArrayList<>();
 	private static int pagar = 0;
-	
+	private List<Producto> usando;
 	
 	private JPanel arriba;
 	private JPanel arriba1;
@@ -99,7 +102,7 @@ public class Ventana_Cliente extends JFrame{
 	private JPanel t2;
 	private JPanel t3;
 	private JPanel t4;
-	
+	private JLabel lFoto;
 	private JPanel t5;
 	
 	private JScrollPane panelDeslizable ;	
@@ -125,6 +128,7 @@ public class Ventana_Cliente extends JFrame{
 		boton_r=new JPanel();
 		arriba2=new JPanel();
 		arriba3=new JPanel();
+		lFoto=new JLabel();
 		info_arriba=new JLabel("Gracias a esta aplicación podrás empezar a buscar productos de varias tiendas con las caracteristicas que deseas");
 		//labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
 		//labelRecursividad.setPreferredSize(new Dimension(400,200));
@@ -228,7 +232,9 @@ public class Ventana_Cliente extends JFrame{
 		
 		for(Producto p : BD.getProductos()) {
 			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+			
 		}
+		
 		
 		//tamaño 
 		
@@ -272,7 +278,20 @@ public class Ventana_Cliente extends JFrame{
 		}
 		
 	});
+		tablaProductos.addMouseListener(new MouseAdapter(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i=tablaProductos.getSelectedRow();
+				Producto p =usando.get(i);
+				String url=BD.getURLFOTO(p);
+				ImageIcon imagen = new ImageIcon( url );
+				lFoto.setIcon( imagen );
+			}
+
 		
+			
+		});
 		
 		buscar.addActionListener(new ActionListener() {
 			@Override
@@ -284,6 +303,7 @@ public class Ventana_Cliente extends JFrame{
 				
 				for(Producto p : BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) )) {
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					usando=BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) );
 				}
 				
 				
@@ -352,6 +372,7 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.add(b3);
 		centro_dcha.add(b4);
 		centro_dcha.add(carrito);
+		centro_dcha.add(lFoto);
 		b1.setBackground(Color.white);
 		b2.setBackground(Color.white);
 		b3.setBackground(Color.white);
@@ -483,9 +504,9 @@ public class Ventana_Cliente extends JFrame{
 		Ventana_Cliente vc =new Ventana_Cliente();
 		vc.setVisible(true);
 		vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
-		ArrayList<Producto> p=new ArrayList<Producto>();
-		ArrayList<Pedidos> p2=new ArrayList<Pedidos>();
-		Comprapresupuesto(60,p);
+		//ArrayList<Producto> p=new ArrayList<Producto>();
+		//ArrayList<Pedidos> p2=new ArrayList<Pedidos>();
+		//Comprapresupuesto(60,p);
 		//System.out.println(listaPed.toString());
 		
 		}

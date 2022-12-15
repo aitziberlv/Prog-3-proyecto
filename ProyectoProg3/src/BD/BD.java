@@ -159,11 +159,11 @@ public class BD {
 			Producto p111= new Producto(3, "Chaqueta de pelo", 50, Colorc.NEGRO, Talla.M, TipoProducto.CHAQUETA);
 			Producto p1111 = new Producto(4, "Chaqueta de pelo", 50, Colorc.NEGRO, Talla.L, TipoProducto.CHAQUETA);
 			Producto p11111 = new Producto(5, "Chaqueta de pelo", 50, Colorc.NEGRO, Talla.XL, TipoProducto.CHAQUETA);
-			InsertarProducto(p1,"",1);
-			InsertarProducto(p11,"",1);
-			InsertarProducto(p111,"",1);
-			InsertarProducto(p1111,"",1);
-			InsertarProducto(p11111,"",1);
+			InsertarProducto(p1,"Fotosproductos/prod1.jpg",1);
+			InsertarProducto(p11,"Fotosproductos/prod1.jpg",1);
+			InsertarProducto(p111,"Fotosproductos/prod1.jpg",1);
+			InsertarProducto(p1111,"Fotosproductos/prod1.jpg",1);
+			InsertarProducto(p11111,"Fotosproductos/prod1.jpg",1);
 			
 			
 			//producto2. t2
