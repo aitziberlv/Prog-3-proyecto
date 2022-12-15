@@ -77,7 +77,7 @@ public class TestBD {
 		ArrayList<Pedidos> lpedi = BD.getPedidos(); //pedidos que hay.
 
 		assertTrue(lpedi.size()<=lpedi.get(lpedi.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la compra -1) es mayor o igual al número de compras (size)
-		assertTrue(BD.InsertarPedido(1, "")); //se puede poner la funcion porque esta devuelve un true si es correcta.
+		//assertTrue(BD.InsertarPedido(1, "")); //se puede poner la funcion porque esta devuelve un true si es correcta.
 		assertTrue(lpedi.get(lpedi.size()-1).getCodigo() > lpedi.get(lpedi.size()-2).getCodigo()); //el que teniamos compararlo con el penultimo(-2). 	
 	}
 	

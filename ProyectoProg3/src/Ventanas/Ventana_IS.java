@@ -26,7 +26,7 @@ import Ventanasexternas.FondoSwing;
 
 public class Ventana_IS extends JFrame{
 
-	/**@author aiitz
+	/**
 	 * Esta ventana es la que vamos a utilizar para el inicio y registro de sesion
 	 * Cuando le demos a registro automaticamente se pondran visibles unos objetos que antes no lo estaban.
 	 * Al darle a inicio de sesion entraremos automaticamente en la aplicacion. 
@@ -83,7 +83,7 @@ public class Ventana_IS extends JFrame{
 		
 		//Inicializamos componentes:
 		
-		/**@author aiitz
+		/**
 		 * primero podemos ver todos los Jtext  field de los cueles usuario y contrasela unicamente pertenecen a el inicio de sesion 
 		 * Al registro pertenecen todos ellos
 		 */
@@ -101,7 +101,7 @@ public class Ventana_IS extends JFrame{
 		fechaNa=new JTextField("",16);
 		direccion=new JTextField("",16);
 		
-		/**@author aiitz
+		/**
 		 * Paneles-> los que vamos a utilizar para el unicio de sesion o para registrarse y los que vamos a utilizar para poner los botones de inicio y registro 
 		 */
 		pnusuario=new JPanel();
@@ -116,7 +116,7 @@ public class Ventana_IS extends JFrame{
 		abajo=new JPanel();
 		panel_general=new JPanel();
 		
-		/**@author aiitz
+		/**
 		 *  para indicar que hay que poner en cada textfield
 		 */
 		usuariol=new JLabel("Usuario");
@@ -128,7 +128,7 @@ public class Ventana_IS extends JFrame{
 		fechaNal=new JLabel("Fecha de nacimiento (DD/MM/AAAA)");
 		direccionl=new JLabel("Direccion");		
 		
-		/**@author aiitz
+		/**
 		 * Boton de iniciodesesion-> con esto en caso de que el ususario este registrado inicia sesion automaticamente. 
 		 */
 		btusuario_contrasena=new JButton("Iniciar sesión");
@@ -140,7 +140,7 @@ public class Ventana_IS extends JFrame{
 		registro.setBackground(Color.white);
 		
 		
-		/**@author aiitz
+		/**
 		 * Los que tienen que ver con el panel superior
 		 * este panel va a servirnos para ir atras y para ver el nombre de la ventana en la que nos encontramos
 		 */
@@ -149,14 +149,14 @@ public class Ventana_IS extends JFrame{
 		anterior=new JButton("<");
 		
 //---------------------------------------------------------------------------------------------------------------------------------------------		
-		/**@author aiitz
+		/**
 		 * Mediante este boton iniciaremos sesion para eso tendremos que comprobar que se trata de unos datos correctos
 		 */
 		btusuario_contrasena.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Ventana_Cliente vc = new Ventana_Cliente();
+				Ventana_Cliente vc = new Ventana_Cliente(usuario.getText());
 				if(BD.buscarUsuarioNombre(usuario.getText()) == null) {
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
 
@@ -191,7 +191,7 @@ public class Ventana_IS extends JFrame{
 			
 		});
 		
-		/**@author aiitz
+		/**
 		 * Mediante este boton nos registraremos para eso tendremos que comprobar que se trata de unos datos correctos.
 		 */
 		
@@ -325,18 +325,18 @@ public class Ventana_IS extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.add(panel_general);
 		Color color2= new Color(242,235,243);
-		pnusuario.setBackground(color2);
-		pnombre.setBackground(color2);
-		pncontrasena.setBackground(color2);
-		pndni.setBackground(color2);
-		pnapellido.setBackground(color2);
-		pntelefono.setBackground(color2);
-		pnfecha.setBackground(color2);
-		pndireccion.setBackground(color2);
+		pnusuario.setBackground(Color.white);
+		pnombre.setBackground(Color.white);
+		pncontrasena.setBackground(Color.white);
+		pndni.setBackground(Color.white);
+		pnapellido.setBackground(Color.white);
+		pntelefono.setBackground(Color.white);
+		pnfecha.setBackground(Color.white);
+		pndireccion.setBackground(Color.white);
 		Color color1= new Color(243,242,235);
 		abajo.setBackground(color1);
-		panel_general.setBackground(color2);
-		
+		panel_general.setBackground(Color.white);
+		abajo.setBackground(Color.white);
 		panel_arriba.setBackground(color1);
 		anterior.setVisible(false);
 		
@@ -344,9 +344,9 @@ public class Ventana_IS extends JFrame{
 		this.setIconImage(icono.getImage());	
 		
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\do2.png")));
 	       // JPanel panel = (JPanel) this.getContentPane();
-	        panel_general.setBorder(fondo);
+	        panel_arriba.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }

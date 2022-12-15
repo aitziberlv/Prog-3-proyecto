@@ -763,7 +763,10 @@ public class BD {
 
    }
    
+   
+   
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
+	   
 	   if(cantidadProductos(tipo, color, precio, talla) > 0) {
 		   String sent = "";
 		   List<Producto>lproducto = new ArrayList<Producto>();
@@ -788,6 +791,61 @@ public class BD {
 		}
 	  }
 	return null; 
+   }
+   public static int getcodigopedido() {
+	   String sent = "";
+	   
+	   try {
+		   sent = "select codigo_pedido from pedido";
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   int n=0;
+		   while(rs.next()) {
+			   if (rs.getInt("codigo_pedido")>n) {
+				   n=rs.getInt("codigo_pedido");
+			   }
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   return n+1;
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return 0;
+	}
+	
+	   
+   }
+   
+   public static int getcodigoproducto() {
+	   String sent = "";
+	   
+	   try {
+		   sent = "select codigo_producto from producto";
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   int n=0;
+		   while(rs.next()) {
+			   if (rs.getInt("codigo_producto")>n) {
+				   n=rs.getInt("codigo_producto");
+			   }
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   return n+1;
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return 0;
+	}
+	
+	   
    }
    
    public static String getURLFOTO(Producto p) {

@@ -3,8 +3,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,7 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,6 +34,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -68,7 +72,8 @@ public class Ventana_Cliente extends JFrame{
 	private JLabel talla;
 	private JLabel valordebarra_l;
 	private JComboBox<Colorc> c;
-	private JTextField informacion;
+	private JLabel informacion;
+	private JPanel vl2;
 	private JLabel valordebarra_l2;
 	private JSlider preciobarra;
 	private JButton botonrecursividad;
@@ -79,28 +84,54 @@ public class Ventana_Cliente extends JFrame{
 	private JButton anyadir;
 	private JButton carrito;
 	private JPanel boton_r ;
+	private JLabel info_arriba;
 	private JTable tablaProductos;
 	private DefaultTableModel modeloDatosproductos = new DefaultTableModel();
 	private JScrollPane scrolTabla;
 	
-	private JScrollPane panelDeslizable ;	
+	private JButton b1;
+	private JButton b2;
+	private JButton b3;
+	private JButton b4;
+	private JButton b5;
 	
+	private JPanel t1;
+	private JPanel t2;
+	private JPanel t3;
+	private JPanel t4;
+	
+	private JPanel t5;
+	
+	private JScrollPane panelDeslizable ;	
+	private String usuario;
+	
+	public Ventana_Cliente(String usuario) throws HeadlessException {
+		super();
+		this.usuario = usuario;
+		inicializarVentana();
+	}
+
 	public Ventana_Cliente() {
 		inicializarVentana();
 	}
+	
 	private void inicializarVentana() {
 		this.setSize(900, 700);
-		this.setTitle("DEUSTO OUTLET COMPRAR");
+		this.setTitle("Cuenta de "+ usuario);
 		this.setLayout(new GridLayout(3,1));
 		panelDeslizable=new JScrollPane(); 
 		arriba = new JPanel(new GridLayout(1,1));
-		arriba1=new JPanel();
+		arriba1=new JPanel(new FlowLayout());
 		boton_r=new JPanel();
 		arriba2=new JPanel();
 		arriba3=new JPanel();
-
+		info_arriba=new JLabel("Gracias a esta aplicación podrás empezar a buscar productos de varias tiendas con las caracteristicas que deseas");
 		//labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
 		//labelRecursividad.setPreferredSize(new Dimension(400,200));
+		b1=new JButton("Mostrar todo");
+		b2=new JButton("Mostrar todo de un tipo determinado");
+		b3=new JButton("Mostrar todo de un color determinado");
+		b4=new JButton("Mostrar todo de una talla  determinada");
 		
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Ayuda para hacer mi compra");
@@ -109,15 +140,19 @@ public class Ventana_Cliente extends JFrame{
 		centro_izda.setLayout(new GridLayout(5,1));
 		centro_dcha = new JPanel();
 		abajo = new JPanel();
-		abajo.setLayout(new GridLayout(2,1));
+		abajo.setLayout(new GridLayout(3,1));
+		vl2=new JPanel();
 		valordebarra= new JPanel ();
 		arriba_texto_recursividad=new JPanel();
 		panelDeslizable.setViewportView(labelRecursividad);
 		cliente = new JLabel("");
 		Font fuente = new Font("Arial", 5, 50);
 
-		
-		
+		t1=new JPanel();
+		t2=new JPanel();
+		t3=new JPanel();
+		t4=new JPanel();
+		t5=new JPanel();
 		cliente = new JLabel("DEUSTO OUTLET");
 		Font fuentee = new Font("Arial", 1, 20);
 
@@ -137,22 +172,22 @@ public class Ventana_Cliente extends JFrame{
 		valordebarra_l2=new JLabel();
 		scrolTabla = new JScrollPane();
 		c = new JComboBox<Colorc>();
-		c.addItem(null);
+		
 		for (Colorc co:Colorc.values()) {
 			c.addItem(co);
 		}
-		informacion = new JTextField("Productos con esas caracteristicas: ",16);
-		informacion.setEditable(false);
+		informacion = new JLabel("Abajo puede ver los productos que tienen estas caracteristicas ");
+		
 		
 		tipos = new JComboBox<TipoProducto>();
-		tipos.addItem(null);
+		
 		for(TipoProducto tipo : TipoProducto.values()) {
 			tipos.addItem(tipo);
 			
 		}
 		
 		tallas = new JComboBox<Talla>();
-		tallas.addItem(null);
+		
 		for(Talla t : Talla.values()) {
 			tallas.addItem(t);
 		}
@@ -166,11 +201,12 @@ public class Ventana_Cliente extends JFrame{
 		carrito=new JButton("Ver carrito");
 		carrito.setForeground(Color.black);
 		carrito.setBackground(Color.white);
+		
 		carrito.addActionListener(new ActionListener( ){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Ventana_Carrito vcc =new Ventana_Carrito();
+				Ventana_Carrito vcc =new Ventana_Carrito(usuario);
 				vcc.setVisible(true);
 				setVisible(false);
 				vcc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
@@ -284,47 +320,84 @@ public class Ventana_Cliente extends JFrame{
 		//boton_r.add(botonrecursividad);
 		arriba1.add(botonrecursividad);
 		arriba.add(arriba1);
+		//arriba1.add(info_arriba);
+		
 		//arriba.add(arriba2);
 		//arriba.add(arriba3);
 		// lo de abajo si queremos que quede centrado hacemos lo mismo 
-		centro_izda.add(tipo);
+		t2.add(tipo);
+		centro_izda.add(t2);
+		
 		centro_izda.add(tipos);
-		centro_izda.add(color);
+		t3.add(color);
+		centro_izda.add(t3);
+		
 		centro_izda.add(c);
-		centro_izda.add(valordebarra_l2);
+		
+		vl2.add(valordebarra_l2);
+		centro_izda.add(vl2);
+		
 		centro_izda.add(valordebarra);
-		centro_izda.add(precio, BorderLayout.CENTER);
+		t4.add(precio);
+		centro_izda.add(t4);
 		centro_izda.add(preciobarra);
 		valordebarra.add(valordebarra_l);
-		
-		centro_izda.add(talla);
+		t1.add(talla);
+		centro_izda.add(t1);
 		centro_izda.add(tallas);
 		centro_dcha.add(buscar);
+		
+		centro_dcha.add(b1);
+		centro_dcha.add(b2);
+		centro_dcha.add(b3);
+		centro_dcha.add(b4);
 		centro_dcha.add(carrito);
+		b1.setBackground(Color.white);
+		b2.setBackground(Color.white);
+		b3.setBackground(Color.white);
+		b4.setBackground(Color.white);
 		centro.add(centro_izda);
 		centro.add(centro_dcha);
+		t5.add(informacion);
+		abajo.add(t5);
 		
-		abajo.add(informacion);
 		abajo.add(scrolTabla);
 		abajo.add(anyadir);
-		
-
+		anyadir.setBackground(Color.white);
 		Color color1= new Color(243,242,235);
+		Color colori= new Color(224,228,204);
+		Color colorj= new Color(228,251,243);
 		this.add(arriba);
 		this.add(centro);
 		this.add(abajo);
+		vl2.setBackground(colori);
 		Color colo1= new Color(255,255,216);
 		arriba.setBackground(colo1);
+		valordebarra.setBackground(colori);
 		arriba.setBackground(color1);
 		abajo.setBackground(colo1);
 		centro.setBackground(colo1);
 		centro_izda.setBackground(colo1);
-		centro_dcha.setBackground(colo1);
+		centro_dcha.setBackground(Color.white);
 		this.setLocationRelativeTo(null);
 		this.setBackground(colo1);
-		
+		Border b;
+		b = BorderFactory.createLineBorder(Color.black,2);
+		Border b2;
+		b2 = BorderFactory.createLineBorder(Color.black);
+		t1.setBorder(b2);
+		informacion.setFont(fuentee);
+		t1.setBackground(Color.white);
+		t2.setBorder(b2);
+		t2.setBackground(Color.white);
+		t3.setBorder(b2);
+		t3.setBackground(Color.white);
+		t4.setBorder(b2);
+		t4.setBackground(Color.white);
+		abajo.setBorder(b2);
+		centro_izda.setBorder(b);
 		botonrecursividad.setBackground(Color.white);
-		
+		t5.setBackground(colorj);
 		anyadir.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -344,6 +417,15 @@ public class Ventana_Cliente extends JFrame{
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\Fotosproductos\\fondo_ropa_arriba.jpg")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	        arriba1.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+		
+		
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        //JPanel panel = (JPanel) this.getContentPane();
+	       centro_dcha.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }

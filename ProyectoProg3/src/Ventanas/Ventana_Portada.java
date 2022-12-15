@@ -1,16 +1,24 @@
 package Ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Ventanasexternas.FondoSwing;
 
 public class Ventana_Portada extends JFrame{
 
@@ -35,12 +43,12 @@ public class Ventana_Portada extends JFrame{
 		this.setSize(900, 700);
 		setLocationRelativeTo(null);
 		this.setTitle("DEUSTO OUTLET");
-		this.setLayout(new GridLayout(3,1));
+		this.setLayout(new BorderLayout());
 		
 		titulo = new JPanel();
 		abajo = new JPanel();
 		
-		lblTitulo = new JLabel("BIENVENID@ A DEUSTO OUTLET");
+		lblTitulo = new JLabel("BIENVENID@ A ");
 		lblTitulo.setFont(new Font("Serif", Font.PLAIN, 50));
 		
 	//	ImageIcon imagen = new ImageIcon(getClass().getResource("Imagenes/dibujo.jpg"));
@@ -64,16 +72,22 @@ public class Ventana_Portada extends JFrame{
 		});
 		
 		
-		titulo.add(lblTitulo);
+		//titulo.add(lblTitulo);
 		
-		abajo.add(comenzar);
+		//abajo.add(comenzar);
 		
-		this.add(titulo);
-		this.add(abajo);
+		this.add(lblTitulo,BorderLayout.NORTH);
+		this.add(comenzar,BorderLayout.SOUTH);
 		
 		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
-		
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        JPanel panel = (JPanel) this.getContentPane();
+	        panel.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
 		
 	}
 	

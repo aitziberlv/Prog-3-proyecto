@@ -2,12 +2,18 @@ package Ventanas;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +31,7 @@ import Clasesprincipales.Colorc;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.TipoProducto;
+import Ventanasexternas.FondoSwing;
 
 public class Ventana_Pagar extends JFrame {
 
@@ -49,7 +56,7 @@ public class Ventana_Pagar extends JFrame {
 	private JLabel Descripcion;
 	private JLabel Numero_de_pedido;
 	private JLabel Numero_de_pedido2;
-	private JLabel pagar;
+	private JLabel pagarl;
 	/**
 	 * Jtext
 	 */
@@ -62,9 +69,22 @@ public class Ventana_Pagar extends JFrame {
 	 */
 	private JButton Pagar;
 	private JButton Anterior;
+	/**
+	 * usuario()
+	 */
+	private String Usuario;
     /**
     * inicializar la ventana
     */
+	
+	
+	public Ventana_Pagar(String usuario) throws HeadlessException {
+		super();
+		Usuario = usuario;
+		configurarVentana();
+		inicilizarVentana();
+	}
+
 	public Ventana_Pagar() {
 		configurarVentana();
 		inicilizarVentana();
@@ -94,14 +114,15 @@ public class Ventana_Pagar extends JFrame {
 		pnl_intermedio=new JPanel ();
 		pnl_abajo=new JPanel ();
 		
-		pagar=new JLabel("PAGAR");
-		Descripcion = new JLabel ("Ingrese los datos de su tarjeta: ");
+		pagarl=new JLabel("PAGAR");
+		Descripcion = new JLabel ("Ingrese los datos de su tarjeta ");
 		NumeroTarjeta = new JLabel ("Número de tarjeta");
+		
 		FechaVencimiento = new JLabel ("Fecha de vencimiento (0000):");
 		CVV = new JLabel ("CVV");
 		Direccion = new JLabel ("Direccion de Facturacion");
 		
-		Numero_de_pedido=new JLabel("Numero de pedido:");
+		Numero_de_pedido=new JLabel("Numero de pedido:"+ BD.getcodigopedido());
 		Numero_de_pedido2=new JLabel("");
 		
 		
@@ -116,8 +137,8 @@ public class Ventana_Pagar extends JFrame {
 		Direccion.setHorizontalAlignment(JLabel.CENTER);
 		
 		Pagar = new JButton ("Pagar");
-		pagar.setForeground(Color.black);
-		pagar.setBackground(Color.white);
+		pagarl.setForeground(Color.black);
+		pagarl.setBackground(Color.white);
 		
 		Anterior = new JButton ("<");
 		Anterior.setForeground(Color.black);
@@ -135,6 +156,15 @@ public class Ventana_Pagar extends JFrame {
 		Pagar.setBorder(compound);
 		
 		pnl_intermedio.add(Descripcion);
+		Color color1= new Color(243,242,235);
+		Color colori= new Color(224,228,204);
+		Color colorj= new Color(228,251,243);
+		pnl_intermedio.setBackground(colori);
+		Border b2;
+		b2 = BorderFactory.createLineBorder(Color.black);
+		FechaVencimiento.setBorder(b2);
+		//CVV.setBorder(b2);
+		Direccion.setBorder(b2);
 		pnl_center.add(NumeroTarjeta);
 		pnl_center.add(aNumeroTarjeta);
 		pnl_center.add(FechaVencimiento);
@@ -145,14 +175,14 @@ public class Ventana_Pagar extends JFrame {
 		pnl_center.add(aDireccion);
 		pnl_centro_derecha.add(Numero_de_pedido);
 		pnl_centro_derecha.add(Numero_de_pedido2);
-		pnl_titulo.add(pagar);
+		pnl_titulo.add(pagarl);
 		this.add(pnl_titulo);
 		this.add(pnl_intermedio);
 		centro.add(pnl_center);
 		centro.add(pnl_centro_derecha);
 		this.add(centro);
 		this.add(pnl_btn);
-		Color color1= new Color(243,242,235);
+		Color color11= new Color(243,242,235);
 		Color color2= new Color(242,235,243);
 		pnl_centro_derecha.setBackground(color2);
 		pnl_center.setBackground(color1);
@@ -199,7 +229,7 @@ public class Ventana_Pagar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Ventana_Carrito vc = new Ventana_Carrito();
+				Ventana_Carrito vc = new Ventana_Carrito(Usuario);
 				vc.setVisible(true);
 				setVisible(false);
 				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
@@ -208,10 +238,38 @@ public class Ventana_Pagar extends JFrame {
 			}
 			
 		});
-		
+		Border b;
+		b = BorderFactory.createLineBorder(Color.black,2);
+		pnl_center.setBorder(b);
+		Font fuenteS = new Font("Arial",Font.BOLD,100);
+		Font fuenteS2 = new Font("Arial",Font.BOLD,35);
+		Descripcion.setFont(fuenteS2);
+		pagarl.setFont(fuenteS);
+		//NumeroTarjeta.setBorder(b2);
+		pagarl.setForeground(Color.white);
 		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
-		
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        //JPanel panel = (JPanel) this.getContentPane();
+	        pnl_centro_derecha.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\f.png")));
+	        //JPanel panel = (JPanel) this.getContentPane();
+	        pnl_titulo.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+		try {
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\cargar.png")));
+	        //JPanel panel = (JPanel) this.getContentPane();
+	        pnl_btn.setBorder(fondo);
+	    } catch (IOException ex) {
+	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+	    }
 		
 	}
 		public static void main(String[] args) {
