@@ -240,17 +240,17 @@ public class Ventana_Carrito extends JFrame{
 		//abajoDer.setBackground(Color.white);
 		carrito.setFont(fuenteS);
 		lista.setBackground(colorj);
-		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\cf.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/cf.png")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	       titulo.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\do2.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/do2.png")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	       abajoDer.setBorder(fondo);
 	    } catch (IOException ex) {

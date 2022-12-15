@@ -410,11 +410,11 @@ public class Ventana_Cliente extends JFrame{
 			}
 		});
 		
-		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\Fotosproductos\\fondo_ropa_arriba.jpg")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("Fotosproductos/fondo_ropa_arriba.jpg")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	        arriba1.setBorder(fondo);
 	    } catch (IOException ex) {
@@ -423,7 +423,7 @@ public class Ventana_Cliente extends JFrame{
 		
 		
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/deustoOutlet.jpg.png")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	       centro_dcha.setBorder(fondo);
 	    } catch (IOException ex) {

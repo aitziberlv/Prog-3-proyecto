@@ -79,10 +79,10 @@ public class Ventana_Portada extends JFrame{
 		this.add(lblTitulo,BorderLayout.NORTH);
 		this.add(comenzar,BorderLayout.SOUTH);
 		
-		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/deustoOutlet.jpg.png")));
 	        JPanel panel = (JPanel) this.getContentPane();
 	        panel.setBorder(fondo);
 	    } catch (IOException ex) {

@@ -340,11 +340,11 @@ public class Ventana_IS extends JFrame{
 		panel_arriba.setBackground(color1);
 		anterior.setVisible(false);
 		
-		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\do2.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/do2.png")));
 	       // JPanel panel = (JPanel) this.getContentPane();
 	        panel_arriba.setBorder(fondo);
 	    } catch (IOException ex) {
