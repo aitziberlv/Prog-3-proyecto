@@ -217,22 +217,22 @@ public class Ventana_Cliente extends JFrame{
 		Font fuente = new Font( "Arial", Font.PLAIN, 13);
 		Font fuenteS = new Font("Arial",Font.BOLD,13);
 		
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-			Component etiqueta = super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, column );
+				Component etiqueta = super.getTableCellRendererComponent( table, value, isSelected, hasFocus, row, column );
+				
+				etiqueta.setFont(fuente);
+				JLabel l = (JLabel) etiqueta;
+				l.setHorizontalAlignment(JLabel.CENTER);
+				
+				if (isSelected){
+				    etiqueta.setBackground (new Color(135, 206,235));
+				    etiqueta.setFont(fuenteS);
+				}else {
+				    etiqueta.setBackground (new Color(224,255,255));
+				}
 			
-			etiqueta.setFont(fuente);
-			JLabel l = (JLabel) etiqueta;
-			l.setHorizontalAlignment(JLabel.CENTER);
-			
-			if (isSelected){
-			    etiqueta.setBackground (new Color(135, 206,235));
-			    etiqueta.setFont(fuenteS);
-			}else {
-			    etiqueta.setBackground (new Color(224,255,255));
-			}
-		
-			return etiqueta;
+				return etiqueta;
 		}
 		
 	});
