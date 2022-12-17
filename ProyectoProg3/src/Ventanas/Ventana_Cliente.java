@@ -234,16 +234,17 @@ public class Ventana_Cliente extends JFrame{
 		
 		tablaProductos.setModel( modeloDatosproductos );
 		
-		tablaProductos.getColumnModel().getColumn(0).setMinWidth(90);
-		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(90);
-		tablaProductos.getColumnModel().getColumn(1).setMinWidth(200);
-		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(200);
-		tablaProductos.getColumnModel().getColumn(2).setMinWidth(90);
-		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(90);
-		tablaProductos.getColumnModel().getColumn(3).setMinWidth(90);
-		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(90);		
-		tablaProductos.getColumnModel().getColumn(4).setMinWidth(90);
-		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(90);
+		tablaProductos.getColumnModel().getColumn(0).setMinWidth(200);
+		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(200);
+		tablaProductos.getColumnModel().getColumn(1).setMinWidth(300);
+		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(300);
+		tablaProductos.getColumnModel().getColumn(2).setMinWidth(200);
+		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(200);
+		tablaProductos.getColumnModel().getColumn(3).setMinWidth(200);
+		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(200);		
+		tablaProductos.getColumnModel().getColumn(4).setMinWidth(300);
+		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(300);
+
 
 		
 		//Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
