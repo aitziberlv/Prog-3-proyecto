@@ -234,22 +234,24 @@ public class Ventana_Cliente extends JFrame{
 			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
 			
 		}
+		usando=BD.getProductos();
+
 		
 		
 		//tamaño 
 		
 		tablaProductos.setModel( modeloDatosproductos );
 		
-		tablaProductos.getColumnModel().getColumn(0).setMinWidth(200);
-		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(200);
+		tablaProductos.getColumnModel().getColumn(0).setMinWidth(210);
+		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(210);
 		tablaProductos.getColumnModel().getColumn(1).setMinWidth(300);
 		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(300);
-		tablaProductos.getColumnModel().getColumn(2).setMinWidth(200);
-		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(200);
-		tablaProductos.getColumnModel().getColumn(3).setMinWidth(200);
-		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(200);		
-		tablaProductos.getColumnModel().getColumn(4).setMinWidth(300);
-		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(300);
+		tablaProductos.getColumnModel().getColumn(2).setMinWidth(210);
+		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(210);
+		tablaProductos.getColumnModel().getColumn(3).setMinWidth(250);
+		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(250);		
+		tablaProductos.getColumnModel().getColumn(4).setMinWidth(250);
+		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(250);
 
 
 		
@@ -299,7 +301,7 @@ public class Ventana_Cliente extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
-				      modeloDatosproductos.removeRow(i );
+				      modeloDatosproductos.removeRow(i);
 				   } 
 				
 				for(Producto p : BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) )) {
@@ -311,6 +313,42 @@ public class Ventana_Cliente extends JFrame{
 			}
 		});
 		
+		b1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
+				      modeloDatosproductos.removeRow(i);
+				   }
+				
+				
+				for(Producto p : BD.getProductos()) {
+					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					usando=BD.getProductos();
+				}
+				
+			}
+		});
+
+		
+		b2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
+				      modeloDatosproductos.removeRow(i);
+				   } 
+				
+				for(Producto p : BD.buscarProductosTipos(TipoProducto.valueOf(tipos.getSelectedItem().toString()))) {
+					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					usando=BD.buscarProductosTipos(TipoProducto.valueOf(tipos.getSelectedItem().toString()));
+				}				
+				
+			}
+		});
 		
 		//Añadir el valor del precio
 		preciobarra.addChangeListener(new ChangeListener() {
