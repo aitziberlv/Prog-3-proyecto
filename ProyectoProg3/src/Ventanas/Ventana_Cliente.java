@@ -306,8 +306,9 @@ public class Ventana_Cliente extends JFrame{
 				
 				for(Producto p : BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) )) {
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
-					usando=BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) );
 				}
+				usando=BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) );
+
 				
 				
 			}
@@ -326,8 +327,9 @@ public class Ventana_Cliente extends JFrame{
 				
 				for(Producto p : BD.getProductos()) {
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
-					usando=BD.getProductos();
 				}
+				usando=BD.getProductos();
+
 				
 			}
 		});
@@ -342,13 +344,37 @@ public class Ventana_Cliente extends JFrame{
 				      modeloDatosproductos.removeRow(i);
 				   } 
 				
-				for(Producto p : BD.buscarProductosTipos(TipoProducto.valueOf(tipos.getSelectedItem().toString()))) {
+				for(Producto p : BD.buscarProductoTipo(TipoProducto.valueOf(tipos.getSelectedItem().toString()))) {
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
-					usando=BD.buscarProductosTipos(TipoProducto.valueOf(tipos.getSelectedItem().toString()));
-				}				
+				}	
+				usando=BD.buscarProductoTipo(TipoProducto.valueOf(tipos.getSelectedItem().toString()));
+
 				
 			}
 		});
+		
+		
+		b3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
+		
+		b4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
 		
 		//Añadir el valor del precio
 		preciobarra.addChangeListener(new ChangeListener() {

@@ -835,7 +835,7 @@ public class BD {
    }
    
    
-   public static List<Producto> buscarProductosTipos(TipoProducto tipo) {
+   public static List<Producto> buscarProductoTipo(TipoProducto tipo) {
 	   
 	 //  if(cantidadProductos(tipo, color, precio, talla) > 0) {
 		   String sent = "";
