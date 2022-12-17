@@ -247,24 +247,24 @@ public class Ventana_Pagar extends JFrame {
 		pagarl.setFont(fuenteS);
 		//NumeroTarjeta.setBorder(b2);
 		pagarl.setForeground(Color.white);
-		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
+		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\deustoOutlet.jpg.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/deustoOutlet.jpg.png")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	        pnl_centro_derecha.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\f.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/f.png")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	        pnl_titulo.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 		try {
-	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("C:\\Users\\aiitz\\eclipse workspace 2\\Prog-3-proyecto\\ProyectoProg3\\FotosTiendas\\cargar.png")));
+	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/cargar.png")));
 	        //JPanel panel = (JPanel) this.getContentPane();
 	        pnl_btn.setBorder(fondo);
 	    } catch (IOException ex) {
