@@ -299,11 +299,8 @@ public class Ventana_Cliente extends JFrame{
 		buscar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
-				      modeloDatosproductos.removeRow(i);
-				   } 
-				
+				modeloDatosproductos.setRowCount(0);
+
 				for(Producto p : BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) )) {
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
 				}
@@ -318,13 +315,8 @@ public class Ventana_Cliente extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
-				      modeloDatosproductos.removeRow(i);
-				   }
-				
-				
+				modeloDatosproductos.setRowCount(0);
+		
 				for(Producto p : BD.getProductos()) {
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
 				}
@@ -339,12 +331,10 @@ public class Ventana_Cliente extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				for(int i=modeloDatosproductos.getRowCount()-1; i >= 0; i--){
-				      modeloDatosproductos.removeRow(i);
-				   } 
+				modeloDatosproductos.setRowCount(0); 
 				
 				for(Producto p : BD.buscarProductoTipo(TipoProducto.valueOf(tipos.getSelectedItem().toString()))) {
+					System.out.println(p);
 					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
 				}	
 				usando=BD.buscarProductoTipo(TipoProducto.valueOf(tipos.getSelectedItem().toString()));
@@ -358,8 +348,13 @@ public class Ventana_Cliente extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				modeloDatosproductos.setRowCount(0);
 				
+				for(Producto p : BD.buscarProductoColor(Colorc.valueOf(c.getSelectedItem().toString()))) {
+					System.out.println(p);
+					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+				}	
+				usando=BD.buscarProductoColor(Colorc.valueOf(c.getSelectedItem().toString()));
 			}
 		});
 		
@@ -369,8 +364,13 @@ public class Ventana_Cliente extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				modeloDatosproductos.setRowCount(0);
 				
+				for(Producto p : BD.buscarProductoTalla(Talla.valueOf(tallas.getSelectedItem().toString()))) {
+					System.out.println(p);
+					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+				}	
+				usando=BD.buscarProductoTalla(Talla.valueOf(tallas.getSelectedItem().toString()));				
 			}
 		});
 		
