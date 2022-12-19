@@ -151,6 +151,14 @@ public class Ventana_Carrito extends JFrame{
 				}
 				else {
 					mSelec.removeElement(lSelec.getSelectedValue());
+					Ventana_Cliente.getCarrito().remove(lSelec.getSelectedValue());
+					System.out.println(Ventana_Cliente.getCarrito());
+//					for(int i=0; i<mSelec.size(); i++) {
+//						if(mSelec.get(i) == lSelec.getSelectedValue()) {
+//							precio.setText(precio - lSelec.getSelectedValue());
+//						}
+//					}
+					precio.setText("Total a pagar: " + Ventana_Cliente.getPago() );
 					
 					
 				}
