@@ -786,7 +786,7 @@ public class BD {
 	   int cantidad = 0;
 	   try {
 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
-		   sent = "select cantidad from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
+		   sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
 		   ResultSet rs = stm.executeQuery(sent);
 		   while(rs.next()) {
 			   cantidad = rs.getInt("cantidad");

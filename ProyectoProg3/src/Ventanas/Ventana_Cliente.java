@@ -219,7 +219,7 @@ public class Ventana_Cliente extends JFrame{
 			
 		});
 		
-		Image img= new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png").getImage();
+		Image img= new ImageIcon("deustoOutlet.jpg.png").getImage();
 		ImageIcon img2=new ImageIcon(img.getScaledInstance(140, 140, Image.SCALE_SMOOTH));
 		cliente.setIcon(img2);
 		
@@ -302,7 +302,9 @@ public class Ventana_Cliente extends JFrame{
 				modeloDatosproductos.setRowCount(0);
 
 				for(Producto p : BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) )) {
-					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
+						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					}
 				}
 				usando=BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) );
 
@@ -318,7 +320,9 @@ public class Ventana_Cliente extends JFrame{
 				modeloDatosproductos.setRowCount(0);
 		
 				for(Producto p : BD.getProductos()) {
-					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
+						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					}
 				}
 				usando=BD.getProductos();
 
@@ -334,8 +338,9 @@ public class Ventana_Cliente extends JFrame{
 				modeloDatosproductos.setRowCount(0); 
 				
 				for(Producto p : BD.buscarProductoTipo(TipoProducto.valueOf(tipos.getSelectedItem().toString()))) {
-					System.out.println(p);
-					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
+						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					}
 				}	
 				usando=BD.buscarProductoTipo(TipoProducto.valueOf(tipos.getSelectedItem().toString()));
 
@@ -351,8 +356,9 @@ public class Ventana_Cliente extends JFrame{
 				modeloDatosproductos.setRowCount(0);
 				
 				for(Producto p : BD.buscarProductoColor(Colorc.valueOf(c.getSelectedItem().toString()))) {
-					System.out.println(p);
-					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
+						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					}
 				}	
 				usando=BD.buscarProductoColor(Colorc.valueOf(c.getSelectedItem().toString()));
 			}
@@ -367,8 +373,9 @@ public class Ventana_Cliente extends JFrame{
 				modeloDatosproductos.setRowCount(0);
 				
 				for(Producto p : BD.buscarProductoTalla(Talla.valueOf(tallas.getSelectedItem().toString()))) {
-					System.out.println(p);
-					modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
+						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+					}
 				}	
 				usando=BD.buscarProductoTalla(Talla.valueOf(tallas.getSelectedItem().toString()));				
 			}
