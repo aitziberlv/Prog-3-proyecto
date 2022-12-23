@@ -40,7 +40,7 @@ public class Ventana_IS extends JFrame{
 	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField telefono;
-	private JTextField dni;
+	public static JTextField dni;
 	private JTextField fechaNa;
 	private JTextField direccion;
 	

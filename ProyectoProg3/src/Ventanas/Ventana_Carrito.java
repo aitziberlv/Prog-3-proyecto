@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -218,14 +219,11 @@ public class Ventana_Carrito extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				for(int indice = 0; indice < mSelec.getSize();indice++)
-//				{
-//				   Component s= lSelec.getComponent(indice);
-//				   String s2= s.toString();
-//				   System.out.println( s2.split(","));
-//				   System.out.println( s);
-//				    
-//				}
+				Date fecha = new Date();
+				for(int indice = 0; indice < mSelec.getSize();indice++){
+				   BD.InsertarPedido(Ventana_IS.dni.getText(), "En proceso", fecha.toString(), mSelec.get(indice).getCodigo());
+				    
+				}
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
 				
 			}

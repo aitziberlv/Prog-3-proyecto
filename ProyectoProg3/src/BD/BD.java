@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -104,7 +105,7 @@ public class BD {
 			if (veces1==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com4 = "create table pedido(codigo_pedido INTEGER autoincrement, dni String, estado String, fecha_compra String, codigo_producto INTEGER)"; //clave externa del dni del usuario. 
+			String com4 = "create table pedido(codigo_pedido INTEGER primary key autoincrement, dni String, estado String, fecha_compra String, codigo_producto INTEGER)"; //clave externa del dni del usuario. 
 			stmt.executeUpdate("drop table if exists pedido");
 			int veces2=stmt.executeUpdate(com4);
 			if (veces2==1) {
@@ -122,7 +123,7 @@ public class BD {
 			if (veces4==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com5 = "create table compra(codigo_pertenece INTEGER autoincrement, id_pedido integer ,id_producto integer)";
+			String com5 = "create table compra(codigo_pertenece INTEGER primary key autoincrement, id_pedido integer ,id_producto integer)";
 			stmt.executeUpdate("drop table if exists compra");
 			int veces=stmt.executeUpdate(com5);
 			if (veces==1) {
@@ -471,7 +472,8 @@ public class BD {
 			
 			
 			//Insertar pedidos
-			InsertarPedido("45344345L", "Comprado", "12-10-2022", veces);
+			Date fecha = new Date();
+			InsertarPedido("45344345L", "Comprado", fecha.toString(), veces);
 //			InsertarPedido(2, "74544345L");
 //			InsertarPedido(3, "68458021D");
 //			InsertarPedido(4, "45345678H");
@@ -739,7 +741,7 @@ public class BD {
     	Statement stmt;
 		try {
 			stmt = abrirlaconexion("DeustoOutlet.db");
-			String p ="insert into pedido (dni, estado, fecha_compra) values ('"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
+			String p ="insert into pedido (dni, estado, fecha_compra, codigo_producto) values ('"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
 	    	int val = stmt.executeUpdate(p);
 	    	 if(val != 1) {
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
