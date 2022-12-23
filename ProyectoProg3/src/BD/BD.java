@@ -104,7 +104,7 @@ public class BD {
 			if (veces1==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com4 = "create table pedido(codigo_pedido INTEGER, dni String, estado String, fecha_compra String, codigo_producto INTEGER)"; //clave externa del dni del usuario. 
+			String com4 = "create table pedido(codigo_pedido INTEGER autoincrement, dni String, estado String, fecha_compra String, codigo_producto INTEGER)"; //clave externa del dni del usuario. 
 			stmt.executeUpdate("drop table if exists pedido");
 			int veces2=stmt.executeUpdate(com4);
 			if (veces2==1) {
@@ -122,7 +122,7 @@ public class BD {
 			if (veces4==1) {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
-			String com5 = "create table compra(codigo_pertenece INTEGER, id_pedido integer ,id_producto integer)";
+			String com5 = "create table compra(codigo_pertenece INTEGER autoincrement, id_pedido integer ,id_producto integer)";
 			stmt.executeUpdate("drop table if exists compra");
 			int veces=stmt.executeUpdate(com5);
 			if (veces==1) {
@@ -471,7 +471,7 @@ public class BD {
 			
 			
 			//Insertar pedidos
-			InsertarPedido(1, "45344345L", "Comprado", "12-10-2022", veces);
+			InsertarPedido("45344345L", "Comprado", "12-10-2022", veces);
 //			InsertarPedido(2, "74544345L");
 //			InsertarPedido(3, "68458021D");
 //			InsertarPedido(4, "45345678H");
@@ -519,84 +519,132 @@ public class BD {
 			InsertarTienda(t6,"/Fotos/zara.jpg");
 			
 			//insertar relacion de compra. 
-			InsertarCompra(1,1,p1.getCodigo());
-			InsertarCompra(1,1,p2.getCodigo());
-			InsertarCompra(1,1,p220.getCodigo());
-			InsertarCompra(1,1,p150.getCodigo());
-			InsertarCompra(1,1,p10.getCodigo());
+			InsertarCompra(1,p1.getCodigo());
+			InsertarCompra(1,p2.getCodigo());
+			InsertarCompra(1,p220.getCodigo());
+			InsertarCompra(1,p150.getCodigo());
+			InsertarCompra(1,p10.getCodigo());
 
-			InsertarCompra(2,2,p2.getCodigo());
-			InsertarCompra(2,2,p11.getCodigo());
-			InsertarCompra(2,2,p230.getCodigo());
-			InsertarCompra(2,2,p33.getCodigo());
-			InsertarCompra(2,2,p44.getCodigo());
-			InsertarCompra(2,2,p5.getCodigo());
-			InsertarCompra(2,2,p66.getCodigo());
-			InsertarCompra(2,2,p99.getCodigo());
+			InsertarCompra(2,p2.getCodigo());
+			InsertarCompra(2,p11.getCodigo());
+			InsertarCompra(2,p230.getCodigo());
+			InsertarCompra(2,p33.getCodigo());
+			InsertarCompra(2,p44.getCodigo());
+			InsertarCompra(2,p5.getCodigo());
+			InsertarCompra(2,p66.getCodigo());
+			InsertarCompra(2,p99.getCodigo());
 
-			InsertarCompra(3,3,p2604.getCodigo());
-			InsertarCompra(3,3,p5555.getCodigo());
-			InsertarCompra(3,3,p3333.getCodigo());
-			InsertarCompra(3,3,p2204.getCodigo());
+			InsertarCompra(3,p2604.getCodigo());
+			InsertarCompra(3,p5555.getCodigo());
+			InsertarCompra(3,p3333.getCodigo());
+			InsertarCompra(3,p2204.getCodigo());
 
-			InsertarCompra(4,4,p88.getCodigo());
-			InsertarCompra(4,4,p2001.getCodigo());
+			InsertarCompra(4,p88.getCodigo());
+			InsertarCompra(4,p2001.getCodigo());
 
-			InsertarCompra(5,5,p555.getCodigo());
-			InsertarCompra(5,5,p1402.getCodigo());
-			InsertarCompra(5,5,p888.getCodigo());
-			InsertarCompra(5,5,p2102.getCodigo());
-			InsertarCompra(5,5,p2402.getCodigo());
-			InsertarCompra(5,5,p111.getCodigo());
-			InsertarCompra(5,5,p102.getCodigo());
-			InsertarCompra(5,5,p333.getCodigo());
-			InsertarCompra(5,5,p222.getCodigo());
+			InsertarCompra(5,p555.getCodigo());
+			InsertarCompra(5,p1402.getCodigo());
+			InsertarCompra(5,p888.getCodigo());
+			InsertarCompra(5,p2102.getCodigo());
+			InsertarCompra(5,p2402.getCodigo());
+			InsertarCompra(5,p111.getCodigo());
+			InsertarCompra(5,p102.getCodigo());
+			InsertarCompra(5,p333.getCodigo());
+			InsertarCompra(5,p222.getCodigo());
 
-			InsertarCompra(6,6,p2001.getCodigo());
-			InsertarCompra(6,6,p1101.getCodigo());
-			InsertarCompra(6,6,p2601.getCodigo());
-			InsertarCompra(6,6,p55.getCodigo());
+			InsertarCompra(6,p2001.getCodigo());
+			InsertarCompra(6,p1101.getCodigo());
+			InsertarCompra(6,p2601.getCodigo());
+			InsertarCompra(6,p55.getCodigo());
 
-			InsertarCompra(7,7,p1.getCodigo());
-			InsertarCompra(7,7,p2.getCodigo());
-			InsertarCompra(7,7,p200.getCodigo());
-			InsertarCompra(7,7,p150.getCodigo());
-			InsertarCompra(7,7,p120.getCodigo());
-			InsertarCompra(7,7,p5.getCodigo());
+			InsertarCompra(7,p1.getCodigo());
+			InsertarCompra(7,p2.getCodigo());
+			InsertarCompra(7,p200.getCodigo());
+			InsertarCompra(7,p150.getCodigo());
+			InsertarCompra(7,p120.getCodigo());
+			InsertarCompra(7,p5.getCodigo());
 
-			InsertarCompra(8,8,p101.getCodigo());
-			InsertarCompra(8,8,p101.getCodigo());
-			InsertarCompra(8,8,p101.getCodigo());
+			InsertarCompra(8,p101.getCodigo());
+			InsertarCompra(8,p101.getCodigo());
+			InsertarCompra(8,p101.getCodigo());
 
-			InsertarCompra(9, 9,p8.getCodigo());
-			InsertarCompra(9, 9, p5.getCodigo());
-			InsertarCompra(9, 9, p200.getCodigo());
-			InsertarCompra(9, 9, p2.getCodigo());
-			InsertarCompra(9, 9, p130.getCodigo());
+			InsertarCompra(9,p8.getCodigo());
+			InsertarCompra(9, p5.getCodigo());
+			InsertarCompra(9, p200.getCodigo());
+			InsertarCompra(9, p2.getCodigo());
+			InsertarCompra(9, p130.getCodigo());
 			
-			InsertarCompra(10,10,p2501.getCodigo());
-			InsertarCompra(10,10,p130.getCodigo());
-			InsertarCompra(10,10,p2402.getCodigo());
-			InsertarCompra(10,10,p5.getCodigo());
-			InsertarCompra(10,10,p55.getCodigo());
+			InsertarCompra(10,p2501.getCodigo());
+			InsertarCompra(10,p130.getCodigo());
+			InsertarCompra(10,p2402.getCodigo());
+			InsertarCompra(10,p5.getCodigo());
+			InsertarCompra(10,p55.getCodigo());
 			
-			InsertarCompra(11, 11,p2601.getCodigo());
-			InsertarCompra(11, 11,p2601.getCodigo());
-			InsertarCompra(11, 11,p2.getCodigo());
+			InsertarCompra(11,p2601.getCodigo());
+			InsertarCompra(11,p2601.getCodigo());
+			InsertarCompra(11,p10.getCodigo());
+			InsertarCompra(11,p7777.getCodigo());
+			InsertarCompra(16,p2601.getCodigo());
 			
-			InsertarCompra(12, 12,p1.getCodigo());
-			InsertarCompra(13, 13,p5.getCodigo());
-			InsertarCompra(14, 14,p7.getCodigo());
-			InsertarCompra(15, 15,p7777.getCodigo());
-			InsertarCompra(16, 16,p8.getCodigo());
-			InsertarCompra(17, 17,p33.getCodigo());
-			InsertarCompra(18, 18,p444.getCodigo());
-			InsertarCompra(19, 19,p2403.getCodigo());
-			InsertarCompra(20,20,p2501.getCodigo());
-			InsertarCompra(21, 21,p2101.getCodigo());
+			InsertarCompra(12,p1.getCodigo());
+			InsertarCompra(12,p5.getCodigo());
+			InsertarCompra(12,p3.getCodigo());
+			InsertarCompra(12,p4.getCodigo());
+			InsertarCompra(12,p2.getCodigo());
 			
+			InsertarCompra(13,p5.getCodigo());
+			InsertarCompra(13,p8.getCodigo());
+			InsertarCompra(13,p66.getCodigo());
+			InsertarCompra(13,p4.getCodigo());
 			
+			InsertarCompra(14,p7.getCodigo());
+			InsertarCompra(14,p1503.getCodigo());
+			InsertarCompra(14,p1703.getCodigo());
+			InsertarCompra(14,p1901.getCodigo());
+			InsertarCompra(14,p2101.getCodigo());
 			
+			InsertarCompra(15,p7777.getCodigo());
+			InsertarCompra(15,p2001.getCodigo());
+			InsertarCompra(15,p2402.getCodigo());
+			InsertarCompra(15,p777.getCodigo());
+			InsertarCompra(15,p240.getCodigo());
+			
+			InsertarCompra(16,p8.getCodigo());
+			InsertarCompra(16,p2503.getCodigo());
+			InsertarCompra(16,p110.getCodigo());
+			InsertarCompra(16,p1703.getCodigo());
+			InsertarCompra(16,p222.getCodigo());
+			
+			InsertarCompra(17,p2101.getCodigo());
+			InsertarCompra(17,p2201.getCodigo());
+			InsertarCompra(17,p210.getCodigo());
+			InsertarCompra(17,p112.getCodigo());
+			InsertarCompra(17,p123.getCodigo());
+			
+			InsertarCompra(18,p444.getCodigo());
+			InsertarCompra(18,p11.getCodigo());
+			InsertarCompra(18,p134.getCodigo());
+			InsertarCompra(18,p1402.getCodigo());
+			InsertarCompra(18,p1702.getCodigo());
+			
+			InsertarCompra(19,p2403.getCodigo());
+			InsertarCompra(19,p113.getCodigo());
+			InsertarCompra(19,p220.getCodigo());
+			InsertarCompra(19,p134.getCodigo());
+			InsertarCompra(19,p1404.getCodigo());
+			
+			InsertarCompra(20,p2501.getCodigo());
+			InsertarCompra(20,p114.getCodigo());
+			InsertarCompra(20,p1502.getCodigo());
+			InsertarCompra(20,p1603.getCodigo());
+			InsertarCompra(20,p1803.getCodigo());
+			
+			InsertarCompra(21,p2101.getCodigo());
+			InsertarCompra(21,p140.getCodigo());
+			InsertarCompra(21,p190.getCodigo());
+			InsertarCompra(21,p1803.getCodigo());
+			InsertarCompra(21,p250.getCodigo());
+				
 			
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -687,11 +735,11 @@ public class BD {
 		}
     }
     
-    public static boolean InsertarPedido(int codigo, String dni, String estado, String fecha_compra, int codigo_producto) {
+    public static boolean InsertarPedido(String dni, String estado, String fecha_compra, int codigo_producto) {
     	Statement stmt;
 		try {
 			stmt = abrirlaconexion("DeustoOutlet.db");
-			String p ="insert into pedido values ("+codigo+", '"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
+			String p ="insert into pedido (dni, estado, fecha_compra) values ('"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
 	    	int val = stmt.executeUpdate(p);
 	    	 if(val != 1) {
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
@@ -712,9 +760,7 @@ public class BD {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-        	sent = "insert into tienda values(" + 
-        			"" + t.getCodigo() + ", " +
-        			"'" + t.getFranquicia() +  "','"+ rutafoto+"')";
+        	sent = "insert into tienda (franquicia, foto) values( '"+ t.getFranquicia() +  "','"+ rutafoto+"')";
         	int val = stmt.executeUpdate(sent);
         	if(val != 1) {
 				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
@@ -729,11 +775,11 @@ public class BD {
 		}
     }
     
-    public static boolean InsertarCompra(int codigo,int c2, int c3) {
+    public static boolean InsertarCompra(int c2, int c3) {
     	String sent = "";
     	try {
     		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-        	sent = "insert into compra values("+codigo+","+c2+","+c3+")";
+        	sent = "insert into compra (id_pedido, id_producto) values("+c2+","+c3+")";
         	int val = stmt.executeUpdate(sent);
         	if(val != 1) {
 				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
