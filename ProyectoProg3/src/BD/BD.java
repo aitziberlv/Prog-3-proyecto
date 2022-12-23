@@ -569,8 +569,21 @@ public class BD {
 			InsertarCompra(8,8,p101.getCodigo());
 
 			InsertarCompra(9, 9,p8.getCodigo());
+			InsertarCompra(9, 9, p5.getCodigo());
+			InsertarCompra(9, 9, p200.getCodigo());
+			InsertarCompra(9, 9, p2.getCodigo());
+			InsertarCompra(9, 9, p130.getCodigo());
+			
 			InsertarCompra(10,10,p2501.getCodigo());
+			InsertarCompra(10,10,p130.getCodigo());
+			InsertarCompra(10,10,p2402.getCodigo());
+			InsertarCompra(10,10,p5.getCodigo());
+			InsertarCompra(10,10,p55.getCodigo());
+			
 			InsertarCompra(11, 11,p2601.getCodigo());
+			InsertarCompra(11, 11,p2601.getCodigo());
+			InsertarCompra(11, 11,p2.getCodigo());
+			
 			InsertarCompra(12, 12,p1.getCodigo());
 			InsertarCompra(13, 13,p5.getCodigo());
 			InsertarCompra(14, 14,p7.getCodigo());
