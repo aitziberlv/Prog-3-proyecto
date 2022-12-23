@@ -66,8 +66,8 @@ public class Ventana_Carrito extends JFrame{
 	private JButton guardar; 
 	private String usuario;
 	private JPanel v;
-	private DefaultListModel<String> mSelec;
-	private JList<String> lSelec;
+	private DefaultListModel<Producto> mSelec;
+	private JList<Producto> lSelec;
 	private JScrollPane scrollista;
 	
 	public Ventana_Carrito(String usuario) throws HeadlessException {
@@ -105,15 +105,15 @@ public class Ventana_Carrito extends JFrame{
 		abajo.setLayout(new GridLayout(3,2));
 
 		scrollista=new JScrollPane(lSelec); 
-		mSelec = new DefaultListModel<String>();
-		lSelec = new JList<String>();
+		mSelec = new DefaultListModel<Producto>();
+		lSelec = new JList<Producto>();
 		
         scrollista.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollista.setViewportView(lSelec);
 		lSelec.setModel(mSelec);
 		
 		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
-			mSelec.addElement(Ventana_Cliente.getCarrito().get(i).getNombre()+ ", " + Ventana_Cliente.getCarrito().get(i).getPrecio() + ", " + Ventana_Cliente.getCarrito().get(i).getTalla() + ", " + Ventana_Cliente.getCarrito().get(i).getColor() );
+			mSelec.addElement(Ventana_Cliente.getCarrito().get(i));
 			
 		}
 		usando=Ventana_Cliente.getCarrito();
@@ -152,15 +152,14 @@ public class Ventana_Carrito extends JFrame{
 				
 				}
 				else {
-					mSelec.removeElement(lSelec.getSelectedValue());
+					//double precioOld = Integer.parseInt(lSelec.getSelectedValue());
 					Ventana_Cliente.getCarrito().remove(lSelec.getSelectedValue());
-					System.out.println(Ventana_Cliente.getCarrito());
-//					for(int i=0; i<mSelec.size(); i++) {
-//						if(mSelec.get(i) == lSelec.getSelectedValue()) {
-//							precio.setText(precio - lSelec.getSelectedValue());
-//						}
-//					}
-					precio.setText("Total a pagar: " + Ventana_Cliente.getPago() );
+					precio.setText("Total a pagar: " + (Ventana_Cliente.getPago() - lSelec.getSelectedValue().getPrecio()));
+					Ventana_Cliente.pagar = Ventana_Cliente.pagar - lSelec.getSelectedValue().getPrecio();
+					mSelec.removeElement(lSelec.getSelectedValue());
+					System.out.println(lSelec.getSelectedValue());
+					
+					System.out.println(Ventana_Cliente.getCarrito());					
 					
 					
 				}
