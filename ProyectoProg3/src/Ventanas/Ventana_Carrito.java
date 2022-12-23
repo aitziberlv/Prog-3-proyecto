@@ -153,16 +153,13 @@ public class Ventana_Carrito extends JFrame{
 				}
 				else {
 					//double precioOld = Integer.parseInt(lSelec.getSelectedValue());
+					Ventana_Cliente.getCarrito().remove(lSelec.getSelectedValue());
+					precio.setText("Total a pagar: " + (Ventana_Cliente.getPago() - lSelec.getSelectedValue().getPrecio()));
+					Ventana_Cliente.pagar = Ventana_Cliente.pagar - lSelec.getSelectedValue().getPrecio();
 					mSelec.removeElement(lSelec.getSelectedValue());
 					System.out.println(lSelec.getSelectedValue());
-					Ventana_Cliente.getCarrito().remove(lSelec.getSelectedValue());
-					System.out.println(Ventana_Cliente.getCarrito());
-//					for(int i=0; i<mSelec.size(); i++) {
-//						if(mSelec.get(i) == lSelec.getSelectedValue()) {
-//							precio.setText(precio - lSelec.getSelectedValue());
-//						}
-//					}
-					precio.setText("Total a pagar: " + Ventana_Cliente.getPago() );
+					
+					System.out.println(Ventana_Cliente.getCarrito());					
 					
 					
 				}

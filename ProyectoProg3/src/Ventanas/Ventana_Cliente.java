@@ -55,7 +55,7 @@ import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static List<Producto> productosComprados = new ArrayList<>();
-	private static int pagar = 0;
+	public static int pagar = 0;
 	private List<Producto> usando;
 	
 	private JPanel arriba;
