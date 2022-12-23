@@ -30,6 +30,7 @@ import javax.swing.border.Border;
 
 import BD.BD;
 import Clasesprincipales.Colorc;
+import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.TipoProducto;
@@ -120,6 +121,7 @@ public class Ventana_Carrito extends JFrame{
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
 		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
+		
 
 		
 		borrar = new JButton("Eliminar producto");
