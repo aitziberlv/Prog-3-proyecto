@@ -35,7 +35,7 @@ public class Ventana_IS extends JFrame{
 	private static final long serialVersionUID = 1L;
 	Logica lg=new Logica();
 	
-	private JTextField usuario;
+	public static JTextField usuario;
 	private JPasswordField contrasena;
 	private JTextField nombre;
 	private JTextField apellido;
