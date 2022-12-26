@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -30,6 +31,7 @@ import javax.swing.border.Border;
 
 import BD.BD;
 import Clasesprincipales.Colorc;
+import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.TipoProducto;
@@ -65,8 +67,8 @@ public class Ventana_Carrito extends JFrame{
 	private JButton guardar; 
 	private String usuario;
 	private JPanel v;
-	private DefaultListModel<String> mSelec;
-	private JList<String> lSelec;
+	private DefaultListModel<Producto> mSelec;
+	private JList<Producto> lSelec;
 	private JScrollPane scrollista;
 	
 	public Ventana_Carrito(String usuario) throws HeadlessException {
@@ -104,15 +106,15 @@ public class Ventana_Carrito extends JFrame{
 		abajo.setLayout(new GridLayout(3,2));
 
 		scrollista=new JScrollPane(lSelec); 
-		mSelec = new DefaultListModel<String>();
-		lSelec = new JList<String>();
+		mSelec = new DefaultListModel<Producto>();
+		lSelec = new JList<Producto>();
 		
         scrollista.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollista.setViewportView(lSelec);
 		lSelec.setModel(mSelec);
 		
 		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
-			mSelec.addElement(Ventana_Cliente.getCarrito().get(i).getNombre()+ ", " + Ventana_Cliente.getCarrito().get(i).getPrecio() + ", " + Ventana_Cliente.getCarrito().get(i).getTalla() + ", " + Ventana_Cliente.getCarrito().get(i).getColor() );
+			mSelec.addElement(Ventana_Cliente.getCarrito().get(i));
 			
 		}
 		usando=Ventana_Cliente.getCarrito();
@@ -120,6 +122,7 @@ public class Ventana_Carrito extends JFrame{
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
 		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
+		
 
 		
 		borrar = new JButton("Eliminar producto");
@@ -150,15 +153,14 @@ public class Ventana_Carrito extends JFrame{
 				
 				}
 				else {
-					mSelec.removeElement(lSelec.getSelectedValue());
+					//double precioOld = Integer.parseInt(lSelec.getSelectedValue());
 					Ventana_Cliente.getCarrito().remove(lSelec.getSelectedValue());
-					System.out.println(Ventana_Cliente.getCarrito());
-//					for(int i=0; i<mSelec.size(); i++) {
-//						if(mSelec.get(i) == lSelec.getSelectedValue()) {
-//							precio.setText(precio - lSelec.getSelectedValue());
-//						}
-//					}
-					precio.setText("Total a pagar: " + Ventana_Cliente.getPago() );
+					precio.setText("Total a pagar: " + (Ventana_Cliente.getPago() - lSelec.getSelectedValue().getPrecio()));
+					Ventana_Cliente.pagar = Ventana_Cliente.pagar - lSelec.getSelectedValue().getPrecio();
+					mSelec.removeElement(lSelec.getSelectedValue());
+					System.out.println(lSelec.getSelectedValue());
+					
+					System.out.println(Ventana_Cliente.getCarrito());					
 					
 					
 				}
@@ -217,14 +219,11 @@ public class Ventana_Carrito extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				for(int indice = 0; indice < mSelec.getSize();indice++)
-//				{
-//				   Component s= lSelec.getComponent(indice);
-//				   String s2= s.toString();
-//				   System.out.println( s2.split(","));
-//				   System.out.println( s);
-//				    
-//				}
+				Date fecha = new Date();
+				for(int indice = 0; indice < mSelec.getSize();indice++){
+					BD.InsertarPedido(Ventana_IS.usuario.getText(), "En proceso", fecha.toString(), mSelec.get(indice).getCodigo());
+				    
+				}
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
 				
 			}
