@@ -68,6 +68,7 @@ public class Ventana_Cliente extends JFrame{
 	private JPanel centro_dcha;
 	private JPanel abajo;
 	private JPanel valordebarra;
+	private JPanel bañadir;
 	private JLabel cliente;
 	private JLabel tipo;
 	private JLabel color;
@@ -149,6 +150,7 @@ public class Ventana_Cliente extends JFrame{
 		valordebarra= new JPanel ();
 		arriba_texto_recursividad=new JPanel();
 		panelDeslizable.setViewportView(labelRecursividad);
+		bañadir = new JPanel();
 		cliente = new JLabel("");
 		Font fuente = new Font("Arial", 5, 50);
 
@@ -454,8 +456,9 @@ public class Ventana_Cliente extends JFrame{
 		t5.add(informacion);
 		abajo.add(t5);
 		
+		bañadir.add(anyadir);
 		abajo.add(scrolTabla);
-		abajo.add(anyadir);
+		abajo.add(bañadir);
 		anyadir.setBackground(Color.white);
 		Color color1= new Color(243,242,235);
 		Color colori= new Color(224,228,204);
