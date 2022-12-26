@@ -786,7 +786,7 @@ public class BD {
 	   int cantidad = 0;
 	   try {
 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
-		   sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "'";
+		   sent = "select * from producto where tipo = '" + tipo + "' and color = '" + color + "' and precio <= " + precio + " and talla = '" + talla + "';";
 		   ResultSet rs = stm.executeQuery(sent);
 		   while(rs.next()) {
 			   cantidad = rs.getInt("cantidad");
@@ -794,6 +794,29 @@ public class BD {
 		   rs.close();
 		   logger.log(Level.INFO, "BD\t" + sent);
 		   return cantidad;
+	} catch (SQLException e) {
+		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
+		lastError = e;
+		e.printStackTrace();
+		return 0;
+	}
+
+
+   }
+   
+   public static String estadoPedidos(TipoProducto tipo, Talla talla) {
+	   String sent = "";
+	   String estado = "";
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   sent = "select * from pedido where tipo = '" + tipo + "' and talla = '" + talla + "';";
+		   ResultSet rs = stm.executeQuery(sent);
+		   while(rs.next()) {
+			   estado = rs.getString("estado");
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   return estado;
 	} catch (SQLException e) {
 		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
 		lastError = e;
@@ -837,7 +860,6 @@ public class BD {
    
    public static List<Producto> buscarProductoTipo(TipoProducto tipo) {
 	   
-	 //  if(cantidadProductos(tipo, color, precio, talla) > 0) {
 		   String sent = "";
 		   List<Producto>lproducto = new ArrayList<Producto>();
 		   try {
@@ -859,8 +881,6 @@ public class BD {
 			e.printStackTrace();
 			return null;
 		}
-//	  }
-//	return null; 
    }
    
    public static List<Producto> buscarProductoColor(Colorc color){
@@ -1020,6 +1040,27 @@ public class BD {
 		return null;
 	}
 	   
+   }
+   
+   public static boolean ActualizarPedidoEstado(Pedidos p, int codigo) {
+   	String sent = "";
+   	try {
+   		Statement stmt = abrirlaconexion("DeustoOutlet.db");
+   		
+   		sent = "update pedido set estado = Comprado where codigo = " + p.getCodigo() + ";";	   		
+   		
+   		int val = stmt.executeUpdate(sent);
+			if(val != 1) {
+				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
+				return false;
+   		}
+			return true;
+			
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
    }
    
    public static Exception getLastError() {
