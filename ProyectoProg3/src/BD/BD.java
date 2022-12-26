@@ -863,31 +863,7 @@ public class BD {
 	}
 
 
-   }
-   
-   public static String estadoPedidos(TipoProducto tipo, Talla talla) {
-	   String sent = "";
-	   String estado = "";
-	   try {
-		   Statement stm = abrirlaconexion("DeustoOutlet.db");
-		   sent = "select * from pedido where tipo = '" + tipo + "' and talla = '" + talla + "';";
-		   ResultSet rs = stm.executeQuery(sent);
-		   while(rs.next()) {
-			   estado = rs.getString("estado");
-		   }
-		   rs.close();
-		   logger.log(Level.INFO, "BD\t" + sent);
-		   return estado;
-	} catch (SQLException e) {
-		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
-		lastError = e;
-		e.printStackTrace();
-		return 0;
-	}
-
-
-   }
-   
+   }   
    
    
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
@@ -1103,12 +1079,45 @@ public class BD {
 	   
    }
    
+   public static String estadoPedidos(Pedidos codigo) {
+	   String sent = "";
+	   String estado = "";
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   sent = "select * from pedido where codigo_pedido = " + codigo + ";";
+		   ResultSet rs = stm.executeQuery(sent);
+		   while(rs.next()) {
+			   estado = rs.getString("estado");
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   return estado;
+	} catch (SQLException e) {
+		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
+		lastError = e;
+		e.printStackTrace();
+		
+	}
+	return estado;
+
+
+   }
+   
    public static boolean ActualizarPedidoEstado(Pedidos p, int codigo) {
    	String sent = "";
    	try {
    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
    		
-   		sent = "update pedido set estado = Comprado where codigo = " + p.getCodigo() + ";";	   		
+   		sent = "select estado from pedido where codigo = " + p.getCodigo() + ";";
+   		if(sent = ) {
+   			sent = "update pedido set estado = NO finalizado" + " where codigo = " + p.getCodigo() + ";" ;	
+
+   		}else {
+   			sent = "update pedido set estado = Comprado" + " where codigo = " + p.getCodigo() + ";" ;	
+
+			logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
+			return false;
+		}
    		
    		int val = stmt.executeUpdate(sent);
 			if(val != 1) {
