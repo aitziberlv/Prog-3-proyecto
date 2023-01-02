@@ -3,7 +3,7 @@ package Clasesprincipales;
 
 public abstract class Persona {
 	protected String nombre;
-	protected String dni;
+	protected static String dni;
 	protected String fechNa;
 	protected String telefono;
 	protected String direccion;
@@ -29,7 +29,7 @@ public abstract class Persona {
 		this.nombre = nombre;
 	}
 
-	public String getDni() {
+	public static String getDni() {
 		return dni;
 	}
 

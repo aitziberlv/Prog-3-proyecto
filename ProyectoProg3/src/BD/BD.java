@@ -748,15 +748,16 @@ public class BD {
     }
     
     public static boolean InsertarPedido(String dni, String estado, String fecha_compra, int codigo_producto) {
-    	Statement stmt;
+    	String p = "";
 		try {
-			stmt = abrirlaconexion("DeustoOutlet.db");
-			String p ="insert into pedido (dni, estado, fecha_compra, codigo_producto) values ('"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
+			Statement stmt = abrirlaconexion("DeustoOutlet.db");
+			p ="insert into pedido (dni, estado, fecha_compra, codigo_producto) values ('"+dni+"', '"+estado+"', '"+fecha_compra+"', "+codigo_producto+");";
 	    	int val = stmt.executeUpdate(p);
-	    	 if(val != 1) {
+	    	if(val != 1) {
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
  				return false;  
  			}
+	    	stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			lastError = e;

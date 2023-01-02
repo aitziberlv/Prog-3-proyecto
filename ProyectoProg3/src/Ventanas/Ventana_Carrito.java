@@ -36,6 +36,7 @@ import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
 import Clasesprincipales.TipoProducto;
+import Clasesprincipales.Usuario;
 import Ventanasexternas.FondoSwing;
 
 public class Ventana_Carrito extends JFrame{
@@ -220,8 +221,7 @@ public class Ventana_Carrito extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				Date fecha = new Date();
 				for(int indice = 0; indice < mSelec.getSize();indice++){
-					BD.InsertarPedido(Ventana_IS.usuario.getText(), "En proceso", fecha.toString(), mSelec.get(indice).getCodigo());
-				    
+					BD.InsertarPedido(Usuario.getDni(), "NO finalizado", fecha.toString(), mSelec.get(indice).getCodigo());
 				}
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
 				
