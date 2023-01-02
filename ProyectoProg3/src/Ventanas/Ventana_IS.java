@@ -92,14 +92,19 @@ public class Ventana_IS extends JFrame{
 		this.setSize(900,700);
 		this.setLocationRelativeTo(null); //centrar la ventana.
 		
+		
 		usuario=new JTextField("",16);
 		contrasena=new JPasswordField("",16);
 		nombre=new JTextField("",16);
 		apellido=new JTextField("",16);
 		telefono=new JTextField("",16);
 		dni=new JTextField("",16);
+		//String dni = "\\d{8}[A-HJ-NP-TV-Z]";
 		fechaNa=new JTextField("",16);
+		//fechaNa = new HintTextField ("dd/mm/yyyy");
+		//String fechaNa = "\\d{1,2}/\\d{1,2}/\\d{4}"
 		direccion=new JTextField("",16);
+		
 		
 		/**
 		 * Paneles-> los que vamos a utilizar para el unicio de sesion o para registrarse y los que vamos a utilizar para poner los botones de inicio y registro 
