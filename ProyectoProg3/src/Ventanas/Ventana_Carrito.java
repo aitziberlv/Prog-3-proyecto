@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -177,8 +178,9 @@ public class Ventana_Carrito extends JFrame{
 				int i=lSelec.getSelectedIndex();
 				Producto p =usando.get(i);
 				String url=BD.getURLFOTO(p);
-				ImageIcon imagen = new ImageIcon( url );
-				lFoto.setIcon( imagen );
+				Image img= new ImageIcon(url).getImage();
+				ImageIcon img2=new ImageIcon(img.getScaledInstance(220, 220, Image.SCALE_SMOOTH));
+				lFoto.setIcon( img2 );
 			}
 
 		

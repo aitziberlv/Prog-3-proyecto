@@ -290,8 +290,9 @@ public class Ventana_Cliente extends JFrame{
 				int i=tablaProductos.getSelectedRow();
 				Producto p =usando.get(i);
 				String url=BD.getURLFOTO(p);
-				ImageIcon imagen = new ImageIcon( url );
-				lFoto.setIcon( imagen );
+				Image img= new ImageIcon(url).getImage();
+				ImageIcon img2=new ImageIcon(img.getScaledInstance(220, 220, Image.SCALE_SMOOTH));
+				lFoto.setIcon( img2 );
 			}
 
 		
