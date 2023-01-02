@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,10 +26,14 @@ public class BD {
 	private static Exception lastError = null;
 	private static Logger logger = Logger.getLogger( "BD" );
 	
+	private static TreeMap<String, Usuario> mapaUsuarios = new TreeMap<>();
+	
 	/** Inicializa una BD SQLITE y devuelve una conexiï¿½n con ella
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexiï¿½n con la base de datos indicada. Si hay algï¿½n error, se devuelve null
 	 */
+	
+	
 	public static Statement abrirlaconexion( String nombreBD) throws SQLException{ 
 		
 //		try { // Crear carpeta si no existe
@@ -656,6 +661,10 @@ public class BD {
 		}
     
     public static boolean InsertarUsuario(Usuario us) {
+    	if(mapaUsuarios.get(us.getUsuario()) != null) {
+    		logger.log( Level.SEVERE, "Inserción de usuario incorrecta (ya existe): " + us );
+			return true;
+    	}
     	String sent = "";
 		try {
 			Statement stmt = abrirlaconexion("DeustoOutlet.db");
@@ -674,6 +683,7 @@ public class BD {
 				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
 				return false;  
 			}
+			mapaUsuarios.put(us.getUsuario(), us);
 			return true;
 		} catch (SQLException e) {
 			lastError = e;
@@ -1057,12 +1067,16 @@ public class BD {
    public static Usuario buscarUsuarioNombre(String usuario) {
 	   String sent = "select * from usuario where usuario = '" + usuario + "'";
 	   try {
+		   if(mapaUsuarios.containsKey(usuario)) {
+			   return mapaUsuarios.get(usuario);
+		   }
 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
 		   ResultSet rs = stm.executeQuery( sent );
 		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
 		   if(rs.next()) {
 			   Usuario u = new Usuario(rs.getString("nombre"), rs.getString("dni"), rs.getString("fechNa"), rs.getString("telefono"), rs.getString("direccion"), rs.getString("apellido"), rs.getString("contraseña"), rs.getString("usuario"));
 			   rs.close();
+			   mapaUsuarios.put(u.getUsuario(), u);
 			   return u;
 		   }
 		   else {
@@ -1107,22 +1121,12 @@ public class BD {
    	String sent = "";
    	try {
    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-   		
-   		sent = "select estado from pedido where codigo = " + p.getCodigo() + ";";
-   		if(sent = ) {
-   			sent = "update pedido set estado = NO finalizado" + " where codigo = " + p.getCodigo() + ";" ;	
-
-   		}else {
-   			sent = "update pedido set estado = Comprado" + " where codigo = " + p.getCodigo() + ";" ;	
-
+		sent = "update pedido set estado = Comprado" + " where codigo = " + p.getCodigo() + ";" ;	
+	
+   		int val = stmt.executeUpdate(sent);
+		if(val != 1) {
 			logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
 			return false;
-		}
-   		
-   		int val = stmt.executeUpdate(sent);
-			if(val != 1) {
-				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
-				return false;
    		}
 			return true;
 			
