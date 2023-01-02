@@ -158,13 +158,10 @@ public class Ventana_Carrito extends JFrame{
 					Ventana_Cliente.getCarrito().remove(lSelec.getSelectedValue());
 					precio.setText("Total a pagar: " + (Ventana_Cliente.getPago() - lSelec.getSelectedValue().getPrecio()));
 					Ventana_Cliente.pagar = Ventana_Cliente.pagar - lSelec.getSelectedValue().getPrecio();
-					mSelec.removeElement(lSelec.getSelectedValue());
-					System.out.println(lSelec.getSelectedValue());
-					
-					System.out.println(Ventana_Cliente.getCarrito());					
-					
+					mSelec.removeElement(lSelec.getSelectedValue());					
 					
 				}
+				lFoto.setIcon(null);
 				//si selecciona un producto: se elimina del pedido.
 				
 			}
