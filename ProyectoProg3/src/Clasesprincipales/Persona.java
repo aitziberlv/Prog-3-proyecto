@@ -5,22 +5,20 @@ public abstract class Persona {
 	private String contraseña="";
 	private String usuario="";
 	protected String nombre;
-	protected static String dni;
+	protected  static String dni;
 	protected String fechNa;
 	protected String telefono;
 	protected String direccion;
 	protected String apellido;
 	
-	
-	
-	
 
-	public Persona(String contraseña, String usuario, String nombre, String fechNa, String telefono, String direccion,
-			String apellido) {
+	public Persona(String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono,
+			String direccion, String apellido) {
 		super();
 		this.contraseña = contraseña;
 		this.usuario = usuario;
 		this.nombre = nombre;
+		this.dni = dni;
 		this.fechNa = fechNa;
 		this.telefono = telefono;
 		this.direccion = direccion;

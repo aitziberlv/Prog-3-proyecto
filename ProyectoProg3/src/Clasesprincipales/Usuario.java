@@ -12,9 +12,29 @@ public class Usuario extends Persona {
 
 	
 
-	public Usuario(String contraseña, String usuario, String nombre, String fechNa, String telefono, String direccion,
-			String apellido, ArrayList<Pedidos> pedidos_hechos) {
-		super(contraseña, usuario, nombre, fechNa, telefono, direccion, apellido);
+	
+
+
+
+
+
+
+
+
+
+	public Usuario( String nombre, String dni, String fechNa, String telefono,
+			String direccion, String apellido,String contraseña, String usuario) {
+		super(contraseña, usuario, nombre, dni, fechNa, telefono, direccion, apellido);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+	public Usuario( String nombre, String dni, String fechNa, String telefono,
+			String direccion, String apellido,String contraseña, String usuario, ArrayList<Pedidos> pedidos_hechos) {
+		super(contraseña, usuario, nombre, dni, fechNa, telefono, direccion, apellido);
 		this.pedidos_hechos = pedidos_hechos;
 	}
 

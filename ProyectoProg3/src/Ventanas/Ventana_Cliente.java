@@ -55,6 +55,7 @@ import Clasesprincipales.Talla;
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static List<Producto> productosComprados = new ArrayList<>();
+	
 	public static int pagar = 0;
 	private List<Producto> usando;
 	
@@ -197,6 +198,11 @@ public class Ventana_Cliente extends JFrame{
 		for(Talla t : Talla.values()) {
 			tallas.addItem(t);
 		}
+		ArrayList<Producto> panterior =BD.getlistaProductosCarritoAnterior(BD.getDNIusuario(usuario));
+		for (Producto o:panterior) {
+			productosComprados.add(o);
+		}
+		
 		
 		buscar = new JButton("Buscar");
 		buscar.setForeground(Color.black);

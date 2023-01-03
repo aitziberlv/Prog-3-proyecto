@@ -115,7 +115,9 @@ public class Ventana_productosdisponibles extends JFrame{
 		this.add(panelprincipal);
 		
 		ImageIcon icono = new ImageIcon("C:\\Users\\anetx\\git\\Prog-3-proyecto\\ProyectoProg3\\Fotos\\deustoOutlet.jpg.png");
-		this.setIconImage(icono.getImage());	
+		this.setIconImage(icono.getImage());
+		
+		
 		
 	}
 	private static class JLabelAjustado extends JLabel {
@@ -137,5 +139,8 @@ public class Ventana_productosdisponibles extends JFrame{
 		}
 		
 	
+	}
+	public static void main(String[] args) {
+		Ventana_productosdisponibles vp=new Ventana_productosdisponibles(null);
 	}
 }

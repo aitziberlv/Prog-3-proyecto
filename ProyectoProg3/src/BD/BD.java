@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.logging.Level;
@@ -1009,9 +1010,8 @@ public class BD {
 		return 0;
 	}
 	
-	   
-   }
-   
+   }   
+
    public static int getcodigoproducto() {
 	   String sent = "";
 	   
@@ -1064,7 +1064,116 @@ public class BD {
 	return null;
 	   
    }
-   
+   public static  int getcodigoTienda(Producto p) {
+	   
+	   String sent = "select * from producto where codigo_producto = " + p.getCodigo() ;
+	   
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   while(rs.next()) {
+			  return rs.getInt("codigo_tienda");
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return -1;
+	}
+	return -1;
+	   
+   }
+ public static  String getDNIusuario(String usuario) {
+	   //podemos hacerlo asi ya que el usuario tambien es una clave alternativa
+	   String sent = "select * from usuario where usuario = '" + usuario +"'";
+	   
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   while(rs.next()) {
+			 return rs.getString("dni");
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return null;
+	}
+	return null;
+	   
+   }
+    public static  int getcodigoProducto(Producto p) {
+	   
+	   String sent = "select * from producto where codigo_producto = " + p.getCodigo() ;
+	   
+	   try {
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   while(rs.next()) {
+			  return rs.getInt("codigo_producto");
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		return -1;
+	}
+	return -1;
+	   
+   }
+    static HashMap<Integer,Producto> mapa= new HashMap<>();
+    public static HashMap<Integer,Producto> Completar_mapa() {
+    	mapa=new HashMap<>();
+    	 ArrayList<Producto> pr=BD.getProductos();
+    	for (Producto p:pr) {
+    		 if (!mapa.containsKey(p.getCodigo())){
+    			 mapa.put(p.getCodigo(), p);
+    		 }
+    	}
+    	return mapa;
+    }
+    public static ArrayList<Producto> getlistaProductosCarritoAnterior(String Usuario) {
+ 	   ArrayList<Producto> pr=new ArrayList<Producto>();
+ 	   String sent = "select * from pedido where dni = " + Usuario +" and estado = 'NO finalizado'" ;
+ 	   mapa=Completar_mapa();
+ 	   try {
+ 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+ 		   ResultSet rs = stm.executeQuery( sent );
+ 		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+ 		   while(rs.next()) {
+ 			   
+ 			  pr.add(mapa.get(rs.getInt("codigo_producto")));
+ 			  
+ 		   }
+ 		   rs.close();
+ 		   logger.log(Level.INFO, "BD\t" + sent);
+ 		   return pr;
+ 		   
+ 	} catch (SQLException e) {
+ 		lastError = e;
+ 		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+ 		e.printStackTrace();
+ 		return null;
+ 	}
+ 	
+ 	   
+    }
+    
    public static Usuario buscarUsuarioNombre(String usuario) {
 	   String sent = "select * from usuario where usuario = '" + usuario + "'";
 	   try {

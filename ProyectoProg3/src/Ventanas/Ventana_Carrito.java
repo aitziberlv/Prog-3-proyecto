@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class Ventana_Carrito extends JFrame{
 	private DefaultListModel<Producto> mSelec;
 	private JList<Producto> lSelec;
 	private JScrollPane scrollista;
-	
+	ArrayList<Producto> pr=(ArrayList<Producto>) Ventana_Cliente.getCarrito();
 	public Ventana_Carrito(String usuario) throws HeadlessException {
 		super();
 		this.usuario = usuario;
@@ -115,10 +116,12 @@ public class Ventana_Carrito extends JFrame{
         scrollista.setViewportView(lSelec);
 		lSelec.setModel(mSelec);
 		
+		
 		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
 			mSelec.addElement(Ventana_Cliente.getCarrito().get(i));
 			
 		}
+		
 		usando=Ventana_Cliente.getCarrito();
 		
 		producto = new JLabel("Productos seleccionados:");
@@ -160,7 +163,7 @@ public class Ventana_Carrito extends JFrame{
 					precio.setText("Total a pagar: " + (Ventana_Cliente.getPago() - lSelec.getSelectedValue().getPrecio()));
 					Ventana_Cliente.pagar = Ventana_Cliente.pagar - lSelec.getSelectedValue().getPrecio();
 					mSelec.removeElement(lSelec.getSelectedValue());					
-					
+					pr=(ArrayList<Producto>) Ventana_Cliente.getCarrito();
 				}
 				lFoto.setIcon(null);
 				//si selecciona un producto: se elimina del pedido.
@@ -220,9 +223,15 @@ public class Ventana_Carrito extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Date fecha = new Date();
+				//(codigo_pedido INTEGER primary key autoincrement, dni String, estado String, fecha_compra String, codigo_producto INTEGER)
+				
+				//codigo_producto integer, nombre String, precio integer, color String, talla String, tipo String , ruta_foto String, codigo_tienda integer, cantidad integer)";
 				for(int indice = 0; indice < mSelec.getSize();indice++){
-					BD.InsertarPedido(Usuario.getDni(), "NO finalizado", fecha.toString(), mSelec.get(indice).getCodigo());
+					BD.InsertarPedido(BD.getDNIusuario(usuario), "NO finalizado", fecha.toString(),BD.getcodigoProducto(pr.get(indice)));
+					
 				}
+				
+				
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
 				
 			}
