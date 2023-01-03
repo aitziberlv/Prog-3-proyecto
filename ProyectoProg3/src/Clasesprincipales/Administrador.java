@@ -3,15 +3,16 @@ package Clasesprincipales;
 public class Administrador extends Persona{
 	private Habilidad hab;
 	
-	public Administrador(String contraseña, String usuario, String nombre, String fechNa, String telefono,
+	
+	public Administrador(String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono,
 			String direccion, String apellido, Habilidad hab) {
-		super(contraseña, usuario, nombre, fechNa, telefono, direccion, apellido);
+		super(contraseña, usuario, nombre, dni, fechNa, telefono, direccion, apellido);
 		this.hab = hab;
 	}
 
-	public Administrador(String contraseña, String usuario, String nombre, String fechNa, String telefono,
+	public Administrador(String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono,
 			String direccion, String apellido) {
-		super(contraseña, usuario, nombre, fechNa, telefono, direccion, apellido);
+		super(contraseña, usuario, nombre, dni, fechNa, telefono, direccion, apellido);
 		// TODO Auto-generated constructor stub
 	}
 
