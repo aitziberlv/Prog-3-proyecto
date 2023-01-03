@@ -1,7 +1,7 @@
 package Clasesprincipales;
 
 
-public enum Habilidades {
+public enum Habilidad {
 	MARKETING,IDIOMAS,CONOCIMIENTO_NEGOCIO,ASOCIADO_DE_VENTAS,EXPERIENCIA;
 
 //	asignar a cada trabajador una habilidad

@@ -1,7 +1,7 @@
 package Clasesprincipales;
 
 
-public class Producto {
+public class Producto implements Informacion{
 	private int codigo = 0;
 	private String nombre = "";
 	private int precio = 0;
@@ -80,6 +80,13 @@ public class Producto {
 	@Override
 	public String toString() {
 		return nombre + ", " + tipo + ", " + color + ", " + talla + ", " + precio;
+	}
+
+
+	@Override
+	public String conseguirInfo() {
+		// TODO Auto-generated method stub
+		return "Este Producto podría ser de 5 tallas difernetes o en vez de este color tener otro. ";
 	}
 	
 	

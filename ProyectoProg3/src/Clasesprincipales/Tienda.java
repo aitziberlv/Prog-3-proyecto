@@ -2,7 +2,7 @@ package Clasesprincipales;
 
 import java.util.ArrayList;
 
-public class Tienda {
+public class Tienda implements Informacion{
 	private int codigo =1;
 	
 	private Franquicia franquicia=Franquicia.BERSHKA;
@@ -47,6 +47,10 @@ public class Tienda {
 	public String toString() {
 		return "Tienda [codigo=" + codigo +  ", franquicia=" + franquicia + ", compras=" + compras
 				+ "]";
+	}
+	@Override
+	public String conseguirInfo() {
+		return "Hay 6 diferentes franquicias a las que puede pertenecer esta tienda";
 	}
 
 	
