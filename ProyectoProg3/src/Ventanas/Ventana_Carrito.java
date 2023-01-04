@@ -226,7 +226,7 @@ public class Ventana_Carrito extends JFrame{
 				//(codigo_pedido INTEGER primary key autoincrement, dni String, estado String, fecha_compra String, codigo_producto INTEGER)
 				
 				//codigo_producto integer, nombre String, precio integer, color String, talla String, tipo String , ruta_foto String, codigo_tienda integer, cantidad integer)";
-				for(int indice = 0; indice < mSelec.getSize();indice++){
+				for(int indice = 1; indice < mSelec.getSize();indice++){
 					BD.InsertarPedido(BD.getDNIusuario(usuario), "NO finalizado", fecha.toString(),BD.getcodigoProducto(pr.get(indice)));
 					
 				}

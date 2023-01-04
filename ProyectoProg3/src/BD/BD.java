@@ -1149,7 +1149,7 @@ public class BD {
     }
     public static ArrayList<Producto> getlistaProductosCarritoAnterior(String Usuario) {
  	   ArrayList<Producto> pr=new ArrayList<Producto>();
- 	   String sent = "select * from pedido where dni = " + Usuario +" and estado = 'NO finalizado'" ;
+ 	   String sent = "select * from pedido where dni = '" + Usuario +"' and estado = 'NO finalizado'" ;
  	   mapa=Completar_mapa();
  	   try {
  		   Statement stm = abrirlaconexion("DeustoOutlet.db");
