@@ -99,7 +99,7 @@ public class Ventana_IS extends JFrame{
 		apellido=new JTextField("",16);
 		telefono=new JTextField("",16);
 		dni=new JTextField("",16);
-		//String dni = "\\d{8}[A-HJ-NP-TV-Z]";
+		//String dni = "\\d{8}";
 		fechaNa=new JTextField("",16);
 		//fechaNa = new HintTextField ("dd/mm/yyyy");
 		//String fechaNa = "\\d{1,2}/\\d{1,2}/\\d{4}"

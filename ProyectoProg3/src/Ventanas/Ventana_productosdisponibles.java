@@ -32,17 +32,17 @@ public class Ventana_productosdisponibles extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Pedidos> p=new ArrayList<>();
 	
-	private JPanel arriba;
-	private JPanel pnl_btn;
-	
-	private JButton anterior;
-	
-
 	public Ventana_productosdisponibles(ArrayList<Pedidos> p) throws HeadlessException {
 		super();
 		this.p = p; 
 	}
+//	paneles de la ventana
 	private JPanel panelprincipal ;
+	private JPanel pnl_btn;
+	
+//	boton
+	private JButton anterior;
+	
 	private BD bd=new BD();
 	private JLabelAjustado foto = new JLabelAjustado( null );
 	public void inizializarventana() {
@@ -58,6 +58,7 @@ public class Ventana_productosdisponibles extends JFrame{
 		Border compound = new CompoundBorder(line, margin);
 		anterior.setBorder(compound);
 		
+		pnl_btn.add(anterior);
 		this.add(pnl_btn);
 		
 		anterior.addActionListener(new ActionListener( ){
@@ -70,7 +71,6 @@ public class Ventana_productosdisponibles extends JFrame{
 				setVisible(false);
 				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 
-				
 			}
 			
 		});
@@ -142,5 +142,8 @@ public class Ventana_productosdisponibles extends JFrame{
 	}
 	public static void main(String[] args) {
 		Ventana_productosdisponibles vp=new Ventana_productosdisponibles(null);
+		vp.setVisible(true);
+		vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		vp.setExtendedState(vp.MAXIMIZED_BOTH);
 	}
 }
