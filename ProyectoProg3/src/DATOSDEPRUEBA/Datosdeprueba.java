@@ -19,16 +19,16 @@ public class Datosdeprueba {
 	public static ArrayList<Producto> conseguirDatosDePueba(){
 		
 		ArrayList<Producto> p=new ArrayList<>();
-		Producto p1=new Producto(1,"");
-		Producto p2=new Producto(2,"");
-		Producto p3=new Producto(3,"");
-		Producto p4=new Producto(4,"");
-		Producto p5=new Producto(5,"");
-		Producto p6=new Producto(6,"");
-		Producto p7=new Producto(7,"");
-		Producto p8=new Producto(8,"");
-		Producto p9=new Producto(9,"");
-		Producto p10=new Producto(10,"");
+		Producto p1=new Producto(1,"Fotosproductos/prod1.jpg");
+		Producto p2=new Producto(2,"Fotosproductos/prod1.jpg");
+		Producto p3=new Producto(3,"Fotosproductos/prod1.jpg");
+		Producto p4=new Producto(4,"Fotosproductos/prod1.jpg");
+		Producto p5=new Producto(5,"Fotosproductos/prod1.jpg");
+		Producto p6=new Producto(6,"Fotosproductos/prod2.jpg");
+		Producto p7=new Producto(7,"Fotosproductos/prod2.jpg");
+		Producto p8=new Producto(8,"Fotosproductos/prod2.jpg");
+		Producto p9=new Producto(9,"Fotosproductos/prod2.jpg");
+		Producto p10=new Producto(10,"Fotosproductos/prod2.jpg");
 		p.add(p1);
 		p.add(p2);
 		p.add(p3);

@@ -185,6 +185,7 @@ public class BD {
 			InsertarProducto(p2222,"Fotosproductos/prod2.jpg",2);
 			InsertarProducto(p22222,"Fotosproductos/prod2.jpg",2);
 			
+			
 
 			//producto3t3
 			Producto p3 = new Producto(11, "Camisa con volantes", 20, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETA);
@@ -477,7 +478,7 @@ public class BD {
 			InsertarProducto(p2604,"Fotosproductos/prod26.jpg",2);
 			
 			
-			//Insertar pedidos
+			//Insertar pedidos //hay que cambiar lo de veces!!!!
 			Date fecha = new Date();
 			InsertarPedido("45344345L", "Comprado", fecha.toString(), veces);
 			InsertarPedido("74544345L", "Comprado", fecha.toString(), veces);

@@ -404,9 +404,9 @@ public class Ventana_Cliente extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Ventana_productosdisponibles vd=new Ventana_productosdisponibles(listaPed);
+				Ventana_productosdisponibles vd=new Ventana_productosdisponibles();
 				vd.setVisible(true);
-				vd.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
+				//vd.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 				
 			}
 			
@@ -538,40 +538,40 @@ public class Ventana_Cliente extends JFrame{
 	public static List<Producto> getCarrito(){
 		return productosComprados;
 	}
-	public static double devolverproductomasbarato() {
-		ArrayList<Producto> p=BD.getProductos();
-		double min=p.get(0).getPrecio();
-		for (Producto prod:p) {
-			if (prod.getPrecio()<min) {
-				min=prod.getPrecio();
-			}
-		}
-		return min;
-	}
-	static double prec =devolverproductomasbarato();
-	private static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
-	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
-	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
-		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
-		if (disponible<prec) {
-			//System.out.println((ArrayList<Producto>) listaProd.clone());
-			@SuppressWarnings("unchecked")
-			Pedidos p = new Pedidos(((ArrayList<Producto>)listaProd.clone()));
-			listaPed.add(p);
-			
-			
-		}else {
-			for(Producto j :BD.getProductos()) {
-				if (disponible - j.getPrecio()>0) {
-					listaProd.add(j);
-					Comprapresupuesto(disponible-j.getPrecio(),listaProd);
-					listaProd.remove(j);
-				}
-			}
-		}
-		
-		
-	}
+//	public static double devolverproductomasbarato() {
+//		ArrayList<Producto> p=BD.getProductos();
+//		double min=p.get(0).getPrecio();
+//		for (Producto prod:p) {
+//			if (prod.getPrecio()<min) {
+//				min=prod.getPrecio();
+//			}
+//		}
+//		return min;
+//	}
+//	static double prec =devolverproductomasbarato();
+//	private static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
+//	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
+//	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
+//		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
+//		if (disponible<prec) {
+//			//System.out.println((ArrayList<Producto>) listaProd.clone());
+//			@SuppressWarnings("unchecked")
+//			Pedidos p = new Pedidos(((ArrayList<Producto>)listaProd.clone()));
+//			listaPed.add(p);
+//			
+//			
+//		}else {
+//			for(Producto j :BD.getProductos()) {
+//				if (disponible - j.getPrecio()>0) {
+//					listaProd.add(j);
+//					Comprapresupuesto(disponible-j.getPrecio(),listaProd);
+//					listaProd.remove(j);
+//				}
+//			}
+//		}
+//		
+//		
+//	}
 	public void filtrorecursividad() {
 		//aqui tenemos que definir un filtro que va a quitar los que estan  repetidos , y va a filtrar que una chaqueta xs y xl sea la misma (es decir que el tamaño no importe. )
 	
