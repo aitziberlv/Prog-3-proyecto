@@ -117,6 +117,9 @@ public class TestBD {
 		assertEquals("45344345L",dni);
 	}
 	
+	
+	//Metodo que comprueba que el codigo de cada producto es el que le corresponde.
+	
 	@Test
 	public void getCodigoProducto() {
 		ArrayList<Producto> prod = BD.getProductos();
@@ -126,6 +129,8 @@ public class TestBD {
 		}
 	}
 		
+	
+	//Metodo para comprobar que un producto en concreto (camiseta blanca de talla XS) tiene la cantidad correcta.
 	
 	@Test
 	public void getCantidadProducto() {
