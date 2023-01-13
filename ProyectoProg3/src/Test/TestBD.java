@@ -1,6 +1,8 @@
 package Test;
 
 import static org.junit.Assert.*;
+
+import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import org.junit.Test;
@@ -15,19 +17,6 @@ import DATOSDEPRUEBA.Datosdeprueba;
 
 
 public class TestBD {
-	
-	
-	
-	//reiniar la bd en caso de quererlo asi, cambiar la base de datos tambien.
-	
-//	if (new File("DeustoOutlet.db").exists()) {
-//		// Poner el parámetro a true si se quiere reiniciar la base de datos
-//		BD.abrirlaconexion( "DeustoOutlet.db", false ); 
-//	} else {
-//		BD.abrirlaconexion( "DeustoOutlet.db", true ); 
-//	}
-	
-	
 	
 	
 	//Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
@@ -127,10 +116,25 @@ public class TestBD {
 		String dni = BD.getDNIusuario("mariarodriguez5");
 		assertEquals("45344345L",dni);
 	}
+	
+	@Test
+	public void getCodigoProducto() {
+		ArrayList<Producto> prod = BD.getProductos();
+		for (Producto p : prod) {
+			int codigo = BD.getcodigoProducto(p);
+			assertFalse(p.getCodigo()!=codigo);
+		}
+	}
 		
 	
+	@Test
+	public void getCantidadProducto() {
+		int cantidad = BD.cantidadProductos(TipoProducto.CAMISETA, Colorc.BLANCO, 20, Talla.XS);
+		assertEquals(10, cantidad);
+		
+		
+	}
 	
 
-	//BD.cerrarBD(); 
 
 }
