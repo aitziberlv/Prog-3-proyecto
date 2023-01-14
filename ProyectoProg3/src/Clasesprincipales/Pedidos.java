@@ -1,17 +1,17 @@
 package Clasesprincipales;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pedidos {
 	
 	private int codigo;
-	public static int cont = 0;
-	private ArrayList<Producto> lista_pedidos = new ArrayList<>();
+	private List<Producto> lista_pedidos = new ArrayList<>();
 	
-	public Pedidos(ArrayList<Producto> lista_pedidos, int codigo) {
+	public Pedidos(List<Producto> lista_pedidos, int codigo) {
 		super();
 		this.lista_pedidos = lista_pedidos;
-		this.codigo = cont++;
+		this.codigo = codigo;
 		
 	}
 	public Pedidos(ArrayList<Producto> lista_pedidos) {
@@ -20,7 +20,7 @@ public class Pedidos {
 		
 		
 	}
-	public ArrayList<Producto> getLista_pedidos() {
+	public List<Producto> getLista_pedidos() {
 		return lista_pedidos;
 	}
 

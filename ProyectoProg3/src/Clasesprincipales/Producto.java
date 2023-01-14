@@ -10,6 +10,15 @@ public class Producto implements Informacion{
 	private TipoProducto tipo = TipoProducto.FALDA;
 	private String url="";
 	
+	public Producto(String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo) {
+		super();
+		this.nombre = nombre;
+		this.precio = precio;
+		this.color = color;
+		this.talla = talla;
+		this.tipo = tipo;
+	}
+	
 	public Producto(int codigo, String nombre, int precio, Colorc color, Talla talla, TipoProducto tipo) {
 		super();
 		this.codigo = codigo;

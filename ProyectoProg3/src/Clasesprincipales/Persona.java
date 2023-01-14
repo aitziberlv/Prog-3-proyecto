@@ -5,7 +5,7 @@ public abstract class Persona {
 	private String contraseña="";
 	private String usuario="";
 	protected String nombre;
-	protected  static String dni;
+	protected String dni;
 	protected String fechNa;
 	protected String telefono;
 	protected String direccion;
@@ -77,7 +77,7 @@ public abstract class Persona {
 
 
 
-	public static String getDni() {
+	public String getDni() {
 		return dni;
 	}
 
@@ -85,8 +85,8 @@ public abstract class Persona {
 
 
 
-	public static void setDni(String dni) {
-		Persona.dni = dni;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 
