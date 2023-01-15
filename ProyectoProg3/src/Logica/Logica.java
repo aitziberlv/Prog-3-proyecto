@@ -1,4 +1,7 @@
 package Logica;
+/**
+ * ESTA CLASE LLAMADA LOGICA LA VAMOS A UTILIZAR PARA GUARDAR TODOS LOS ADMINISTRADORES EN UN .DAT 
+ */
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,21 +10,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import Clasesprincipales.Administrador;
+
 import Clasesprincipales.Usuario;
 import Ventanas.main;
 
 public class Logica {
 	
 	/**
-	 * Array list en el que tendremos todos los usuarios de la aplicacion. 
+	 * Array list en el que tendremos todos los administradores de la aplicacion. 
 	 */
-	private ArrayList<Usuario> u =new ArrayList<>();
+	private static ArrayList<Administrador> u =new ArrayList<>();
 	/**
-	 * @author aiitz
 	 * Operaciones de lectura y escritura con el fichero para el array list de usuarios 
 	 * @param fichero
 	 */
-	public void escribir(String fichero) {
+	public static void escribir(String fichero) {
     	try {
     		ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fichero));
     		oos.writeObject(u);
@@ -35,7 +39,7 @@ public class Logica {
 	public  void lectura(String fichero ) {	
 		try {
 			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fichero));
-			ArrayList<Usuario> cargado= (ArrayList<Usuario>) ois.readObject();
+			ArrayList<Administrador> cargado= (ArrayList<Administrador>) ois.readObject();
 			u = cargado;
 			ois.close();
 		} catch (Exception ex) {
@@ -46,11 +50,11 @@ public class Logica {
 	 * Funcion para iniciar sesion en la aplicacion 
 	 * @param nombre
 	 * @param contrasena
-	 * @return devuelve un booleano que te dice si ese usuario esta o no esta en el array list . 
+	 * @return devuelve un booleano que te dice si ese administrador esta o no esta en el array list . 
 	 */
 	public boolean iniciar_sesion(String nombre,String contrasena) {
 		
-    	for (Usuario p:u) {
+    	for (Administrador p:u) {
 			if ( nombre.equals(p.getNombre()) && contrasena.equals(p.getContraseña())) {
 				return true;
 				
@@ -60,30 +64,22 @@ public class Logica {
 		return false;
     }
 	/**
-	 * 
+	 * MEDIANTE ESTE METODO LO QUE HACEMOS ES INIZIALIZARLO CON LAS PERSONAS QUE SON ADMINISTRADORES DE NUESTRA APLICACION
 	 */
-	public boolean registrarte(String usuario) {
-		for (Usuario uu:u) {
-			if (uu.getUsuario()==usuario) {
-				return false;
-			}else {
-				/**
-				 * comprobar validez de los datos. 
-				 */
-		}
-			
-		}
-		return true;
+	public static void inizializardat() {
+		/**
+		 * ESTO ES LO QUE NECESITA UN ADMINISTRADOR:
+		 * (String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono
+		 * ,String direccion, String apellido, Habilidad hab)
+		 */
+		
+		Administrador a1= new Administrador("admin","admin","Ander","78933459D","2001-03-06","677888434","Calle Almenda","Ruiz",15);
+		Administrador a2= new Administrador("admin2","admin2","Marta","78936549D","2000-03-06","67784534","Calle de la Macarena","Perez",4);
+		u.add(a2);
+		u.add(a1);
+		escribir("Administradores.dat");
+				
 	}
 	
-	public void registrar(String usuario, String correo,String nombre,String apellido,String telefono,String contraseña) {
-		Usuario us=new Usuario(nombre,null,null,telefono,apellido,null,contraseña,usuario);
-		u.add(us);
-		escribir("Usuarios.dat");
-	}
-	public static void main(String[] args) {
-		/**
-		 * creacion de usuario para que se inicialize con un usuario ya hecho. 
-		 */
-	}
+	
 }

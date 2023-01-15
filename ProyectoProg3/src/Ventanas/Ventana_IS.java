@@ -175,23 +175,18 @@ public class Ventana_IS extends JFrame{
 
 					}
 					else {
+						if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
+							Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
+							va.setVisible(true);
+//							setVisible(false);
+						}else {
 						JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
 						vc.setVisible(false);
 						vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
-
+						}
 					}
 
 				}				
-				
-//				lg.lectura("Usuarios.dat");
-//				if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
-//					vc.setVisible(true);
-//					setVisible(false);
-//					
-//				}else {
-//					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
-//				}	
-				
 			}
 			
 		});
@@ -201,12 +196,9 @@ public class Ventana_IS extends JFrame{
 		 */
 		
 		registro.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				if(!registroB) {
-				
 				pnombre.setVisible(true);
 				pnapellido.setVisible(true);
 				pndni.setVisible(true);
@@ -216,7 +208,6 @@ public class Ventana_IS extends JFrame{
 				btusuario_contrasena.setVisible(false);
 				anterior.setVisible(true);
 				panel_arribal.setText("Registro");
-				
 				registroB = true;
 				}else  {
 					if(usuario.getText().length() == 0 || contrasena.getText().length() == 0 || nombre.getText().length() == 0 || dni.getText().length() == 0 || fechaNa.getText().length() == 0 || telefono.getText().length() == 0 || direccion.getText().length() == 0 || apellido.getText().length() == 0 ) {
@@ -235,23 +226,6 @@ public class Ventana_IS extends JFrame{
 							vi.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 						}
 					}
-					
-					
-					
-//					if(lg.registrarte(usuario.getText())) {
-//						if (usuario.getText()!=" ") {
-//							lg.registrar(usuario.getText(),dni.getText(),nombre.getText(),apellido.getText(),telefono.getText(),contrasena.getText());
-//							vc.setVisible(true);
-//							setVisible(false);
-//						}else {
-//							JOptionPane.showMessageDialog(null, "Nombre de usuario vacio.","Error",JOptionPane.ERROR_MESSAGE);
-//						}
-//						
-//						
-//					}else {
-//						JOptionPane.showMessageDialog(null, "Usuario existente.","Error",JOptionPane.ERROR_MESSAGE);
-//					}	
-					
 				}			
 				
 			}

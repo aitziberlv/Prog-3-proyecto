@@ -37,7 +37,11 @@ public class Ventana_Administrador extends JFrame {
 	private JLabel estadistica2;
 	
 	private JButton atras;
-	
+	private String usuario;
+	public Ventana_Administrador (String usuario) {
+		inicializarVentana();
+		this.usuario=usuario;
+	}
 	public Ventana_Administrador () {
 		inicializarVentana();
 	}

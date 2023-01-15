@@ -1,13 +1,19 @@
 package Clasesprincipales;
 
-public class Administrador extends Persona{
-	private Habilidad hab;
+import java.io.Serializable;
+
+public class Administrador extends Persona implements Serializable{
+	
+	/**
+	 * duracion en meses: con esto sabemos cuanto tiempo lleva ese administrador siendo administrador en la aplicacion 
+	 */
+	private double duracion;
 	
 	
 	public Administrador(String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono,
-			String direccion, String apellido, Habilidad hab) {
+			String direccion, String apellido, double duracion) {
 		super(contraseña, usuario, nombre, dni, fechNa, telefono, direccion, apellido);
-		this.hab = hab;
+		this.duracion=duracion;
 	}
 
 	public Administrador(String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono,
@@ -16,17 +22,19 @@ public class Administrador extends Persona{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Habilidad getHab() {
-		return hab;
+	
+
+	public double getDuracion() {
+		return duracion;
 	}
 
-	public void setHab(Habilidad hab) {
-		this.hab = hab;
+	public void setDuracion(double duracion) {
+		this.duracion = duracion;
 	}
 
 	@Override
 	public String toString() {
-		return "Administrador [hab=" + hab + "]";
+		return "Administrador [duracion=" + duracion + "]";
 	}
 
 	@Override

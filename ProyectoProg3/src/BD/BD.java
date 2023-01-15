@@ -1,5 +1,7 @@
 package BD;
-
+/**
+ * esta es nuestra base de datos la cual esta fromada de un moton de metodos mediante los cuales podemos recuperar informacion de esta 
+ */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,28 +32,19 @@ public class BD {
 	private static Logger logger = Logger.getLogger( "BD" );
 	private static Connection conn;
 
-	
+	static HashMap<Integer,Producto> mapa= new HashMap<>();
 	private static TreeMap<String, Usuario> mapaUsuarios = new TreeMap<>();
 	public static Map<Integer, Producto> mapaProductos = new HashMap<>();
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * PRIMERP TODA LA INICIALIZACION DE LA BASE DE DATOS Y DEMAS 
+	 */
 	
 	/** Inicializa una BD SQLITE y devuelve una conexiï¿½n con ella
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexiï¿½n con la base de datos indicada. Si hay algï¿½n error, se devuelve null
 	 */
-	
-	
 	public static Statement abrirlaconexion( String nombreBD) throws SQLException{ 
-		
-//		try { // Crear carpeta si no existe
-//			File fic = new File(rutaFotos);
-//			if (!fic.exists()) {
-//				Files.createDirectory( (fic).toPath() );
-//			}
-//		} catch (IOException ex) {
-//			log( Level.SEVERE, "Ruta de fotos " + rutaFotos + " no se ha podido respaldar en el servicio de persistencia", ex );
-//		}
-		
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
@@ -68,7 +61,6 @@ public class BD {
 			return null;
 		}
 	}
-	
 	
 	/** Devuelve statement para usar la base de datos
 	 * @param con	Conexiï¿½n ya creada y abierta a la base de datos
@@ -135,8 +127,19 @@ public class BD {
 				logger.log( Level.FINEST, "Tabla creada" );
 			}
 			
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+			/**
+			 * AHORA VAMOS INSERTAR EN LA BASE DE DATOS TODOS LOS DATOS NECESARIOS PARA NUESTRA APLICACION
+			 */
 			
-			// insertar usuarios. 
+			/**
+			 * INSERCION DE USUARIOS
+			 */
+			
+			/**
+			 * INSERCION DE USUARIOS QUE NO SON ADMINISTRADORES
+			 * la insercion de los usuarios que no son administradores la haremos en la ventana de logica y los almacenaremos en un .dat
+			 */
 			InsertarUsuario(new Usuario("Maria", "45344345L", "13/04/1997", "767665543", "Calle Rodrigez Arias", "Rodriguez", "mery456", "mariarodriguez5"));
 			InsertarUsuario(new Usuario("Aritz", "74544345L", "10/10/2003", "644665543", "Calle De Mar", "Yero", "trabajoprogram", "yero55"));
 			InsertarUsuario(new Usuario("Lucia", "68458021D", "03/08/1970", "688475093", "Calle Sabino Arana", "Lopez", "luciita", "lopez70"));
@@ -157,9 +160,12 @@ public class BD {
 			InsertarUsuario(new Usuario("Martina", "83068219S", "07/05/1995", "758934023", "Calle Gran Via", "Puente", "martinPu", "martiti"));
 			InsertarUsuario(new Usuario("Daniela", "85234681I", "08/06/2001", "756902347", "Calle Doctor Areilza", "Diez", "dadiez", "daninueve"));
 
-			
-			// insertar producto/ mismo producto en diferentes tallas
-			//producto1. t1
+			/**
+			 * INSERCION DE LOS PRODUCTOS
+			 */
+			/**
+			 * PRODUCTO1
+			 */
 			Producto p1 = new Producto("Chaqueta de pelo", 50, Colorc.NEGRO, Talla.XS, TipoProducto.CHAQUETA);
 			Producto p11 = new Producto("Chaqueta de pelo", 50, Colorc.NEGRO, Talla.S, TipoProducto.CHAQUETA);
 			Producto p111= new Producto("Chaqueta de pelo", 50, Colorc.NEGRO, Talla.M, TipoProducto.CHAQUETA);
@@ -171,8 +177,9 @@ public class BD {
 			InsertarProducto(p1111,"Fotosproductos/prod1.jpg",1);
 			InsertarProducto(p11111,"Fotosproductos/prod1.jpg",1);
 			
-			
-			//producto2. t2
+			/**
+			 * PRODUCTO2
+			 */
 			Producto p2 = new Producto("Pantalones vaqueros", 15, Colorc.AZUL, Talla.XS, TipoProducto.PANTALON);
 			Producto p22 = new Producto("Pantalones vaqueros", 15, Colorc.AZUL, Talla.S, TipoProducto.PANTALON);
 			Producto p222 = new Producto("Pantalones vaqueros", 15, Colorc.AZUL, Talla.M, TipoProducto.PANTALON);
@@ -184,9 +191,9 @@ public class BD {
 			InsertarProducto(p2222,"Fotosproductos/prod2.jpg",2);
 			InsertarProducto(p22222,"Fotosproductos/prod2.jpg",2);
 			
-			
-
-			//producto3t3
+			/**
+			 * PRODUCTO3
+			 */
 			Producto p3 = new Producto("Camisa con volantes", 20, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETA);
 			Producto p33 = new Producto("Camisa con volantes", 20, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETA);
 			Producto p333 = new Producto("Camisa con volantes", 20, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETA);
@@ -199,7 +206,9 @@ public class BD {
 			InsertarProducto(p33333,"Fotosproductos/prod3.jpg",3);
 			
 			
-			//PRODUCTO4 t4	
+			/**
+			 * PRODUCTO4
+			 */	
 			Producto p4 = new Producto("Pantalones parachute", 30, Colorc.NEGRO, Talla.XS,TipoProducto.PANTALON);
 			Producto p44 =new Producto("Pantalones parachute", 30, Colorc.NEGRO, Talla.S,TipoProducto.PANTALON);
 			Producto p444 =new Producto("Pantalones parachute", 30, Colorc.NEGRO, Talla.M,TipoProducto.PANTALON);
@@ -211,7 +220,10 @@ public class BD {
 			InsertarProducto(p4444,"Fotosproductos/prod4.jpg",4);
 			InsertarProducto(p44444,"Fotosproductos/prod4.jpg",4);
 			
-			//PRODUCTO5(mismo producto que el 4 pero de otro color) t4
+			/**
+			 * PRODUCTO5
+			 * MISMO QUE EL PRODUCTO 4 PERO EN DIFERENTE COLOR
+			 */
 			Producto p5 = new Producto("Pantalones parachute", 30, Colorc.VERDE, Talla.XS,TipoProducto.PANTALON);
 			Producto p55 =new Producto("Pantalones parachute", 30, Colorc.VERDE, Talla.S,TipoProducto.PANTALON);
 			Producto p555 =new Producto("Pantalones parachute", 30, Colorc.VERDE, Talla.M,TipoProducto.PANTALON);
@@ -223,7 +235,10 @@ public class BD {
 			InsertarProducto(p5555,"Fotosproductos/prod5.jpg",4);
 			InsertarProducto(p55555,"Fotosproductos/prod5.jpg",4);
 			
-			//PRODUCTO6(mismo producto que el 4 pero de otro color) t4
+			/**
+			 * PRODUCTO6
+			 * MISMO QUE EL PRODUCTO 4 PERO EN DIFERENTE COLOR
+			 */
 			Producto p6 = new Producto("Pantalones parachute", 30, Colorc.GRIS, Talla.XS,TipoProducto.PANTALON);
 			Producto p66 =new Producto("Pantalones parachute", 30, Colorc.GRIS, Talla.S,TipoProducto.PANTALON);
 			Producto p666 =new Producto("Pantalones parachute", 30,Colorc.GRIS, Talla.M,TipoProducto.PANTALON);
@@ -235,8 +250,9 @@ public class BD {
 			InsertarProducto(p6666,"Fotosproductos/prod6.jpg",4);
 			InsertarProducto(p66666,"Fotosproductos/prod6.jpg",4);
 			
-			
-			//producto7 t5
+			/**
+			 * PRODUCTO7
+			 */
 			Producto p7 = new Producto("Blusa con boton delantero", 35, Colorc.BLANCO, Talla.XS, TipoProducto.CAMISETA);
 			Producto p77 = new Producto("Blusa con boton delantero", 35, Colorc.BLANCO, Talla.S, TipoProducto.CAMISETA);
 			Producto p777 = new Producto("Blusa con boton delantero", 35, Colorc.BLANCO, Talla.M, TipoProducto.CAMISETA);
@@ -248,7 +264,9 @@ public class BD {
 			InsertarProducto(p7777,"Fotosproductos/prod7.jpg",5);
 			InsertarProducto(p77777,"Fotosproductos/prod7.jpg",5);
 			
-			//producto8 t6
+			/**
+			 * PRODUCTO8
+			 */
 			Producto p8 = new Producto("Vestido de verano", 29, Colorc.BLANCO, Talla.XS, TipoProducto.VESTIDO);
 			Producto p88 = new Producto("Vestido de verano", 29, Colorc.BLANCO, Talla.S, TipoProducto.VESTIDO);
 			Producto p888 = new Producto("Vestido de verano", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDO);
@@ -260,7 +278,9 @@ public class BD {
 			InsertarProducto(p8888,"Fotosproductos/prod8.jpg",6);
 			InsertarProducto(p88888,"Fotosproductos/prod8.jpg",6);
 			
-			//producto9 (MISMO PRODUCTO QUE EL 8 PERO EN OTRO COLOR )
+			/**
+			 * PRODUCTO9
+			 */
 			Producto p9 = new Producto("Vestido de verano", 29, Colorc.AMARILLO, Talla.XS, TipoProducto.VESTIDO);
 			Producto p99 = new Producto("Vestido de verano", 29, Colorc.AMARILLO, Talla.S, TipoProducto.VESTIDO);
 			Producto p999 = new Producto("Vestido de verano", 29, Colorc.AMARILLO, Talla.M, TipoProducto.VESTIDO);
@@ -272,7 +292,9 @@ public class BD {
 			InsertarProducto(p9999,"Fotosproductos/prod9.jpg",6);
 			InsertarProducto(p99999,"Fotosproductos/prod9.jpg",6);
 			
-			//producto10 
+			/**
+			 * PRODUCTO10
+			 */
 			Producto p10 = new Producto("Pantalones de campana", 35, Colorc.ROJO, Talla.XS, TipoProducto.PANTALON);
 			Producto p101 = new Producto("Pantalones de campana", 35, Colorc.ROJO, Talla.S, TipoProducto.PANTALON);
 			Producto p102 = new Producto("Pantalones de campana", 35, Colorc.ROJO, Talla.M, TipoProducto.PANTALON);
@@ -284,7 +306,10 @@ public class BD {
 			InsertarProducto(p103,"Fotosproductos/prod10.jpg",1);
 			InsertarProducto(p104,"Fotosproductos/prod10.jpg",1);
 			
-			//producto11 (mismo producto que el 10 pero en otro color)
+			/**
+			 * PRODUCTO11
+			 * MISMO QUE EL PRODUCTO 10 PERO EN DIFERENTE COLOR
+			 */
 			Producto p110 = new Producto("Pantalones de campana", 35, Colorc.BLANCO, Talla.XS, TipoProducto.PANTALON);
 			Producto p1101 = new Producto("Pantalones de campana", 35, Colorc.BLANCO, Talla.S, TipoProducto.PANTALON);
 			Producto p112 = new Producto("Pantalones de campana", 35, Colorc.BLANCO, Talla.M, TipoProducto.PANTALON);
@@ -296,7 +321,10 @@ public class BD {
 			InsertarProducto(p113,"Fotosproductos/prod11.jpeg",1);
 			InsertarProducto(p114,"Fotosproductos/prod11.jpeg",1);
 			
-			//producto12 (mismo producto que el 10 pero en otro color)
+			/**
+			 * PRODUCTO12
+			 * MISMO QUE EL PRODUCTO 10 PERO EN DIFERENTE COLOR
+			 */
 			Producto p120 = new Producto("Pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.XS, TipoProducto.PANTALON);
 			Producto p1201 = new Producto("Pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.S, TipoProducto.PANTALON);
 			Producto p122 = new Producto("Pantalones de campana de estampado", 28, Colorc.NARANJA, Talla.M, TipoProducto.PANTALON);
@@ -308,7 +336,10 @@ public class BD {
 			InsertarProducto(p123,"Fotosproductos/prod12.jpg",2);
 			InsertarProducto(p124,"Fotosproductos/prod12.jpg",2);
 			
-			//PRODUCTO13 (mismo producto que el 10 pero otro color)
+			/**
+			 * PRODUCTO13
+			 * MISMO QUE EL PRODUCTO 10 PERO EN DIFERNETE COLOR
+			 */
 			Producto p130 = new Producto("Pantalones de campana de estampado", 28, Colorc.AZUL, Talla.XS, TipoProducto.PANTALON);
 			Producto p1301 = new Producto("Pantalones de campana de estampado", 28, Colorc.AZUL, Talla.S, TipoProducto.PANTALON);
 			Producto p132 = new Producto("Pantalones de campana de estampado", 28, Colorc.AZUL, Talla.M, TipoProducto.PANTALON);
@@ -320,7 +351,9 @@ public class BD {
 			InsertarProducto(p133,"Fotosproductos/prod13.jpeg",2);
 			InsertarProducto(p134,"Fotosproductos/prod13.jpeg",2);
 			
-			//producto14
+			/**
+			 * PRODUCTO14
+			 */
 			Producto p140 = new Producto("Vestido de invierno", 29, Colorc.BLANCO, Talla.XS, TipoProducto.VESTIDO);
 			Producto p1401 = new Producto("Vestido de invierno", 29, Colorc.BLANCO, Talla.S, TipoProducto.VESTIDO);
 			Producto p1402 = new Producto("Vestido de invierno", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDO);
@@ -332,7 +365,9 @@ public class BD {
 			InsertarProducto(p1403,"Fotosproductos/prod14.jpeg",3);
 			InsertarProducto(p1404,"Fotosproductos/prod14.jpeg",3);
 			
-			//producto15 (mismo que el 14 pero distinto color)
+			/**
+			 * PRODUCTO15
+			 */
 			Producto p150 = new Producto("Vestido de invierno", 29, Colorc.GRIS, Talla.XS, TipoProducto.VESTIDO);
 			Producto p1501 = new Producto("Vestido de invierno", 29, Colorc.GRIS, Talla.S, TipoProducto.VESTIDO);
 			Producto p1502 = new Producto("Vestido de invierno", 29, Colorc.GRIS, Talla.M, TipoProducto.VESTIDO);
@@ -344,7 +379,10 @@ public class BD {
 			InsertarProducto(p1503,"Fotosproductos/prod15.jpg",3);
 			InsertarProducto(p1504,"Fotosproductos/prod15.jpg",3);
 			
-			//producto16 (mismo que el 14 pero distinto color)
+			/**
+			 * PRODUCTO16
+			 * MISMO QUE EL PRODUCTO 15 PERO EN DIFERENTE COLOR
+			 */
 			Producto p160 = new Producto("Vestido de invierno", 29, Colorc.VERDE, Talla.XS, TipoProducto.VESTIDO);
 			Producto p1601 = new Producto("Vestido de invierno", 29, Colorc.VERDE, Talla.S, TipoProducto.VESTIDO);
 			Producto p1602 = new Producto("Vestido de invierno", 29, Colorc.VERDE, Talla.M, TipoProducto.VESTIDO);
@@ -356,7 +394,9 @@ public class BD {
 			InsertarProducto(p1603,"Fotosproductos/prod16.jpg",3);
 			InsertarProducto(p1604,"Fotosproductos/prod16.jpg",3);
 			
-			//producto17 
+			/**
+			 * PRODUCTO17
+			 */ 
 			Producto p170 = new Producto("Pantalones cortos", 25, Colorc.BLANCO, Talla.XS, TipoProducto.PANTALON);
 			Producto p1701 = new Producto("Pantalones cortos", 25, Colorc.BLANCO, Talla.S, TipoProducto.PANTALON);
 			Producto p1702 = new Producto("Pantalones cortos", 25, Colorc.BLANCO, Talla.M, TipoProducto.PANTALON);
@@ -368,7 +408,10 @@ public class BD {
 			InsertarProducto(p1703,"Fotosproductos/prod17.jpg",4);
 			InsertarProducto(p1704,"Fotosproductos/prod17.jpg",4);
 			
-			//producto18 (mismo producto que el 17 pero distinto color) 
+			/**
+			 * PRODUCTO18
+			 * MISMO QUE EL PRODUCTO 4 PERO EN DIFERENTE COLOR
+			 */
 			Producto p180 = new Producto("Pantalones cortos", 25, Colorc.AZUL, Talla.XS, TipoProducto.PANTALON);
 			Producto p1801 = new Producto("Pantalones cortos", 25, Colorc.AZUL, Talla.S, TipoProducto.PANTALON);
 			Producto p1802 = new Producto("Pantalones cortos", 25, Colorc.AZUL, Talla.M, TipoProducto.PANTALON);
@@ -380,7 +423,10 @@ public class BD {
 			InsertarProducto(p1803,"Fotosproductos/prod18.jpg",4);
 			InsertarProducto(p1804,"Fotosproductos/prod18.jpg",4);
 			
-			//producto19 (mismo producto que el 17 pero distinto color) 
+			/**
+			 * PRODUCTO19
+			 * MISMO QUE EL PRODUCTO 17 PERO EN OTRO COLOR
+			 */ 
 			Producto p190 = new Producto("Pantalones cortos", 25, Colorc.AMARILLO, Talla.XS, TipoProducto.PANTALON);
 			Producto p1901 = new Producto("Pantalones cortos", 25, Colorc.AMARILLO, Talla.S, TipoProducto.PANTALON);
 			Producto p1902 = new Producto("Pantalones cortos", 25, Colorc.AMARILLO, Talla.M, TipoProducto.PANTALON);
@@ -392,7 +438,10 @@ public class BD {
 			InsertarProducto(p1903,"Fotosproductos/prod19.jpg",4);
 			InsertarProducto(p1904,"Fotosproductos/prod19.jpg",4);
 			
-			//producto20 (mismo producto que el 17 pero distinto color)
+			/**
+			 * PRODUCTO20
+			 * MISMO QUE EL PRODUCTO 17 PERO EN DIFERENTE COLOR
+			 */
 			Producto p200 = new Producto("Pantalones cortos", 25, Colorc.ROSA, Talla.XS, TipoProducto.PANTALON);
 			Producto p2001 = new Producto("Pantalones cortos", 25, Colorc.ROSA, Talla.S, TipoProducto.PANTALON);
 			Producto p2002 = new Producto("Pantalones cortos", 25, Colorc.ROSA, Talla.M, TipoProducto.PANTALON);
@@ -404,7 +453,10 @@ public class BD {
 			InsertarProducto(p2003,"Fotosproductos/prod20.jpg",4);
 			InsertarProducto(p2004,"Fotosproductos/prod20.jpg",4);
 			
-			//producto21 
+			/**
+			 * PRODUCTO21
+			 *
+			 */
 			Producto p210 = new Producto("Falda larga", 30, Colorc.ROSA, Talla.XS, TipoProducto.FALDA);
 			Producto p2101 = new Producto("Falda larga", 30, Colorc.ROSA, Talla.S, TipoProducto.FALDA);
 			Producto p2102 = new Producto("Falda larga", 30, Colorc.ROSA, Talla.M, TipoProducto.FALDA);
@@ -416,7 +468,10 @@ public class BD {
 			InsertarProducto(p2103,"Fotosproductos/prod21.jpg",5);
 			InsertarProducto(p2104,"Fotosproductos/prod21.jpg",5);
 			
-			//producto22 (mismo producto que el 21 distinto color) 
+			/**
+			 * PRODUCTO22
+			 * MISMO QUE EL PRODUCTO21 PERO EN OTRO COLOR
+			 */
 			Producto p220 = new Producto("Falda larga", 30, Colorc.BLANCO, Talla.XS, TipoProducto.FALDA);
 			Producto p2201 = new Producto("Falda larga", 30, Colorc.BLANCO, Talla.S, TipoProducto.FALDA);
 			Producto p2202 = new Producto("Falda larga", 30, Colorc.BLANCO, Talla.M, TipoProducto.FALDA);
@@ -428,7 +483,10 @@ public class BD {
 			InsertarProducto(p2203,"Fotosproductos/prod22.jpg",5);
 			InsertarProducto(p2204,"Fotosproductos/prod22.jpg",5);
 			
-			//producto23 (mismo producto que el 21 distinto color) 
+			/**
+			 * PRODUCTO23
+			 * MISMO QUE EL PRODUCTO21 PERO EN OTRO COLOR
+			 */
 			Producto p230 = new Producto("Falda larga", 30, Colorc.NEGRO, Talla.XS, TipoProducto.FALDA);
 			Producto p2301 = new Producto("Falda larga", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
 			Producto p2302 = new Producto("Falda larga", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
@@ -440,7 +498,9 @@ public class BD {
 			InsertarProducto(p2303,"Fotosproductos/prod23.jpg",5);
 			InsertarProducto(p2304,"Fotosproductos/prod23.jpg",5);
 			
-			//producto24 
+			/**
+			 * PRODUCTO24
+			 */
 			Producto p240 = new Producto("Falda corta", 30, Colorc.BLANCO, Talla.XS, TipoProducto.FALDA);
 			Producto p2401 = new Producto("Falda corta", 30, Colorc.BLANCO, Talla.S, TipoProducto.FALDA);
 			Producto p2402 = new Producto("Falda corta", 30, Colorc.BLANCO, Talla.M, TipoProducto.FALDA);
@@ -452,7 +512,10 @@ public class BD {
 			InsertarProducto(p2403,"Fotosproductos/prod24.jpg",2);
 			InsertarProducto(p2404,"Fotosproductos/prod24.jpg",2);
 			
-			//producto25 (mismo producto que el 24 distinto color) 
+			/**
+			 * PRODUCTO25
+			 * MISMO QUE EL PRODUCTO24 PERO EN OTRO COLOR
+			 */
 			Producto p250 = new Producto("Falda corta", 30, Colorc.NEGRO, Talla.XS, TipoProducto.FALDA);
 			Producto p2501 = new Producto("Falda corta", 30, Colorc.NEGRO, Talla.S, TipoProducto.FALDA);
 			Producto p2502 = new Producto("Falda corta", 30, Colorc.NEGRO, Talla.M, TipoProducto.FALDA);
@@ -464,7 +527,10 @@ public class BD {
 			InsertarProducto(p2503,"Fotosproductos/prod25.jpeg",2);
 			InsertarProducto(p2504,"Fotosproductos/prod25.jpeg",2);
 			
-			//producto26 (mismo producto que el 24 distinto color) 
+			/**
+			 * PRODUCTO25
+			 * MISMO QUE EL PRODUCTO24 PERO EN OTRO COLOR
+			 */
 			Producto p260 = new Producto("Falda corta", 30, Colorc.ROJO, Talla.XS, TipoProducto.FALDA);
 			Producto p2601 = new Producto("Falda corta", 30, Colorc.ROJO, Talla.S, TipoProducto.FALDA);
 			Producto p2602 = new Producto("Falda corta", 30, Colorc.ROJO, Talla.M, TipoProducto.FALDA);
@@ -475,9 +541,13 @@ public class BD {
 			InsertarProducto(p2602,"Fotosproductos/prod26.jpg",2);
 			InsertarProducto(p2603,"Fotosproductos/prod26.jpg",2);
 			InsertarProducto(p2604,"Fotosproductos/prod26.jpg",2);
+			/**
+			 * ESTA ES LA INSERCION DE TODOS LOS PRODUCTOS
+			 */
 			
-			
-			//Insertar pedidos //hay que cambiar lo de veces!!!!
+			/**
+			 * INSERCION DE PEDIDOS
+			 */
 			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 			String fecha = df.format(new Date());
 			ArrayList<Producto> lprodu = new ArrayList<>();
@@ -492,7 +562,9 @@ public class BD {
 			lprodu2.add(lproductos.get(0));
 			InsertarPedido("678999999", "No Finalizado", fecha, lprodu2);
 			
-			//insertar tiendas.
+			/**
+			 * INSERCION DE TIENDAS
+			 */
 			Tienda t1=new Tienda(1,Franquicia.BERSHKA);
 			Tienda t2=new Tienda(2,Franquicia.LEFTIES);
 			Tienda t3=new Tienda(3,Franquicia.OYSHO);
@@ -506,7 +578,7 @@ public class BD {
 			InsertarTienda(t5,"/Fotos/strad.jpg");
 			InsertarTienda(t6,"/Fotos/zara.jpg");
 			
-				
+
 			
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -514,7 +586,24 @@ public class BD {
 			logger.log( Level.SEVERE, "No se pudo crear la base de datos", e );
 		}
 		}
+    /**
+     * AQUI TERMINA LA INICIALIZACION DE LOS DATOS QUE DEBUELVE UNA BASE DE DATOS TOTALMENTE INIZIALIZADA
+
+     */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
     
+    /**
+     * METODOS DE LA BASE DE DATOS
+
+     */
+    
+    
+    /**
+     * INSERCION DE UN USUARIO EN LA BASE DE DATOS
+     * @param usuario 
+     * @return un true o un false dependiendo de si la insercion del usuario se ha realizado correctamente o no
+     */
     public static boolean InsertarUsuario(Usuario us) {
     	if(mapaUsuarios.get(us.getUsuario()) != null) {
     		logger.log( Level.SEVERE, "Inserción de usuario incorrecta (ya existe): " + us );
@@ -548,7 +637,11 @@ public class BD {
 		
     			
     }
-    
+    /**
+     * INSERCION DE UN producto EN LA BASE DE DATOS
+     * @param producto, ruta de la foto para poder insertarla en la base de  datos y el codigo del producto que estamos insertando.  
+     * @return un true o un false dependiendo de si la insercion del producto se ha realizado correctamente o no
+     */
     public static boolean InsertarProducto(Producto pro, String rutafoto, int codigo) {
     	String sent = "";
     	try {
@@ -573,34 +666,17 @@ public class BD {
 			return false;
 		}
     }
-
-    public static boolean EliminarProducto(Producto pro, int codigo) {
-    	String sent = "";
-    	try {
-    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
-    		
-    		sent = "select cantidad from producto" + " where codigo = " + pro.getCodigo() + ";";
-    		if(Integer.parseInt(sent) > 0) {
-    			sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() + ";" ;	
-    		}else {
-				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
-    			return false;
-    		}
-    		
-    		int val = stmt.executeUpdate(sent);
-			if(val != 1) {
-				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
-				return false;
-    		}
-			return true;
-			
-		} catch (SQLException e) {
-			lastError = e;
-			e.printStackTrace();
-			return false;
-		}
-    }
-    
+    /**
+     * LA TABLA PEDIDO VA A TENER UNA LISTA DE LOS PRODUCTOS QUE HAY EN ELLA 
+     * DE ESTA FORMA VAMOS A PODER ACCEDER A TODOS LOS PRODUCTOS QUE HAY EN  UN PEDIDO DE UNA FORMA MUCHO MAS FACIL Y A LA HORA DE ALMACENARLO TAMBIEN .
+     * 
+     */
+    /**
+     * INSERCION DE UN pedido EN LA BASE DE DATOS
+     * @param el dni de el usuario que ha hecho ese pedido, el estado de ese pedido, la fecha en la que hemos hecho la comprwa del pedido, una lista de todos los productos que hay en ese pedido.
+     * EL ESTADO DEL PEDIDIO PUEDE SER DE DOS TIPOS : FINALIZADO O NO FINALIZADO DEPENDIENDO DE SI AUN ESTAMOS REALIZANDO EL PEDIDO. 
+     * @return un true o un false dependiendo de si la insercion del PEDIDO se ha realizado correctamente o no
+     */
     public static boolean InsertarPedido(String dni, String estado, String fecha_compra, ArrayList<Producto> lproductos) {
     	String p = "";
 		try {
@@ -628,7 +704,11 @@ public class BD {
 		return true;
     	
     }
-    
+    /**
+     * INSERCION DE UNA TIENDA EN LA BASE DE DATOS
+     * @param la tienda y la ruta de la foto en la que esta la tienda.  
+     * @return un true o un false dependiendo de si la insercion del producto se ha realizado correctamente o no
+     */
     public static boolean InsertarTienda(Tienda t, String rutafoto) {
     	String sent = "";
     	try {
@@ -648,6 +728,47 @@ public class BD {
 		}
     }
 
+    
+    
+    /**
+     * **********************************************************************************************************************************************
+     */
+    
+    /**
+     * ELIMINAR UN PRODUCTO DE LA BASE DE DATOS
+     * @param codigo Y PRODUCTO
+     * @return TRUE O FALSE DEPENDIENDO DE SI LA ELIMINACION SE HA REALIZADO BIEN
+     */
+    public static boolean EliminarProducto(Producto pro, int codigo) {
+    	String sent = "";
+    	try {
+    		Statement stmt = abrirlaconexion("DeustoOutlet.db");
+    		
+    		sent = "select cantidad from producto" + " where codigo = " + pro.getCodigo() + ";";
+    		if(Integer.parseInt(sent) > 0) {
+    			sent = "update producto set cantidad = cantidad - 1" + " where codigo = " + pro.getCodigo() + ";" ;	
+    		}else {
+				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
+    			return false;
+    		}
+    		
+    		int val = stmt.executeUpdate(sent);
+			if(val != 1) {
+				logger.log( Level.SEVERE, "Error en update de BD\t" + sent);
+				return false;
+    		}
+			return true;
+			
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    }
+    /**
+     * 
+     * @return TODOS LOS PRODUCTOS DE LA BASE DE DATOS EN UN ARRAYLIST
+     */
     
     public static ArrayList<Producto> getProductos(){
  	   String sent = "";
@@ -673,7 +794,10 @@ public class BD {
  	}
  	   
     }  
-    
+    /**
+     * 
+     * @return TODOS LOS USUARIOS DE LA BASE DE DATOS EN UNA ARRAYLIST
+     */
     public static ArrayList <Usuario> getUsuario() {
     	String sent = "";
     	ArrayList<Usuario> lusuario = new ArrayList<Usuario> ();
@@ -697,7 +821,10 @@ public class BD {
      	}
     	
     }
-   
+   /**
+    * 
+    * @return TODOS LOS PEDIDOS DE LA BASE DE DATOS EN UNA ARRAY LIST
+    */
     public static ArrayList<Pedidos> getPedidos() {
  	   String sent = "";
  	   ArrayList<Pedidos> lpedidos = new ArrayList<Pedidos>();
@@ -733,6 +860,14 @@ public class BD {
  	}
     }
    
+    /**
+     * 
+     * @param tipo
+     * @param color
+     * @param precio
+     * @param talla
+     * @return CANTIDAD DE ESE PRODUCRO CON ESAS CARACTERISTICAS 
+     */
    public static int cantidadProductos(TipoProducto tipo, Colorc color, int precio, Talla talla) {
 	   String sent = "";
 	   int cantidad = 0;
@@ -756,7 +891,14 @@ public class BD {
 
    }   
    
-   
+   /**
+    * 
+    * @param tipo
+    * @param color
+    * @param precio
+    * @param talla
+    * @return UNA LISTA DE LOS PRODUCTS QUE TIENEN ESAS CARACTERISTICAS
+    */
    public static List<Producto> buscarProductoCaracteristicas(TipoProducto tipo, Colorc color, int precio, Talla talla) {
 	   
 	   if(cantidadProductos(tipo, color, precio, talla) > 0) {
@@ -784,7 +926,11 @@ public class BD {
 	  }
 	return null; 
    }
-   
+   /**
+    * 
+    * @param tipo
+    * @return UNA LISTA DE LOS PRODUCTOS DE ESE TIPO
+    */
    
    public static List<Producto> buscarProductoTipo(TipoProducto tipo) {
 	   
@@ -810,7 +956,11 @@ public class BD {
 			return null;
 		}
    }
-   
+   /**
+    * 
+    * @param color
+    * @return TODOS LOS PRODUCTOS DE ESE COLOR
+    */
    public static List<Producto> buscarProductoColor(Colorc color){
 	   String sent = "";
 	   List<Producto>lproducto = new ArrayList<Producto>();
@@ -836,7 +986,11 @@ public class BD {
 		}
 	   
    }
-   
+   /**
+    * 
+    * @param talla
+    * @return TODOS LOS PRODUCTOS DE ESA TALLA
+    */
    public static List<Producto> buscarProductoTalla (Talla talla){
 	   String sent = "";
 	   List<Producto>lproducto = new ArrayList<Producto>();
@@ -861,8 +1015,11 @@ public class BD {
 			return null;
 		}
    }
-
-
+   /**
+    * 
+    * @return EL SIGUENTE CODIGO DE PEDIDO
+    * esta funcion analiza todos los pedidos y sus codigos para ver cual seria el siguente codigo de pedido
+    */
 
    public static int getcodigopedido() {
 	   String sent = "";
@@ -890,7 +1047,11 @@ public class BD {
 	}
 	
    }   
-
+   /**
+    * 
+    * @return EL SIGUENTE CODIGO DE producto
+    * esta funcion analiza todos los productos y sus codigos para ver cual seria el siguente codigo de producto
+    */
    public static int getcodigoproducto() {
 	   String sent = "";
 	   
@@ -914,11 +1075,13 @@ public class BD {
 		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
 		e.printStackTrace();
 		return 0;
-	}
-	
-	   
+	} 
    }
-   
+   /**
+    * 
+    * @param producto del que queremos conseguir el URL
+    * @return el url de la foto de ese producto
+    */
    public static String getURLFOTO(Producto p) {
 	   
 	   String sent = "select * from producto where codigo_producto = " + p.getCodigo() ;
@@ -943,6 +1106,11 @@ public class BD {
 	return null;
 	   
    }
+   /**
+    * 
+    * @param producto
+    * @return a que tienda pertenece ese producto
+    */
    public static  int getcodigoTienda(Producto p) {
 	   
 	   String sent = "select * from producto where codigo_producto = " + p.getCodigo() ;
@@ -967,6 +1135,11 @@ public class BD {
 	return -1;
 	   
    }
+   /**
+    * 
+    * @param usuario (nombre de usuario)
+    * @return el dni de ese usuario 
+    */
  public static  String getDNIusuario(String usuario) {
 	   //podemos hacerlo asi ya que el usuario tambien es una clave alternativa
 	   String sent = "select * from usuario where usuario = '" + usuario +"'";
@@ -991,6 +1164,11 @@ public class BD {
 	return null;
 	   
    }
+ /**
+  * 
+  * @param p
+  * @return que codigo tiene un producto
+  */
     public static  int getcodigoProducto(Producto p) {
 	   
 	   String sent = "select * from producto where codigo_producto = " + p.getCodigo() ;
@@ -1015,7 +1193,10 @@ public class BD {
 	return -1;
 	   
    }
-    static HashMap<Integer,Producto> mapa= new HashMap<>();
+    /**
+     * 
+     * @return un mapa que tiene como clave el codigo del producto y su valor es ese producto
+     */
     public static HashMap<Integer,Producto> Completar_mapa() {
     	mapa=new HashMap<>();
     	 ArrayList<Producto> pr=BD.getProductos();
@@ -1026,6 +1207,11 @@ public class BD {
     	}
     	return mapa;
     }
+    /**
+     * 
+     * @param Usuario
+     * @return te devuelve la lista de productos que tenia en el carrito ese usuario 
+     */
     public static ArrayList<Producto> getlistaProductosCarritoAnterior(String Usuario) {
  	   ArrayList<Producto> pr=new ArrayList<Producto>();
  	   String sent = "select * from pedido where dni = '" + Usuario +"' and estado = 'NO finalizado'" ;
@@ -1052,7 +1238,11 @@ public class BD {
  	
  	   
     }
-    
+    /**
+     * 
+     * @param usuario (nombre de usuario)
+     * @return el usuario entero 
+     */
    public static Usuario buscarUsuarioNombre(String usuario) {
 	   String sent = "select * from usuario where usuario = '" + usuario + "'";
 	   try {
@@ -1081,7 +1271,11 @@ public class BD {
 	}
 	   
    }
-   
+   /**
+    * 
+    * @param codigo
+    * @return el estado de ese pedido (si esta finalizado o aun no lo esta )
+    */
    public static String estadoPedidos(Pedidos codigo) {
 	   String sent = "";
 	   String estado = "";
@@ -1105,7 +1299,12 @@ public class BD {
 
 
    }
-   
+   /**
+    * 
+    * @param pedidp
+    * @param codigo
+    * @return true o false dependiendo de si el pedido se ha aztualizado bien o no
+    */
    public static boolean ActualizarPedidoEstado(Pedidos p, int codigo) {
    	String sent = "";
    	try {
