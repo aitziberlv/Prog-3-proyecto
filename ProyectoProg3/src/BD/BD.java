@@ -673,6 +673,30 @@ public class BD {
  	}
  	   
     }  
+    
+    public static ArrayList <Usuario> getUsuario() {
+    	String sent = "";
+    	ArrayList<Usuario> lusuario = new ArrayList<Usuario> ();
+    	try {
+    		Statement stm = abrirlaconexion("DeustoOutlet.db");
+    		sent = "select * from usuario";
+    		ResultSet rs = stm.executeQuery(sent);
+    		while (rs.next()) {
+    			Usuario u = new Usuario(rs.getString("nombre"), rs.getString("dni"), rs.getString("fechNa"), rs.getString("telefono"), rs.getString("direccion"), rs.getString("apellido"), rs.getString("contraseña"), rs.getString("usuario") );
+    			lusuario.add(u);
+    			mapaUsuarios.put(u.getDni(), u);
+    		}
+    		rs.close();
+    		logger.log(Level.INFO, "BD\t" + sent);
+    		return lusuario;
+    	}catch (SQLException e) {
+     		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
+     		lastError = e;
+     		e.printStackTrace();
+     		return null;
+     	}
+    	
+    }
    
     public static ArrayList<Pedidos> getPedidos() {
  	   String sent = "";
