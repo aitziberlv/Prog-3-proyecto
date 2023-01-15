@@ -105,6 +105,7 @@ public class Ventana_Cliente extends JFrame{
 	private JPanel t3;
 	private JPanel t4;
 	private JLabel lFoto;
+	private JLabel lFoto_tienda;
 	private JPanel t5;
 	
 	private JScrollPane panelDeslizable ;	
@@ -131,9 +132,8 @@ public class Ventana_Cliente extends JFrame{
 		arriba2=new JPanel();
 		arriba3=new JPanel();
 		lFoto=new JLabel();
+	    lFoto_tienda=new JLabel();
 		info_arriba=new JLabel("Gracias a esta aplicación podrás empezar a buscar productos de varias tiendas con las caracteristicas que deseas");
-		//labelRecursividad = new JLabel("Si tienes un presupuesto y no sabes " +"que productos te podrias comprar  con dicho presupuesto nuestra aplicacion te ayuda a ello mostrandote toda la lista de productos que podrias comprarte con \nese presupuesto ");
-		//labelRecursividad.setPreferredSize(new Dimension(400,200));
 		b1=new JButton("Mostrar todo");
 		b2=new JButton("Mostrar todo de un tipo determinado");
 		b3=new JButton("Mostrar todo de un color determinado");
@@ -295,10 +295,15 @@ public class Ventana_Cliente extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				int i=tablaProductos.getSelectedRow();
 				Producto p =usando.get(i);
+				int codigo=BD.getcodigoTienda(p);
+				String url_tienda=BD.getURLFOTO_tienda(codigo);
 				String url=BD.getURLFOTO(p);
 				Image img= new ImageIcon(url).getImage();
 				ImageIcon img2=new ImageIcon(img.getScaledInstance(220, 220, Image.SCALE_SMOOTH));
 				lFoto.setIcon( img2 );
+				Image img222= new ImageIcon(url_tienda).getImage();
+				ImageIcon img22=new ImageIcon(img222.getScaledInstance(220, 220, Image.SCALE_SMOOTH));
+				lFoto_tienda.setIcon( img22 );
 			}
 
 		
@@ -404,8 +409,12 @@ public class Ventana_Cliente extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Ventana_productosdisponibles vd=new Ventana_productosdisponibles();
+				Ventana_productosdisponibles vd=new Ventana_productosdisponibles(usuario,0);
 				vd.setVisible(true);
+				setVisible(false);
+				vd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				vd.setSize(700, 1000);
+				vd.setLocationRelativeTo(null);
 				//vd.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 				
 			}
@@ -454,6 +463,7 @@ public class Ventana_Cliente extends JFrame{
 		centro_dcha.add(b4);
 		centro_dcha.add(carrito);
 		centro_dcha.add(lFoto);
+		centro_dcha.add(lFoto_tienda);
 		b1.setBackground(Color.white);
 		b2.setBackground(Color.white);
 		b3.setBackground(Color.white);

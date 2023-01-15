@@ -23,7 +23,7 @@ import Ventanasexternas.FondoSwing;
 public class Ventana_Portada extends JFrame{
 
 	/**
-	 * 
+	 * ESTA VENTANA SE TRATA DE LA PORTADA, LO PRIMERO QUE SE VA A VER AL ENTRAR EN LA APLICACION
 	 */
 	private static final long serialVersionUID = 1L;
 

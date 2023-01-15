@@ -175,6 +175,9 @@ public class Ventana_IS extends JFrame{
 
 					}
 					else {
+						
+						lg.lectura("Administradores.dat");
+						System.out.println(lg.u);
 						if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
 							Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
 							va.setVisible(true);

@@ -18,9 +18,10 @@ import DATOSDEPRUEBA.Datosdeprueba;
 
 public class TestBD {
 	
+	/**
+	 * //Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
+	 */
 	
-	//Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
-		
 	@Test
 	public void getProductosTest() {
 		ArrayList<Producto> lp = BD.getProductos();
@@ -32,9 +33,10 @@ public class TestBD {
 		}
 	}
 	
-	
-	//Test para comprobar los codigos de los pedidos de la base de datos estan correctamente ordenados
+	/**
+	 * //Test para comprobar los codigos de los pedidos de la base de datos estan correctamente ordenados
 	// tenemos que arreglar de la base de datos o de pedido si no va a dar mal 
+	 */
 	@Test
 	public void getPedidosTest () {
 		ArrayList <Pedidos> lped = BD.getPedidos();
@@ -47,9 +49,9 @@ public class TestBD {
 		
 	}
 	
-	
-	//Test para comprobar los productos se insertan correctamente a la base de datos
-	
+	/**
+	 * //Test para comprobar los productos se insertan correctamente a la base de datos
+	 */
 	@Test
 	public void insertarProducto() {
 		ArrayList<Producto> lprod = BD.getProductos(); //productos que hay.
@@ -67,9 +69,11 @@ public class TestBD {
 		 	
 	}
 	
-	
-	//Test para comprobar los pedidos se insertan correctamente a la base de datos
+	/**
+	 * //Test para comprobar los pedidos se insertan correctamente a la base de datos
 
+	 */
+	
 	@Test
 	public void insertarPedido() {
 		
@@ -94,7 +98,9 @@ public class TestBD {
 	}
 	
 	
-	//Test para comprobar que se consigue el url correcto de la base de datos. 
+	/**
+	 * //Test para comprobar que se consigue el url correcto de la base de datos. 
+	 */
 		/**
 		 * la comprabacion de este test se trata en 
 		 * compararlo con un fichero de prueba en el que tenemos metido el codigo de la foto y el url 
@@ -123,9 +129,9 @@ public class TestBD {
 		assertEquals("45344345L",dni);
 	}
 	
-	
-	//Metodo que comprueba que el codigo de cada producto es el que le corresponde.
-	
+	/**
+	 * //Metodo que comprueba que el codigo de cada producto es el que le corresponde.
+	 */
 	@Test
 	public void getCodigoProducto() {
 		ArrayList<Producto> prod = BD.getProductos();
@@ -135,9 +141,9 @@ public class TestBD {
 		}
 	}
 		
-	
-	//Metodo para comprobar que un producto en concreto (camiseta blanca de talla XS) tiene la cantidad correcta.
-	
+	/**
+	 * //Metodo para comprobar que un producto en concreto (camiseta blanca de talla XS) tiene la cantidad correcta.
+	 */
 	@Test
 	public void getCantidadProducto() {
 		int cantidad = BD.cantidadProductos(TipoProducto.CAMISETA, Colorc.BLANCO, 20, Talla.XS);

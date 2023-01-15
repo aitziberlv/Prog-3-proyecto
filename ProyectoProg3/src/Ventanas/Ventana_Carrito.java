@@ -44,7 +44,8 @@ import Ventanasexternas.FondoSwing;
 public class Ventana_Carrito extends JFrame{
 
 	/**
-	 * 
+	 * ESTA VENTANA ES LA DE CARRITO, EN ESTA VENTANA VAMOS A PODER VER TODOS LOS PRODUCTOS QUE LLEVAMOS Y CUALTO VALE LO QUE QUEREMOS COMPRAR Y 
+	 * TAMBIEN PODREMOS RETROCEDER PARA AÑADIR MAS PRODUCTOS 
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -63,8 +64,6 @@ public class Ventana_Carrito extends JFrame{
 	private JLabel producto;
 	private JLabel carrito;
 	private JLabel precio;
-	private JLabel cantidad;
-	
 	private JButton borrar;
 	private JButton añadir; //volver a la tienda y añadir mas productos.
 	private JButton pagar;
@@ -75,6 +74,11 @@ public class Ventana_Carrito extends JFrame{
 	private JList<Producto> lSelec;
 	private JScrollPane scrollista;
 	ArrayList<Producto> pr=(ArrayList<Producto>) Ventana_Cliente.getCarrito();
+	/**
+	 * inicializar la ventana:constructor
+	 * @param usuario
+	 * @throws HeadlessException
+	 */
 	public Ventana_Carrito(String usuario) throws HeadlessException {
 		super();
 		this.usuario = usuario;
@@ -116,21 +120,17 @@ public class Ventana_Carrito extends JFrame{
         scrollista.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollista.setViewportView(lSelec);
 		lSelec.setModel(mSelec);
-		
-		
+		/**
+		 * INICIALIZAMOS LA JLIST
+		 */
 		for( int i=0; i<Ventana_Cliente.getCarrito().size(); i++) {
 			mSelec.addElement(Ventana_Cliente.getCarrito().get(i));
 			
 		}
-		
 		usando=Ventana_Cliente.getCarrito();
-		
 		producto = new JLabel("Productos seleccionados:");
 		carrito = new JLabel("CARRITO");
 		precio = new JLabel("Total a pagar: " + Ventana_Cliente.getPago());
-		
-
-		
 		borrar = new JButton("Eliminar producto");
 		borrar.setForeground(Color.black);
 		borrar.setBackground(Color.white);
@@ -143,11 +143,12 @@ public class Ventana_Carrito extends JFrame{
 		guardar = new JButton("Guardar datos");
 		guardar.setForeground(Color.black);
 		guardar.setBackground(Color.white);
-
-		
 		Border b;
 		b = BorderFactory.createLineBorder(Color.black,2);
 		centro.setBorder(b);
+		/**
+		 * BORRA UN PRODUCTO
+		 */
 		borrar.addActionListener(new ActionListener( ){
 		
 			@Override
@@ -172,7 +173,9 @@ public class Ventana_Carrito extends JFrame{
 			}
 			
 		});
-		
+		/**
+		 * PARA QUE AL SELECCIONAR UN ELEMENTO VEAMOS LA FOTO ALADO 
+		 */
 		lSelec.addMouseListener(new MouseAdapter(){
 
 			@Override
@@ -188,7 +191,9 @@ public class Ventana_Carrito extends JFrame{
 		
 			
 		});
-		
+		/**
+		 * PARA VOLVER A LA VENTANA CARRITO Y SEGUIR AÑADIENDO PRODUCTOS
+		 */
 		añadir.addActionListener(new ActionListener( ){
 
 			@Override
@@ -203,7 +208,9 @@ public class Ventana_Carrito extends JFrame{
 			}
 			
 		});
-		
+		/**
+		 * PARA FINALIZAR NUESTRA COMPRA Y PAGARLA
+		 */
 		pagar.addActionListener(new ActionListener( ){
 
 			@Override
@@ -218,7 +225,9 @@ public class Ventana_Carrito extends JFrame{
 			}
 			
 		});
-		
+		/**
+		 * PARA GUARDAR NUESTRA COMPRA Y PODER SEGUIR REALIZANDOLA SI VOLVEMOS A INICIAR SESION OTRO DIA
+		 */
 		guardar.addActionListener(new ActionListener( ){
 
 			@Override
@@ -237,9 +246,7 @@ public class Ventana_Carrito extends JFrame{
 			}
 			
 		});
-		
 		scrollista.setViewportView(lSelec);
-		
 		titulo.add(carrito);
 		frase.add(producto, BorderLayout.CENTER);
 		frase.add(v,BorderLayout.WEST);
@@ -257,17 +264,11 @@ public class Ventana_Carrito extends JFrame{
 		abajo.add(abajo1);
 		abajo.add(abajoIzq);
 		abajo.add(abajoDer);
-		
-		
-		
-		
 		this.add(titulo);
 		this.add(centro);
 		this.add(abajo);
 		Font fuenteS = new Font("Arial",Font.BOLD,25);
 		producto.setFont(fuenteS);
-		Color color1= new Color(243,242,235);
-		Color colori= new Color(224,228,204);
 		Color colorj= new Color(228,251,243);
 		frase.setBackground(colorj);
 		centro_dcha.setBackground(colorj);
@@ -275,21 +276,18 @@ public class Ventana_Carrito extends JFrame{
 		abajo1.setBackground(Color.WHITE);
 		abajoIzq.setBackground(Color.WHITE);
 		abajo.setBorder(b);
-		//abajoDer.setBackground(Color.white);
 		carrito.setFont(fuenteS);
 		lista.setBackground(colorj);
 		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/cf.png")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	       titulo.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/do2.png")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	       abajoDer.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

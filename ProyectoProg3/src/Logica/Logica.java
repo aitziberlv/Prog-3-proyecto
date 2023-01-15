@@ -20,7 +20,7 @@ public class Logica {
 	/**
 	 * Array list en el que tendremos todos los administradores de la aplicacion. 
 	 */
-	private static ArrayList<Administrador> u =new ArrayList<>();
+	public static ArrayList<Administrador> u =new ArrayList<>();
 	/**
 	 * Operaciones de lectura y escritura con el fichero para el array list de usuarios 
 	 * @param fichero
@@ -36,7 +36,8 @@ public class Logica {
     		e.printStackTrace();
     	}
 	}
-	public  void lectura(String fichero ) {	
+	
+	public static  void lectura(String fichero ) {	
 		try {
 			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fichero));
 			ArrayList<Administrador> cargado= (ArrayList<Administrador>) ois.readObject();
@@ -52,10 +53,10 @@ public class Logica {
 	 * @param contrasena
 	 * @return devuelve un booleano que te dice si ese administrador esta o no esta en el array list . 
 	 */
-	public boolean iniciar_sesion(String nombre,String contrasena) {
+	public static boolean iniciar_sesion(String nombre,String contrasena) {
 		
     	for (Administrador p:u) {
-			if ( nombre.equals(p.getNombre()) && contrasena.equals(p.getContraseña())) {
+			if ( nombre.equals(p.getUsuario()) && contrasena.equals(p.getContraseña())) {
 				return true;
 				
 		    }

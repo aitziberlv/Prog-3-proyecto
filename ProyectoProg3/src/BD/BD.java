@@ -31,7 +31,10 @@ public class BD {
 	private static Exception lastError = null;
 	private static Logger logger = Logger.getLogger( "BD" );
 	private static Connection conn;
-
+/**
+ * a lo largo de todo el proyecto hemos usado diferentes estructuras de listas constantemente y rambien entre las estructuras de mapa que 
+ * hemos usado se encuentran las siguentes junto con algunas otras
+ */
 	static HashMap<Integer,Producto> mapa= new HashMap<>();
 	private static TreeMap<String, Usuario> mapaUsuarios = new TreeMap<>();
 	public static Map<Integer, Producto> mapaProductos = new HashMap<>();
@@ -792,8 +795,37 @@ public class BD {
  		e.printStackTrace();
  		return null;
  	}
+    }
+ 	   /**
+ 	    * conseguir el url de una tienda (url de la foto)
+ 	    * @return el url de la tienda. 
+ 	    */
+
+    public static String getURLFOTO_tienda(int codigo) {
  	   
-    }  
+ 	   String sent = "select foto from tienda where codigo_tienda = " + codigo ;
+ 	   
+ 	   try {
+ 		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+ 		   ResultSet rs = stm.executeQuery( sent );
+ 		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+ 		   while(rs.next()) {
+ 			  return rs.getString("foto");
+ 		   }
+ 		   rs.close();
+ 		   logger.log(Level.INFO, "BD\t" + sent);
+ 		   
+ 		   
+ 	} catch (SQLException e) {
+ 		lastError = e;
+ 		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+ 		e.printStackTrace();
+ 		return null;
+ 	}
+ 	return null;
+ 	   
+    }
+      
     /**
      * 
      * @return TODOS LOS USUARIOS DE LA BASE DE DATOS EN UNA ARRAYLIST
@@ -1325,11 +1357,44 @@ public class BD {
 		}
    }
    
+   /**
+    * conseguis ultimo error
+    * @return exception
+    */
    public static Exception getLastError() {
 		return lastError;
 	}
    
-   
+   /**
+    * rellenar mapa con el nombre de cada usuario y el numero de pedidos que ha hecho cada uno.
+    * esto vamos a usarlo a la hora de hacer las estadsticas. 
+    */
+   public Map<String,Integer> rellenarmapa_admin(){
+         String sent = "";
+         Map<String,Integer> mapa_p=new HashMap<>();
+	   try {
+		   sent = "select * from pedido";
+		   Statement stm = abrirlaconexion("DeustoOutlet.db");
+		   ResultSet rs = stm.executeQuery( sent );
+		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+		   
+		   while(rs.next()) {
+			  String dni= rs.getString("dni");
+			  mapa_p.putIfAbsent(dni, 0);
+			  mapa_p.put(dni, mapa_p.get(dni)+1);
+		   }
+		   rs.close();
+		   logger.log(Level.INFO, "BD\t" + sent);
+		   
+		   
+	} catch (SQLException e) {
+		lastError = e;
+		logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+		e.printStackTrace();
+		
+	}
+	   return mapa_p;
+   }
  	
 	
 }

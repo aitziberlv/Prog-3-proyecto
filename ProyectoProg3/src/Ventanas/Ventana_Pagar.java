@@ -9,9 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,16 +22,14 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
 import BD.BD;
-import Clasesprincipales.Colorc;
 import Clasesprincipales.Producto;
-import Clasesprincipales.Talla;
-import Clasesprincipales.TipoProducto;
 import Ventanasexternas.FondoSwing;
 
 public class Ventana_Pagar extends JFrame {
-
+	/**
+	 * ESTA VENTANA ES MEDIANTE LA CUAL VAMOS A REALIZAR LA COMPRA 
+	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * paneles
@@ -42,7 +37,6 @@ public class Ventana_Pagar extends JFrame {
 	private JPanel pnl_center;
 	private JPanel pnl_titulo;
 	private JPanel pnl_intermedio;
-	private JPanel pnl_abajo;
 	private JPanel pnl_centro_derecha;
 	private JPanel centro;
 	/**
@@ -52,7 +46,6 @@ public class Ventana_Pagar extends JFrame {
 	private JLabel FechaVencimiento;
 	private JLabel CVV;
 	private JLabel Direccion;
-	private JLabel Titulo;
 	private JLabel Descripcion;
 	private JLabel Numero_de_pedido;
 	private JLabel Numero_de_pedido2;
@@ -76,7 +69,6 @@ public class Ventana_Pagar extends JFrame {
     /**
     * inicializar la ventana
     */
-	
 	
 	public Ventana_Pagar(String usuario) throws HeadlessException {
 		super();
@@ -104,7 +96,6 @@ public class Ventana_Pagar extends JFrame {
 		this.setSize (500,500);
 		this.setTitle("PAGAR");
 		this.setLayout(new GridLayout(4,1));
-		
 		pnl_center = new JPanel ();
 		pnl_center.setLayout(new GridLayout(4,2));
 		pnl_titulo = new JPanel();
@@ -112,38 +103,28 @@ public class Ventana_Pagar extends JFrame {
 		centro.setLayout(new GridLayout(1,2));
 		pnl_centro_derecha=new JPanel ();
 		pnl_intermedio=new JPanel ();
-		pnl_abajo=new JPanel ();
-		
 		pagarl=new JLabel("PAGAR");
 		Descripcion = new JLabel ("Ingrese los datos de su tarjeta ");
 		NumeroTarjeta = new JLabel ("Número de tarjeta");
-		
 		FechaVencimiento = new JLabel ("Fecha de vencimiento (0000):");
 		CVV = new JLabel ("CVV");
 		Direccion = new JLabel ("Direccion de Facturacion");
-		
 		Numero_de_pedido=new JLabel("Numero de pedido:"+ BD.getcodigopedido());
 		Numero_de_pedido2=new JLabel("");
-		
-		
 		aNumeroTarjeta = new JTextField(16);
 		aFechaVencimiento = new JTextField(4);
 		aCVV = new JTextField(3);
 		aDireccion = new JTextField(50);
-		
 		NumeroTarjeta.setHorizontalAlignment(JLabel.CENTER);
 		FechaVencimiento.setHorizontalAlignment(JLabel.CENTER);
 		CVV.setHorizontalAlignment(JLabel.CENTER);
 		Direccion.setHorizontalAlignment(JLabel.CENTER);
-		
 		Pagar = new JButton ("Pagar");
 		pagarl.setForeground(Color.black);
 		pagarl.setBackground(Color.white);
-		
 		Anterior = new JButton ("<");
 		Anterior.setForeground(Color.black);
 		Anterior.setBackground(Color.white);
-		
 		JPanel pnl_btn = new JPanel ();
 		pnl_btn.setLayout(new FlowLayout());
 		pnl_btn.add(Anterior);
@@ -154,16 +135,13 @@ public class Ventana_Pagar extends JFrame {
 		Border margin = new EmptyBorder(5, 15, 5, 15);
 		Border compound = new CompoundBorder(line, margin);
 		Pagar.setBorder(compound);
-		
 		pnl_intermedio.add(Descripcion);
 		Color color1= new Color(243,242,235);
 		Color colori= new Color(224,228,204);
-		Color colorj= new Color(228,251,243);
 		pnl_intermedio.setBackground(colori);
 		Border b2;
 		b2 = BorderFactory.createLineBorder(Color.black);
 		FechaVencimiento.setBorder(b2);
-		//CVV.setBorder(b2);
 		Direccion.setBorder(b2);
 		pnl_center.add(NumeroTarjeta);
 		pnl_center.add(aNumeroTarjeta);
@@ -182,48 +160,37 @@ public class Ventana_Pagar extends JFrame {
 		centro.add(pnl_centro_derecha);
 		this.add(centro);
 		this.add(pnl_btn);
-		Color color11= new Color(243,242,235);
 		Color color2= new Color(242,235,243);
 		pnl_centro_derecha.setBackground(color2);
 		pnl_center.setBackground(color1);
-		
-		
+		/**
+		 * EL NOTON MEDIANTE EL CUAL VAMOS A PAGAR EL PEDIDO REALIZADO Y VAMOS A PROCEDER A REALIZAR LA COMPRA
+		 * ASEGURANDONOS DE QUE CUMPLEN CIERTAS REGLAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		 */
 		Pagar.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) { 
 				String NumeroTarjeta= "";
 				String FechaVencimiento= "";
 				String CVV= "";
 				String Direccion= "";
-
 				NumeroTarjeta=aNumeroTarjeta.getText();
 				FechaVencimiento=aFechaVencimiento.getText();
 				CVV=aCVV.getText();
 				Direccion=aDireccion.getText();
-
-				
-			//	if(NumeroTarjeta.equals("16") && FechaVencimiento.equals("4") && CVV.equals("3") && Direccion.equals("3")){
 				if(NumeroTarjeta.length()==16 && FechaVencimiento.length() ==4 && CVV.length()==3) {
-						
-					
 					int precio = Ventana_Cliente.getPago();
 					for(Producto p: BD.getProductos()) {
-//						if(p.getCodigo()) { si el producto esta en la compra.
 							BD.EliminarProducto(p, precio);
 							JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
 					}
-						
 					JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
-
-				
 				}else{
-
 					JOptionPane.showMessageDialog(null, "Introduzca de nuevo sus datos.","Error",JOptionPane.ERROR_MESSAGE);				}
-
 				}
-
 		});
-		
+		/**
+		 * ESTE BOTON VAMOS A UTILIZARLO PARA VOLVER DE NUEVO A LA VENTANA DE CARRITO 
+		 */
 		Anterior.addActionListener(new ActionListener( ){
 
 			@Override
@@ -233,10 +200,7 @@ public class Ventana_Pagar extends JFrame {
 				vc.setVisible(true);
 				setVisible(false);
 				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
-
-				
 			}
-			
 		});
 		Border b;
 		b = BorderFactory.createLineBorder(Color.black,2);
@@ -245,27 +209,23 @@ public class Ventana_Pagar extends JFrame {
 		Font fuenteS2 = new Font("Arial",Font.BOLD,35);
 		Descripcion.setFont(fuenteS2);
 		pagarl.setFont(fuenteS);
-		//NumeroTarjeta.setBorder(b2);
 		pagarl.setForeground(Color.white);
 		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/deustoOutlet.jpg.png")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	        pnl_centro_derecha.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/f.png")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	        pnl_titulo.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/cargar.png")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	        pnl_btn.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -274,8 +234,6 @@ public class Ventana_Pagar extends JFrame {
 	}
 		public static void main(String[] args) {
 			Ventana_Pagar ventana_Pagar = new Ventana_Pagar();
-			//ventana_Pagar.setExtendedState(Ventana_Pagar.MAXIMIZED_BOTH);
-			
 			ventana_Pagar.setVisible(true);
 			ventana_Pagar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			ventana_Pagar.setExtendedState(ventana_Pagar.MAXIMIZED_BOTH);
