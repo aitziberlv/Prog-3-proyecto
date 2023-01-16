@@ -7,13 +7,17 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.KeyStore.Entry;
 import java.util.List;
+import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import BD.BD;
 import Clasesprincipales.Usuario;
@@ -21,23 +25,29 @@ import Clasesprincipales.Usuario;
 public class Ventana_Administrador extends JFrame {
 
 	/**
-	 * 
+	 * A ESTA VENTANA UNICAMENTE VA A TENER ACCESO LOS ADMINISTRADORES DE LA APLICACIO Y PODRAN VER DATOS DE LOS CLIENTES 
+	 * ENTRE ESTOS DATOS QUIEN ES EL CLIENTE QUE MAS HA COMPRADO O CUAL ES EL CLIENTE QUE MENOS HA COMPRADO.
 	 */
 	private static final long serialVersionUID = 1L;
-
 	private static List<Usuario> lUsuarios;
 	private JPanel pnl_titulo;
 	private JPanel pnl_centro; 
 	private JPanel pnl_centro_iz;
 	private JPanel pnl_centro_dcha;
 	private JPanel pnl_abajo;
-	
 	private JLabel titulo;
 	private JLabel estadistica1;
 	private JLabel estadistica2;
-	
 	private JButton atras;
 	private String usuario;
+	private JPanel central;
+	private JPanel p1;
+	private JPanel p2;
+	private JPanel p3;
+	/**
+	 * INICIALIZACION DE LA VENTANA CON EL NOMRBE DEL ADMINISTRADOR 
+	 * @param usuario
+	 */
 	public Ventana_Administrador (String usuario) {
 		inicializarVentana();
 		this.usuario=usuario;
@@ -47,84 +57,134 @@ public class Ventana_Administrador extends JFrame {
 	}
 	
 	private void inicializarVentana () {
-		this.setSize(900, 700);
+		this.setSize(990, 500);
+		p1=new JPanel();
+		p2=new JPanel();
+		p3=new JPanel();
 		setLocationRelativeTo(null);
 		this.setTitle("Administrador");
 		this.setLayout(new GridLayout(3,1));
-		
+		central=new JPanel();
+		central.setLayout(new GridLayout(3,1));
 		pnl_titulo = new JPanel();
 		pnl_centro = new JPanel();
-		pnl_centro.setLayout(new GridLayout(1,2));
+		pnl_centro.setLayout(new GridLayout(1,3));
 		pnl_centro_iz = new JPanel();
 		pnl_centro_iz.setLayout(new GridLayout(1,2));
 		pnl_centro_dcha = new JPanel();
 		pnl_abajo = new JPanel();
 		pnl_abajo.setLayout(new GridLayout(3,2));
-		
 		titulo = new JLabel("ADMINISTRADOR");
-		estadistica1 = new JLabel("Usuario que mas ha comprado: ");
-		estadistica2 = new JLabel("Usuario que menos ha comprado: ");
-		
+		estadistica1 = new JLabel("Usuario que mas ha comprado: " + getusu_mas());
+		estadistica2 = new JLabel("Usuario que menos ha comprado: "+ getusu_menos());
 		atras = new JButton("<");
 		atras.setForeground(Color.black);
 		atras.setBackground(Color.white);
 		atras.setPreferredSize(new Dimension(32,0));
 		
-		atras.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
+//		atras.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		});
 		Font fuente = new Font("Arial", 1, 20);
 	    titulo.setFont(fuente);
-	    
 		Image img= new ImageIcon("deustoOutlet.jpg.png").getImage();
 		ImageIcon img2=new ImageIcon(img.getScaledInstance(140, 140, Image.SCALE_SMOOTH));
 		titulo.setIcon(img2);
-		
 		pnl_titulo.add(titulo);
-		pnl_centro_iz.add(estadistica1);
-		pnl_centro_dcha.add(estadistica2);
+		central.add(p1);
+		central.add(p2);
+		p2.add(estadistica1);
+		p2.add(estadistica2);
+		central.add(p3);
 		pnl_centro.add(pnl_centro_iz);
+		pnl_centro.add(central);
 		pnl_centro.add(pnl_centro_dcha);
-		pnl_abajo.add(atras);
-		
+//		pnl_abajo.add(atras);
 		this.add(pnl_titulo);
 		this.add(pnl_centro);
 		this.add(pnl_abajo);
-		
 		lUsuarios = BD.getUsuario();
-		
+		Border blackline=BorderFactory.createLineBorder(Color.black);
+		p2.setBorder(blackline);
+		p1.setBackground(Color.white);
+		p2.setBackground(Color.white);
+		p3.setBackground(Color.white);
+		central.setBackground(Color.white);
+		pnl_abajo.setBackground(Color.white);
+		pnl_titulo.setBackground(Color.white);
+		pnl_centro_iz.setBackground(Color.white);
+		pnl_centro_dcha.setBackground(Color.white);
 	}
 	
-	public static List<Usuario> UsarioMasComprar () {
-		
-		try {
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
-		return lUsuarios;
-		
-	}
+//	public static List<Usuario> UsarioMasComprar () {
+//		try {	
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();	
+//		}
+//		return lUsuarios;
+//	}
 	
-	public static List<Usuario> UsarioMenosComprar () {
-		
-		try {
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
+//	public static List<Usuario> UsarioMenosComprar () {
+//		
+//		try {
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			
+//		}
+//		return lUsuarios;
+//		
+//	}
+	/**
+	 * 
+	 * @return EL USUARIO O USUARIOS QUE MAS PEDIDOS HAN HECHO
+	 */
+	public String getusu_mas() {
+		int n=-1;
+		String usu="";
+		Map<String,Integer> mp=BD.rellenarmapa_admin();
+		for (java.util.Map.Entry<String, Integer> s:mp.entrySet()) {
+			if (s.getValue()>n) {
+				usu=s.getKey();
+				n=s.getValue();
+			}else if (s.getValue()==n) {
+				usu=usu+", "+s.getKey();
+			}
 		}
-		return lUsuarios;
-		
+		if (n==-1) {
+			return "Ningun usuario ha comprado nada";
+		}else {
+			return usu;
+		}
+	}
+	/**
+	 * EL USUARIO O USUARIOS QUE MENOS PEDIDOS HAN HECHO
+	 * @return
+	 */
+	public String getusu_menos() {
+		Map<String,Integer> mp=BD.rellenarmapa_admin();
+		String usu=mp.keySet().iterator().next();
+		int n=mp.get(usu);
+		for (java.util.Map.Entry<String, Integer> s:mp.entrySet()) {
+			if (s.getValue()<n) {
+				usu=s.getKey();
+				n=s.getValue();
+			}else if (s.getValue()==n && s.getKey().equals(usu)==false) {
+				usu=usu+", "+s.getKey();
+			}
+		}
+		if (n==-1) {
+			return "Ningun usuario ha comprado nada";
+		}else {
+			return usu;
+		}
 	}
 	
 	public static void main(String[] args) {

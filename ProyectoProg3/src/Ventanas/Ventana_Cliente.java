@@ -1,8 +1,6 @@
 package Ventanas;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -12,21 +10,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
-
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,15 +28,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
 import BD.BD;
 import Clasesprincipales.TipoProducto;
 import Ventanasexternas.FondoSwing;
@@ -50,15 +41,34 @@ import Clasesprincipales.Colorc;
 import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
 import Clasesprincipales.Talla;
+/**
+ * 
+ * ESTA VENTANA ES LA PRINCIPAL DE NUESTRO PROYECTO
+ *
+ */
 
+/**
+ * 
+ * ESTA VENTANA SE ENCARGA DE MOSTRAR AL CLIENTE LOS PRODUCTOS :TODOS LOS PRODUCTOS QUE HAY Y LE DA LA OPORTUNIDAD AL CLIENTE 
+ * DE PODER FILTRARLOS Y PODER CONSEGUIR UNICAMENTE UNOS PRODUCTOS QUE CUMPLAN ALFUNAS DE LAS CARACTERISTICAS QUE QUIERA EL 
+ * CLIENTE . TIENE OPCIONES DIFERENTES Y PUEDE VER PRODUCTOS QUE CUMPLAN DIFERENTES FILTROS. TAMBOIEN TIENE LA OPCION DE VER TODOS LOS PRODUCTOS.
+ *
+ *NUESTRA APLICACION SE CENTRA MAS EN MOSTRAR DIFERENTES PRODUCTOS QUE CUMPLAN CIERTAS CARACTERISTICAS Y QUE SEAN DE DISTINTAS TIENDAS QUE EN LA TIENDA A LA QUE PERTENECEN.
+ */
+
+/**
+ * 
+ *1. MEDIANTE ESTA VENTANA TENEMOS ACCESO A ACCEDER A UNA AYUDA QUE TE MUESTRA DIFERENTES COMBINACIONES DE PRODUCTOS A PARTIR DE EL PRECIO QUE LE INTRODUZCAS
+ * 2.TAMBIEN TENEMOS ACCESO A VER TODO EL CARRITO 
+ *3. VENTANA EN LA QUE PODEMOS AÑADIR LOS PRODUCTOS QUE QUEREMOS . 
+ *
+ */
 
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static List<Producto> productosComprados = new ArrayList<>();
-	
 	public static int pagar = 0;
 	private List<Producto> usando;
-	
 	private JPanel arriba;
 	private JPanel arriba1;
 	private JPanel arriba2;
@@ -93,13 +103,11 @@ public class Ventana_Cliente extends JFrame{
 	private JTable tablaProductos;
 	private DefaultTableModel modeloDatosproductos = new DefaultTableModel();
 	private JScrollPane scrolTabla;
-	
 	private JButton b1;
 	private JButton b2;
 	private JButton b3;
 	private JButton b4;
 	private JButton b5;
-	
 	private JPanel t1;
 	private JPanel t2;
 	private JPanel t3;
@@ -107,10 +115,13 @@ public class Ventana_Cliente extends JFrame{
 	private JLabel lFoto;
 	private JLabel lFoto_tienda;
 	private JPanel t5;
-	
 	private JScrollPane panelDeslizable ;	
 	private String usuario;
-	
+	/**
+	 *INICIALIZACION DE LA VENTANA.
+	 * @param usuario
+	 * @throws HeadlessException
+	 */
 	public Ventana_Cliente(String usuario) throws HeadlessException {
 		super();
 		this.usuario = usuario;
@@ -122,8 +133,11 @@ public class Ventana_Cliente extends JFrame{
 	}
 	
 	private void inicializarVentana() {
+		/**
+		 * INIZIALIZACION DE TODOS LOS COMPONENTES DE LA VENTANA. 
+		 */
 		this.setSize(900, 700);
-		this.setTitle("Cuenta de "+ usuario);
+		//this.setTitle(" "+ BD.buscarUsuarioNombre(usuario).getbienveido());
 		this.setLayout(new GridLayout(3,1));
 		panelDeslizable=new JScrollPane(); 
 		arriba = new JPanel(new GridLayout(1,1));
@@ -138,7 +152,6 @@ public class Ventana_Cliente extends JFrame{
 		b2=new JButton("Mostrar todo de un tipo determinado");
 		b3=new JButton("Mostrar todo de un color determinado");
 		b4=new JButton("Mostrar todo de una talla  determinada");
-		
 		centro = new JPanel(new GridLayout(1,3));
 		botonrecursividad=new JButton("Ayuda para hacer mi compra");
 		centro.setLayout(new GridLayout(1,2));
@@ -154,7 +167,6 @@ public class Ventana_Cliente extends JFrame{
 		bañadir = new JPanel();
 		cliente = new JLabel("");
 		Font fuente = new Font("Arial", 5, 50);
-
 		t1=new JPanel();
 		t2=new JPanel();
 		t3=new JPanel();
@@ -162,7 +174,6 @@ public class Ventana_Cliente extends JFrame{
 		t5=new JPanel();
 		cliente = new JLabel("DEUSTO OUTLET");
 		Font fuentee = new Font("Arial", 1, 20);
-
 	    cliente.setFont(fuente); 
 		tipo = new JLabel("Tipo:");
 		color = new JLabel("Color:");
@@ -178,23 +189,19 @@ public class Ventana_Cliente extends JFrame{
 		preciobarra.setMinorTickSpacing(30);
 		valordebarra_l2=new JLabel();
 		scrolTabla = new JScrollPane();
+		/*
+		 * INICIALIZAR LOS COMPONENTES DEL FILTRO DE PRODUCTOS
+		 */
 		c = new JComboBox<Colorc>();
-		
 		for (Colorc co:Colorc.values()) {
 			c.addItem(co);
 		}
 		informacion = new JLabel("Abajo puede ver los productos que tienen estas caracteristicas ");
-		
-		
 		tipos = new JComboBox<TipoProducto>();
-		
 		for(TipoProducto tipo : TipoProducto.values()) {
-			tipos.addItem(tipo);
-			
+			tipos.addItem(tipo);	
 		}
-		
 		tallas = new JComboBox<Talla>();
-		
 		for(Talla t : Talla.values()) {
 			tallas.addItem(t);
 		}
@@ -202,8 +209,7 @@ public class Ventana_Cliente extends JFrame{
 		for (Producto o:panterior) {
 			productosComprados.add(o);
 		}
-		
-		
+		//---------------------------------------
 		buscar = new JButton("Buscar");
 		buscar.setForeground(Color.black);
 		buscar.setBackground(Color.white);
@@ -213,7 +219,38 @@ public class Ventana_Cliente extends JFrame{
 		carrito=new JButton("Ver carrito");
 		carrito.setForeground(Color.black);
 		carrito.setBackground(Color.white);
-		
+		Image img= new ImageIcon("deustoOutlet.jpg.png").getImage();
+		ImageIcon img2=new ImageIcon(img.getScaledInstance(140, 140, Image.SCALE_SMOOTH));
+		cliente.setIcon(img2);
+		//JTable de los productos con las características especificadas por el usuario
+		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
+		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
+		this.tablaProductos = new JTable(this.modeloDatosproductos);
+		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrolTabla.setViewportView(tablaProductos);
+		for(Producto p : BD.getProductos()) {
+			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
+			
+		}
+		usando=BD.getProductos();
+		//tamaño 
+		tablaProductos.setModel( modeloDatosproductos );
+		tablaProductos.getColumnModel().getColumn(0).setMinWidth(210);
+		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(210);
+		tablaProductos.getColumnModel().getColumn(1).setMinWidth(300);
+		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(300);
+		tablaProductos.getColumnModel().getColumn(2).setMinWidth(210);
+		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(210);
+		tablaProductos.getColumnModel().getColumn(3).setMinWidth(250);
+		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(250);		
+		tablaProductos.getColumnModel().getColumn(4).setMinWidth(250);
+		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(250);
+		/**
+		 * EVENTOS DE LA VENTANA
+		 */
+		/**
+		 * AL PULSAR EN EL BOTON DE CARRITO AUTOMATICAMENTE LES LLEVARA A LA VENTANA DE CARRITO
+		 */
 		carrito.addActionListener(new ActionListener( ){
 
 			@Override
@@ -226,47 +263,10 @@ public class Ventana_Cliente extends JFrame{
 			}
 			
 		});
-		
-		Image img= new ImageIcon("deustoOutlet.jpg.png").getImage();
-		ImageIcon img2=new ImageIcon(img.getScaledInstance(140, 140, Image.SCALE_SMOOTH));
-		cliente.setIcon(img2);
-		
-		//JTable de los productos con las características especificadas por el usuario
-		Vector<String> cabeceraProductos = new Vector<String>(Arrays.asList("CODIGO", "NOMBRE", "PRECIO", "COLOR", "TALLA", "TIPO"));
-		this.modeloDatosproductos = new DefaultTableModel(new Vector<Vector<Object>>(), cabeceraProductos);
-		this.tablaProductos = new JTable(this.modeloDatosproductos);
-		this.tablaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrolTabla.setViewportView(tablaProductos);
-		
-		for(Producto p : BD.getProductos()) {
-			modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
-			
-		}
-		usando=BD.getProductos();
-
-		
-		
-		//tamaño 
-		
-		tablaProductos.setModel( modeloDatosproductos );
-		
-		tablaProductos.getColumnModel().getColumn(0).setMinWidth(210);
-		tablaProductos.getColumnModel().getColumn(0).setMaxWidth(210);
-		tablaProductos.getColumnModel().getColumn(1).setMinWidth(300);
-		tablaProductos.getColumnModel().getColumn(1).setMaxWidth(300);
-		tablaProductos.getColumnModel().getColumn(2).setMinWidth(210);
-		tablaProductos.getColumnModel().getColumn(2).setMaxWidth(210);
-		tablaProductos.getColumnModel().getColumn(3).setMinWidth(250);
-		tablaProductos.getColumnModel().getColumn(3).setMaxWidth(250);		
-		tablaProductos.getColumnModel().getColumn(4).setMinWidth(250);
-		tablaProductos.getColumnModel().getColumn(4).setMaxWidth(250);
-
-
-		
-		//Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
-		
+		/**
+		 * //Renderes: Para pintar la JTable. CAMBIAR LA VISUALIZACION DE LA TABLA.
+		 */
 		tablaProductos.setDefaultRenderer( Object.class, new DefaultTableCellRenderer() {
-		
 		Font fuente = new Font( "Arial", Font.PLAIN, 13);
 		Font fuenteS = new Font("Arial",Font.BOLD,13);
 		
@@ -289,6 +289,9 @@ public class Ventana_Cliente extends JFrame{
 		}
 		
 	});
+		/**
+		 * AL SELECIONAR UN PRODUCTO DE LA TABLA DE PRODUCTOS SE VISULIZARA LA FOTO DE ESTE PRODUCTO 
+		 */
 		tablaProductos.addMouseListener(new MouseAdapter(){
 
 			@Override
@@ -305,11 +308,11 @@ public class Ventana_Cliente extends JFrame{
 				ImageIcon img22=new ImageIcon(img222.getScaledInstance(220, 220, Image.SCALE_SMOOTH));
 				lFoto_tienda.setIcon( img22 );
 			}
-
-		
-			
 		});
-		
+		/**
+		 * ESTE ES UNO DE LOS BOTONES QUE TIENE ESTA VENTANA Y ESTE BOTON LO QUE HACE ES BUSCAR UN PRODUCTO
+		 * QUE CUMPLA ABSOLUTAMENTE TODAS LAS CARACTERISTICAS QUE TIENES MARCADA EN CADA UNO DE LOS FILTROS
+		 */
 		buscar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -321,18 +324,15 @@ public class Ventana_Cliente extends JFrame{
 					}
 				}
 				usando=BD.buscarProductoCaracteristicas(TipoProducto.valueOf(tipos.getSelectedItem().toString()) , Colorc.valueOf(c.getSelectedItem().toString()), preciobarra.getValue(),Talla.valueOf(tallas.getSelectedItem().toString()) );
-
-				
-				
 			}
 		});
-		
+		/**
+		 * ESTE ES OTRO DE LOS BOTONES QUE LO QUE HACE ES BUSCAR ABSOLUTAMENTE TODOS LOS PRODUCTOS
+		 */
 		b1.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloDatosproductos.setRowCount(0);
-		
 				for(Producto p : BD.getProductos()) {
 					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
 						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
@@ -343,8 +343,9 @@ public class Ventana_Cliente extends JFrame{
 				
 			}
 		});
-
-		
+		/**
+		 * ESTE ES OTRO DE LOS BOTONES QUE LO QUE HACE ES BUSCAR TODOS LOS PRODUCTOS DEL TIPO MARCADO
+		 */
 		b2.addActionListener(new ActionListener() {
 			
 			@Override
@@ -361,14 +362,13 @@ public class Ventana_Cliente extends JFrame{
 				
 			}
 		});
-		
-		
+		/**
+		 * ESTE ES UN BOTON QUE PULSANDOLO EN LA JTABLE SE VISUALIZARAN TODOS LOS PRODUCTOS DE UN DETERMINADO COLOR
+		 */
 		b3.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloDatosproductos.setRowCount(0);
-				
 				for(Producto p : BD.buscarProductoColor(Colorc.valueOf(c.getSelectedItem().toString()))) {
 					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
 						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
@@ -377,15 +377,13 @@ public class Ventana_Cliente extends JFrame{
 				usando=BD.buscarProductoColor(Colorc.valueOf(c.getSelectedItem().toString()));
 			}
 		});
-		
-		
-		
+		/**
+		 * ESTE ES UN BOTON QUE PULSANDOLO TE MOSTRA TODOS LOS PRODUCTOS DE LA TALLA SELECCIONADA
+		 */
 		b4.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				modeloDatosproductos.setRowCount(0);
-				
 				for(Producto p : BD.buscarProductoTalla(Talla.valueOf(tallas.getSelectedItem().toString()))) {
 					if(BD.cantidadProductos(p.getTipo(), p.getColor(), p.getPrecio(), p.getTalla()) != 0) {
 						modeloDatosproductos.addRow(new Object[] {p.getCodigo(), p.getNombre(), p.getPrecio(), p.getColor(), p.getTalla(), p.getTipo()});
@@ -394,17 +392,19 @@ public class Ventana_Cliente extends JFrame{
 				usando=BD.buscarProductoTalla(Talla.valueOf(tallas.getSelectedItem().toString()));				
 			}
 		});
-		
-		
-		
-		//Añadir el valor del precio
+		/**
+		 * CUANDO CAMBIAMOS EL PRECIO DE BARRA CAMBIAMOS EL VALOR DE ESTE QUE ESTA PUESTO ARRIBA
+		 */
 		preciobarra.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				valordebarra_l.setText(preciobarra.getValue()+"");
 			}			
 		});
-		
+		/**
+		 * PULSANDO ESTE BOTON NOS LLEVARA A OTRA VENTANA
+		 * NOS LLEVARA A UNA VENTANA QUE NOS MUESTRA DIFERENTES TIPOS DE COMBINACIONES DE PRODUCTOS QUE CUMPLAN UN PRECIO
+		 */
 		botonrecursividad.addActionListener(new ActionListener () {
 
 			@Override
@@ -420,33 +420,32 @@ public class Ventana_Cliente extends JFrame{
 			}
 			
 		});
+		/**
+		 * BOTON MEDIANTE EL CUAL AÑADIREMOS UN PRODUCTO A LA LISTA
+		 */
+		anyadir.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Producto p = new Producto((int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 0), (String)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1), (int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2), (Colorc)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 3), (Talla)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 4), (TipoProducto)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 5));
+				productosComprados.add(p);
+				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
+				pagar += p.getPrecio();
+				
+
+			}
+		});
 		
-		
-		//añadir tres paneles para que quede centrado. 
 		arriba2.add(cliente);
-		//arriba_texto_recursividad.add(panelDeslizable);
-		
-		//arriba3.add(arriba_texto_recursividad);
-		//boton_r.add(botonrecursividad);
 		arriba1.add(botonrecursividad);
 		arriba.add(arriba1);
-		//arriba1.add(info_arriba);
-		
-		//arriba.add(arriba2);
-		//arriba.add(arriba3);
-		// lo de abajo si queremos que quede centrado hacemos lo mismo 
 		t2.add(tipo);
 		centro_izda.add(t2);
-		
 		centro_izda.add(tipos);
 		t3.add(color);
 		centro_izda.add(t3);
-		
 		centro_izda.add(c);
-		
 		vl2.add(valordebarra_l2);
 		centro_izda.add(vl2);
-		
 		centro_izda.add(valordebarra);
 		t4.add(precio);
 		centro_izda.add(t4);
@@ -456,7 +455,6 @@ public class Ventana_Cliente extends JFrame{
 		centro_izda.add(t1);
 		centro_izda.add(tallas);
 		centro_dcha.add(buscar);
-		
 		centro_dcha.add(b1);
 		centro_dcha.add(b2);
 		centro_dcha.add(b3);
@@ -472,7 +470,6 @@ public class Ventana_Cliente extends JFrame{
 		centro.add(centro_dcha);
 		t5.add(informacion);
 		abajo.add(t5);
-		
 		bañadir.add(anyadir);
 		abajo.add(scrolTabla);
 		abajo.add(bañadir);
@@ -511,33 +508,17 @@ public class Ventana_Cliente extends JFrame{
 		centro_izda.setBorder(b);
 		botonrecursividad.setBackground(Color.white);
 		t5.setBackground(colorj);
-		anyadir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Producto p = new Producto((int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 0), (String)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 1), (int)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2), (Colorc)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 3), (Talla)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 4), (TipoProducto)modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 5));
-				productosComprados.add(p);
-				int precio = (int) modeloDatosproductos.getValueAt(tablaProductos.getSelectedRow(), 2);
-				pagar += p.getPrecio();
-				
-
-			}
-		});
-		
 		ImageIcon icono = new ImageIcon("FotosTiendas/deustoOutlet.jpg.png");
 		this.setIconImage(icono.getImage());	
 		
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("Fotosproductos/fondo_ropa_arriba.jpg")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	        arriba1.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
-		
-		
 		try {
 	        FondoSwing fondo = new FondoSwing(ImageIO.read(new File("FotosTiendas/deustoOutlet.jpg.png")));
-	        //JPanel panel = (JPanel) this.getContentPane();
 	       centro_dcha.setBorder(fondo);
 	    } catch (IOException ex) {
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -548,59 +529,13 @@ public class Ventana_Cliente extends JFrame{
 	public static List<Producto> getCarrito(){
 		return productosComprados;
 	}
-//	public static double devolverproductomasbarato() {
-//		ArrayList<Producto> p=BD.getProductos();
-//		double min=p.get(0).getPrecio();
-//		for (Producto prod:p) {
-//			if (prod.getPrecio()<min) {
-//				min=prod.getPrecio();
-//			}
-//		}
-//		return min;
-//	}
-//	static double prec =devolverproductomasbarato();
-//	private static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
-//	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
-//	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
-//		//en vez de menos o igual que 0 poner menos o igual que el precio del producto que sea mas barato. 
-//		if (disponible<prec) {
-//			//System.out.println((ArrayList<Producto>) listaProd.clone());
-//			@SuppressWarnings("unchecked")
-//			Pedidos p = new Pedidos(((ArrayList<Producto>)listaProd.clone()));
-//			listaPed.add(p);
-//			
-//			
-//		}else {
-//			for(Producto j :BD.getProductos()) {
-//				if (disponible - j.getPrecio()>0) {
-//					listaProd.add(j);
-//					Comprapresupuesto(disponible-j.getPrecio(),listaProd);
-//					listaProd.remove(j);
-//				}
-//			}
-//		}
-//		
-//		
-//	}
-	public void filtrorecursividad() {
-		//aqui tenemos que definir un filtro que va a quitar los que estan  repetidos , y va a filtrar que una chaqueta xs y xl sea la misma (es decir que el tamaño no importe. )
-	
-	}
-	
 	public static int getPago() {
 		return pagar;
 	}
-	
-	
 	public static void main(String[] args) {
 		Ventana_Cliente vc =new Ventana_Cliente();
 		vc.setVisible(true);
 		vc.setExtendedState(Ventana_Cliente.MAXIMIZED_BOTH);
-		//ArrayList<Producto> p=new ArrayList<Producto>();
-		//ArrayList<Pedidos> p2=new ArrayList<Pedidos>();
-		//Comprapresupuesto(60,p);
-		//System.out.println(listaPed.toString());
-		
 		}
 	
 	

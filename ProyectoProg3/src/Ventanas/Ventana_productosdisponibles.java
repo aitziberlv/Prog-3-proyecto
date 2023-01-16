@@ -56,10 +56,20 @@ public class Ventana_productosdisponibles extends JFrame{
 	private JTextField num;
 	private String usu;
 	private int index=1;
-	public Ventana_productosdisponibles(String usuario, int index) {
+	private static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
+	boolean t=true;
+	public Ventana_productosdisponibles(String usuario, int index ,ArrayList<Pedidos> listaPed,boolean t) {
 		inizializarventana();
 		this.usu=usuario;
 		this.index=index;
+		this.listaPed=listaPed;
+		this.t=t;
+	}
+	public Ventana_productosdisponibles(String usuario, int index ) {
+		inizializarventana();
+		this.usu=usuario;
+		this.index=index;
+		
 	}
 	public Ventana_productosdisponibles() {
 		inizializarventana();
@@ -137,8 +147,9 @@ public class Ventana_productosdisponibles extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (Integer.parseInt(num.getText())>=50 &&Integer.parseInt(num.getText())<=300) {
 					ArrayList<Producto> p=new ArrayList<Producto>();
+					if (t) {
 					Comprapresupuesto(Integer.parseInt(num.getText()),p);
-					
+					}
 					hiloActual.start();
 				}else {
 					JOptionPane.showMessageDialog(null, "El numero introducido debe de estar entre 50 y 300.","Error",JOptionPane.ERROR_MESSAGE);
@@ -156,22 +167,21 @@ public class Ventana_productosdisponibles extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (index+1<=listaPed.size()) {
-				Ventana_productosdisponibles vpd=new Ventana_productosdisponibles(usu, index+1);
+				Ventana_productosdisponibles vpd=new Ventana_productosdisponibles(usu, index+1,listaPed,false);
 				vpd.setVisible(true);
 				setVisible(false);
 				vpd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				vpd.setSize(700, 1000);
 				vpd.setLocationRelativeTo(null);
+				
 				vpd.num.setText(num.getText());
 				vpd.mostrar_productos.doClick();
 				num.setEditable(false);
 				mostrar_productos.setVisible(false);
 				}else {
-					JOptionPane.showMessageDialog(null, "No te podemos mostrar nuevas combinaciones de productos","Error",JOptionPane.ERROR_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null, "No te podemos mostrar nuevas combinaciones de productos","Error",JOptionPane.ERROR_MESSAGE);	
 				}
 			}
-			
 		});
 		
 		panelprincipal.add(foto_);
@@ -206,7 +216,7 @@ public class Ventana_productosdisponibles extends JFrame{
 	 * 
 	 */
 	static double prec =devolverproductomasbarato();
-	static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
+	//static ArrayList<Pedidos> listaPed=new ArrayList<Pedidos>();
 	
 	//funcin recursiva que calcule todas las compras posibles que se pueden hacer teniendo un presupuesto. 
 	public static void Comprapresupuesto( double disponible ,ArrayList<Producto> listaProd ) {
@@ -253,6 +263,7 @@ public class Ventana_productosdisponibles extends JFrame{
 		
 		
 	}
+	
 	
 	public static void main(String[] args) {
 		Ventana_productosdisponibles vp=new Ventana_productosdisponibles();

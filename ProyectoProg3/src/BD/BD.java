@@ -1369,7 +1369,7 @@ public class BD {
     * rellenar mapa con el nombre de cada usuario y el numero de pedidos que ha hecho cada uno.
     * esto vamos a usarlo a la hora de hacer las estadsticas. 
     */
-   public Map<String,Integer> rellenarmapa_admin(){
+   public static Map<String,Integer> rellenarmapa_admin(){
          String sent = "";
          Map<String,Integer> mapa_p=new HashMap<>();
 	   try {

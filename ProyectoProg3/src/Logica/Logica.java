@@ -88,7 +88,18 @@ public class Logica {
         }
 		return false;
     }
-	
+	/**
+	 * dado un usuario devolver el administrador
+	 */
+	public static Administrador getadmin(String usuario) {
+		for (Administrador a:u) {
+			if ( usuario.equals(a.getUsuario())) {
+				return a;
+				
+		    }
+		}
+		return null;
+	}
 	public static void main(String[] args) {
 		escribir("Administradores.dat");
 		lectura("Administradores.dat");

@@ -43,7 +43,6 @@ public class Ventana_IS extends JFrame{
 	public static JTextField dni;
 	private JTextField fechaNa;
 	private JTextField direccion;
-	
 	private JLabel usuariol;
 	private JLabel contrasenal;
 	private JLabel dnil;
@@ -170,6 +169,7 @@ public class Ventana_IS extends JFrame{
 					Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
 					va.setVisible(true);
 //					setVisible(false);
+					va.setTitle(Logica.getadmin(usuario.getText()).getbienveido() );
 				}else if(BD.buscarUsuarioNombre(usuario.getText()) == null){
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
 
@@ -178,6 +178,7 @@ public class Ventana_IS extends JFrame{
 					setVisible(false);
 					vc.setVisible(true);
 					vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
+					vc.setTitle(" "+ BD.buscarUsuarioNombre(usuario.getText()).getbienveido());
 				}
 				else {
 				JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
