@@ -162,34 +162,29 @@ public class Ventana_IS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Ventana_Cliente vc = new Ventana_Cliente(usuario.getText());
-				if(BD.buscarUsuarioNombre(usuario.getText()) == null) {
+				
+				Logica.escribir("Administradores.dat");
+				Logica.lectura("Administradores.dat");
+			
+				if(Logica.iniciar_sesion(usuario.getText(), contrasena.getText())) {
+					Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
+					va.setVisible(true);
+//					setVisible(false);
+				}else if(BD.buscarUsuarioNombre(usuario.getText()) == null){
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
 
 					vc.setVisible(false);
+				}else if(BD.buscarUsuarioNombre(usuario.getText()).getContraseña().equals(contrasena.getText())){
+					setVisible(false);
+					vc.setVisible(true);
+					vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 				}
 				else {
-					if(BD.buscarUsuarioNombre(usuario.getText()).getContraseña().equals(contrasena.getText())) {
-						setVisible(false);
-						vc.setVisible(true);
-						vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
-
-					}
-					else {
-						
-						lg.lectura("Administradores.dat");
-						System.out.println(lg.u);
-						if(lg.iniciar_sesion(usuario.getText(), contrasena.getText())) {
-							Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
-							va.setVisible(true);
-//							setVisible(false);
-						}else {
-						JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
-						vc.setVisible(false);
-						vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
-						}
-					}
-
-				}				
+				JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
+				vc.setVisible(false);
+				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
+				}
+								
 			}
 			
 		});

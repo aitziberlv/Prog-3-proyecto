@@ -3,7 +3,7 @@ package Clasesprincipales;
 import java.io.Serializable;
 
 public class Administrador extends Persona implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
 	/**
 	 * duracion en meses: con esto sabemos cuanto tiempo lleva ese administrador siendo administrador en la aplicacion 
 	 */
@@ -34,7 +34,7 @@ public class Administrador extends Persona implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Administrador [duracion=" + duracion + "]";
+		return "Administrador:" + this.getNombre()+" " + this.getApellido();
 	}
 
 	@Override

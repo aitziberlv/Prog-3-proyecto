@@ -21,14 +21,37 @@ public class Logica {
 	 * Array list en el que tendremos todos los administradores de la aplicacion. 
 	 */
 	public static ArrayList<Administrador> u =new ArrayList<>();
+	
+	/**
+	 * MEDIANTE ESTE METODO LO QUE HACEMOS ES INIZIALIZARLO CON LAS PERSONAS QUE SON ADMINISTRADORES DE NUESTRA APLICACION
+	 */
+	public static void inizializardat() {
+		/**
+		 * ESTO ES LO QUE NECESITA UN ADMINISTRADOR:
+		 * (String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono
+		 * ,String direccion, String apellido, Habilidad hab)
+		 */
+		
+		Administrador a1= new Administrador("admin","admin","Ander","78933459D","2001-03-06","677888434","Calle Almenda","Ruiz",15);
+		Administrador a2= new Administrador("admin2","admin2","Marta","78936549D","2000-03-06","67784534","Calle de la Macarena","Perez",4);
+		u.add(a1);
+		u.add(a2);
+		
+				
+	}
+	
 	/**
 	 * Operaciones de lectura y escritura con el fichero para el array list de usuarios 
 	 * @param fichero
 	 */
 	public static void escribir(String fichero) {
     	try {
+    		inizializardat();
     		ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fichero));
-    		oos.writeObject(u);
+    		System.out.println(u);
+    		for(Administrador admin : u) {
+    			oos.writeObject(admin);
+    		}
 			oos.close();
 		}
     		
@@ -37,12 +60,13 @@ public class Logica {
     	}
 	}
 	
-	public static  void lectura(String fichero ) {	
+	
+	public static void lectura(String fichero ) {	
 		try {
 			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fichero));
-			ArrayList<Administrador> cargado= (ArrayList<Administrador>) ois.readObject();
-			u = cargado;
+			u.add((Administrador) ois.readObject());
 			ois.close();
+			System.out.println(u);
 		} catch (Exception ex) {
 			System.out.println("Mensaje: " + ex.getMessage());
 		}
@@ -64,23 +88,10 @@ public class Logica {
         }
 		return false;
     }
-	/**
-	 * MEDIANTE ESTE METODO LO QUE HACEMOS ES INIZIALIZARLO CON LAS PERSONAS QUE SON ADMINISTRADORES DE NUESTRA APLICACION
-	 */
-	public static void inizializardat() {
-		/**
-		 * ESTO ES LO QUE NECESITA UN ADMINISTRADOR:
-		 * (String contraseña, String usuario, String nombre, String dni, String fechNa, String telefono
-		 * ,String direccion, String apellido, Habilidad hab)
-		 */
-		
-		Administrador a1= new Administrador("admin","admin","Ander","78933459D","2001-03-06","677888434","Calle Almenda","Ruiz",15);
-		Administrador a2= new Administrador("admin2","admin2","Marta","78936549D","2000-03-06","67784534","Calle de la Macarena","Perez",4);
-		u.add(a2);
-		u.add(a1);
-		escribir("Administradores.dat");
-				
-	}
 	
+	public static void main(String[] args) {
+		escribir("Administradores.dat");
+		lectura("Administradores.dat");
+	}
 	
 }
