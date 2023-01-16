@@ -32,7 +32,7 @@ import Clasesprincipales.Talla;
 
 /**
  * 
- * ESTA VENTANA SE TRATA DE MOSTRAR LA COMBINACION DE UNOS PRODUCTOS A PARTIR DE UN PRECIO QUE ES INTRODUCITO POR EL CLIENTE
+ * ESTA VENTANA SE TRATA DE MOSTRAR LA COMBINACION DE UNOS PRODUCTOS A PARTIR DE UN PRECIO MAXIMO QUE ES INTRODUCITO POR EL CLIENTE
  * PARA VER NUEVAS COMBINACIONES HAY QUE DARLE A MOSTRAR NUEVAS COMBINACIONES Y TE VUELVE A  MOSTRAR MAS PEDIDOS
  *
  */
@@ -115,7 +115,7 @@ public class Ventana_productosdisponibles extends JFrame{
 					for(Producto prod2:prod.getLista_pedidos()) {
 						String url2=BD.getURLFOTO(prod2);
 						Image img= new ImageIcon(url2).getImage();
-						ImageIcon img2=new ImageIcon(img.getScaledInstance(520, 520, Image.SCALE_SMOOTH));
+						ImageIcon img2=new ImageIcon(img.getScaledInstance(300, 300, Image.SCALE_SMOOTH));
 						foto_.setIcon( img2 );
 						foto_.repaint();
 						try {
