@@ -49,6 +49,8 @@ public class Ventana_Carrito extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private static Pedidos pedido_guardado;
+	
 	private List<Producto> usando;
 	private JPanel titulo;
 	private JPanel centro;
@@ -239,8 +241,7 @@ public class Ventana_Carrito extends JFrame{
 				for(int indice = 0; indice < mSelec.getSize();indice++){
 					lp.add(mSelec.getElementAt(indice));					
 				}
-				BD.InsertarPedido(BD.getDNIusuario(usuario), "NO finalizado", fecha, lp);
-		
+				pedido_guardado = BD.InsertarPedido(BD.getDNIusuario(usuario), "No finalizado", fecha, lp);		
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
 				
 			}
@@ -294,7 +295,9 @@ public class Ventana_Carrito extends JFrame{
 	    }
 	}
 	
-	
+	public static Pedidos getPedidoGuardado() {
+		return pedido_guardado;
+	}
 	
 	
 	public static void main(String[] args) {

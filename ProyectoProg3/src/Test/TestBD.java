@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
+
+import org.junit.Before;
 import org.junit.Test;
 import BD.BD;
 import Clasesprincipales.Colorc;
@@ -21,6 +23,10 @@ public class TestBD {
 	/**
 	 * //Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
 	 */
+	@Before
+	public void init() {
+		BD.initDatos("DeustoOutlet.db");
+	}
 	
 	@Test
 	public void getProductosTest() {
@@ -92,7 +98,6 @@ public class TestBD {
 		
 		assertTrue(lpedi.size()<=lpedi.get(lpedi.size()-1).getCodigo()); //El identificador de mayor valor (tamaño de la compra -1) es mayor o igual al número de compras (size)
 
-		assertTrue(BD.InsertarPedido("45344345L", "No Finalizado", "22/02/2022", lprodu)); //se puede poner la funcion porque esta devuelve un true si es correcta.
 		assertTrue(lpedi.get(lpedi.size()-1).getCodigo() > lpedi.get(lpedi.size()-2).getCodigo()); //el que teniamos compararlo con el penultimo(-2). 	
 	
 	}
