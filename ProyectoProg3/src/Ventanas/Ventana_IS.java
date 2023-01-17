@@ -68,13 +68,14 @@ public class Ventana_IS extends JFrame{
 	private JPanel panel_arriba;
 	private JLabel panel_arribal;
 	private JButton anterior;
-	
+	private Ventana_Portada vp=new Ventana_Portada();
 	private JPanel panel_general;
 	
 	private boolean registroB = false;
 	
 	public Ventana_IS() {
 		inicializar();
+		this.vp=vp;
 	}
 	
 	
@@ -86,12 +87,11 @@ public class Ventana_IS extends JFrame{
 		 * primero podemos ver todos los Jtext  field de los cueles usuario y contrasela unicamente pertenecen a el inicio de sesion 
 		 * Al registro pertenecen todos ellos
 		 */
-		
+		vp.setVisible(true);
+		vp.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 		this.setTitle("DEUSTO OUTLET INICIAR SESIÓN");
 		this.setSize(900,700);
 		this.setLocationRelativeTo(null); //centrar la ventana.
-		
-		
 		usuario=new JTextField("",16);
 		contrasena=new JPasswordField("",16);
 		nombre=new JTextField("",16);
@@ -175,13 +175,13 @@ public class Ventana_IS extends JFrame{
 					va.setTitle(Logica.getadmin(usuario.getText()).getbienveido() );
 				}else if(BD.buscarUsuarioNombre(usuario.getText()) == null){
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
-
 					vc.setVisible(false);
 				}else if(BD.buscarUsuarioNombre(usuario.getText()).getContraseña().equals(contrasena.getText())){
 					setVisible(false);
 					vc.setVisible(true);
 					vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 					vc.setTitle(" "+ BD.buscarUsuarioNombre(usuario.getText()).getbienveido());
+					vp.setVisible(false);
 				}
 				else {
 				JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
@@ -333,10 +333,10 @@ public class Ventana_IS extends JFrame{
 	    }
 	}
 	public static void main(String[] args) {
-		Ventana_IS vs =new Ventana_IS();
+		//Ventana_IS vs =new Ventana_IS();
 		//vs.setSize(900,700);
-		vs.setLocationRelativeTo(null);
-		vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
+		//vs.setLocationRelativeTo(null);
+		//vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
 	}
 }
 
