@@ -34,13 +34,13 @@ public class Administrador extends Persona implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Administrador:" + this.getNombre()+" " + this.getApellido();
+		return "Administrador: " + this.getNombre()+" " + this.getApellido();
 	}
 
 	@Override
 	public String getbienveido() {
 		// TODO Auto-generated method stub
-		return "Administrador:" + this.getNombre()+" " + this.getApellido()+ " de la cuenta de DeustoOutlet";
+		return "Administrador: " + this.getNombre()+" " + this.getApellido()+ " de la cuenta de DeustoOutlet";
 	}
 	
 }

@@ -48,7 +48,6 @@ public class Logica {
     	try {
     		inizializardat();
     		ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fichero));
-    		System.out.println(u);
     		for(Administrador admin : u) {
     			oos.writeObject(admin);
     		}
