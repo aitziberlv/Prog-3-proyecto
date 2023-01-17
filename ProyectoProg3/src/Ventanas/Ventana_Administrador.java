@@ -35,9 +35,11 @@ public class Ventana_Administrador extends JFrame {
 	private JPanel pnl_centro_iz;
 	private JPanel pnl_centro_dcha;
 	private JPanel pnl_abajo;
+	private JPanel pnl_infor;
 	private JLabel titulo;
 	private JLabel estadistica1;
 	private JLabel estadistica2;
+	private JLabel estadistica;
 	private JButton atras;
 	private String usuario;
 	private JPanel central;
@@ -63,10 +65,11 @@ public class Ventana_Administrador extends JFrame {
 		p3=new JPanel();
 		setLocationRelativeTo(null);
 		this.setTitle("Administrador");
-		this.setLayout(new GridLayout(3,1));
+		this.setLayout(new GridLayout(4,1));
 		central=new JPanel();
 		central.setLayout(new GridLayout(3,1));
 		pnl_titulo = new JPanel();
+		pnl_infor = new JPanel();
 		pnl_centro = new JPanel();
 		pnl_centro.setLayout(new GridLayout(1,3));
 		pnl_centro_iz = new JPanel();
@@ -75,27 +78,32 @@ public class Ventana_Administrador extends JFrame {
 		pnl_abajo = new JPanel();
 		pnl_abajo.setLayout(new GridLayout(3,2));
 		titulo = new JLabel("ADMINISTRADOR");
-		estadistica1 = new JLabel("Usuario que mas ha comprado: " + getusu_mas());
-		estadistica2 = new JLabel("Usuario que menos ha comprado: "+ getusu_menos());
+		estadistica = new JLabel("Estadisticas sobre los usuarios de Deusto Outlet.");
+		estadistica1 = new JLabel("Usuario con mas compras: " + getusu_mas());
+		estadistica2 = new JLabel("Usuario con menos compras: "+ getusu_menos());
 		atras = new JButton("<");
 		atras.setForeground(Color.black);
 		atras.setBackground(Color.white);
-		atras.setPreferredSize(new Dimension(32,0));
+		atras.setPreferredSize(new Dimension(50,0));
 		
-//		atras.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
+		atras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Ventana_IS is = new Ventana_IS();
+				is.setVisible(true);
+				setVisible(false);
+				is.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
+				
+			}
+		});
 		Font fuente = new Font("Arial", 1, 20);
 	    titulo.setFont(fuente);
 		Image img= new ImageIcon("deustoOutlet.jpg.png").getImage();
 		ImageIcon img2=new ImageIcon(img.getScaledInstance(140, 140, Image.SCALE_SMOOTH));
 		titulo.setIcon(img2);
 		pnl_titulo.add(titulo);
+		pnl_infor.add(estadistica);
 		central.add(p1);
 		central.add(p2);
 		p2.add(estadistica1);
@@ -104,8 +112,9 @@ public class Ventana_Administrador extends JFrame {
 		pnl_centro.add(pnl_centro_iz);
 		pnl_centro.add(central);
 		pnl_centro.add(pnl_centro_dcha);
-//		pnl_abajo.add(atras);
+		pnl_abajo.add(atras);
 		this.add(pnl_titulo);
+		this.add(pnl_infor);
 		this.add(pnl_centro);
 		this.add(pnl_abajo);
 		lUsuarios = BD.getUsuario();
@@ -119,6 +128,7 @@ public class Ventana_Administrador extends JFrame {
 		pnl_titulo.setBackground(Color.white);
 		pnl_centro_iz.setBackground(Color.white);
 		pnl_centro_dcha.setBackground(Color.white);
+		pnl_infor.setBackground(Color.white);
 	}
 	
 //	public static List<Usuario> UsarioMasComprar () {

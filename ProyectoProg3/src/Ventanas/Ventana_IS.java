@@ -168,6 +168,9 @@ public class Ventana_IS extends JFrame{
 				if(Logica.iniciar_sesion(usuario.getText(), contrasena.getText())) {
 					Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
 					va.setVisible(true);
+					va.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
+					
+					
 //					setVisible(false);
 					va.setTitle(Logica.getadmin(usuario.getText()).getbienveido() );
 				}else if(BD.buscarUsuarioNombre(usuario.getText()) == null){
@@ -181,7 +184,7 @@ public class Ventana_IS extends JFrame{
 					vc.setTitle(" "+ BD.buscarUsuarioNombre(usuario.getText()).getbienveido());
 				}
 				else {
-				JOptionPane.showMessageDialog(null, "Contaseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Inserte de nuevo la contraseña.","Error",JOptionPane.ERROR_MESSAGE);
 				vc.setVisible(false);
 				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 				}
