@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -1239,9 +1240,12 @@ public class BD {
  		   ResultSet rs = stm.executeQuery( sent );
  		   logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
  		   while(rs.next()) {
- 			   
- 			  pr.add(mapa.get(rs.getInt("codigo_producto")));
- 			  
+ 			   String productos=rs.getString("codigo_producto");
+ 			   String[] p=productos.split(",");
+ 			    ArrayList<String> list = new ArrayList<String>(Arrays.asList(p));
+ 			   for (int i=0;i<list.size();i++) {
+ 				  pr.add(mapa.get(Integer.parseInt(list.get(i))));
+ 			   }
  		   }
  		   rs.close();
  		   logger.log(Level.INFO, "BD\t" + sent);

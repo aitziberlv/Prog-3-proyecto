@@ -208,7 +208,8 @@ public class Ventana_Cliente extends JFrame{
 		ArrayList<Producto> panterior =BD.getlistaProductosCarritoAnterior(BD.getDNIusuario(usuario));
 		for (Producto o:panterior) {
 			productosComprados.add(o);
-		}
+			pagar += o.getPrecio();
+					}
 		//---------------------------------------
 		buscar = new JButton("Buscar");
 		buscar.setForeground(Color.black);

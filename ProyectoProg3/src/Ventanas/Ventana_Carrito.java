@@ -241,6 +241,7 @@ public class Ventana_Carrito extends JFrame{
 				for(int indice = 0; indice < mSelec.getSize();indice++){
 					lp.add(mSelec.getElementAt(indice));					
 				}
+				System.out.println(lp);
 				pedido_guardado = BD.InsertarPedido(BD.getDNIusuario(usuario), "No finalizado", fecha, lp);		
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
 				
