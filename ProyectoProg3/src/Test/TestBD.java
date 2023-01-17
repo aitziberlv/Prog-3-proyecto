@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -153,9 +154,29 @@ public class TestBD {
 	public void getCantidadProducto() {
 		int cantidad = BD.cantidadProductos(TipoProducto.CAMISETA, Colorc.BLANCO, 20, Talla.XS);
 		assertEquals(10, cantidad);
-		
-		
+	
 	}
+	
+	@Test
+	public void getBuscarProductoCaracteristicas() {
+
+		TipoProducto tipo = TipoProducto.VESTIDO;
+	    Colorc color = Colorc.BLANCO;
+	    int precio = 29;
+	    Talla talla = Talla.M;
+
+	    List<Producto> resultado = BD.buscarProductoCaracteristicas(tipo, color, precio, talla);
+
+	    // Crear una lista de productos esperados como resultado de la prueba
+	    List<Producto> productos = new ArrayList<Producto>();
+	    productos.add(new Producto(1, "Vestido de verano", 29, Colorc.BLANCO, Talla.M, TipoProducto.VESTIDO));
+
+	    assertEquals(productos, resultado);
+	}
+		
+		
+	
+	
 	
 
 
