@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.KeyStore.Entry;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import BD.BD;
+import Clasesprincipales.Producto;
 import Clasesprincipales.Usuario;
 
 public class Ventana_Administrador extends JFrame {
@@ -39,6 +41,7 @@ public class Ventana_Administrador extends JFrame {
 	private JLabel titulo;
 	private JLabel estadistica1;
 	private JLabel estadistica2;
+	private JLabel estadistica3;
 	private JLabel estadistica;
 	private JButton atras;
 	private String usuario;
@@ -78,9 +81,10 @@ public class Ventana_Administrador extends JFrame {
 		pnl_abajo = new JPanel();
 		pnl_abajo.setLayout(new GridLayout(3,2));
 		titulo = new JLabel("ADMINISTRADOR");
-		estadistica = new JLabel("Estadisticas sobre los usuarios de Deusto Outlet.");
+		estadistica = new JLabel("Estadisticas sobre Deusto Outlet.");
 		estadistica1 = new JLabel("Usuario con mas compras: " + getusu_mas());
 		estadistica2 = new JLabel("Usuario con menos compras: "+ getusu_menos());
+		estadistica3 = new JLabel("Producto mas barato: " + productoMasBarato());
 		atras = new JButton("<");
 		atras.setForeground(Color.black);
 		atras.setBackground(Color.white);
@@ -108,6 +112,7 @@ public class Ventana_Administrador extends JFrame {
 		central.add(p2);
 		p2.add(estadistica1);
 		p2.add(estadistica2);
+		p2.add(estadistica3);
 		central.add(p3);
 		pnl_centro.add(pnl_centro_iz);
 		pnl_centro.add(central);
@@ -175,6 +180,25 @@ public class Ventana_Administrador extends JFrame {
 		}else {
 			return usu;
 		}
+	}
+	
+	public int precioMasBarato(ArrayList<Producto> prod, int indice) {
+		int minimo = 1000;
+		if(indice != prod.size()){
+			if(prod.get(indice).getPrecio() < minimo) {
+				minimo = Math.min(prod.get(indice).getPrecio(), precioMasBarato(prod, indice + 1));
+			}
+			
+		}
+		
+		return minimo;		
+		
+	}
+	
+	public Producto productoMasBarato() {
+		int precio = precioMasBarato(BD.getProductos(), 0);
+		Producto p = BD.buscarProductoPrecio(precio);
+		return p;
 	}
 	
 	public static void main(String[] args) {

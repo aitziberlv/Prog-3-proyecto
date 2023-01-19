@@ -1034,6 +1034,39 @@ public class BD {
 			return null;
 		}
    }
+   
+ 
+   /**
+    * 
+    * @param precio
+    * @return TODOS LOS PRODUCTOS DE ESE PRECIO
+    */
+   public static Producto buscarProductoPrecio(int precio){
+	   String sent = "";
+	   Producto p= null;
+	   
+		try {
+			sent = "select * from producto where precio = " + precio+ ";";
+			Statement stm;
+			stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery( sent );
+			logger.log( Level.INFO, "Lanzada consulta a base de datos: " + sent );
+			while(rs.next()) {
+				p = new Producto(rs.getInt("codigo_producto"), rs.getString("nombre"), rs.getInt("precio"), Colorc.valueOf(rs.getString("color")), Talla.valueOf(rs.getString("talla")), TipoProducto.valueOf(rs.getString("tipo")));
+				break;
+			}
+			rs.close();
+			logger.log(Level.INFO, "BD\t" + sent);
+			return p;
+		} catch (SQLException e) {
+			lastError = e;
+			logger.log( Level.SEVERE, "Error en búsqueda de base de datos: " + sent, e );
+			e.printStackTrace();
+			return null;
+		}
+   }
+   
+   
    /**
     * 
     * @return EL SIGUENTE CODIGO DE PEDIDO
