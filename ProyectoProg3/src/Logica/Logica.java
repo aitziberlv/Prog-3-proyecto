@@ -65,7 +65,6 @@ public class Logica {
 			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fichero));
 			u.add((Administrador) ois.readObject());
 			ois.close();
-			System.out.println(u);
 		} catch (Exception ex) {
 			System.out.println("Mensaje: " + ex.getMessage());
 		}
