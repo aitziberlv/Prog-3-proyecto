@@ -131,27 +131,7 @@ public class Ventana_Administrador extends JFrame {
 		pnl_infor.setBackground(Color.white);
 	}
 	
-//	public static List<Usuario> UsarioMasComprar () {
-//		try {	
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();	
-//		}
-//		return lUsuarios;
-//	}
-	
-//	public static List<Usuario> UsarioMenosComprar () {
-//		
-//		try {
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			
-//		}
-//		return lUsuarios;
-//		
-//	}
+
 	/**
 	 * 
 	 * @return EL USUARIO O USUARIOS QUE MAS PEDIDOS HAN HECHO
