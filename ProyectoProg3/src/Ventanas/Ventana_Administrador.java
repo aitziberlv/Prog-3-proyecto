@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.security.KeyStore.Entry;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -136,45 +137,113 @@ public class Ventana_Administrador extends JFrame {
 	 * 
 	 * @return EL USUARIO O USUARIOS QUE MAS PEDIDOS HAN HECHO
 	 */
+//	public String getusu_mas() {
+//		int n=-1;
+//		String usu="";
+//		Map<String,Integer> mp=BD.rellenarmapa_admin();
+//		for (java.util.Map.Entry<String, Integer> s:mp.entrySet()) {
+//			if (s.getValue()>n) {
+//				usu=s.getKey();
+//				n=s.getValue();
+//			}else if (s.getValue()==n) {
+//				usu=usu+", "+s.getKey();
+//			}
+//		}
+//		if (n==-1) {
+//			return "Ningun usuario ha comprado nada";
+//		}else {
+//			return usu;
+//		}
+//	}
+//	
+	
+	//RECURSIVO
+	
 	public String getusu_mas() {
-		int n=-1;
-		String usu="";
-		Map<String,Integer> mp=BD.rellenarmapa_admin();
-		for (java.util.Map.Entry<String, Integer> s:mp.entrySet()) {
-			if (s.getValue()>n) {
-				usu=s.getKey();
-				n=s.getValue();
-			}else if (s.getValue()==n) {
-				usu=usu+", "+s.getKey();
-			}
-		}
-		if (n==-1) {
-			return "Ningun usuario ha comprado nada";
-		}else {
-			return usu;
-		}
+	    Map<String,Integer> mp = BD.rellenarmapa_admin();
+	    String usu = getusu_mas_rec(mp);
+	    if (usu.isEmpty()) {
+	        return "Ningun usuario ha comprado nada";
+	    } else {
+	        return usu;
+	    }
 	}
+
+	private String getusu_mas_rec(Map<String,Integer> mp) {
+
+		if (mp.isEmpty()) {
+	        return "";
+	    }
+	    // obtener el primer elemento del mapa
+	    Map.Entry<String, Integer> s = mp.entrySet().iterator().next();
+	    String usu = s.getKey();
+	    int n = s.getValue();
+	    // llamada recursiva con el subconjunto del mapa sin el primer elemento
+	    for (Map.Entry<String, Integer> entry : mp.entrySet()) {
+	        if (entry.getValue() > n) {
+	            usu = entry.getKey();
+	            n = entry.getValue();
+	        } else if (entry.getValue() == n) {
+	            usu = usu + ", " + entry.getKey();
+	        }
+	    }
+	    return usu;
+	}
+
+	
+	
 	/**
 	 * EL USUARIO O USUARIOS QUE MENOS PEDIDOS HAN HECHO
 	 * @return
 	 */
+//	public String getusu_menos() {
+//		Map<String,Integer> mp=BD.rellenarmapa_admin();
+//		String usu=mp.keySet().iterator().next();
+//		int n=mp.get(usu);
+//		for (java.util.Map.Entry<String, Integer> s:mp.entrySet()) {
+//			if (s.getValue()<n) {
+//				usu=s.getKey();
+//				n=s.getValue();
+//			}else if (s.getValue()==n && s.getKey().equals(usu)==false) {
+//				usu=usu+", "+s.getKey();
+//			}
+//		}
+//		if (n==-1) {
+//			return "Ningun usuario ha comprado nada";
+//		}else {
+//			return usu;
+//		}
+//	}
+	
 	public String getusu_menos() {
-		Map<String,Integer> mp=BD.rellenarmapa_admin();
-		String usu=mp.keySet().iterator().next();
-		int n=mp.get(usu);
-		for (java.util.Map.Entry<String, Integer> s:mp.entrySet()) {
-			if (s.getValue()<n) {
-				usu=s.getKey();
-				n=s.getValue();
-			}else if (s.getValue()==n && s.getKey().equals(usu)==false) {
-				usu=usu+", "+s.getKey();
-			}
-		}
-		if (n==-1) {
-			return "Ningun usuario ha comprado nada";
-		}else {
-			return usu;
-		}
+	    Map<String,Integer> mp = BD.rellenarmapa_admin();
+	    String usu = getusu_menos_rec(mp);
+	    if (usu.isEmpty()) {
+	        return "Ningun usuario ha comprado nada";
+	    } else {
+	        return usu;
+	    }
+	}
+
+	private String getusu_menos_rec(Map<String,Integer> mp) {
+		
+		if (mp.isEmpty()) {
+	        return "";
+	    }
+	    // obtener el primer elemento del mapa
+	    Map.Entry<String, Integer> s = mp.entrySet().iterator().next();
+	    String usu = s.getKey();
+	    int n = s.getValue();
+	    // llamada recursiva con el subconjunto del mapa sin el primer elemento
+	    for (Map.Entry<String, Integer> entry : mp.entrySet()) {
+	        if (entry.getValue() < n) {
+	            usu = entry.getKey();
+	            n = entry.getValue();
+	        } else if (entry.getValue() == n && entry.getKey().equals(usu)==false) {
+	            usu = usu + ", " + entry.getKey();
+	        }
+	    }
+	    return usu;
 	}
 	
 	public static void main(String[] args) {

@@ -21,14 +21,15 @@ import DATOSDEPRUEBA.Datosdeprueba;
 
 public class TestBD {
 	
-	/**
-	 * //Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
-	 */
+	
 	@Before
 	public void init() {
 		BD.initDatos("DeustoOutlet.db");
 	}
 	
+	/**
+	 * //Test para comprobar los codigos de los productos de la base de datos estan correctamente ordenados
+	 */
 	@Test
 	public void getProductosTest() {
 		ArrayList<Producto> lp = BD.getProductos();
@@ -42,7 +43,6 @@ public class TestBD {
 	
 	/**
 	 * //Test para comprobar los codigos de los pedidos de la base de datos estan correctamente ordenados
-	// tenemos que arreglar de la base de datos o de pedido si no va a dar mal 
 	 */
 	@Test
 	public void getPedidosTest () {
@@ -60,7 +60,7 @@ public class TestBD {
 	 * //Test para comprobar los productos se insertan correctamente a la base de datos
 	 */
 	@Test
-	public void insertarProducto() {
+	public void insertarProductoTest() {
 		ArrayList<Producto> lprod = BD.getProductos(); //productos que hay.
 
 		assertTrue(lprod.size()<= lprod.get(lprod.size()-1).getCodigo());
@@ -82,7 +82,7 @@ public class TestBD {
 	 */
 	
 	@Test
-	public void insertarPedido() {
+	public void insertarPedidoTest() {
 		
 		ArrayList<Pedidos> lpedi = BD.getPedidos(); //pedidos que hay.
 		ArrayList<Producto> lprodu = new ArrayList<>();
@@ -115,7 +115,7 @@ public class TestBD {
 	
 		
 	@Test
-	public void getURLFOTO() {	
+	public void getURLFOTOTest() {	
 		//aqui tenemos dos listas de productos cuando el codigo sea igual compararemos el URL.
 		ArrayList<Producto> a1=Datosdeprueba.conseguirDatosDePueba();
 		ArrayList<Producto> a2=BD.getProductos();
@@ -130,7 +130,7 @@ public class TestBD {
 		
 		
 	@Test
-	public void getDNIusuario() {
+	public void getDNIusuarioTest() {
 		String dni = BD.getDNIusuario("mariarodriguez5");
 		assertEquals("45344345L",dni);
 	}
@@ -139,7 +139,7 @@ public class TestBD {
 	 * //Metodo que comprueba que el codigo de cada producto es el que le corresponde.
 	 */
 	@Test
-	public void getCodigoProducto() {
+	public void getCodigoProductoTest() {
 		ArrayList<Producto> prod = BD.getProductos();
 		for (Producto p : prod) {
 			int codigo = BD.getcodigoProducto(p);
@@ -151,14 +151,14 @@ public class TestBD {
 	 * //Metodo para comprobar que un producto en concreto (camiseta blanca de talla XS) tiene la cantidad correcta.
 	 */
 	@Test
-	public void getCantidadProducto() {
+	public void getCantidadProductoTest() {
 		int cantidad = BD.cantidadProductos(TipoProducto.CAMISETA, Colorc.BLANCO, 20, Talla.XS);
 		assertEquals(10, cantidad);
 	
 	}
 //	
 //	@Test
-//	public void getBuscarProductoCaracteristicas() {
+//	public void getBuscarProductoCaracteristicasTest() {
 //
 //		TipoProducto tipo = TipoProducto.VESTIDO;
 //	    Colorc color = Colorc.BLANCO;
