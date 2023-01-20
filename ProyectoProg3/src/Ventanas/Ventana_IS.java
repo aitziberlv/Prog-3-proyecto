@@ -169,9 +169,7 @@ public class Ventana_IS extends JFrame{
 					Ventana_Administrador va=new Ventana_Administrador(usuario.getText());
 					va.setVisible(true);
 					va.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
-					
-					
-//					setVisible(false);
+					setVisible(false);
 					va.setTitle(Logica.getadmin(usuario.getText()).getbienveido() );
 				}else if(BD.buscarUsuarioNombre(usuario.getText()) == null){
 					JOptionPane.showMessageDialog(null, "Usuario no encontrado.","Error",JOptionPane.ERROR_MESSAGE);

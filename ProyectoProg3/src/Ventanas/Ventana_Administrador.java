@@ -274,6 +274,7 @@ public class Ventana_Administrador extends JFrame {
 		Ventana_Administrador va =new Ventana_Administrador();
 		va.setVisible(true);
 		va.setExtendedState(Ventana_Carrito.MAXIMIZED_BOTH);
+
 		
 	}
 }
