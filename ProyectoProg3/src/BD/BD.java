@@ -980,6 +980,44 @@ public class BD {
     * @param color
     * @return TODOS LOS PRODUCTOS DE ESE COLOR
     */
+   /**
+    * TE DEVUELVE EL PEDIDO QUE NO ESTA FILALIZADO
+    * @param usuario
+    * @return Pedido
+    */
+   public static Pedidos getPedidos_no_finalizado(String usuario) {
+ 	   String sent = "";
+ 	   ArrayList<Pedidos> lpedidos = new ArrayList<Pedidos>();
+ 	   Pedidos pe=null;
+ 	   try {
+ 		   Statement stm = conn.createStatement();
+ 		   sent = "select * from pedido where usuario = '" + usuario +"' and estado = 'No finalizado'";
+ 		   ResultSet rs = stm.executeQuery(sent);
+ 		   while (rs.next()) {
+ 			   List<Producto> listaProductos = new ArrayList<>();
+ 			  
+ 			   String [] datos = rs.getString("codigo_producto").split(",");
+ 			   
+ 			   for(int i=0; i<datos.length; i++) {
+ 				   for(Producto p : getProductos()) {
+ 					   if(Integer.parseInt(datos[i]) == p.getCodigo()) {
+ 						   listaProductos.add(p);
+ 					   }
+ 				   }
+ 			   }pe = new Pedidos(listaProductos, rs.getInt("codigo_pedido"));
+ 				   
+ 			   
+ 		   }
+ 		   rs.close();
+ 		   logger.log(Level.INFO, "BD\t" + sent);
+ 		   return pe;
+ 	} catch (SQLException e) {
+ 		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
+ 		lastError = e;
+ 		e.printStackTrace();
+ 		return null;
+ 	}
+    }
    public static List<Producto> buscarProductoColor(Colorc color){
 	   String sent = "";
 	   List<Producto>lproducto = new ArrayList<Producto>();
