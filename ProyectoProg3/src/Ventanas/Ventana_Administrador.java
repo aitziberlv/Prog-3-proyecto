@@ -273,7 +273,7 @@ public class Ventana_Administrador extends JFrame {
 	}
 	
 	public int precioMasCaro (ArrayList<Producto> prod, int indice) {
-		int maximo = 1000;
+		int maximo = 0;
 		if (indice != prod.size()) {
 			if (prod.get(indice).getPrecio() > maximo) {
 				maximo = Math.max(prod.get(indice).getPrecio(), precioMasCaro(prod, indice + 1));
