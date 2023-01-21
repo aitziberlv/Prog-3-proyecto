@@ -991,7 +991,8 @@ public class BD {
  	   Pedidos pe=null;
  	   try {
  		   Statement stm = conn.createStatement();
- 		   sent = "select * from pedido where usuario = '" + usuario +"' and estado = 'No finalizado'";
+ 		   String dni=BD.getDNIusuario(usuario);
+ 		   sent = "select * from pedido where dni = '" + dni +"' and estado = 'No finalizado'";
  		   ResultSet rs = stm.executeQuery(sent);
  		   while (rs.next()) {
  			   List<Producto> listaProductos = new ArrayList<>();
