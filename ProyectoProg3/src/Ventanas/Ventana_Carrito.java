@@ -148,6 +148,10 @@ public class Ventana_Carrito extends JFrame{
 		Border b;
 		b = BorderFactory.createLineBorder(Color.black,2);
 		centro.setBorder(b);
+		Pedidos pe=BD.getPedidos_no_finalizado(usuario);
+		if ((pe==null)==false) {
+			pedido_guardado=pe;
+		}
 		/**
 		 * BORRA UN PRODUCTO
 		 */
@@ -227,6 +231,7 @@ public class Ventana_Carrito extends JFrame{
 			}
 			
 		});
+		
 		/**
 		 * PARA GUARDAR NUESTRA COMPRA Y PODER SEGUIR REALIZANDOLA SI VOLVEMOS A INICIAR SESION OTRO DIA
 		 */

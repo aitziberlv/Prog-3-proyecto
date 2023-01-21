@@ -701,7 +701,7 @@ public class BD {
     	String sent = "";
     	try {
     		Statement stmt = conn.createStatement();
-        	sent = "insert into tienda (franquicia, foto) values( '"+ t.getFranquicia() +  "','"+ rutafoto+"')";
+        	sent = "insert into tienda (codigo_tienda, franquicia, foto) values( "+t.getCodigo()+",'"+ t.getFranquicia() +  "','"+ rutafoto+"')";
         	int val = stmt.executeUpdate(sent);
         	if(val != 1) {
 				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
