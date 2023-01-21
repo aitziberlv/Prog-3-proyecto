@@ -155,8 +155,8 @@ public class Ventana_productosdisponibles extends JFrame{
 					JOptionPane.showMessageDialog(null, "El numero introducido debe de estar entre 50 y 300.","Error",JOptionPane.ERROR_MESSAGE);
 					
 				}
-				num.setEditable(false);
-				mostrar_productos.setVisible(false);
+				num.setEditable(true);
+				mostrar_productos.setVisible(true);
 			}
 		});
 		/**
