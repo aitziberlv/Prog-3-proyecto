@@ -663,6 +663,7 @@ public class BD {
 	    	
 			int val = stmt.executeUpdate(p);
 	    	if(val != 1) {
+	    		System.out.println("a");
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
  				return null;  
  			}
@@ -678,13 +679,16 @@ public class BD {
 			   }
 		    }
 		    pedido = new Pedidos(lproductos, n);
+		    System.out.println(pedido);
 	    	rs.close();
 
 	    	
 			
 		} catch (SQLException e) {
+			
 			// TODO Auto-generated catch block
 			lastError = e;
+			System.out.println("kk");
 			e.printStackTrace();
 			return null;
 		}

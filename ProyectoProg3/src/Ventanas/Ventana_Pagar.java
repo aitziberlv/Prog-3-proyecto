@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -23,7 +27,9 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import BD.BD;
+import Clasesprincipales.Pedidos;
 import Clasesprincipales.Producto;
+import Logica.Logica;
 import Ventanasexternas.FondoSwing;
 
 public class Ventana_Pagar extends JFrame {
@@ -65,14 +71,14 @@ public class Ventana_Pagar extends JFrame {
 	/**
 	 * usuario()
 	 */
-	private String Usuario;
+	private String usuario;
     /**
     * inicializar la ventana
     */
 	
 	public Ventana_Pagar(String usuario) throws HeadlessException {
 		super();
-		Usuario = usuario;
+		usuario = usuario;
 		configurarVentana();
 		inicilizarVentana();
 		
@@ -179,17 +185,25 @@ public class Ventana_Pagar extends JFrame {
 				CVV=aCVV.getText();
 				Direccion=aDireccion.getText();
 				if(NumeroTarjeta.length()==16 && FechaVencimiento.length() ==4 && CVV.length()==3) {
-					
-					for(Producto p: Ventana_Cliente.getCarrito()) {
-						boolean b=BD.EliminarProducto(p);
-						if (b) {
-							System.out.println(p);
-						}
-						
-					}
+//					for(Producto p: Ventana_Cliente.getCarrito()) {
+//						boolean b=BD.EliminarProducto(p);
+//						if (b) {
+//							System.out.println(p);
+//						}
+//						
+//					}
 					System.out.println(Ventana_Carrito.getPedidoGuardado());
-					BD.ActualizarPedidoEstado(Ventana_Carrito.getPedidoGuardado());
+					SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+					String fecha = df.format(new Date());
+					BD.InsertarPedido(BD.getDNIusuario(usuario), "Finalizado", fecha,(ArrayList<Producto>) Ventana_Carrito.getPedidoGuardado().getLista_pedidos() );
 					JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
+					ArrayList<Producto> prod=new ArrayList<Producto> ();
+					Pedidos p=new Pedidos(prod,BD.getcodigopedido());
+					Logica.escribir_p(usuario+".dat",p);
+					Pedidos p3=Logica.lectura_p(usuario+".dat");
+					System.out.println(p3);
+					System.out.println(usuario);
+					System.out.println("a");
 				}else{
 					JOptionPane.showMessageDialog(null, "Introduzca de nuevo sus datos.","Error",JOptionPane.ERROR_MESSAGE);				}
 				}
@@ -202,7 +216,7 @@ public class Ventana_Pagar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				Ventana_Carrito vc = new Ventana_Carrito(Usuario);
+				Ventana_Cliente vc = new Ventana_Cliente(usuario);
 				vc.setVisible(true);
 				setVisible(false);
 				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);

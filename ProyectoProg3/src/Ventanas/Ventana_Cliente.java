@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import BD.BD;
 import Clasesprincipales.TipoProducto;
+import Logica.Logica;
 import Ventanasexternas.FondoSwing;
 import Clasesprincipales.Colorc;
 import Clasesprincipales.Pedidos;
@@ -66,8 +67,8 @@ import Clasesprincipales.Talla;
 
 public class Ventana_Cliente extends JFrame{
 	private static final long serialVersionUID = 1L;
-	private static List<Producto> productosComprados = new ArrayList<>();
-	public static int pagar = 0;
+	private static List<Producto> productosComprados ;
+	public static int pagar;;
 	private List<Producto> usando;
 	private JPanel arriba;
 	private JPanel arriba1;
@@ -205,11 +206,17 @@ public class Ventana_Cliente extends JFrame{
 		for(Talla t : Talla.values()) {
 			tallas.addItem(t);
 		}
-		ArrayList<Producto> panterior =BD.getlistaProductosCarritoAnterior(BD.getDNIusuario(usuario));
-		for (Producto o:panterior) {
-			productosComprados.add(o);
-			pagar += o.getPrecio();
-					}
+		productosComprados=new ArrayList<>();
+		pagar=0;
+		//ArrayList<Producto> panterior =BD.getlistaProductosCarritoAnterior(BD.getDNIusuario(usuario));
+		 if ((Logica.lectura_p(usuario+".dat")==null)==false) {
+			 ArrayList<Producto> panterior =(ArrayList<Producto>) Logica.lectura_p(usuario+".dat").getLista_pedidos();
+				for (Producto o:panterior) {
+					productosComprados.add(o);
+					pagar += o.getPrecio();
+							}
+		 }
+		
 		//---------------------------------------
 		buscar = new JButton("Buscar");
 		buscar.setForeground(Color.black);

@@ -1,9 +1,10 @@
 package Clasesprincipales;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pedidos {
+public class Pedidos implements Serializable{
 	
 	private int codigo;
 	private List<Producto> lista_pedidos = new ArrayList<>();

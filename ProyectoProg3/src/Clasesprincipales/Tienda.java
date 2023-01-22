@@ -1,8 +1,9 @@
 package Clasesprincipales;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tienda implements Informacion{
+public class Tienda implements Informacion,Serializable{
 	private int codigo =1;
 	
 	private Franquicia franquicia=Franquicia.BERSHKA;

@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import Clasesprincipales.Administrador;
-
+import Clasesprincipales.Pedidos;
 import Clasesprincipales.Usuario;
 import Ventanas.main;
 
@@ -103,4 +103,32 @@ public class Logica {
 		lectura("Administradores.dat");
 	}
 	
+	
+	
+	public static void escribir_p(String fichero,Pedidos p) {
+    	try {
+    		ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(fichero));
+    		
+    			oos.writeObject(p);
+    		
+			oos.close();
+		}
+    		
+    	catch (IOException e) {
+    		e.printStackTrace();
+    	}
+	}
+	
+	
+	public static Pedidos lectura_p(String fichero ) {	
+		try {
+			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fichero));
+//			u.add((Administrador) ois.readObject());
+			return (Pedidos) ois.readObject();
+		} catch (Exception ex) {
+			System.out.println("Mensaje: " + ex.getMessage());
+			return null;
+		}
+		
+	}
 }

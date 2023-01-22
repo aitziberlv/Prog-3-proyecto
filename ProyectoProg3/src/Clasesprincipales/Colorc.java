@@ -1,5 +1,7 @@
 package Clasesprincipales;
 
-public enum Colorc {
+import java.io.Serializable;
+
+public enum Colorc implements Serializable{
 	VERDE,ROSA,AZUL,ROJO,AMARILLO,BLANCO,NEGRO,NARANJA,GRIS;
 }

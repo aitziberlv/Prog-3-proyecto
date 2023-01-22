@@ -1,7 +1,8 @@
 package Clasesprincipales;
 
+import java.io.Serializable;
 
-public class Producto implements Informacion{
+public class Producto implements Informacion,Serializable{
 	private int codigo = 0;
 	private String nombre = "";
 	private int precio = 0;
