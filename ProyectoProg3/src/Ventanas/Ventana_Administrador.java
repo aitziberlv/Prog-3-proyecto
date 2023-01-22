@@ -43,6 +43,7 @@ public class Ventana_Administrador extends JFrame {
 	private JLabel estadistica1;
 	private JLabel estadistica2;
 	private JLabel estadistica3;
+	private JLabel estadistica4;
 	private JLabel estadistica;
 	private JButton atras;
 	private String usuario;
@@ -86,10 +87,12 @@ public class Ventana_Administrador extends JFrame {
 		estadistica1 = new JLabel("Usuario con mas compras: " + getusu_mas());
 		estadistica2 = new JLabel("Usuario con menos compras: "+ getusu_menos());
 		estadistica3 = new JLabel("Producto mas barato: " + productoMasBarato());
+		estadistica4 = new JLabel("Producto mas caro: " + productoMasCaro());
 		atras = new JButton("<");
 		atras.setForeground(Color.black);
 		atras.setBackground(Color.white);
-		atras.setPreferredSize(new Dimension(50,0));
+		//atras.setPreferredSize(new Dimension(1,1));
+		
 		
 		atras.addActionListener(new ActionListener() {
 			
@@ -98,7 +101,6 @@ public class Ventana_Administrador extends JFrame {
 				Ventana_IS is = new Ventana_IS();
 				is.setVisible(true);
 				setVisible(false);
-				is.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
 				
 			}
 		});
@@ -110,10 +112,11 @@ public class Ventana_Administrador extends JFrame {
 		pnl_titulo.add(titulo);
 		pnl_infor.add(estadistica);
 		central.add(p1);
-		central.add(p2);
 		p2.add(estadistica1);
 		p2.add(estadistica2);
 		p2.add(estadistica3);
+		p2.add(estadistica4);
+		central.add(p2);
 		central.add(p3);
 		pnl_centro.add(pnl_centro_iz);
 		pnl_centro.add(central);
@@ -135,6 +138,8 @@ public class Ventana_Administrador extends JFrame {
 		pnl_centro_iz.setBackground(Color.white);
 		pnl_centro_dcha.setBackground(Color.white);
 		pnl_infor.setBackground(Color.white);
+		
+		
 	}
 	
 
@@ -256,12 +261,9 @@ public class Ventana_Administrador extends JFrame {
 		if(indice != prod.size()){
 			if(prod.get(indice).getPrecio() < minimo) {
 				minimo = Math.min(prod.get(indice).getPrecio(), precioMasBarato(prod, indice + 1));
-			}
-			
+			}	
 		}
-		
 		return minimo;		
-		
 	}
 	
 	public Producto productoMasBarato() {
@@ -270,6 +272,22 @@ public class Ventana_Administrador extends JFrame {
 		return p;
 	}
 	
+	public int precioMasCaro (ArrayList<Producto> prod, int indice) {
+		int maximo = 0;
+		if (indice != prod.size()) {
+			if (prod.get(indice).getPrecio() > maximo) {
+				maximo = Math.max(prod.get(indice).getPrecio(), precioMasCaro(prod, indice + 1));
+			}
+		}
+		return maximo;
+	}
+	
+	public Producto productoMasCaro() {
+		int precio = precioMasCaro(BD.getProductos(), 0);
+		Producto p = BD.buscarProductoPrecio(precio);
+		return p;
+	}
+ 	
 	public static void main(String[] args) {
 		Ventana_Administrador va =new Ventana_Administrador();
 		va.setVisible(true);

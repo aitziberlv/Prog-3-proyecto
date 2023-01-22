@@ -701,7 +701,29 @@ public class BD {
     	String sent = "";
     	try {
     		Statement stmt = conn.createStatement();
-        	sent = "insert into tienda (franquicia, foto) values( '"+ t.getFranquicia() +  "','"+ rutafoto+"')";
+        	sent = "insert into tienda (codigo_tienda, franquicia, foto) values( "+t.getCodigo()+",'"+ t.getFranquicia() +  "','"+ rutafoto+"')";
+        	int val = stmt.executeUpdate(sent);
+        	if(val != 1) {
+				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
+				return false;  
+			}
+        	
+			return true;
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    }
+/**
+ * ELIMINAR PEDIDO
+ * param un pedido 
+ */
+    public static boolean eliminarpedido(Pedidos p) {
+    	String sent = "";
+    	try {
+    		Statement stmt = conn.createStatement();
+        	sent = "delete from pedido where codigo_pedido = "+p.getCodigo();
         	int val = stmt.executeUpdate(sent);
         	if(val != 1) {
 				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
@@ -716,7 +738,6 @@ public class BD {
 		}
     }
 
-    
     
     /**
      * **********************************************************************************************************************************************
@@ -975,6 +996,45 @@ public class BD {
 			return null;
 		}
    }
+   /**
+    * TE DEVUELVE EL PEDIDO QUE NO ESTA FILALIZADO
+    * @param usuario
+    * @return Pedido
+    */
+   public static Pedidos getPedidos_no_finalizado(String usuario) {
+ 	   String sent = "";
+ 	   ArrayList<Pedidos> lpedidos = new ArrayList<Pedidos>();
+ 	   Pedidos pe=null;
+ 	   try {
+ 		   Statement stm = conn.createStatement();
+ 		   String dni=BD.getDNIusuario(usuario);
+ 		   sent = "select * from pedido where dni = '" + dni +"' and estado = 'No finalizado'";
+ 		   ResultSet rs = stm.executeQuery(sent);
+ 		   while (rs.next()) {
+ 			   List<Producto> listaProductos = new ArrayList<>();
+ 			  
+ 			   String [] datos = rs.getString("codigo_producto").split(",");
+ 			   
+ 			   for(int i=0; i<datos.length; i++) {
+ 				   for(Producto p : getProductos()) {
+ 					   if(Integer.parseInt(datos[i]) == p.getCodigo()) {
+ 						   listaProductos.add(p);
+ 					   }
+ 				   }
+ 			   }pe = new Pedidos(listaProductos, rs.getInt("codigo_pedido"));
+ 				   
+ 			   
+ 		   }
+ 		   rs.close();
+ 		   logger.log(Level.INFO, "BD\t" + sent);
+ 		   return pe;
+ 	} catch (SQLException e) {
+ 		logger.log(Level.SEVERE, "Error en BD\t" + sent, e);
+ 		lastError = e;
+ 		e.printStackTrace();
+ 		return null;
+ 	}
+    }
    /**
     * 
     * @param color

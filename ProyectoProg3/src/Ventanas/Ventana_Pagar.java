@@ -75,6 +75,7 @@ public class Ventana_Pagar extends JFrame {
 		Usuario = usuario;
 		configurarVentana();
 		inicilizarVentana();
+		
 	}
 
 	public Ventana_Pagar() {
@@ -180,9 +181,13 @@ public class Ventana_Pagar extends JFrame {
 				if(NumeroTarjeta.length()==16 && FechaVencimiento.length() ==4 && CVV.length()==3) {
 					
 					for(Producto p: Ventana_Cliente.getCarrito()) {
-						BD.EliminarProducto(p);
+						boolean b=BD.EliminarProducto(p);
+						if (b) {
+							System.out.println(p);
+						}
+						
 					}
-					
+					System.out.println(Ventana_Carrito.getPedidoGuardado());
 					BD.ActualizarPedidoEstado(Ventana_Carrito.getPedidoGuardado());
 					JOptionPane.showMessageDialog( null, "Gracias por su compra en Deusto outlet");
 				}else{

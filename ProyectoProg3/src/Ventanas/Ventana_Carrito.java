@@ -75,6 +75,7 @@ public class Ventana_Carrito extends JFrame{
 	private DefaultListModel<Producto> mSelec;
 	private JList<Producto> lSelec;
 	private JScrollPane scrollista;
+	private JButton guardar2;
 	ArrayList<Producto> pr=(ArrayList<Producto>) Ventana_Cliente.getCarrito();
 	/**
 	 * inicializar la ventana:constructor
@@ -83,13 +84,16 @@ public class Ventana_Carrito extends JFrame{
 	 */
 	public Ventana_Carrito(String usuario) throws HeadlessException {
 		super();
+		//BD.eliminarpedido(BD.getPedidos_no_finalizado(usuario));
 		this.usuario = usuario;
 		inicializarVentana();
+		guardar2.doClick();
 		
 	}
 
 	public Ventana_Carrito() {
 		inicializarVentana();
+		guardar2.doClick();
 	}
 
 	private void inicializarVentana() {
@@ -100,6 +104,7 @@ public class Ventana_Carrito extends JFrame{
 		this.setLayout(new GridLayout(3,1));
 		v=new JPanel();
 		lFoto=new JLabel();
+		guardar2=new JButton();
 		titulo = new JPanel();
 		centro = new JPanel();
 		centro.setLayout(new GridLayout(1,2));
@@ -148,6 +153,10 @@ public class Ventana_Carrito extends JFrame{
 		Border b;
 		b = BorderFactory.createLineBorder(Color.black,2);
 		centro.setBorder(b);
+		Pedidos pe=BD.getPedidos_no_finalizado(usuario);
+		if ((pe==null)==false) {
+			pedido_guardado=pe;
+		}
 		/**
 		 * BORRA UN PRODUCTO
 		 */
@@ -224,6 +233,7 @@ public class Ventana_Carrito extends JFrame{
 			}
 			
 		});
+		
 		/**
 		 * PARA GUARDAR NUESTRA COMPRA Y PODER SEGUIR REALIZANDOLA SI VOLVEMOS A INICIAR SESION OTRO DIA
 		 */
@@ -240,6 +250,29 @@ public class Ventana_Carrito extends JFrame{
 				}
 				pedido_guardado = BD.InsertarPedido(BD.getDNIusuario(usuario), "No finalizado", fecha, lp);		
 				JOptionPane.showMessageDialog( null, "Su compra ha sido guardada con éxito.");
+				
+			}
+			
+		});
+		/***
+		 * boton auxiliar que ñle damos en el inicio
+		 */
+		guardar2.addActionListener(new ActionListener( ){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				String fecha = df.format(new Date());
+				
+				ArrayList<Producto> lp = new ArrayList<>();
+				for(int indice = 0; indice < mSelec.getSize();indice++){
+					lp.add(mSelec.getElementAt(indice));					
+				}
+				ArrayList<Pedidos> peds=BD.getPedidos();
+				Pedidos p = BD.getPedidos_no_finalizado( usuario) ;
+				
+				pedido_guardado = BD.InsertarPedido(BD.getDNIusuario(usuario), "No finalizado", fecha, lp);		
+				System.out.println(pedido_guardado);
 				
 			}
 			
