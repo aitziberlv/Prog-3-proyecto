@@ -206,13 +206,13 @@ public class Ventana_Cliente extends JFrame{
 		productosComprados=new ArrayList<>();
 		pagar=0;
 		//ArrayList<Producto> panterior =BD.getlistaProductosCarritoAnterior(BD.getDNIusuario(usuario));
-		// if ((Logica.lectura_p(usuario+".dat")==null)==false) {
+		if ((Logica.lectura_p(usuario+".dat")==null)==false) {
 			 ArrayList<Producto> panterior =(ArrayList<Producto>) Logica.lectura_p(usuario+".dat").getLista_pedidos();
 				for (Producto o:panterior) {
 					productosComprados.add(o);
 					pagar += o.getPrecio();
 							}
-		// }
+		 }
 		
 		//---------------------------------------
 		buscar = new JButton("Buscar");

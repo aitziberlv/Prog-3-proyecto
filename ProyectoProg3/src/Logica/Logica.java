@@ -10,8 +10,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import BD.BD;
 import Clasesprincipales.Administrador;
 import Clasesprincipales.Pedidos;
+import Clasesprincipales.Producto;
 import Clasesprincipales.Usuario;
 import Ventanas.main;
 
@@ -124,7 +126,8 @@ public class Logica {
 	}
 	
 	
-	public static Pedidos lectura_p(String fichero ) {	
+	public static Pedidos lectura_p(String fichero) {	
+
 		try {
 			ObjectInputStream ois=new ObjectInputStream(new FileInputStream(fichero));
 //			u.add((Administrador) ois.readObject());
