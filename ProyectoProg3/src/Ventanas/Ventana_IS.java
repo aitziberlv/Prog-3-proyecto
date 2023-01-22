@@ -330,12 +330,7 @@ public class Ventana_IS extends JFrame{
 	        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 	}
-	public static void main(String[] args) {
-		//Ventana_IS vs =new Ventana_IS();
-		//vs.setSize(900,700);
-		//vs.setLocationRelativeTo(null);
-		//vs.setExtendedState(Ventana_IS.MAXIMIZED_BOTH);
-	}
+	
 }
 
 

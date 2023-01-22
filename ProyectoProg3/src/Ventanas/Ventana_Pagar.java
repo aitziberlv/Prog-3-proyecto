@@ -78,16 +78,16 @@ public class Ventana_Pagar extends JFrame {
 	
 	public Ventana_Pagar(String usuario) throws HeadlessException {
 		super();
-		usuario = usuario;
+		this.usuario = usuario;
 		configurarVentana();
 		inicilizarVentana();
 		
 	}
 
-	public Ventana_Pagar() {
-		configurarVentana();
-		inicilizarVentana();
-	}
+//	public Ventana_Pagar() {
+//		configurarVentana();
+//		inicilizarVentana();
+//	}
 	
 	private void configurarVentana() {
 		this.setTitle("DEUSTO OUTLET PAGAR");                  
@@ -192,7 +192,7 @@ public class Ventana_Pagar extends JFrame {
 //						}
 //						
 //					}
-					System.out.println(Ventana_Carrito.getPedidoGuardado());
+					
 					SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 					String fecha = df.format(new Date());
 					BD.InsertarPedido(BD.getDNIusuario(usuario), "Finalizado", fecha,(ArrayList<Producto>) Ventana_Carrito.getPedidoGuardado().getLista_pedidos() );
@@ -200,10 +200,8 @@ public class Ventana_Pagar extends JFrame {
 					ArrayList<Producto> prod=new ArrayList<Producto> ();
 					Pedidos p=new Pedidos(prod,BD.getcodigopedido());
 					Logica.escribir_p(usuario+".dat",p);
-					Pedidos p3=Logica.lectura_p(usuario+".dat");
-					System.out.println(p3);
-					System.out.println(usuario);
-					System.out.println("a");
+					
+					
 				}else{
 					JOptionPane.showMessageDialog(null, "Introduzca de nuevo sus datos.","Error",JOptionPane.ERROR_MESSAGE);				}
 				}
@@ -252,10 +250,5 @@ public class Ventana_Pagar extends JFrame {
 	    }
 		
 	}
-		public static void main(String[] args) {
-			Ventana_Pagar ventana_Pagar = new Ventana_Pagar();
-			ventana_Pagar.setVisible(true);
-			ventana_Pagar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			ventana_Pagar.setExtendedState(ventana_Pagar.MAXIMIZED_BOTH);
-	}
+		
 }

@@ -264,14 +264,6 @@ public class Ventana_productosdisponibles extends JFrame{
 		
 	}
 	
-	
-	public static void main(String[] args) {
-		Ventana_productosdisponibles vp=new Ventana_productosdisponibles();
-		vp.setVisible(true);
-		vp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		vp.setSize(700, 1000);
-		vp.setLocationRelativeTo(null);
-		//vp.setExtendedState(vp.MAXIMIZED_BOTH);
-	}
+
 	
 }

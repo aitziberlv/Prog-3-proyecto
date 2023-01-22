@@ -569,6 +569,10 @@ public class BD {
 
      */
     
+	/**
+	 * ENTRE LOS METODOS DE LA BASE DE DATOS ENCONTRAMOS METODOS QUE CONTROLAN EL CAMBIO DEL ESTADO DEL EPDIDO ADEMAS EN LA BASE DE DATOS PODEMOS 
+	 * ALMACENAR EL ESTADO DE LOS PEDIDOS, DISPONEMOS DE TODOS LOS METODOS PARA HACER ESO PERO ACTUALMNETE EL ESTADO DE LOS PEDIDOS ES CONTROLADO POR FICHEROS (CLASE LOGICA)
+	 */
     
     /**
      * INSERCION DE UN USUARIO EN LA BASE DE DATOS
@@ -663,7 +667,7 @@ public class BD {
 	    	
 			int val = stmt.executeUpdate(p);
 	    	if(val != 1) {
-	    		System.out.println("a");
+	    		
  				logger.log( Level.SEVERE, "Error en insert de BD\t" + p);
  				return null;  
  			}
@@ -679,7 +683,7 @@ public class BD {
 			   }
 		    }
 		    pedido = new Pedidos(lproductos, n);
-		    System.out.println(pedido);
+		   
 	    	rs.close();
 
 	    	
@@ -688,7 +692,7 @@ public class BD {
 			
 			// TODO Auto-generated catch block
 			lastError = e;
-			System.out.println("kk");
+			
 			e.printStackTrace();
 			return null;
 		}

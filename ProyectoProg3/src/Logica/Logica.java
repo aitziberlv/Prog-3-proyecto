@@ -103,7 +103,11 @@ public class Logica {
 		lectura("Administradores.dat");
 	}
 	
-	
+	/**
+	 * ademas en logica tambien nos ocuparemos  de llevar los estados de los pedidos
+	 * @param fichero
+	 * @param p
+	 */
 	
 	public static void escribir_p(String fichero,Pedidos p) {
     	try {
