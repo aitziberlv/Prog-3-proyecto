@@ -1,4 +1,4 @@
-	package Ventanas;
+package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -196,20 +196,17 @@ public class Ventana_Carrito extends JFrame{
 		/**
 		 * PARA VOLVER A LA VENTANA CARRITO Y SEGUIR AÑADIENDO PRODUCTOS
 		 */
-		añadir.addActionListener(new ActionListener( ){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				Ventana_Cliente vc = new Ventana_Cliente(usuario);
-				vc.setVisible(true);
-				setVisible(false);
-				vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);
-
-				
-			}
+		
+		añadir.addActionListener(e -> {
+			
+			Ventana_Cliente vc = new Ventana_Cliente(usuario);
+			vc.setVisible(true);
+			setVisible(false);
+			vc.setExtendedState(Ventana_Portada.MAXIMIZED_BOTH);	
 			
 		});
+		
+		
 		/**
 		 * PARA FINALIZAR NUESTRA COMPRA Y PAGARLA
 		 */
