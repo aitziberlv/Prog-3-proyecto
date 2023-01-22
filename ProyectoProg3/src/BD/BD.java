@@ -715,8 +715,29 @@ public class BD {
 			return false;
 		}
     }
+/**
+ * ELIMINAR PEDIDO
+ * param un pedido 
+ */
+    public static boolean eliminarpedido(Pedidos p) {
+    	String sent = "";
+    	try {
+    		Statement stmt = conn.createStatement();
+        	sent = "delete from pedido where codigo_pedido = "+p.getCodigo();
+        	int val = stmt.executeUpdate(sent);
+        	if(val != 1) {
+				logger.log( Level.SEVERE, "Error en insert de BD\t" + sent);
+				return false;  
+			}
+        	
+			return true;
+		} catch (SQLException e) {
+			lastError = e;
+			e.printStackTrace();
+			return false;
+		}
+    }
 
-    
     
     /**
      * **********************************************************************************************************************************************
@@ -976,11 +997,6 @@ public class BD {
 		}
    }
    /**
-    * 
-    * @param color
-    * @return TODOS LOS PRODUCTOS DE ESE COLOR
-    */
-   /**
     * TE DEVUELVE EL PEDIDO QUE NO ESTA FILALIZADO
     * @param usuario
     * @return Pedido
@@ -1019,6 +1035,11 @@ public class BD {
  		return null;
  	}
     }
+   /**
+    * 
+    * @param color
+    * @return TODOS LOS PRODUCTOS DE ESE COLOR
+    */
    public static List<Producto> buscarProductoColor(Colorc color){
 	   String sent = "";
 	   List<Producto>lproducto = new ArrayList<Producto>();

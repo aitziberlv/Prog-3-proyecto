@@ -84,6 +84,7 @@ public class Ventana_Carrito extends JFrame{
 	 */
 	public Ventana_Carrito(String usuario) throws HeadlessException {
 		super();
+		//BD.eliminarpedido(BD.getPedidos_no_finalizado(usuario));
 		this.usuario = usuario;
 		inicializarVentana();
 		guardar2.doClick();
@@ -271,8 +272,10 @@ public class Ventana_Carrito extends JFrame{
 					lp.add(mSelec.getElementAt(indice));					
 				}
 				ArrayList<Pedidos> peds=BD.getPedidos();
-				pedido_guardado = BD.InsertarPedido(BD.getDNIusuario(usuario), "No finalizado", fecha, lp);		
+				Pedidos p = BD.getPedidos_no_finalizado( usuario) ;
 				
+				pedido_guardado = BD.InsertarPedido(BD.getDNIusuario(usuario), "No finalizado", fecha, lp);		
+				System.out.println(pedido_guardado);
 				
 			}
 			
